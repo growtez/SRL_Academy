@@ -1,0 +1,297 @@
+/* Form Container */
+.application-form {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    font-family: 'Inter', sans-serif;
+    max-width: 900px;
+
+}
+
+.application-form h2 {
+    font-family: 'Oswald', sans-serif;
+    color: #a00000;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #a00000;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.application-form h2 i {
+    margin-right: 12px;
+
+}
+
+.institute-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border-left: 4px solid #a00000;
+}
+
+.institute-info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.application-form fieldset {
+    /* width: 100%;   */
+    box-sizing: border-box;
+    border: 2px solid #800000;
+    padding: 25px;
+    margin: 30px 0;
+    border-radius: 12px;
+    background: #fafbfc;
+}
+
+.application-form legend {
+    font-weight: 600;
+    color: #a00000;
+    font-size: 1.1rem;
+    padding: 8px 15px;
+    background: white;
+    border: 2px solid #a00000;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.application-form legend i {
+    margin-right: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+
+}
+
+.application-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.application-form input,
+.application-form textarea,
+.application-form select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: white;
+    border-color: 2px #800000;
+}
+
+.application-form input:focus,
+.application-form textarea:focus,
+.application-form select:focus {
+    outline: none;
+    border-color: #a00000;
+    box-shadow: 0 0 0 3px rgba(160, 0, 0, 0.1);
+}
+
+.application-form *,
+.application-form *::before,
+.application-form *::after {
+    box-sizing: border-box;
+}
+
+/* Radio Button Styling */
+.radio-group {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: white;
+    border: 2px solid #e9ecef;
+    min-width: 100px;
+}
+
+.radio-option:hover {
+    background: #f8f9fa;
+    border-color: #a00000;
+}
+
+.radio-option input[type="radio"] {
+    width: auto;
+    height: 18px;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+    accent-color: #a00000;
+}
+
+.radio-option label {
+    margin: 0;
+    cursor: pointer;
+    font-weight: 500;
+    color: #555;
+}
+
+.radio-option input[type="radio"]:checked+label {
+    color: #a00000;
+    font-weight: 600;
+}
+
+.radio-option:has(input[type="radio"]:checked) {
+    background: rgba(160, 0, 0, 0.05);
+    border-color: #a00000;
+}
+
+/* Date Input Styling */
+.date-input {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.date-input label {
+    margin-bottom: 0;
+    min-width: 140px;
+}
+
+.date-input input {
+    margin-bottom: 0;
+    max-width: 200px;
+}
+
+.application-form button {
+    width: 100%;
+    background: linear-gradient(135deg, #a00000, #800000);
+    color: #fff;
+    padding: 18px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.application-form button:hover {
+    background: linear-gradient(135deg, #800000, #600000);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(160, 0, 0, 0.3);
+}
+
+.application-form button i {
+    margin-right: 10px;
+}
+
+/* Declaration Section */
+.declaration-text {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px; 
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #856404;
+}
+
+/* Two Column Layout for some fields */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.experience-dates {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.experience-dates input {
+    flex: 1; /* makes them equal width in a row */
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .application-form {
+        padding: 20px;
+        margin: 10px 1px;
+    }
+
+    .application-form h2 {
+        font-size: 1.6rem;
+    }
+
+    .application-form fieldset {
+        padding: 15px;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .date-input {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .date-input label {
+        min-width: auto;
+
+    }
+
+    .date-input input {
+        max-width: 100%;
+    }
+}
+/* On small screens, stack them */
+@media (max-width: 768px) {
+    .experience-dates {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .application-form {
+        padding: 20px;
+    }
+
+    .application-form h2 {
+        font-size: 1.4rem;
+    }
+
+    .radio-option {
+        min-width: auto;
+        padding: 8px 12px;
+    }
+}
+.application-form .form-group input[type="date"] {
+    max-width: 200px;
+    min-width: 0;
+}
+.application-form .form-group>div[style*="display:flex"] {
+    flex-wrap: wrap;
+}

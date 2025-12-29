@@ -1,0 +1,81 @@
+/* Form-specific styles */
+form {
+    margin-top: 2rem;
+    border-radius: var(--radius);
+    padding: 1.5rem; 
+    margin: 10px 1px;
+    max-width: 100%;
+    box-sizing: border-box; /* prevent overflow */
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    min-height: 44px; /* better tap size on mobile */
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.program-card p {
+    margin-bottom: 0.75rem; /* tighter */
+    color: var(--gray-600);
+    text-align: left;
+    font-size: 1rem;
+    flex-grow: 1;
+}
+
+/* Target all links inside program-card */
+.program-card a {
+    color: var(--primary);      
+    text-decoration: none; 
+}
+
+/* Contact page specific responsive adjustments */
+@media (max-width: 768px) {
+    form > div {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Smaller mobile adjustments */
+@media (max-width: 600px) {
+    form > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem; /* space between stacked fields */
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        padding: 1rem;   
+        margin: 5px;     
+    }
+
+    input, select, textarea {
+        padding: 0.6rem; 
+        font-size: 0.9rem; 
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    .program-card p {
+        font-size: 0.9rem; 
+    }
+}

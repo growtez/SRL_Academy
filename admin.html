@@ -70,6 +70,40 @@
       line-height: 1.6;
     }
 
+    /* Preloader */
+    .preloader {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
     /* LOGIN SCREEN */
     #login-screen {
       display: flex;
@@ -543,6 +577,7 @@
         opacity: 0;
         transform: translateY(10px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -640,439 +675,440 @@
 
     /* Enhanced Table Styles */
     .submissions-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.9rem;
-        background: var(--white);
-        border: 2px solid var(--gray-300);
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        box-shadow: var(--shadow-sm);
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: var(--white);
+      border: 2px solid var(--gray-300);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
     }
-    
-    .submissions-table th, .submissions-table td {
-        padding: 15px 18px;
-        border: 1px solid var(--gray-200);
-        text-align: left;
-        vertical-align: middle;
-    }
-    
-    .submissions-table th {
-        background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
-        font-weight: 700;
-        color: var(--gray-800);
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-    
-    .submissions-table tbody tr {
-        transition: var(--transition);
-    }
-    
-    .submissions-table tbody tr:hover {
-        background-color: var(--gray-25);
-        transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-    
-    .submissions-table tbody tr:last-child td {
-        border-bottom: none;
-    }
-    
+
+    .submissions-table th,
     .submissions-table td {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200px;
-        color: var(--gray-700);
-        font-weight: 500;
+      padding: 15px 18px;
+      border: 1px solid var(--gray-200);
+      text-align: left;
+      vertical-align: middle;
     }
-    
+
+    .submissions-table th {
+      background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+      font-weight: 700;
+      color: var(--gray-800);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .submissions-table tbody tr {
+      transition: var(--transition);
+    }
+
+    .submissions-table tbody tr:hover {
+      background-color: var(--gray-25);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .submissions-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .submissions-table td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+      color: var(--gray-700);
+      font-weight: 500;
+    }
+
     /* Mobile table optimization */
     @media (max-width: 768px) {
-        .submissions-table td {
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            max-width: 120px;
-            min-width: 80px;
-        }
-        
-        .submissions-table td:nth-child(2),
-        .submissions-table td:nth-child(3) {
-            max-width: 100px;
-        }
-        
-        .submissions-table th:nth-child(2),
-        .submissions-table th:nth-child(3) {
-            max-width: 100px;
-        }
+      .submissions-table td {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 120px;
+        min-width: 80px;
+      }
+
+      .submissions-table td:nth-child(2),
+      .submissions-table td:nth-child(3) {
+        max-width: 100px;
+      }
+
+      .submissions-table th:nth-child(2),
+      .submissions-table th:nth-child(3) {
+        max-width: 100px;
+      }
     }
-    
+
     .submissions-table td:first-child {
-        font-weight: 600;
-        color: var(--gray-800);
+      font-weight: 600;
+      color: var(--gray-800);
     }
-    
+
     .action-btn {
-        padding: 6px 12px;
-        border: 1px solid var(--gray-300);
-        background-color: var(--white);
-        color: var(--gray-700);
-        cursor: pointer;
-        border-radius: var(--radius);
-        margin-right: 6px;
-        transition: all 0.2s ease;
-        font-weight: 500;
-        font-size: 0.8rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
+      padding: 6px 12px;
+      border: 1px solid var(--gray-300);
+      background-color: var(--white);
+      color: var(--gray-700);
+      cursor: pointer;
+      border-radius: var(--radius);
+      margin-right: 6px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
-    
+
     .action-btn:last-child {
-        margin-right: 0;
+      margin-right: 0;
     }
-    
+
     .action-btn.view-btn {
-        border-color: var(--info);
-        color: var(--info);
+      border-color: var(--info);
+      color: var(--info);
     }
-    
+
     .action-btn.view-btn:hover {
-        background-color: var(--info);
-        color: var(--white);
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
+      background-color: var(--info);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
     }
-    
+
     .action-btn.delete-btn {
-        border-color: var(--danger);
-        color: var(--danger);
+      border-color: var(--danger);
+      color: var(--danger);
     }
-    
+
     .action-btn.delete-btn:hover {
-        background-color: var(--danger);
-        color: var(--white);
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
+      background-color: var(--danger);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
     }
-    
+
     .col-action {
-        text-align: right;
-        white-space: nowrap;
-        width: 1%;
-        min-width: 120px;
+      text-align: right;
+      white-space: nowrap;
+      width: 1%;
+      min-width: 120px;
     }
 
     /* Detail View Styles - Enhanced */
     #application-detail-view .panel {
-        background: var(--white);
-        padding: 2.5rem;
-        border-radius: var(--radius-xl);
-        box-shadow: var(--shadow-xl);
-        border: 1px solid var(--gray-100);
-        max-width: 1200px;
-        margin: 0 auto;
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--gray-100);
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    
+
     #application-detail-view .back-btn {
-        margin-bottom: 2rem;
-        background: var(--gray-100);
-        border: 1px solid var(--gray-200);
-        color: var(--primary);
-        font-weight: 600;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: var(--radius);
-        transition: var(--transition);
-        font-size: 0.9rem;
+      margin-bottom: 2rem;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      font-size: 0.9rem;
     }
-    
+
     #application-detail-view .back-btn:hover {
-        background: var(--primary);
-        color: var(--white);
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
     }
-    
+
     #application-detail-view h3 {
-        margin-top: 0;
-        margin-bottom: 2.5rem;
-        border-bottom: 2px solid var(--primary);
-        padding-bottom: 1rem;
-        color: var(--gray-900);
-        font-size: 1.75rem;
-        font-weight: 700;
-        position: relative;
+      margin-top: 0;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 1rem;
+      color: var(--gray-900);
+      font-size: 1.75rem;
+      font-weight: 700;
+      position: relative;
     }
-    
+
     #application-detail-view h3::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 60px;
-        height: 2px;
-        background: var(--primary-light);
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--primary-light);
     }
-    
+
     .form-view-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-top: 1.5rem;
-        width: 100%;
-        overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+      width: 100%;
+      overflow: hidden;
     }
-    
+
     .form-field {
-        margin-bottom: 1.75rem;
-        position: relative;
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
+      margin-bottom: 1.75rem;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
     }
-    
+
     .field-label {
-        display: block;
-        font-weight: 700;
-        color: var(--gray-700);
-        margin-bottom: 0.75rem;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.75px;
-        position: relative;
-        padding-left: 1rem;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        max-width: 100%;
+      display: block;
+      font-weight: 700;
+      color: var(--gray-700);
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
+      position: relative;
+      padding-left: 1rem;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
     }
-    
+
     .field-label::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(135deg, var(--primary), var(--primary-light));
-        border-radius: 2px;
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 2px;
     }
-    
+
     .field-value {
-        background: var(--white);
-        border: 2px solid var(--gray-200);
-        border-radius: var(--radius-lg);
-        padding: 1rem 1.25rem;
-        color: var(--gray-800);
-        font-size: 1rem;
-        line-height: 1.6;
-        min-height: 3rem;
-        display: flex;
-        align-items: flex-start;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        word-break: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
-        transition: var(--transition);
-        box-shadow: var(--shadow-sm);
-        position: relative;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
+      background: var(--white);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      color: var(--gray-800);
+      font-size: 1rem;
+      line-height: 1.6;
+      min-height: 3rem;
+      display: flex;
+      align-items: flex-start;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
-    
+
     .field-value:hover {
-        border-color: var(--primary-light);
-        box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
+      box-shadow: var(--shadow-md);
     }
-    
+
     .field-value:empty::before {
-        content: '[Not provided]';
-        color: var(--gray-400);
-        font-style: italic;
-        opacity: 0.7;
+      content: '[Not provided]';
+      color: var(--gray-400);
+      font-style: italic;
+      opacity: 0.7;
     }
-    
+
     /* Desktop specific enhancements */
     @media (min-width: 1024px) {
-        .form-view-container {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-        }
-        
-        .field-value {
-            font-size: 1.05rem;
-            padding: 1.25rem 1.5rem;
-        }
-        
-        #application-detail-view .panel {
-            padding: 3rem;
-        }
+      .form-view-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+      }
+
+      .field-value {
+        font-size: 1.05rem;
+        padding: 1.25rem 1.5rem;
+      }
+
+      #application-detail-view .panel {
+        padding: 3rem;
+      }
     }
-    
+
     /* Tablet responsive */
     @media (max-width: 1023px) and (min-width: 769px) {
-        .form-view-container {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        
-        #application-detail-view .panel {
-            padding: 2rem;
-        }
+      .form-view-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      #application-detail-view .panel {
+        padding: 2rem;
+      }
     }
-    
+
     /* Mobile responsive */
     @media (max-width: 768px) {
-        .form-view-container {
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
-            padding: 0;
-            margin: 0;
-            margin-top: 0.75rem;
-        }
-        
-        #application-detail-view .panel {
-            padding: 0.75rem;
-            margin: 0.25rem;
-            border-radius: var(--radius);
-            max-width: calc(100vw - 0.5rem);
-            overflow-x: hidden;
-            box-shadow: var(--shadow);
-        }
-        
-        #application-detail-view h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            padding-bottom: 0.75rem;
-        }
-        
-        .form-field {
-            width: 100%;
-            max-width: 100%;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-        
-        .field-label {
-            font-size: 0.75rem;
-            margin-bottom: 0.4rem;
-            padding-left: 0.5rem;
-            letter-spacing: 0.3px;
-            word-break: break-word;
-            overflow-wrap: break-word;
-        }
-        
-        .field-value {
-            padding: 0.625rem 0.75rem;
-            font-size: 0.85rem;
-            min-height: 2rem;
-            width: 100%;
-            max-width: 100%;
-            line-height: 1.4;
-            border-radius: var(--radius);
-            word-break: break-word;
-            overflow-wrap: break-word;
-            white-space: pre-wrap;
-            max-height: none;
-            height: auto;
-            overflow: visible;
-            border-width: 1px;
-        }
-        
-        #application-detail-view .back-btn {
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            margin-bottom: 1.25rem;
-            gap: 0.5rem;
-        }
-        
-        /* Study Center Mobile Responsiveness */
-        .study-responsibilities-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
-        }
-        
-        .study-responsibility-box {
-            padding: 0.75rem !important;
-            margin-bottom: 0.75rem;
-        }
-        
-        .study-responsibility-box h4 {
-            font-size: 0.9rem !important;
-            margin-bottom: 0.75rem !important;
-        }
-        
-        .study-responsibility-box ul {
-            font-size: 0.8rem !important;
-            line-height: 1.4 !important;
-            padding-left: 1rem !important;
-        }
-        
-        .study-terms-section {
-            padding: 0.75rem !important;
-            margin-bottom: 1rem !important;
-        }
-        
-        .study-declaration-section {
-            padding: 1rem !important;
-            margin-bottom: 1rem !important;
-        }
-        
-        .study-declaration-text {
-            padding: 0.75rem !important;
-            font-size: 0.85rem !important;
-        }
-        
-        /* Distance Learning Mobile Responsiveness */
-        .distance-responsibilities-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1rem !important;
-        }
-        
-        .distance-responsibility-box {
-            padding: 0.75rem !important;
-            margin-bottom: 0.75rem;
-        }
-        
-        .distance-responsibility-box h4 {
-            font-size: 0.9rem !important;
-            margin-bottom: 0.75rem !important;
-        }
-        
-        .distance-responsibility-box ul {
-            font-size: 0.8rem !important;
-            line-height: 1.4 !important;
-            padding-left: 1rem !important;
-        }
-        
-        .distance-terms-section {
-            padding: 0.75rem !important;
-            margin-bottom: 1rem !important;
-        }
-        
-        .distance-declaration-section {
-            padding: 1rem !important;
-            margin-bottom: 1rem !important;
-        }
-        
-        .distance-declaration-text {
-            padding: 0.75rem !important;
-            font-size: 0.85rem !important;
-        }
+      .form-view-container {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        padding: 0;
+        margin: 0;
+        margin-top: 0.75rem;
+      }
+
+      #application-detail-view .panel {
+        padding: 0.75rem;
+        margin: 0.25rem;
+        border-radius: var(--radius);
+        max-width: calc(100vw - 0.5rem);
+        overflow-x: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      #application-detail-view h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        padding-bottom: 0.75rem;
+      }
+
+      .form-field {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        overflow: hidden;
+      }
+
+      .field-label {
+        font-size: 0.75rem;
+        margin-bottom: 0.4rem;
+        padding-left: 0.5rem;
+        letter-spacing: 0.3px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+
+      .field-value {
+        padding: 0.625rem 0.75rem;
+        font-size: 0.85rem;
+        min-height: 2rem;
+        width: 100%;
+        max-width: 100%;
+        line-height: 1.4;
+        border-radius: var(--radius);
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        max-height: none;
+        height: auto;
+        overflow: visible;
+        border-width: 1px;
+      }
+
+      #application-detail-view .back-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        margin-bottom: 1.25rem;
+        gap: 0.5rem;
+      }
+
+      /* Study Center Mobile Responsiveness */
+      .study-responsibilities-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+
+      .study-responsibility-box {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem;
+      }
+
+      .study-responsibility-box h4 {
+        font-size: 0.9rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+
+      .study-responsibility-box ul {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        padding-left: 1rem !important;
+      }
+
+      .study-terms-section {
+        padding: 0.75rem !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .study-declaration-section {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .study-declaration-text {
+        padding: 0.75rem !important;
+        font-size: 0.85rem !important;
+      }
+
+      /* Distance Learning Mobile Responsiveness */
+      .distance-responsibilities-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+
+      .distance-responsibility-box {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem;
+      }
+
+      .distance-responsibility-box h4 {
+        font-size: 0.9rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+
+      .distance-responsibility-box ul {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        padding-left: 1rem !important;
+      }
+
+      .distance-terms-section {
+        padding: 0.75rem !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .distance-declaration-section {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .distance-declaration-text {
+        padding: 0.75rem !important;
+        font-size: 0.85rem !important;
+      }
     }
 
 
@@ -1100,7 +1136,7 @@
       margin-bottom: 0.75rem;
       color: var(--gray-700);
     }
-    
+
     .empty-state p {
       color: var(--gray-500);
       font-size: 0.95rem;
@@ -1157,42 +1193,49 @@
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     /* Enhanced Responsive Design */
-    
+
     /* Large Desktop */
     @media (min-width: 1440px) {
       .admin-main {
         padding: 2rem 3rem;
       }
-      
+
       .table-wrapper {
         border-radius: var(--radius-xl);
       }
-      
+
       .submissions-table {
         font-size: 1rem;
       }
-      
-      .submissions-table th, .submissions-table td {
+
+      .submissions-table th,
+      .submissions-table td {
         padding: 16px 20px;
       }
     }
-    
+
     /* Desktop */
     @media (min-width: 1024px) and (max-width: 1439px) {
       .admin-main {
         padding: 1.75rem 2rem;
       }
-      
-      .submissions-table th, .submissions-table td {
+
+      .submissions-table th,
+      .submissions-table td {
         padding: 14px 18px;
       }
     }
-    
+
     /* Tablet */
     @media (max-width: 1023px) and (min-width: 769px) {
       .hamburger {
@@ -1212,26 +1255,27 @@
         margin-left: 0;
         padding: 1.5rem;
       }
-      
+
       .submissions-table {
         font-size: 0.9rem;
       }
-      
-      .submissions-table th, .submissions-table td {
+
+      .submissions-table th,
+      .submissions-table td {
         padding: 12px 15px;
       }
-      
+
       .table-wrapper {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
-      
+
       .action-btn {
         padding: 4px 8px;
         font-size: 0.8rem;
       }
     }
-    
+
     /* Mobile */
     @media (max-width: 768px) {
       .hamburger {
@@ -1253,7 +1297,7 @@
         padding: 1rem;
         overflow-x: hidden;
       }
-      
+
       .admin-header {
         padding: 0 0.75rem;
         height: auto;
@@ -1261,7 +1305,7 @@
         flex-wrap: wrap;
         gap: 0.5rem;
       }
-      
+
       .admin-header h1 {
         font-size: 0.9rem;
         line-height: 1.2;
@@ -1272,66 +1316,67 @@
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      
+
       .admin-user {
         flex-shrink: 0;
         gap: 0.5rem;
       }
-      
+
       .admin-user span {
         display: none;
       }
-      
+
       .admin-user .btn-sm {
         padding: 0.4rem 0.6rem;
         font-size: 0.75rem;
         white-space: nowrap;
       }
-      
+
       .submissions-table {
         font-size: 0.8rem;
         table-layout: fixed;
         width: 100%;
       }
-      
-      .submissions-table th, .submissions-table td {
+
+      .submissions-table th,
+      .submissions-table td {
         padding: 8px 4px;
         word-wrap: break-word;
         overflow-wrap: break-word;
         hyphens: auto;
       }
-      
+
       .submissions-table th:nth-child(1),
       .submissions-table td:nth-child(1) {
         width: 25%;
         min-width: 70px;
       }
-      
+
       .submissions-table th:nth-child(2),
       .submissions-table td:nth-child(2) {
         width: 35%;
         min-width: 80px;
       }
-      
+
       .submissions-table th:nth-child(3),
       .submissions-table td:nth-child(3) {
         width: 25%;
         min-width: 70px;
       }
-      
+
       .submissions-table th:nth-child(4),
       .submissions-table td:nth-child(4) {
         width: 15%;
         min-width: 90px;
       }
-      
+
       .table-wrapper {
         overflow-x: hidden;
         border-radius: var(--radius);
         margin: 0 -1rem;
         padding: 0 1rem;
       }
-      
+
       .action-btn {
         padding: 2px 4px;
         font-size: 0.7rem;
@@ -1339,76 +1384,77 @@
         display: inline-block;
         margin-bottom: 2px;
       }
-      
+
       .col-action {
         text-align: center;
       }
-      
+
       .empty-state {
         padding: 2rem 1rem;
       }
-      
+
       .empty-state h3 {
         font-size: 1.1rem;
       }
-      
+
       .loading {
         padding: 2rem 1rem;
       }
     }
-    
+
     /* Small Mobile */
     @media (max-width: 480px) {
       .admin-main {
         padding: 0.5rem;
         overflow-x: hidden;
       }
-      
+
       .admin-header {
         padding: 0 0.5rem;
       }
-      
+
       .admin-sidebar {
         width: 260px;
       }
-      
+
       .submissions-table {
         font-size: 0.75rem;
         table-layout: fixed;
       }
-      
-      .submissions-table th, .submissions-table td {
+
+      .submissions-table th,
+      .submissions-table td {
         padding: 6px 2px;
         font-size: 0.75rem;
         word-wrap: break-word;
         overflow-wrap: break-word;
         hyphens: auto;
       }
-      
+
       .submissions-table th:nth-child(1),
       .submissions-table td:nth-child(1) {
         width: 22%;
         min-width: 60px;
       }
-      
+
       .submissions-table th:nth-child(2),
       .submissions-table td:nth-child(2) {
         width: 38%;
         min-width: 70px;
       }
-      
+
       .submissions-table th:nth-child(3),
       .submissions-table td:nth-child(3) {
         width: 25%;
         min-width: 60px;
       }
-      
+
       .submissions-table th:nth-child(4),
       .submissions-table td:nth-child(4) {
         width: 15%;
         min-width: 80px;
       }
-      
+
       .action-btn {
         padding: 1px 3px;
         font-size: 0.65rem;
@@ -1418,27 +1464,27 @@
         width: 100%;
         text-align: center;
       }
-      
+
       .table-wrapper {
         margin: 0 -0.5rem;
         padding: 0 0.5rem;
         border-radius: 0;
         overflow-x: hidden;
       }
-      
+
       /* Enhanced small mobile form view */
       .form-view-container {
         grid-template-columns: 1fr;
         gap: 1rem;
         padding: 0;
       }
-      
+
       #application-detail-view .panel {
         padding: 0.75rem;
         margin: 0.25rem;
         max-width: calc(100vw - 0.5rem);
       }
-      
+
       .field-value {
         padding: 0.75rem;
         font-size: 0.85rem;
@@ -1452,81 +1498,81 @@
         overflow: hidden;
         text-overflow: clip;
       }
-      
+
       .field-label {
         font-size: 0.7rem;
         padding-left: 0.5rem;
       }
-      
+
       /* Study Center Ultra-Small Mobile */
       .study-responsibilities-grid {
         grid-template-columns: 1fr !important;
         gap: 0.75rem !important;
       }
-      
+
       .study-responsibility-box {
         padding: 0.5rem !important;
         margin-bottom: 0.5rem;
       }
-      
+
       .study-responsibility-box h4 {
         font-size: 0.8rem !important;
         margin-bottom: 0.5rem !important;
       }
-      
+
       .study-responsibility-box ul {
         font-size: 0.75rem !important;
         line-height: 1.3 !important;
         padding-left: 0.75rem !important;
       }
-      
+
       .study-terms-section {
         padding: 0.5rem !important;
         margin-bottom: 0.75rem !important;
       }
-      
+
       .study-declaration-section {
         padding: 0.75rem !important;
         margin-bottom: 0.75rem !important;
       }
-      
+
       .study-declaration-text {
         padding: 0.5rem !important;
         font-size: 0.8rem !important;
       }
-      
+
       /* Distance Learning Ultra-Small Mobile */
       .distance-responsibilities-grid {
         grid-template-columns: 1fr !important;
         gap: 0.75rem !important;
       }
-      
+
       .distance-responsibility-box {
         padding: 0.5rem !important;
         margin-bottom: 0.5rem;
       }
-      
+
       .distance-responsibility-box h4 {
         font-size: 0.8rem !important;
         margin-bottom: 0.5rem !important;
       }
-      
+
       .distance-responsibility-box ul {
         font-size: 0.75rem !important;
         line-height: 1.3 !important;
         padding-left: 0.75rem !important;
       }
-      
+
       .distance-terms-section {
         padding: 0.5rem !important;
         margin-bottom: 0.75rem !important;
       }
-      
+
       .distance-declaration-section {
         padding: 0.75rem !important;
         margin-bottom: 0.75rem !important;
       }
-      
+
       .distance-declaration-text {
         padding: 0.5rem !important;
         font-size: 0.8rem !important;
@@ -1561,6 +1607,7 @@
         transform: translateX(100%);
         opacity: 0;
       }
+
       to {
         transform: translateX(0);
         opacity: 1;
@@ -1568,11 +1615,16 @@
     }
   </style>
 
-   <!-- Favicon -->
-   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="loader"></div>
+  </div>
 
   <div id="login-screen">
     <div class="login-container">
@@ -1589,8 +1641,8 @@
           <label for="username">Username</label>
           <div class="input-wrapper">
             <i class="fas fa-user icon"></i>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required
-              autocomplete="username">
+            <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username"
+              required autocomplete="username">
           </div>
         </div>
 
@@ -1623,13 +1675,14 @@
       </button>
       <h1>SRL Academy Admin</h1>
       <div class="admin-user">
-        <a href="index.html" class="btn-sm" style="background: var(--primary); color: var(--white); text-decoration: none; margin-right: 10px;">
+        <a href="index.html" class="btn-sm"
+          style="background: var(--primary); color: var(--white); text-decoration: none; margin-right: 10px;">
           <i class="fas fa-home"></i>main site
         </a>
         <button class="btn-sm" style="background: var(--danger); color: var(--white);" id="performLogoutBtn">
           <i class="fas fa-sign-out-alt"></i> Logout
         </button>
-        </div>
+      </div>
     </header>
 
     <div class="admin-container">
@@ -1642,17 +1695,17 @@
           </li> -->
           <li class="nav-item">
             <button class="submenu-toggle expanded">
-                <i class="fas fa-handshake"></i> Partnerships
+              <i class="fas fa-handshake"></i> Partnerships
             </button>
             <ul class="submenu active">
-                <li><a href="#" class="nav-link" data-target="school-integration">
-                    <i class="fas fa-school"></i> School Integration
+              <li><a href="#" class="nav-link" data-target="school-integration">
+                  <i class="fas fa-school"></i> School Integration
                 </a></li>
-                <li><a href="#" class="nav-link" data-target="study-centers">
-                    <i class="fas fa-building"></i> Study Centers
+              <li><a href="#" class="nav-link" data-target="study-centers">
+                  <i class="fas fa-building"></i> Study Centers
                 </a></li>
-                <li><a href="#" class="nav-link" data-target="distance-learning">
-                    <i class="fas fa-laptop"></i> Distance Learning
+              <li><a href="#" class="nav-link" data-target="distance-learning">
+                  <i class="fas fa-laptop"></i> Distance Learning
                 </a></li>
             </ul>
           </li>
@@ -1666,7 +1719,7 @@
               <i class="fas fa-envelope"></i> Contact Submissions
             </a>
           </li>
-          
+
         </ul>
       </aside>
 
@@ -1702,80 +1755,104 @@
           <div class="panel-header">
             <h2><i class="fas fa-school"></i> School Integration Applications</h2>
             <div class="panel-breadcrumb">
-              <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i class="fas fa-chevron-right"></i> <span>School Integration</span>
+              <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i
+                class="fas fa-chevron-right"></i> <span>School Integration</span>
             </div>
           </div>
           <div class="table-wrapper">
-             <div id="school-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+            <div id="school-table-container">
+              <div class="loading">
+                <div class="spinner"></div>Loading...
+              </div>
+            </div>
           </div>
         </section>
 
         <section id="study-centers" class="content-panel">
-            <div class="panel-header">
-              <h2><i class="fas fa-building"></i> Study Center Applications</h2>
-              <div class="panel-breadcrumb">
-                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i class="fas fa-chevron-right"></i> <span>Study Centers</span>
+          <div class="panel-header">
+            <h2><i class="fas fa-building"></i> Study Center Applications</h2>
+            <div class="panel-breadcrumb">
+              <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i
+                class="fas fa-chevron-right"></i> <span>Study Centers</span>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <div id="study-table-container">
+              <div class="loading">
+                <div class="spinner"></div>Loading...
               </div>
             </div>
-            <div class="table-wrapper">
-                <div id="study-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-            </div>
+          </div>
         </section>
 
         <section id="distance-learning" class="content-panel">
-            <div class="panel-header">
-              <h2><i class="fas fa-laptop"></i> Distance Learning Applications</h2>
-              <div class="panel-breadcrumb">
-                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i class="fas fa-chevron-right"></i> <span>Distance Learning</span>
+          <div class="panel-header">
+            <h2><i class="fas fa-laptop"></i> Distance Learning Applications</h2>
+            <div class="panel-breadcrumb">
+              <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i
+                class="fas fa-chevron-right"></i> <span>Distance Learning</span>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <div id="distance-table-container">
+              <div class="loading">
+                <div class="spinner"></div>Loading...
               </div>
             </div>
-            <div class="table-wrapper">
-                <div id="distance-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-            </div>
+          </div>
         </section>
-        
+
         <section id="educators" class="content-panel">
-            <div class="panel-header">
-              <h2><i class="fas fa-chalkboard-teacher"></i> Educator Applications</h2>
-              <div class="panel-breadcrumb">
-                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Educators</span>
+          <div class="panel-header">
+            <h2><i class="fas fa-chalkboard-teacher"></i> Educator Applications</h2>
+            <div class="panel-breadcrumb">
+              <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Educators</span>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <div id="educators-table-container">
+              <div class="loading">
+                <div class="spinner"></div>Loading...
               </div>
             </div>
-            <div class="table-wrapper">
-                <div id="educators-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-            </div>
+          </div>
         </section>
 
         <section id="contacts" class="content-panel">
-            <div class="panel-header">
-              <h2><i class="fas fa-envelope"></i> Contact Form Submissions</h2>
-              <div class="panel-breadcrumb">
-                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Contact Submissions</span>
+          <div class="panel-header">
+            <h2><i class="fas fa-envelope"></i> Contact Form Submissions</h2>
+            <div class="panel-breadcrumb">
+              <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Contact Submissions</span>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <div id="contacts-table-container">
+              <div class="loading">
+                <div class="spinner"></div>Loading...
               </div>
             </div>
-            <div class="table-wrapper">
-                <div id="contacts-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
-            </div>
+          </div>
         </section>
 
-        
+
 
         <section id="logout" class="content-panel">
-            <div class="table-wrapper">
-              <div style="padding: 3rem; text-align: center;">
-                <i class="fas fa-sign-out-alt" style="font-size: 3rem; color: var(--gray-300); margin-bottom: 1rem;"></i>
-                <h3>Logout Confirmation</h3>
-                <p style="color: var(--gray-600); margin-bottom: 2rem;">Are you sure you want to logout from the admin panel?</p>
-                <div style="display: flex; gap: 1rem; justify-content: center;">
-                  <button class="btn-sm btn-secondary" id="cancelLogoutBtn">Cancel</button>
-                  <button class="btn-sm" style="background: var(--danger); color: var(--white);" id="performLogoutBtn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                  </button>
-                </div>
+          <div class="table-wrapper">
+            <div style="padding: 3rem; text-align: center;">
+              <i class="fas fa-sign-out-alt" style="font-size: 3rem; color: var(--gray-300); margin-bottom: 1rem;"></i>
+              <h3>Logout Confirmation</h3>
+              <p style="color: var(--gray-600); margin-bottom: 2rem;">Are you sure you want to logout from the admin
+                panel?</p>
+              <div style="display: flex; gap: 1rem; justify-content: center;">
+                <button class="btn-sm btn-secondary" id="cancelLogoutBtn">Cancel</button>
+                <button class="btn-sm" style="background: var(--danger); color: var(--white);" id="performLogoutBtn">
+                  <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
               </div>
             </div>
+          </div>
         </section>
-        
+
         <div id="application-detail-view" class="content-panel"></div>
 
         <!-- <footer class="admin-footer">
@@ -1785,271 +1862,271 @@
     </div>
     <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
   </div>
-  
+
   <script>
     (function () {
-        // --- DATA ---
-        const SAMPLE = {
-            schoolIntegration: [],
-            studyCenters: [],
-            distanceLearning: [],
-            educators: [],
-            contacts: [],
-            trash: []
-        };
+      // --- DATA ---
+      const SAMPLE = {
+        schoolIntegration: [],
+        studyCenters: [],
+        distanceLearning: [],
+        educators: [],
+        contacts: [],
+        trash: []
+      };
 
-        // --- DOM ELEMENTS ---
-        const loginForm = document.getElementById("loginForm");
-        const loginScreen = document.getElementById("login-screen");
-        const adminPanel = document.getElementById("admin-panel");
-        const togglePassword = document.getElementById("togglePassword");
-        const passwordInput = document.getElementById("password");
-        
-        const statsCardsContainer = document.getElementById('statsCards');
-        const panelHeaderContainer = document.getElementById('panelHeader');
-        const allContentPanels = document.querySelectorAll('.admin-main > section.content-panel');
-        const applicationDetailView = document.getElementById('application-detail-view');
+      // --- DOM ELEMENTS ---
+      const loginForm = document.getElementById("loginForm");
+      const loginScreen = document.getElementById("login-screen");
+      const adminPanel = document.getElementById("admin-panel");
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("password");
 
-        // --- UTILITY FUNCTIONS ---
-        function showNotification(message, type = 'success') {
-            const existing = document.querySelector('.notification');
-            if (existing) existing.remove();
+      const statsCardsContainer = document.getElementById('statsCards');
+      const panelHeaderContainer = document.getElementById('panelHeader');
+      const allContentPanels = document.querySelectorAll('.admin-main > section.content-panel');
+      const applicationDetailView = document.getElementById('application-detail-view');
 
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            document.body.appendChild(notification);
+      // --- UTILITY FUNCTIONS ---
+      function showNotification(message, type = 'success') {
+        const existing = document.querySelector('.notification');
+        if (existing) existing.remove();
 
-            setTimeout(() => notification.remove(), 3000);
-        }
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
 
-        // Format a date/time input into `12 Jan 25`. Falls back gracefully if invalid
-        function formatDateShort(val) {
-            if (!val) return 'N/A';
-            const d = new Date(val);
-            if (isNaN(d)) return val; // keep original if not a valid date
-            const day = d.getDate();
-            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            const mon = months[d.getMonth()];
-            const yr = String(d.getFullYear()).slice(-2);
-            return `${day} ${mon} ${yr}`;
-        }
-        
-        // --- LOGIN & LOGOUT ---
-        async function handleLogin(e) {
-            e.preventDefault();
-            const loginText = document.getElementById('login-text');
-            const loginSpinner = document.getElementById('login-spinner');
-            const submitBtn = e.target.querySelector('.btn');
+        setTimeout(() => notification.remove(), 3000);
+      }
 
-            loginText.style.display = 'none';
-            loginSpinner.style.display = 'block';
-            submitBtn.disabled = true;
+      // Format a date/time input into `12 Jan 25`. Falls back gracefully if invalid
+      function formatDateShort(val) {
+        if (!val) return 'N/A';
+        const d = new Date(val);
+        if (isNaN(d)) return val; // keep original if not a valid date
+        const day = d.getDate();
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const mon = months[d.getMonth()];
+        const yr = String(d.getFullYear()).slice(-2);
+        return `${day} ${mon} ${yr}`;
+      }
 
-            try {
-                const username = document.getElementById('username').value;
-                const password = passwordInput.value;
-                
-                if (!username || !password) {
-                    throw new Error('Please fill in all fields');
-                }
+      // --- LOGIN & LOGOUT ---
+      async function handleLogin(e) {
+        e.preventDefault();
+        const loginText = document.getElementById('login-text');
+        const loginSpinner = document.getElementById('login-spinner');
+        const submitBtn = e.target.querySelector('.btn');
 
-                // Send credentials to PHP backend for validation
-                const formData = new FormData();
-                formData.append('username', username);
-                formData.append('password', password);
+        loginText.style.display = 'none';
+        loginSpinner.style.display = 'block';
+        submitBtn.disabled = true;
 
-                const response = await fetch('../backend/admin_login.php', {
-                    method: 'POST',
-                    body: formData
-                });
+        try {
+          const username = document.getElementById('username').value;
+          const password = passwordInput.value;
 
-                const result = await response.json();
+          if (!username || !password) {
+            throw new Error('Please fill in all fields');
+          }
 
-                if (result.success) {
-                    showNotification('Login successful!', 'success');
-                    setTimeout(() => {
-                        loginScreen.classList.add("hidden");
-                        adminPanel.classList.add("active");
-                        initializeDashboard();
-                    }, 500);
-                } else {
-                    throw new Error('Invalid username or password');
-                }
-            } catch (err) {
-                showNotification(err.message || 'Login failed.', 'error');
-            } finally {
-                loginText.style.display = 'inline';
-                loginSpinner.style.display = 'none';
-                submitBtn.disabled = false;
-            }
-        }
+          // Send credentials to PHP backend for validation
+          const formData = new FormData();
+          formData.append('username', username);
+          formData.append('password', password);
 
-        function performLogout() {
-            showNotification('You have been logged out.', 'success');
+          const response = await fetch('../backend/admin_login.php', {
+            method: 'POST',
+            body: formData
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            showNotification('Login successful!', 'success');
             setTimeout(() => {
-                adminPanel.classList.remove('active');
-                loginScreen.classList.remove('hidden');
-                loginForm.reset();
-                history.pushState(null, '', window.location.pathname); // Clear hash
-            }, 1000);
+              loginScreen.classList.add("hidden");
+              adminPanel.classList.add("active");
+              initializeDashboard();
+            }, 500);
+          } else {
+            throw new Error('Invalid username or password');
+          }
+        } catch (err) {
+          showNotification(err.message || 'Login failed.', 'error');
+        } finally {
+          loginText.style.display = 'inline';
+          loginSpinner.style.display = 'none';
+          submitBtn.disabled = false;
+        }
+      }
+
+      function performLogout() {
+        showNotification('You have been logged out.', 'success');
+        setTimeout(() => {
+          adminPanel.classList.remove('active');
+          loginScreen.classList.remove('hidden');
+          loginForm.reset();
+          history.pushState(null, '', window.location.pathname); // Clear hash
+        }, 1000);
+      }
+
+      function cancelLogout() {
+        history.back(); // Go back to the previous panel
+      }
+
+      // --- API & DATA LOADING ---
+      const API_BASE = "https://srlacademyedu.com/api";
+
+      async function loadSchoolProjects() {
+        try {
+          const res = await fetch(`${API_BASE}/school-projects`);
+          const json = await res.json();
+          if (json.success) {
+            SAMPLE.schoolIntegration = json.data;
+            renderSchoolProjectsTable(json.data);
+            updateActiveStats();
+          }
+        } catch (e) { console.error("Error loading school projects:", e); }
+      }
+
+      async function loadStudyCenters() {
+        try {
+          const res = await fetch(`${API_BASE}/study-centre-applications`);
+          const json = await res.json();
+          if (json.success) {
+            SAMPLE.studyCenters = json.data;
+            renderStudyCentersTable(json.data);
+            updateActiveStats();
+          }
+        } catch (e) { console.error("Error loading study centres:", e); }
+      }
+
+      async function loadDistanceLearning() {
+        try {
+          const res = await fetch(`${API_BASE}/distance-learning`);
+          const json = await res.json();
+          if (json.success) {
+            SAMPLE.distanceLearning = json.data;
+            renderDistanceLearningTable(json.data);
+            updateActiveStats();
+          }
+        } catch (e) { console.error("Error loading distance learning:", e); }
+      }
+
+      async function loadEducators() {
+        try {
+          const res = await fetch(`${API_BASE}/educators`);
+          const json = await res.json();
+          if (json.success) {
+            SAMPLE.educators = json.data;
+            renderEducatorsTable(json.data);
+            updateActiveStats();
+          }
+        } catch (e) { console.error("Error loading educators:", e); }
+      }
+
+      async function loadContactsFromApi() {
+        try {
+          const response = await fetch(`${API_BASE}/contacts`);
+          const result = await response.json();
+          if (result.success) {
+            SAMPLE.contacts = result.data;
+            renderContactsTable(result.data);
+            updateActiveStats();
+          }
+        } catch (err) { console.error("Error loading contacts:", err); }
+      }
+
+      // --- STATS ---
+      function updateActiveStats() {
+        const counts = {
+          school: SAMPLE.schoolIntegration.length,
+          study: SAMPLE.studyCenters.length,
+          distance: SAMPLE.distanceLearning.length,
+          educator: SAMPLE.educators.length,
+          contact: SAMPLE.contacts.length
+        };
+        counts.total = counts.school + counts.study + counts.distance + counts.educator + counts.contact;
+
+        const statTotal = document.getElementById('stat-total');
+        const statSchool = document.getElementById('stat-partnership-school');
+        const statStudy = document.getElementById('stat-partnership-study');
+        const statDistance = document.getElementById('stat-partnership-distance');
+        const statEducator = document.getElementById('stat-educator');
+        const statContact = document.getElementById('stat-contact');
+
+        if (statTotal) statTotal.textContent = counts.total;
+        if (statSchool) statSchool.textContent = counts.school;
+        if (statStudy) statStudy.textContent = counts.study;
+        if (statDistance) statDistance.textContent = counts.distance;
+        if (statEducator) statEducator.textContent = counts.educator;
+        if (statContact) statContact.textContent = counts.contact;
+      }
+
+      // --- RENDERING ---
+      function renderTable(containerSelector, data, columnOrder, includeActions = false, dataType = '') {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
+        if (!data || data.length === 0) {
+          container.innerHTML = `<div class="empty-state"><h3>No Submissions Found</h3></div>`;
+          return;
         }
 
-        function cancelLogout() {
-            history.back(); // Go back to the previous panel
-        }
+        const formatHeader = key => key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        const headers = columnOrder.map(key => `<th>${formatHeader(key)}</th>`).join('');
+        const actionHeader = includeActions ? `<th class="col-action">Actions</th>` : '';
 
-        // --- API & DATA LOADING ---
-        const API_BASE = "https://srlacademyedu.com/api";
-
-        async function loadSchoolProjects() {
-            try {
-                const res = await fetch(`${API_BASE}/school-projects`);
-                const json = await res.json();
-                if (json.success) {
-                    SAMPLE.schoolIntegration = json.data;
-                    renderSchoolProjectsTable(json.data);
-                    updateActiveStats();
-                }
-            } catch (e) { console.error("Error loading school projects:", e); }
-        }
-
-        async function loadStudyCenters() {
-            try {
-                const res = await fetch(`${API_BASE}/study-centre-applications`);
-                const json = await res.json();
-                if (json.success) {
-                    SAMPLE.studyCenters = json.data;
-                    renderStudyCentersTable(json.data);
-                    updateActiveStats();
-                }
-            } catch (e) { console.error("Error loading study centres:", e); }
-        }
-
-        async function loadDistanceLearning() {
-            try {
-                const res = await fetch(`${API_BASE}/distance-learning`);
-                const json = await res.json();
-                if (json.success) {
-                    SAMPLE.distanceLearning = json.data;
-                    renderDistanceLearningTable(json.data);
-                    updateActiveStats();
-                }
-            } catch (e) { console.error("Error loading distance learning:", e); }
-        }
-        
-        async function loadEducators() {
-            try {
-                const res = await fetch(`${API_BASE}/educators`);
-                const json = await res.json();
-                if (json.success) {
-                    SAMPLE.educators = json.data;
-                    renderEducatorsTable(json.data);
-                    updateActiveStats();
-                }
-            } catch (e) { console.error("Error loading educators:", e); }
-        }
-        
-        async function loadContactsFromApi() {
-            try {
-                const response = await fetch(`${API_BASE}/contacts`);
-                const result = await response.json();
-                if (result.success) {
-                    SAMPLE.contacts = result.data;
-                    renderContactsTable(result.data);
-                    updateActiveStats();
-                }
-            } catch (err) { console.error("Error loading contacts:", err); }
-        }
-        
-        // --- STATS ---
-        function updateActiveStats() {
-            const counts = {
-                school: SAMPLE.schoolIntegration.length,
-                study: SAMPLE.studyCenters.length,
-                distance: SAMPLE.distanceLearning.length,
-                educator: SAMPLE.educators.length,
-                contact: SAMPLE.contacts.length
-            };
-            counts.total = counts.school + counts.study + counts.distance + counts.educator + counts.contact;
-
-            const statTotal = document.getElementById('stat-total');
-            const statSchool = document.getElementById('stat-partnership-school');
-            const statStudy = document.getElementById('stat-partnership-study');
-            const statDistance = document.getElementById('stat-partnership-distance');
-            const statEducator = document.getElementById('stat-educator');
-            const statContact = document.getElementById('stat-contact');
-            
-            if (statTotal) statTotal.textContent = counts.total;
-            if (statSchool) statSchool.textContent = counts.school;
-            if (statStudy) statStudy.textContent = counts.study;
-            if (statDistance) statDistance.textContent = counts.distance;
-            if (statEducator) statEducator.textContent = counts.educator;
-            if (statContact) statContact.textContent = counts.contact;
-        }
-
-        // --- RENDERING ---
-        function renderTable(containerSelector, data, columnOrder, includeActions = false, dataType = '') {
-            const container = document.querySelector(containerSelector);
-            if (!container) return;
-            if (!data || data.length === 0) {
-                container.innerHTML = `<div class="empty-state"><h3>No Submissions Found</h3></div>`;
-                return;
-            }
-
-            const formatHeader = key => key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-            const headers = columnOrder.map(key => `<th>${formatHeader(key)}</th>`).join('');
-            const actionHeader = includeActions ? `<th class="col-action">Actions</th>` : '';
-
-            const rows = data.map(item => {
-                const cells = columnOrder.map(key => {
-                    const raw = item[key];
-                    const isDateKey = /date|submitted/i.test(key);
-                    const value = isDateKey ? formatDateShort(raw) : (raw || 'N/A');
-                    return `<td title="${raw}">${value}</td>`;
-                }).join('');
-                const actionCell = includeActions ? `
+        const rows = data.map(item => {
+          const cells = columnOrder.map(key => {
+            const raw = item[key];
+            const isDateKey = /date|submitted/i.test(key);
+            const value = isDateKey ? formatDateShort(raw) : (raw || 'N/A');
+            return `<td title="${raw}">${value}</td>`;
+          }).join('');
+          const actionCell = includeActions ? `
                     <td class="col-action">
                         <button class="action-btn delete-btn" data-id="${item.id}" data-type="${dataType}">Delete</button>
                     </td>` : '';
-                return `<tr>${cells}${actionCell}</tr>`;
-            }).join('');
+          return `<tr>${cells}${actionCell}</tr>`;
+        }).join('');
 
-            container.innerHTML = `
+        container.innerHTML = `
                 <table class="submissions-table">
                     <thead><tr>${headers}${actionHeader}</tr></thead>
                     <tbody>${rows}</tbody>
                 </table>`;
-            
-            container.querySelectorAll('.delete-btn').forEach(btn => 
-                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
-            );
-        }
 
-        function renderDetailView(entries, title) {
-            let detailHtml = `<div class="panel">
+        container.querySelectorAll('.delete-btn').forEach(btn =>
+          btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+        );
+      }
+
+      function renderDetailView(entries, title) {
+        let detailHtml = `<div class="panel">
                 <button class="back-btn"><i class="fas fa-arrow-left"></i> Back to List</button>
                 <h3>${title}</h3>
                 <div class="form-view-container">`;
 
-            for (const [label, value] of Object.entries(entries)) {
-                detailHtml += `
+        for (const [label, value] of Object.entries(entries)) {
+          detailHtml += `
                     <div class="form-field">
                         <label class="field-label">${label}:</label>
                         <div class="field-value">${value || '[Not provided]'}</div>
                     </div>`;
-            }
-            detailHtml += `</div></div>`;
-            showDetailView(detailHtml);
         }
+        detailHtml += `</div></div>`;
+        showDetailView(detailHtml);
+      }
 
-        function renderSchoolProjectsTable(data) {
-            const container = document.querySelector('#school-table-container');
-            if (!data || data.length === 0) {
-                container.innerHTML = '<div class="empty-state"><h3>No school projects found.</h3></div>';
-                return;
-            }
-            const html = `
+      function renderSchoolProjectsTable(data) {
+        const container = document.querySelector('#school-table-container');
+        if (!data || data.length === 0) {
+          container.innerHTML = '<div class="empty-state"><h3>No school projects found.</h3></div>';
+          return;
+        }
+        const html = `
               <table class="submissions-table">
                 <thead><tr><th>Date</th><th>School Name</th><th>Principal</th><th class="col-action">Actions</th></tr></thead>
                 <tbody>
@@ -2065,22 +2142,22 @@
                     </tr>`).join("")}
                 </tbody>
               </table>`;
-            container.innerHTML = html;
-            container.querySelectorAll('.view-btn').forEach(btn => 
-                btn.addEventListener('click', () => viewSchoolApplication(btn.dataset.id))
-            );
-            container.querySelectorAll('.delete-btn').forEach(btn => 
-                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
-            );
+        container.innerHTML = html;
+        container.querySelectorAll('.view-btn').forEach(btn =>
+          btn.addEventListener('click', () => viewSchoolApplication(btn.dataset.id))
+        );
+        container.querySelectorAll('.delete-btn').forEach(btn =>
+          btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+        );
+      }
+
+      function renderEducatorsTable(data) {
+        const container = document.querySelector('#educators-table-container');
+        if (!data || data.length === 0) {
+          container.innerHTML = '<div class="empty-state"><h3>No educator applications found.</h3></div>';
+          return;
         }
-        
-        function renderEducatorsTable(data) {
-            const container = document.querySelector('#educators-table-container');
-            if (!data || data.length === 0) {
-                container.innerHTML = '<div class="empty-state"><h3>No educator applications found.</h3></div>';
-                return;
-            }
-            const html = `
+        const html = `
               <table class="submissions-table">
                 <thead><tr><th>Date</th><th>Full Name</th><th>Email</th><th class="col-action">Actions</th></tr></thead>
                 <tbody>
@@ -2096,22 +2173,22 @@
                     </tr>`).join("")}
                 </tbody>
               </table>`;
-            container.innerHTML = html;
-            container.querySelectorAll('.view-btn').forEach(btn => 
-                btn.addEventListener('click', () => viewEducatorApplication(btn.dataset.id))
-            );
-            container.querySelectorAll('.delete-btn').forEach(btn => 
-                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
-            );
-        }
+        container.innerHTML = html;
+        container.querySelectorAll('.view-btn').forEach(btn =>
+          btn.addEventListener('click', () => viewEducatorApplication(btn.dataset.id))
+        );
+        container.querySelectorAll('.delete-btn').forEach(btn =>
+          btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+        );
+      }
 
-        function renderStudyCentersTable(data) {
-            const container = document.querySelector('#study-table-container');
-            if (!data || data.length === 0) {
-                container.innerHTML = '<div class="empty-state"><h3>No study centers found.</h3></div>';
-                return;
-            }
-            const html = `
+      function renderStudyCentersTable(data) {
+        const container = document.querySelector('#study-table-container');
+        if (!data || data.length === 0) {
+          container.innerHTML = '<div class="empty-state"><h3>No study centers found.</h3></div>';
+          return;
+        }
+        const html = `
               <table class="submissions-table">
                 <thead><tr><th>Date</th><th>Centre Name</th><th>Principal</th><th class="col-action">Actions</th></tr></thead>
                 <tbody>
@@ -2127,22 +2204,22 @@
                     </tr>`).join("")}
                 </tbody>
               </table>`;
-            container.innerHTML = html;
-            container.querySelectorAll('.view-btn').forEach(btn => 
-                btn.addEventListener('click', () => viewStudyCenterApplication(btn.dataset.id))
-            );
-            container.querySelectorAll('.delete-btn').forEach(btn => 
-                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
-            );
+        container.innerHTML = html;
+        container.querySelectorAll('.view-btn').forEach(btn =>
+          btn.addEventListener('click', () => viewStudyCenterApplication(btn.dataset.id))
+        );
+        container.querySelectorAll('.delete-btn').forEach(btn =>
+          btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+        );
+      }
+
+      function renderDistanceLearningTable(data) {
+        const container = document.querySelector('#distance-table-container');
+        if (!data || data.length === 0) {
+          container.innerHTML = '<div class="empty-state"><h3>No distance learning applications found.</h3></div>';
+          return;
         }
-        
-        function renderDistanceLearningTable(data) {
-            const container = document.querySelector('#distance-table-container');
-            if (!data || data.length === 0) {
-                container.innerHTML = '<div class="empty-state"><h3>No distance learning applications found.</h3></div>';
-                return;
-            }
-            const html = `
+        const html = `
               <table class="submissions-table">
                 <thead><tr><th>Date</th><th>Applicant</th><th>Contact</th><th class="col-action">Actions</th></tr></thead>
                 <tbody>
@@ -2158,22 +2235,22 @@
                     </tr>`).join("")}
                 </tbody>
               </table>`;
-            container.innerHTML = html;
-            container.querySelectorAll('.view-btn').forEach(btn => 
-                btn.addEventListener('click', () => viewDistanceLearningApplication(btn.dataset.id))
-            );
-            container.querySelectorAll('.delete-btn').forEach(btn => 
-                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
-            );
+        container.innerHTML = html;
+        container.querySelectorAll('.view-btn').forEach(btn =>
+          btn.addEventListener('click', () => viewDistanceLearningApplication(btn.dataset.id))
+        );
+        container.querySelectorAll('.delete-btn').forEach(btn =>
+          btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+        );
+      }
+
+      function renderContactsTable(data) {
+        const container = document.querySelector('#contacts-table-container');
+        if (!data || data.length === 0) {
+          container.innerHTML = '<div class="empty-state"><h3>No contact submissions found.</h3></div>';
+          return;
         }
-        
-        function renderContactsTable(data) {
-            const container = document.querySelector('#contacts-table-container');
-            if (!data || data.length === 0) {
-                container.innerHTML = '<div class="empty-state"><h3>No contact submissions found.</h3></div>';
-                return;
-            }
-            const html = `
+        const html = `
               <table class="submissions-table">
                 <thead><tr><th>Date</th><th>Name</th><th>Program</th><th class="col-action">Actions</th></tr></thead>
                 <tbody>
@@ -2189,32 +2266,32 @@
                     </tr>`).join("")}
                 </tbody>
               </table>`;
-            container.innerHTML = html;
-            container.querySelectorAll('.view-btn').forEach(btn => 
-                btn.addEventListener('click', () => viewContactSubmission(btn.dataset.id))
-            );
-            container.querySelectorAll('.delete-btn').forEach(btn => 
-                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
-            );
-        }
+        container.innerHTML = html;
+        container.querySelectorAll('.view-btn').forEach(btn =>
+          btn.addEventListener('click', () => viewContactSubmission(btn.dataset.id))
+        );
+        container.querySelectorAll('.delete-btn').forEach(btn =>
+          btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+        );
+      }
 
-        // --- VIEW HANDLERS ---
-        async function viewSchoolApplication(id) {
-            try {
-                const res = await fetch(`${API_BASE}/school-projects/${id}`);
-                const json = await res.json();
-                if (json.success) {
-                    const app = json.data;
-                    
-                    // Format project types
-                    const projectTypes = [];
-                    if (app.project_science) projectTypes.push('<i class="fas fa-flask" style="color:#800000; margin-right:6px;"></i>Science');
-                    if (app.project_math) projectTypes.push('<i class="fas fa-calculator" style="color:#800000; margin-right:6px;"></i>Math');
-                    if (app.project_language) projectTypes.push('<i class="fas fa-book" style="color:#800000; margin-right:6px;"></i>Language');
-                    if (app.project_social) projectTypes.push('<i class="fas fa-globe" style="color:#800000; margin-right:6px;"></i>Social');
-                    if (app.project_other) projectTypes.push(`<i class="fas fa-plus" style="color:#800000; margin-right:6px;"></i>Other: ${app.project_other}`);
-                    
-                    const html = `
+      // --- VIEW HANDLERS ---
+      async function viewSchoolApplication(id) {
+        try {
+          const res = await fetch(`${API_BASE}/school-projects/${id}`);
+          const json = await res.json();
+          if (json.success) {
+            const app = json.data;
+
+            // Format project types
+            const projectTypes = [];
+            if (app.project_science) projectTypes.push('<i class="fas fa-flask" style="color:#800000; margin-right:6px;"></i>Science');
+            if (app.project_math) projectTypes.push('<i class="fas fa-calculator" style="color:#800000; margin-right:6px;"></i>Math');
+            if (app.project_language) projectTypes.push('<i class="fas fa-book" style="color:#800000; margin-right:6px;"></i>Language');
+            if (app.project_social) projectTypes.push('<i class="fas fa-globe" style="color:#800000; margin-right:6px;"></i>Social');
+            if (app.project_other) projectTypes.push(`<i class="fas fa-plus" style="color:#800000; margin-right:6px;"></i>Other: ${app.project_other}`);
+
+            const html = `
                     <div class="panel school-detail-panel">
                       <style>
                         .school-detail-panel { background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
@@ -2361,21 +2438,21 @@
                         </div>
                       </div>
                     </div>`;
-                    showDetailView(html);
-                }
-            } catch (err) { 
-                console.error("Error loading application:", err);
-                showNotification('Failed to load application details.', 'error');
-            }
+            showDetailView(html);
+          }
+        } catch (err) {
+          console.error("Error loading application:", err);
+          showNotification('Failed to load application details.', 'error');
         }
-        
-        async function viewStudyCenterApplication(id) {
-            try {
-                const res = await fetch(`${API_BASE}/study-centre-applications/${id}`);
-                const json = await res.json();
-                if (json.success) {
-                    const app = json.data;
-                    const html = `
+      }
+
+      async function viewStudyCenterApplication(id) {
+        try {
+          const res = await fetch(`${API_BASE}/study-centre-applications/${id}`);
+          const json = await res.json();
+          if (json.success) {
+            const app = json.data;
+            const html = `
                     <div class="panel study-detail-panel">
                       <style>
                         .study-detail-panel { background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
@@ -2571,21 +2648,21 @@
                         </div>
                       </div>
                     </div>`;
-                    showDetailView(html);
-                }
-            } catch (err) { 
-                console.error("Error loading study center:", err);
-                showNotification('Failed to load study center details.', 'error');
-            }
+            showDetailView(html);
+          }
+        } catch (err) {
+          console.error("Error loading study center:", err);
+          showNotification('Failed to load study center details.', 'error');
         }
+      }
 
-        async function viewDistanceLearningApplication(id) {
-            try {
-                const res = await fetch(`${API_BASE}/distance-learning/${id}`);
-                const json = await res.json();
-                if (json.success) {
-                    const app = json.data;
-                    const html = `
+      async function viewDistanceLearningApplication(id) {
+        try {
+          const res = await fetch(`${API_BASE}/distance-learning/${id}`);
+          const json = await res.json();
+          if (json.success) {
+            const app = json.data;
+            const html = `
                     <div class="panel distance-detail-panel">
                       <style>
                         .distance-detail-panel { background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
@@ -2785,21 +2862,21 @@
                         </div>
                       </div>
                     </div>`;
-                    showDetailView(html);
-                }
-            } catch (err) { 
-                console.error("Error loading distance learning app:", err);
-                showNotification('Failed to load distance learning details.', 'error');
-            }
+            showDetailView(html);
+          }
+        } catch (err) {
+          console.error("Error loading distance learning app:", err);
+          showNotification('Failed to load distance learning details.', 'error');
         }
+      }
 
-        async function viewContactSubmission(id) {
-            try {
-                const res = await fetch(`${API_BASE}/contacts/${id}`);
-                const json = await res.json();
-                if (json.success) {
-                    const c = json.data;
-                    const html = `
+      async function viewContactSubmission(id) {
+        try {
+          const res = await fetch(`${API_BASE}/contacts/${id}`);
+          const json = await res.json();
+          if (json.success) {
+            const c = json.data;
+            const html = `
                     <div class="panel contact-detail-panel">
                       <style>
                         .contact-detail-panel .application-form { background:#fff; border-radius:12px; padding:24px; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
@@ -2835,24 +2912,24 @@
                         </fieldset>
                       </section>
                     </div>`;
-                    showDetailView(html);
-                }
-            } catch (err) { 
-                console.error("Error loading contact:", err);
-                showNotification('Failed to load contact details.', 'error');
-            }
+            showDetailView(html);
+          }
+        } catch (err) {
+          console.error("Error loading contact:", err);
+          showNotification('Failed to load contact details.', 'error');
         }
+      }
 
-        async function viewEducatorApplication(id) {
-            try {
-                const res = await fetch(`${API_BASE}/educators/${id}`);
-                const json = await res.json();
-                if (json.success) {
-                    const app = json.data;
-                    const submitted = app.submitted_at || app.created_at || '';
-                    const submittedDate = formatDateShort(submitted);
-                    const dobDate = app.dob ? formatDateShort(app.dob) : '';
-                    const html = `
+      async function viewEducatorApplication(id) {
+        try {
+          const res = await fetch(`${API_BASE}/educators/${id}`);
+          const json = await res.json();
+          if (json.success) {
+            const app = json.data;
+            const submitted = app.submitted_at || app.created_at || '';
+            const submittedDate = formatDateShort(submitted);
+            const dobDate = app.dob ? formatDateShort(app.dob) : '';
+            const html = `
                     <div class="panel educator-detail-panel">
                       <style>
                         .educator-detail-panel .application-form { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
@@ -2921,172 +2998,184 @@
                         </fieldset>
                       </section>
                     </div>`;
-                    showDetailView(html);
-                }
-            } catch (err) {
-                console.error('Error loading educator:', err);
-                showNotification('Failed to load educator details.', 'error');
-            }
+            showDetailView(html);
+          }
+        } catch (err) {
+          console.error('Error loading educator:', err);
+          showNotification('Failed to load educator details.', 'error');
+        }
+      }
+
+      async function handleDelete(id, type) {
+        if (!confirm('Move this item to trash?')) return;
+
+        const urls = {
+          'school-project': `${API_BASE}/school-projects/${id}`,
+          'study-center': `${API_BASE}/study-centre-applications/${id}`,
+          'distance-learning': `${API_BASE}/distance-learning/${id}`,
+          'contact': `${API_BASE}/contacts/${id}`,
+          'educator': `${API_BASE}/educators/${id}`
+        };
+        const loadFunctions = {
+          'school-project': loadSchoolProjects,
+          'study-center': loadStudyCenters,
+          'distance-learning': loadDistanceLearning,
+          'contact': loadContactsFromApi,
+          'educator': loadEducators
+        };
+
+        try {
+          const response = await fetch(urls[type], { method: 'DELETE' });
+          if (response.ok) {
+            showNotification('Item moved to trash.', 'success');
+            if (loadFunctions[type]) await loadFunctions[type]();
+          } else {
+            throw new Error('Server responded with an error.');
+          }
+        } catch (error) {
+          console.error('Error deleting item:', error);
+          showNotification('Failed to delete item.', 'error');
+        }
+      }
+
+      // --- VIEW & NAVIGATION ---
+      function showListView() {
+        applicationDetailView.classList.remove('active');
+        applicationDetailView.innerHTML = '';
+        if (statsCardsContainer) statsCardsContainer.style.display = 'grid';
+        if (panelHeaderContainer) panelHeaderContainer.style.display = 'block';
+
+        const currentPanelId = (location.hash || '').replace('#', '') || 'dashboard';
+        allContentPanels.forEach(p => p.classList.remove('active'));
+
+        const panelToShow = document.getElementById(currentPanelId);
+        if (panelToShow) {
+          panelToShow.classList.add('active');
+          if (currentPanelId !== 'dashboard' && statsCardsContainer) {
+            statsCardsContainer.style.display = 'none';
+          }
+        }
+        updateActiveStats();
+      }
+
+      function showDetailView(htmlContent) {
+        allContentPanels.forEach(section => section.classList.remove('active'));
+        if (statsCardsContainer) statsCardsContainer.style.display = 'none';
+        if (panelHeaderContainer) panelHeaderContainer.style.display = 'none';
+
+        applicationDetailView.innerHTML = htmlContent;
+        applicationDetailView.classList.add('active');
+
+        const backBtn = applicationDetailView.querySelector('.back-btn');
+        if (backBtn) {
+          backBtn.addEventListener('click', () => history.back());
+        }
+      }
+
+      function showPanel(id) {
+        if (applicationDetailView.classList.contains('active')) {
+          showListView();
         }
 
-        async function handleDelete(id, type) {
-            if (!confirm('Move this item to trash?')) return;
-            
-            const urls = {
-                'school-project': `${API_BASE}/school-projects/${id}`,
-                'study-center': `${API_BASE}/study-centre-applications/${id}`,
-                'distance-learning': `${API_BASE}/distance-learning/${id}`,
-                'contact': `${API_BASE}/contacts/${id}`,
-                'educator': `${API_BASE}/educators/${id}`
-            };
-            const loadFunctions = {
-                'school-project': loadSchoolProjects,
-                'study-center': loadStudyCenters,
-                'distance-learning': loadDistanceLearning,
-                'contact': loadContactsFromApi,
-                'educator': loadEducators
-            };
+        allContentPanels.forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
 
-            try {
-                const response = await fetch(urls[type], { method: 'DELETE' });
-                if (response.ok) {
-                    showNotification('Item moved to trash.', 'success');
-                    if (loadFunctions[type]) await loadFunctions[type]();
-                } else {
-                    throw new Error('Server responded with an error.');
-                }
-            } catch (error) {
-                console.error('Error deleting item:', error);
-                showNotification('Failed to delete item.', 'error');
-            }
+        const panelToShow = document.getElementById(id);
+        const activeLink = document.querySelector(`a[data-target="${id}"]`);
+
+        if (panelToShow) panelToShow.classList.add('active');
+        if (activeLink) activeLink.classList.add('active');
+
+        const panelTitleElement = document.getElementById('panelTitle');
+        if (panelTitleElement) {
+          panelTitleElement.textContent = activeLink ? activeLink.textContent.trim() : 'Dashboard';
         }
-        
-        // --- VIEW & NAVIGATION ---
-        function showListView() {
-            applicationDetailView.classList.remove('active');
-            applicationDetailView.innerHTML = '';
-            if (statsCardsContainer) statsCardsContainer.style.display = 'grid';
-            if (panelHeaderContainer) panelHeaderContainer.style.display = 'block';
+        if (statsCardsContainer) statsCardsContainer.style.display = (id === 'dashboard') ? 'grid' : 'none';
+        if (panelHeaderContainer) panelHeaderContainer.style.display = (id === 'dashboard') ? 'block' : 'block';
 
-            const currentPanelId = (location.hash || '').replace('#', '') || 'dashboard';
-            allContentPanels.forEach(p => p.classList.remove('active'));
-            
-            const panelToShow = document.getElementById(currentPanelId);
-            if (panelToShow) {
-                panelToShow.classList.add('active');
-                if (currentPanelId !== 'dashboard' && statsCardsContainer) {
-                    statsCardsContainer.style.display = 'none';
-                }
-            }
-            updateActiveStats();
-        }
+        updateActiveStats();
+      }
 
-        function showDetailView(htmlContent) {
-            allContentPanels.forEach(section => section.classList.remove('active'));
-            if (statsCardsContainer) statsCardsContainer.style.display = 'none';
-            if (panelHeaderContainer) panelHeaderContainer.style.display = 'none';
+      // --- INITIALIZATION ---
+      function initializeLogin() {
+        loginForm?.addEventListener("submit", handleLogin);
+        togglePassword?.addEventListener("click", function () {
+          const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+          passwordInput.setAttribute("type", type);
+          this.classList.toggle("fa-eye");
+          this.classList.toggle("fa-eye-slash");
+        });
+      }
 
-            applicationDetailView.innerHTML = htmlContent;
-            applicationDetailView.classList.add('active');
+      async function initializeDashboard() {
+        await Promise.all([
+          loadSchoolProjects(),
+          loadStudyCenters(),
+          loadDistanceLearning(),
+          loadEducators(),
+          loadContactsFromApi()
+        ]);
 
-            const backBtn = applicationDetailView.querySelector('.back-btn');
-            if (backBtn) {
-                backBtn.addEventListener('click', () => history.back());
-            }
-        }
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.addEventListener('click', e => {
+            e.preventDefault();
+            const target = link.getAttribute('data-target');
+            if (!target) return;
+            history.pushState({ panel: target }, '', '#' + target);
+            showPanel(target);
 
-        function showPanel(id) {
-            if(applicationDetailView.classList.contains('active')) {
-                showListView();
-            }
+            // Auto-close mobile sidebar upon navigation
+            const sb = document.getElementById('sidebar');
+            const sbBackdrop = document.getElementById('sidebarBackdrop');
+            if (sb && sb.classList.contains('open')) sb.classList.remove('open');
+            if (sbBackdrop && sbBackdrop.classList.contains('show')) sbBackdrop.classList.remove('show');
+          });
+        });
 
-            allContentPanels.forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            
-            const panelToShow = document.getElementById(id);
-            const activeLink = document.querySelector(`a[data-target="${id}"]`);
-            
-            if(panelToShow) panelToShow.classList.add('active');
-            if(activeLink) activeLink.classList.add('active');
-            
-            const panelTitleElement = document.getElementById('panelTitle');
-            if (panelTitleElement) {
-                panelTitleElement.textContent = activeLink ? activeLink.textContent.trim() : 'Dashboard';
-            }
-            if (statsCardsContainer) statsCardsContainer.style.display = (id === 'dashboard') ? 'grid' : 'none';
-            if (panelHeaderContainer) panelHeaderContainer.style.display = (id === 'dashboard') ? 'block' : 'block';
+        window.addEventListener('popstate', (e) => {
+          const hash = location.hash.replace('#', '') || 'dashboard';
+          showPanel(hash);
+        });
 
-            updateActiveStats();
-        }
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+        menuToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('open');
+          sidebarBackdrop.classList.toggle('show');
+        });
+        sidebarBackdrop.addEventListener('click', () => {
+          sidebar.classList.remove('open');
+          sidebarBackdrop.classList.remove('show');
+        });
 
-        // --- INITIALIZATION ---
-        function initializeLogin() {
-            loginForm?.addEventListener("submit", handleLogin);
-            togglePassword?.addEventListener("click", function () {
-                const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-                passwordInput.setAttribute("type", type);
-                this.classList.toggle("fa-eye");
-                this.classList.toggle("fa-eye-slash");
-            });
-        }
-        
-        async function initializeDashboard() {
-            await Promise.all([
-                loadSchoolProjects(),
-                loadStudyCenters(),
-                loadDistanceLearning(),
-                loadEducators(),
-                loadContactsFromApi()
-            ]);
+        // Logout buttons
+        document.getElementById('cancelLogoutBtn').addEventListener('click', cancelLogout);
+        document.getElementById('performLogoutBtn').addEventListener('click', performLogout);
 
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', e => {
-                    e.preventDefault();
-                    const target = link.getAttribute('data-target');
-                    if (!target) return;
-                    history.pushState({ panel: target }, '', '#' + target);
-                    showPanel(target);
+        const initialPanel = location.hash.replace('#', '') || 'dashboard';
+        showPanel(initialPanel);
+      }
 
-                    // Auto-close mobile sidebar upon navigation
-                    const sb = document.getElementById('sidebar');
-                    const sbBackdrop = document.getElementById('sidebarBackdrop');
-                    if (sb && sb.classList.contains('open')) sb.classList.remove('open');
-                    if (sbBackdrop && sbBackdrop.classList.contains('show')) sbBackdrop.classList.remove('show');
-                });
-            });
-            
-            window.addEventListener('popstate', (e) => {
-                const hash = location.hash.replace('#', '') || 'dashboard';
-                showPanel(hash);
-            });
-            
-            // Mobile Menu
-            const menuToggle = document.getElementById('menuToggle');
-            const sidebar = document.getElementById('sidebar');
-            const sidebarBackdrop = document.getElementById('sidebarBackdrop');
-            menuToggle.addEventListener('click', () => {
-                sidebar.classList.toggle('open');
-                sidebarBackdrop.classList.toggle('show');
-            });
-            sidebarBackdrop.addEventListener('click', () => {
-                sidebar.classList.remove('open');
-                sidebarBackdrop.classList.remove('show');
-            });
-            
-            // Logout buttons
-            document.getElementById('cancelLogoutBtn').addEventListener('click', cancelLogout);
-            document.getElementById('performLogoutBtn').addEventListener('click', performLogout);
-
-            const initialPanel = location.hash.replace('#', '') || 'dashboard';
-            showPanel(initialPanel);
-        }
-
-        // --- SCRIPT ENTRY POINT ---
-        document.addEventListener("DOMContentLoaded", initializeLogin);
+      // --- SCRIPT ENTRY POINT ---
+      document.addEventListener("DOMContentLoaded", initializeLogin);
 
     })();
   </script>
 
+  <script>
+    // Hide preloader when page loads
+    window.addEventListener('load', function () {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 500);
+      }
+    });
+  </script>
 </body>
 
 </html>

@@ -751,7 +751,104 @@
             .mobile-menu-btn {
                 display: block;
             }
+
+            /* Mobile dropdown */
+            .dropdown-menu {
+                position: static;
+                background: rgba(0, 0, 0, 0.1);
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+            }
+
+            .dropdown-menu li a {
+                padding: 0.6rem 1rem;
+            }
         }
+
+        /* ===== DROPDOWN MENU ===== */
+        .dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            height: 100%;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 150px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            list-style: none;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: var(--gray-700);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu li a:hover {
+            background: var(--gray-100);
+            color: var(--primary);
+        }
+
+        /* ===== BROCHURE BUTTON ===== */
+        .brochure-btn {
+            background: var(--primary) !important;
+            color: var(--white) !important;
+            padding: 0.4rem 1rem !important;
+            border-radius: 50px !important;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+            line-height: 1.2;
+        }
+
+        .brochure-btn:hover {
+            background: var(--primary-dark) !important;
+            transform: translateY(-2px);
+        }
+
+        .brochure-btn i {
+            font-size: 0.85rem;
+        }
+
 
         /* ===== HERO SECTION ===== */
         .hero {
@@ -851,7 +948,7 @@
         }
 
         .quote-card {
-            background: var(--gray-200);
+            background: #d2d2d2;
             color: var(--primary);
             max-width: 760px;
             margin-top: 3rem;
@@ -1910,10 +2007,10 @@
         .notice-marquee {
             width: 100%;
             overflow: hidden;
-            background: #fff7e6;
-            /* soft notice bg */
-            border: 1px solid #ffd699;
-            color: #7a4b00;
+            background: #fdfde3;
+            /* light blue bg */
+            border: 1px solid #e7f990;
+            color: #853300;
             border-radius: 0;
             /* no curve */
             padding: 0.5rem 0;
@@ -1941,8 +2038,8 @@
         .marquee-link {
             font-weight: 600;
             /* Make it bold like the "Notice:" */
-            color: #a35f00;
-            /* Match the 'Notice:' color */
+            color: #853300;
+            /* Blue color */
             text-decoration: underline;
             text-underline-offset: 3px;
             padding: 0 0.25rem;
@@ -1956,7 +2053,7 @@
         }
 
         .notice-marquee strong {
-            color: #a35f00;
+            color: #761a0cd6;
         }
 
         @keyframes marquee-left {
@@ -2417,6 +2514,10 @@
 
 <body>
 
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
 
     <!-- Header -->
     <header class="header">
@@ -2429,17 +2530,24 @@
                             <span class="brand-line-1">SRL Academy</span>
                             <!--  -->
                         </span>
-                        <span class="brand-tagline">Smart Padhai, Solid Results</span>
+                        <span class="brand-tagline">Smart Study, Solid Result </span>
                     </span>
                 </a>
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
                     <li><a href="educator.html">Careers</a></li>
                     <li><a href="partnership.html">Partnership</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="images/brochure.pdf" class="brochure-btn" download><i class="fas fa-download"></i>
+                            Brochure</a></li>
                 </ul>
                 <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>
@@ -2468,7 +2576,7 @@
                         <h2>Top Class Faculty Team</h2>
                         <p>Expert educators from IITs, NITs & premier institutions with individual attention making us
                             the most preferred Institute in Bangalore.</p>
-                        <a href="educator.html" class="slider-btn">Meet Our Team</a>
+                        <a href="centers.html" class="slider-btn">Our Centers</a>
                     </div>
                 </div>
 
@@ -2592,7 +2700,7 @@
         <section id="faculty" class="section">
             <div class="container">
                 <div class="section-title">
-                    <span class="section-subtitle">Our HODs</span>
+
                     <h2>Our Faculty Members</h2>
                     <p>Top class faculty team from premier institutions</p>
                 </div>
@@ -2602,13 +2710,12 @@
                         <div class="swiper-slide">
                             <div class="faculty-card">
                                 <div class="faculty-content">
-                                    <div class="faculty-name">Vinayashree</div>
-                                    <div class="faculty-role">HOD, Chemistry</div>
-                                    <div class="faculty-meta">B.E Chemical Engineering (Gold Medalist) · M.Tech (NIT
-                                        Surathkal)</div>
+                                    <div class="faculty-name">Durganad Jha</div>
+                                    <div class="faculty-role">Physics Faculty</div>
+                                    <div class="faculty-meta">B.Tech (NIT Surathkal)</div>
                                 </div>
                                 <div class="faculty-photo">
-                                    <img src="images/logo.png" alt="Photo of Vinayashree"
+                                    <img src="images/physics.jpeg" alt="Photo of Durganad Jha"
                                         onerror="this.onerror=null;this.src='images/logo.jpg';">
                                 </div>
                             </div>
@@ -2617,13 +2724,13 @@
                         <div class="swiper-slide">
                             <div class="faculty-card">
                                 <div class="faculty-content">
-                                    <div class="faculty-name">Shaikh Mahmood</div>
-                                    <div class="faculty-role">HOD, Biology</div>
-                                    <div class="faculty-meta">M.Sc Botany and Ph.D (Gold Medalist) · Bangalore
-                                        University</div>
+                                    <div class="faculty-name">XYX XYZ</div>
+                                    <div class="faculty-role">Physics Faculty</div>
+                                    <div class="faculty-meta">B.Tech. (Electronics and Electrical Engineering) · IIT
+                                        Guwahati</div>
                                 </div>
                                 <div class="faculty-photo">
-                                    <img src="images/logo.png" alt="Photo of Shaikh Mahmood"
+                                    <img src="images/physics2.jpeg" alt="Photo of Physics Faculty"
                                         onerror="this.onerror=null;this.src='images/logo.jpg';">
                                 </div>
                             </div>
@@ -2687,23 +2794,22 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <figure class="gallery-item">
-                                <img src="images/photos/Photo from XYZ (12).jpg" alt="Students in classroom"
-                                    loading="lazy">
+                                <img src="images/6.jpg" alt="Students in classroom" loading="lazy">
                             </figure>
                         </div>
                         <div class="swiper-slide">
                             <figure class="gallery-item">
-                                <img src="images/10.jpg" alt="Faculty guiding students" loading="lazy">
+                                <img src="images/5.jpg" alt="Faculty guiding students" loading="lazy">
                             </figure>
                         </div>
                         <div class="swiper-slide">
                             <figure class="gallery-item">
-                                <img src="images/photos/Photo from XYZ (21).jpg" alt="Award ceremony" loading="lazy">
+                                <img src="images/6.jpg" alt="Award ceremony" loading="lazy">
                             </figure>
                         </div>
                         <div class="swiper-slide">
                             <figure class="gallery-item">
-                                <img src="images/12.jpg" alt="Campus facilities" loading="lazy">
+                                <img src="images/5.jpg" alt="Campus facilities" loading="lazy">
                             </figure>
                         </div>
                     </div>
@@ -3162,6 +3268,17 @@
         });
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+        // Hide preloader when page loads
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }
+        });
 
     </script>
 </body>

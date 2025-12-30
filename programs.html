@@ -27,6 +27,11 @@
 <body
     style="margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh; display: flex; flex-direction: column;">
 
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -38,17 +43,24 @@
                             <span class="brand-line-1">SRL Academy</span>
 
                         </span>
-                        <span class="brand-tagline">Smart Padhai, Solid Results</span>
+                        <span class="brand-tagline">Smart Study, Solid Result </span>
                     </span>
                 </a>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
                     <li><a href="programs.html" class="active">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
                     <li><a href="educator.html">Careers</a></li>
                     <li><a href="partnership.html">Partnership</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="images/brochure.pdf" class="brochure-btn" download><i class="fas fa-download"></i>
+                            Brochure</a></li>
                 </ul>
                 <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>

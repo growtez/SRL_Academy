@@ -784,12 +784,6 @@ h4 { font-size: 1.5rem; }
     text-align: left; /* ensure text is left aligned */
 }
 
-.program-features li:before {
-    content: "✓";
-    color: var(--accent);
-    font-weight: bold;
-    margin-right: 0.5rem;
-}
 
 /* ===== TESTIMONIALS ===== */
 .testimonials {

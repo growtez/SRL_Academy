@@ -2,6 +2,10 @@
 
 // Initialize Swiper
 const initSwiper = () => {
+    // Check if Swiper is defined and if the element exists
+    if (typeof Swiper === 'undefined') return;
+    if (!document.querySelector('.hero-slider')) return;
+
     const heroSwiper = new Swiper('.hero-slider', {
         // Optional parameters
         loop: true,
@@ -78,17 +82,21 @@ const initSwiper = () => {
 // Preloader
 // Initialize everything when the window loads
 window.addEventListener('load', function () {
-    // Initialize Swiper
-    initSwiper();
-
+    // Hide Preloader First!
     const preloader = document.querySelector('.preloader');
     if (preloader) {
+        // Immediate fade out
+        preloader.style.opacity = '0';
         setTimeout(() => {
-            preloader.style.opacity = '0';
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
-        }, 1000);
+            preloader.style.display = 'none';
+        }, 500);
+    }
+
+    // Initialize Swiper safely
+    try {
+        initSwiper();
+    } catch (e) {
+        console.error("Swiper init failed:", e);
     }
 });
 

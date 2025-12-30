@@ -999,6 +999,66 @@
             background: var(--gray-50);
         }
 
+        /* ===== FACULTY CARDS ===== */
+        .faculty-card {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            gap: 1.5rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faculty-photo {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+        }
+
+        .faculty-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .faculty-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .faculty-name {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .faculty-role {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .faculty-meta {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.4;
+        }
+
         /* ===== SHOWCASE (semi-circle graphic + text) ===== */
         .showcase {
             background: var(--primary);
@@ -2325,32 +2385,6 @@
                     From Foundation to Competitive Exams"
                 </div>
                 <div class="container" style="text-align:center;">
-                    <!-- Scholarship Test Section -->
-                    <div class="scholarship-action-card"
-                        style="background: linear-gradient(135deg, #fff5f5 0%, #fff 100%); border: 2px solid var(--primary); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(128, 0, 0, 0.1);">
-                        <h4
-                            style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem;">
-                            <i class="fas fa-graduation-cap" style="margin-right: 0.5rem;"></i>
-                            Scholarship Test
-                        </h4>
-                        <p
-                            style="color: #666; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">
-                            Take our scholarship test and get up to 100% fee waiver! Check out the details and prize
-                            distribution.
-                        </p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-                            <a href="posters.html" class="result-btn"
-                                style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-file-alt"></i>
-                                Scholarship Test Details
-                            </a>
-                            <a href="photos.html" class="result-btn"
-                                style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #a00000 0%, #600000 100%); border-color: #800000; color: #fff;">
-                                <i class="fas fa-trophy"></i>
-                                Prize Distribution
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- Results Button -->
                     <a href="results.html" class="result-btn"

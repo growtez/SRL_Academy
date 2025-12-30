@@ -793,6 +793,57 @@
             flex-wrap: wrap;
         }
 
+        /* Hero Slider Navigation Buttons */
+        .hero-slider .swiper-button-next,
+        .hero-slider .swiper-button-prev {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-slider .swiper-button-next:hover,
+        .hero-slider .swiper-button-prev:hover {
+            background: var(--white);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-slider .swiper-button-next::after,
+        .hero-slider .swiper-button-prev::after {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .hero-slider .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 1;
+        }
+
+        .hero-slider .swiper-pagination-bullet-active {
+            background: var(--white);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+
+            .hero-slider .swiper-button-next,
+            .hero-slider .swiper-button-prev {
+                width: 40px;
+                height: 40px;
+            }
+
+            .hero-slider .swiper-button-next::after,
+            .hero-slider .swiper-button-prev::after {
+                font-size: 1rem;
+            }
+        }
+
         /* Quote card under hero */
         .quote-section {
             background: var(--white);
@@ -1002,35 +1053,41 @@
         /* ===== FACULTY CARDS ===== */
         .faculty-card {
             display: flex;
-            flex-direction: row-reverse;
+            flex-direction: row;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             background: var(--white);
-            border-radius: var(--radius);
-            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.5rem;
             border: 2px solid var(--primary);
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
+            min-height: 100px;
         }
 
         .faculty-card:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
+            border-color: var(--primary-dark);
         }
 
         .faculty-photo {
+            order: -1;
+            /* Move photo to the left */
             flex-shrink: 0;
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid var(--primary);
+            border: 3px solid var(--primary) !important;
+            box-sizing: border-box;
         }
 
         .faculty-photo img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            padding: 10px;
         }
 
         .faculty-content {
@@ -1040,10 +1097,10 @@
 
         .faculty-name {
             font-family: var(--font-primary);
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: var(--gray-900);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
         }
 
         .faculty-role {
@@ -1054,10 +1111,11 @@
         }
 
         .faculty-meta {
-            font-size: 0.85rem;
-            color: var(--gray-500);
-            line-height: 1.4;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.5;
         }
+
 
         /* ===== SHOWCASE (semi-circle graphic + text) ===== */
         .showcase {
@@ -1393,8 +1451,7 @@
             width: 110px;
             height: 110px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
+            object-fit: contain;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
             display: block;
             background: #eee;
@@ -2319,7 +2376,7 @@
         <div class="hero-slider swiper">
             <div class="swiper-wrapper">
                 <!-- Slide 1 -->
-                <div class="hero-slide swiper-slide" style="background-image:url('images/15.jpg');">
+                <div class="hero-slide swiper-slide" style="background-image:url('images/5.jpg');">
                     <div class="slide-content">
                         <h2>Leading Coaching Institute For NEET, IIT-JEE & I & II PUC</h2>
                         <p>Institute focusing on Knowledge & Experience sharing. Guiding Aspirants with Affordable
@@ -2329,7 +2386,7 @@
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="hero-slide swiper-slide" style="background-image:url('images/5.jpg');">
+                <div class="hero-slide swiper-slide" style="background-image:url('images/6.jpg');">
                     <div class="slide-content">
                         <h2>Top Class Faculty Team</h2>
                         <p>Expert educators from IITs, NITs & premier institutions with individual attention making us
@@ -2339,7 +2396,7 @@
                 </div>
 
                 <!-- Slide 3 -->
-                <div class="hero-slide swiper-slide" style="background-image:url('images/3.jpg');">
+                <div class="hero-slide swiper-slide" style="background-image:url('images/5.jpg');">
                     <div class="slide-content">
                         <h2>Join Our Growing Community</h2>
                         <p>Become part of a network of successful students who achieved their dreams with SRL Academy.
@@ -2442,12 +2499,12 @@
                             onerror="this.onerror=null;this.src='images/principal.jpg';">
                     </div>
                     <div class="desk-content">
-                        <h4>At SRL Academy, we understand the challenges that lie ahead.</h4>
-                        <p>Our dedicated team of experienced educators is committed to providing you with the highest
-                            quality of instruction and support. We believe that every student has the potential to
-                            excel, and it is our mission to help you unlock that potential through personalized
-                            guidance, innovative teaching methods, and a nurturing environment.</p>
-                        <p class="text-primary" style="margin-top:1rem; font-weight:600;">— Dibyendu Mukherjee, Managing
+                        <h4>At SRL Academy, we go beyond traditional teaching.</h4>
+                        <p> We prepare students for the real challenges of learning. Our passionate faculty brings deep
+                            expertise and a student-first approach to every classroom. We focus on nurturing individual
+                            strengths, using modern teaching practices, one-on-one attention, and a positive learning
+                            culture that empowers students to grow with confidence and achieve their goals.</p>
+                        <p class="text-primary" style="margin-top:1rem; font-weight:600;">— Mr. XYZ, Managing
                             Director</p>
                     </div>
                 </div>
@@ -2469,13 +2526,13 @@
                             <div class="faculty-card">
                                 <div class="faculty-content">
                                     <div class="faculty-name">Vinayashree</div>
-                                    <div class="faculty-role">Chemistry HOD</div>
+                                    <div class="faculty-role">HOD, Chemistry</div>
                                     <div class="faculty-meta">B.E Chemical Engineering (Gold Medalist) · M.Tech (NIT
                                         Surathkal)</div>
                                 </div>
                                 <div class="faculty-photo">
-                                    <img src="images/vinayashree.jpg" alt="Photo of Vinayashree"
-                                        onerror="this.onerror=null;this.src='images/1.jpg';">
+                                    <img src="images/logo.png" alt="Photo of Vinayashree"
+                                        onerror="this.onerror=null;this.src='images/logo.jpg';">
                                 </div>
                             </div>
                         </div>
@@ -2484,13 +2541,13 @@
                             <div class="faculty-card">
                                 <div class="faculty-content">
                                     <div class="faculty-name">Shaikh Mahmood</div>
-                                    <div class="faculty-role">Biology HOD</div>
+                                    <div class="faculty-role">HOD, Biology</div>
                                     <div class="faculty-meta">M.Sc Botany and Ph.D (Gold Medalist) · Bangalore
                                         University</div>
                                 </div>
                                 <div class="faculty-photo">
-                                    <img src="images/shaikhmahmood.jpg" alt="Photo of Shaikh Mahmood"
-                                        onerror="this.onerror=null;this.src='images/3.jpg';">
+                                    <img src="images/logo.png" alt="Photo of Shaikh Mahmood"
+                                        onerror="this.onerror=null;this.src='images/logo.jpg';">
                                 </div>
                             </div>
                         </div>
@@ -2499,13 +2556,13 @@
                             <div class="faculty-card">
                                 <div class="faculty-content">
                                     <div class="faculty-name">K Pattabhi</div>
-                                    <div class="faculty-role">Mathematics HOD</div>
+                                    <div class="faculty-role">HOD, Mathematics</div>
                                     <div class="faculty-meta">M.Sc (Tech) Mathematics (First Class) · JNTU, Hyderabad
                                     </div>
                                 </div>
                                 <div class="faculty-photo">
-                                    <img src="images/kpattabhi.jpg" alt="Photo of K Pattabhi"
-                                        onerror="this.onerror=null;this.src='images/5.jpg';">
+                                    <img src="images/logo.png" alt="Photo of K Pattabhi"
+                                        onerror="this.onerror=null;this.src='images/logo.jpg';">
                                 </div>
                             </div>
                         </div>
@@ -2514,13 +2571,13 @@
                             <div class="faculty-card">
                                 <div class="faculty-content">
                                     <div class="faculty-name">Gopala Varma</div>
-                                    <div class="faculty-role">Physics HOD</div>
+                                    <div class="faculty-role">HOD, Physics</div>
                                     <div class="faculty-meta">B.E. (Metallurgy) (First Class) · IISc, Bangalore (1983)
                                     </div>
                                 </div>
                                 <div class="faculty-photo">
-                                    <img src="images/gopalavarma.jpg" alt="Photo of Gopala Varma"
-                                        onerror="this.onerror=null;this.src='images/10.jpg';">
+                                    <img src="images/logo.png" alt="Photo of Gopala Varma"
+                                        onerror="this.onerror=null;this.src='images/logo.jpg';">
                                 </div>
                             </div>
                         </div>
@@ -2553,8 +2610,8 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <figure class="gallery-item">
-                                <img src="images/photos/Photo from dibyendu mukherjee(12).jpg"
-                                    alt="Students in classroom" loading="lazy">
+                                <img src="images/photos/Photo from XYZ (12).jpg" alt="Students in classroom"
+                                    loading="lazy">
                             </figure>
                         </div>
                         <div class="swiper-slide">
@@ -2564,8 +2621,7 @@
                         </div>
                         <div class="swiper-slide">
                             <figure class="gallery-item">
-                                <img src="images/photos/Photo from dibyendu mukherjee(21).jpg" alt="Award ceremony"
-                                    loading="lazy">
+                                <img src="images/photos/Photo from XYZ (21).jpg" alt="Award ceremony" loading="lazy">
                             </figure>
                         </div>
                         <div class="swiper-slide">

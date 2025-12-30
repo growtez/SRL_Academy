@@ -27,7 +27,7 @@
                     <span class="brand-text">
                         <span class="brand-row">
                             <span class="brand-line-1">SRL Academy</span>
-                            
+
                         </span>
                         <span class="brand-tagline">Smart Padhai, Solid Results</span>
                     </span>
@@ -88,10 +88,9 @@
                                     <label for="program">Program Interest</label>
                                     <select id="program" name="program">
                                         <option value="">Select Program</option>
-                                        <option value="foundation">Foundation (VI-X)</option>
-                                        <option value="class11-12">Class XI & XII</option>
-                                        <option value="jee-neet">JEE/NEET</option>
-                                        <option value="olympiad">Olympiad</option>
+                                        <option value="neet-2year">NEET (2 Year Programme)</option>
+                                        <option value="jee-main-advance">JEE (MAIN + ADVANCE)</option>
+                                        <option value="neet-iit-12pass">NEET/ IIT Target For 12th Pass</option>
                                         <option value="sip">School Integrated Program</option>
                                     </select>
                                 </div>
@@ -234,8 +233,6 @@
     </div>
 
     <script>
-        c
-
         document.addEventListener('DOMContentLoaded', function () {
             const contactForm = document.getElementById("contactForm");
             const submitBtn = document.getElementById("submitBtn");
@@ -244,7 +241,7 @@
             if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
             // Configuration - Update these URLs for your Laravel setup
-            const API_BASE_URL = 'https://srlacademyedu.com/api'; // Laravel's default dev server
+            const API_BASE_URL = 'https://srlacademyedu.com/api';
 
             // Add styles for dialog
             const dialogStyles = `
@@ -395,7 +392,7 @@
                             const errorMessages = Object.values(result.errors).flat();
                             throw new Error(errorMessages.join(' '));
                         }
-
+                        
                         throw new Error(result.message || `Server error: ${response.status}`);
                     }
 
@@ -409,7 +406,7 @@
 
                 } catch (err) {
                     console.error("Submission Error:", err);
-
+                    
                     // Handle specific error types
                     if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
                         showDialog("Connection Error", "Unable to connect to the server. Please check your internet connection and try again.");
@@ -454,6 +451,7 @@
         });
     </script>
 
+    <script src="script.js"></script>
 </body>
 
 </html>

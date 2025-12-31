@@ -400,6 +400,11 @@
 
 <body>
 
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
     <header class="header">
         <div class="container">
             <nav class="nav">
@@ -409,17 +414,23 @@
                         <span class="brand-row">
                             <span class="brand-line-1">SRL Academy</span>
                         </span>
-                        <span class="brand-tagline">Smart Padhai, Solid Results</span>
+                        <span class="brand-tagline">Smart Study, Solid Result </span>
                     </span>
                 </a>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
-                    <li><a href="educator.html">Careers</a></li>
+                    <li><a href="photos.html" class="active">Gallery</a></li>
                     <li><a href="partnership.html">Partnership</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="educator.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>

@@ -1,0 +1,28 @@
+{
+  "name": "srl_academy",
+  "version": "1.0.0",
+  "main": "centerscript.js",
+  "scripts": {
+    "dev": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/growtez/SRL_Academy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/growtez/SRL_Academy/issues"
+  },
+  "homepage": "https://github.com/growtez/SRL_Academy#readme",
+  "description": "",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+
+  
+}
+
+

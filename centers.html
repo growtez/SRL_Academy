@@ -30,6 +30,11 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -40,19 +45,25 @@
                     <span class="brand-text">
                         <span class="brand-row">
                             <span class="brand-line-1">SRL Academy</span>
-                            
+
                         </span>
-                        <span class="brand-tagline">Smart Padhai, Solid Results</span>
+                        <span class="brand-tagline">Smart Study, Solid Result </span>
                     </span>
                 </a>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
                     <li><a href="programs.html">Programs</a></li>
-                    <li><a href="centers.html">Centers</a></li>
-                    <li><a href="educator.html">Careers</a></li>
+                    <li><a href="centers.html" class="active">Centers</a></li>
+                    <li><a href="photos.html">Gallery</a></li>
                     <li><a href="partnership.html">Partnership</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="educator.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>
@@ -67,7 +78,8 @@
             <div class="container">
                 <div class="hero-content">
                     <h1>Centers Across India</h1>
-                    <p>We currently have 1 center in Vidyaranyapura, Bangalore, with more strategically located centers coming soon to provide accessible and quality coaching to students across India.</p>
+                    <p>We currently have 1 center in Vidyaranyapura, Bangalore, with more strategically located centers
+                        coming soon to provide accessible and quality coaching to students across India.</p>
                 </div>
             </div>
         </section>
@@ -124,14 +136,14 @@
 
 
                     <!-- More Centers Coming Soon -->
-                    <div class="center-card">
-                        <div class="card-header">
-                            <div class="center-icon">
-                                <i class="fas fa-clock" aria-hidden="true"></i>
-                            </div>
-                            <h4>More Centers Coming Soon...</h4>
+                    <div class="center-card"
+                        style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                        <div class="center-icon">
+                            <i class="fas fa-clock" aria-hidden="true"></i>
                         </div>
-                        <p>We are expanding our network to bring quality education closer to you. Stay tuned for updates!</p>
+                        <h4 style="margin-top: 12px;">More Centers Coming Soon...</h4>
+                        <p>We are expanding our network to bring quality education closer to you. Stay tuned for
+                            updates!</p>
                     </div>
 
 

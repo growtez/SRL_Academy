@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRL Academy | Photo Gallery</title>
+    <title>SRL Academy | Photo & Video Gallery</title>
     <meta name="description"
-        content="Explore our photo gallery showcasing events, achievements, and moments from SRL Academy.">
+        content="Explore our gallery showcasing media coverage, videos, and student achievements from SRL Academy.">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -50,30 +50,55 @@
             display: block;
         }
 
-        /* ===== Photo Gallery Section ===== */
+        /* ===== Photo Gallery Main Section ===== */
         .photo-section {
             padding: 2rem 1rem;
             text-align: center;
-            display: flex;
-            flex-direction: column;
             flex-grow: 1;
         }
 
         .photo-section h2 {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: var(--primary);
         }
 
-        .photo-section p {
+        .photo-section>p {
             max-width: 600px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 3rem;
+            color: #666;
         }
 
-        /* ===== Masonry Collage Layout ===== */
+        /* ===== New Subsection Styling ===== */
+        .gallery-subsection {
+            margin-bottom: 5rem;
+            width: 100%;
+        }
+
+        .subsection-header {
+            max-width: 1200px;
+            margin: 0 auto 1.5rem;
+            text-align: left;
+            padding-left: 1rem;
+            border-left: 5px solid var(--primary);
+        }
+
+        .subsection-header h3 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--gray-900);
+        }
+
+        .subsection-header p {
+            margin: 5px 0 0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* ===== Masonry Layout (For Images) ===== */
         .photo-masonry {
             column-count: 3;
-            column-gap: 1rem;
+            column-gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
@@ -81,8 +106,8 @@
 
         .photo-card {
             break-inside: avoid;
-            margin-bottom: 1rem;
-            border: 2px solid var(--primary);
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
             border-radius: var(--radius);
             box-shadow: var(--shadow-lg);
             overflow: hidden;
@@ -92,35 +117,123 @@
         }
 
         .photo-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 24px rgba(128, 0, 0, 0.25);
-            z-index: 10;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
         }
 
         .photo-card img {
             width: 100%;
             height: auto;
             display: block;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s ease;
         }
 
         .photo-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
-        /* Photo overlay effect */
-        .photo-card::after {
-            content: '';
+        .photo-card-caption {
+            padding: 10px;
+            font-size: 0.9rem;
+            text-align: left;
+            background: #fff;
+            color: var(--gray-900);
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .news-photo-card {
+            border-color: var(--primary);
+        }
+
+        .student-photo-card {
+            border-color: var(--primary);
+        }
+
+        /* ===== Video Grid Layout (Fixed) ===== */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .video-card {
+            background: #000;
+            /* Black background for video player feel */
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid #333;
+            /* Darker border */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            /* This sets a fixed height for the video area so all cards align */
+            height: 250px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-play-overlay {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 50%, rgba(128, 0, 0, 0.3) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
         }
 
-        .photo-card:hover::after {
+        .video-play-button {
+            font-size: 4rem;
+            color: #fff;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .video-play-button:hover {
             opacity: 1;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            /* 'contain' ensures the WHOLE video shows without cropping */
+            object-fit: contain;
+        }
+
+        .video-caption {
+            background: #fff;
+            padding: 1rem;
+            text-align: left;
+            border-top: 1px solid #eee;
+            flex-grow: 1;
+            /* Ensures captions align at bottom if needed */
+        }
+
+        .video-caption h4 {
+            margin: 0 0 5px;
+            font-size: 1.1rem;
+            color: var(--gray-900);
+        }
+
+        .video-caption p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #666;
         }
 
         /* ===== Footer ===== */
@@ -188,29 +301,12 @@
             text-decoration: underline;
         }
 
-        .footer-links .material-symbols-outlined {
-            font-size: 1.2rem;
-        }
-
         .footer-copyright {
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 15px;
             font-size: 14px;
             opacity: 0.8;
-        }
-
-        .footer-copyright p {
-            margin: 0;
-        }
-
-        .footer-copyright a {
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .footer-copyright a:hover {
-            text-decoration: underline;
         }
 
         /* ===== Back to Top ===== */
@@ -231,33 +327,11 @@
             font-size: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
+            z-index: 100;
         }
 
         .back-to-top:hover {
             background: var(--primary-dark);
-            color: var(--white);
-        }
-
-        /* Empty State Styling */
-        .empty-state {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 2rem;
-            color: var(--gray-700);
-        }
-
-        .empty-state i {
-            font-size: 4rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            opacity: 0.6;
-        }
-
-        .empty-state p {
-            font-size: 1.2rem;
-            margin: 0;
         }
 
         /* ===== MOBILE OPTIMIZATIONS ===== */
@@ -269,7 +343,6 @@
 
         @media (max-width: 768px) {
             .photo-section {
-                height: auto;
                 padding: 1.5rem 0.5rem;
             }
 
@@ -278,16 +351,15 @@
                 column-gap: 0.75rem;
             }
 
-            .photo-card {
-                margin-bottom: 0.75rem;
-                border-width: 3px;
+            .video-grid {
+                grid-template-columns: 1fr;
             }
 
-            .photo-section h2 {
-                font-size: 2rem;
+            .subsection-header h3 {
+                font-size: 1.5rem;
             }
 
-            /* Header brand responsiveness (tablet and down) */
+            /* Header brand responsiveness */
             .brand {
                 gap: 0.5rem;
             }
@@ -306,48 +378,13 @@
         }
 
         @media (max-width: 480px) {
-            .photo-section {
-                padding: 1rem 0;
-            }
-
-            .photo-section h2 {
-                font-size: 1.75rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .photo-section>p {
-                font-size: 0.95rem;
-                margin-bottom: 1.5rem;
-            }
-
             .photo-masonry {
                 column-count: 1;
-                padding: 0 0.75rem;
-                max-width: 100%;
             }
 
-            .photo-card {
-                margin-bottom: 1rem;
-                border-radius: 0.75rem;
-                border-width: 3px;
-            }
-
-            .photo-card img {
-                border-radius: 0.5rem;
-            }
-
-            /* Tighter header + brand on very small devices */
+            /* Tighter header */
             .header {
                 padding: 0.4rem 0;
-            }
-
-            .header .container {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-            }
-
-            .brand {
-                gap: 0.4rem;
             }
 
             .logo img {
@@ -355,18 +392,8 @@
             }
 
             .brand-text {
-                flex-direction: column;
-                align-items: flex-start;
                 gap: 0.1rem;
-                line-height: 1.05;
-                white-space: normal;
             }
-
-            .brand-line-1 {
-                font-size: 1.05rem;
-                white-space: normal;
-            }
-
         }
     </style>
 </head>
@@ -402,41 +429,106 @@
     </header>
 
     <section class="photo-section">
-        <h2>Photo Gallery</h2>
-        <p>Capturing memorable moments from our events, prize distributions, and celebrations</p>
+        <h2>SRL Gallery</h2>
+        <p>A glimpse into our journey, media features, and student success stories.</p>
 
-        <div class="photo-masonry">
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ .jpg" alt="Prize Distribution Event" loading="lazy">
+        <div class="gallery-subsection">
+            <div class="subsection-header">
+                <h3>Media News Images</h3>
+                <p>SRL Academy in the press and newspaper cuttings</p>
             </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (3).jpg" alt="Award Ceremony" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (4).jpg" alt="Scholarship Winners" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (9).jpg" alt="Student Achievement" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (10).jpg" alt="Prize Ceremony" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (12).jpg" alt="Celebration Event" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (19).jpg" alt="Award Function" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (20).jpg" alt="Group Photo" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/pp.jpg" alt="Winner Announcement" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo.jpg" alt="Prize Distribution" loading="lazy">
+
+            <div class="photo-masonry">
+                <div class="photo-card news-photo-card">
+                    <img src="/images/photos/media-news-images/paper image1.jpg" alt="News Article 1" loading="lazy">
+                    <!-- <div class="photo-card-caption">Featured in Times of India</div> -->
+                </div>
+                <div class="photo-card news-photo-card">
+                    <img src="/images/photos/media-news-images/paper image2.jpg" alt="News Article 2" loading="lazy">
+                    <!-- <div class="photo-card-caption">Local Daily Coverage</div> -->
+                </div>
+                <div class="photo-card news-photo-card">
+                    <img src="/images/photos/media-news-images/paper image3.jpg" alt="News Article 3" loading="lazy">
+                    <!-- <div class="photo-card-caption">Award Ceremony Press Release</div> -->
+                </div>
             </div>
         </div>
+
+        <div class="gallery-subsection">
+            <div class="subsection-header">
+                <h3>Media News Videos</h3>
+                <p>Video coverage and news features</p>
+            </div>
+
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video preload="none" playsinline class="video-player"
+                            poster="images/photos/media-news-videos/video-poster-1.jpg">
+                            <source src="images/photos/media-news-videos/news-video1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay" data-video="video1">
+                            <i class="fas fa-play video-play-button"></i>
+                        </div>
+                    </div>
+                    <!-- <div class="video-caption">
+                        <h4>News Channel Interview</h4>
+                        <p>Discussion on Education Trends</p>
+                    </div> -->
+                </div>
+
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video preload="none" playsinline class="video-player"
+                            poster="images/photos/media-news-videos/video-poster-2.jpg">
+                            <source src="images/photos/media-news-videos/news-video2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay" data-video="video2">
+                            <i class="fas fa-play video-play-button"></i>
+                        </div>
+                    </div>
+                    <!-- <div class="video-caption">
+                        <h4>Award Ceremony Highlights</h4>
+                        <p>Coverage by City News</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-subsection">
+            <div class="subsection-header">
+                <h3>Student Moments</h3>
+                <p>Capturing events, prize distributions, and celebrations</p>
+            </div>
+
+            <div class="photo-masonry">
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl1.jpg" alt="image1" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl2.jpg" alt="image2" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl3.jpg" alt="image3" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl4.jpg" alt="image4" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl5.jpg" alt="image5" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/photos/student-moments/srl6.jpg" alt="image6" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/photos/student-moments/srl7.jpg" alt="image7" loading="lazy">
+                </div>
+            
+            </div>
+        </div>
+
     </section>
 
     <footer class="footer">
@@ -490,6 +582,63 @@
 
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+        // Video play overlay functionality
+        const allVideos = document.querySelectorAll('.video-player');
+        
+        function pauseOtherVideos(currentVideo) {
+            allVideos.forEach(v => {
+                if (v !== currentVideo) {
+                    v.pause();
+                    v.controls = false;
+                    const otherOverlay = v.nextElementSibling;
+                    if (otherOverlay) otherOverlay.style.display = 'flex';
+                }
+            });
+        }
+        
+        document.querySelectorAll('.video-play-overlay').forEach(overlay => {
+            const videoId = overlay.getAttribute('data-video');
+            const video = overlay.previousElementSibling; // The video element before the overlay
+            const wrapper = overlay.parentElement; // The video-wrapper
+
+            // Click overlay to play and show controls
+            overlay.addEventListener('click', (e) => {
+                e.stopPropagation();
+                pauseOtherVideos(video);
+                video.controls = true;
+                video.play();
+                overlay.style.display = 'none';
+            });
+
+            // Function to toggle play/pause
+            function togglePlayPause() {
+                if (video.paused) {
+                    pauseOtherVideos(video);
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            }
+
+            // Click video to toggle play/pause (desktop)
+            video.addEventListener('click', (e) => {
+                e.preventDefault();
+                togglePlayPause();
+            });
+
+            // Touch video to toggle play/pause (mobile)
+            video.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                togglePlayPause();
+            });
+
+            // Hide controls and show overlay when video ends
+            video.addEventListener('ended', () => {
+                video.controls = false;
+                overlay.style.display = 'flex';
+            });
+        });
 
     </script>
 

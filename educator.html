@@ -181,57 +181,318 @@
                 </div>
 
                 <form id="educatorForm" enctype="multipart/form-data">
-                    <!-- Personal Info -->
+                    <!-- Personal Information -->
                     <fieldset>
                         <legend><i class="fas fa-user"></i> Personal Information</legend>
 
-                        <div class="form-group">
-                            <label>Full Name:</label>
-                            <input type="text" id="full_name" name="full_name" placeholder="Enter your full name"
-                                required>
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label>Full Name <span class="required">*</span></label>
+                                <input type="text" id="full_name" name="full_name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                            </div>
                         </div>
 
                         <div class="two-column">
                             <div class="form-group">
-                                <label>Date of Birth:</label>
-                                <input type="date" id="dob" name="dob" required>
+                                <label>Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
                             </div>
                             <div class="form-group">
-                                <label>Gender:</label>
+                                <label>Date of Birth <span class="required">*</span></label>
+                                <input type="date" id="dob" name="dob" required>
+                            </div>
+                        </div>
+
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label>Gender <span class="required">*</span></label>
                                 <select id="gender" name="gender" required>
                                     <option value="" disabled selected>Select Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label>Upload Your Photo (Optional)</label>
+                                <div class="file-upload photo-upload">
+                                    <input type="file" id="photo" name="photo" accept="image/*">
+                                    <div class="file-upload-btn">
+                                        <i class="fas fa-upload"></i>
+                                        <span id="photo-label">Choose Photo</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </fieldset>
 
-                        <div class="form-group">
-                            <label>Address:</label>
-                            <textarea id="address" name="address" rows="4"
-                                placeholder="Enter your complete address including city, state, and zip code"
-                                required></textarea>
-                        </div>
+                    <!-- Job Information -->
+                    <fieldset>
+                        <legend><i class="fas fa-briefcase"></i> Job Information</legend>
 
                         <div class="two-column">
                             <div class="form-group">
-                                <label>Contact Number:</label>
-                                <input type="tel" id="phone" name="phone" placeholder="+91 " required>
+                                <label>Total Years of Experience <span class="required">*</span></label>
+                                <select id="experience" name="experience" required>
+                                    <option value="" disabled selected>Select Experience</option>
+                                    <option value="Fresher">Fresher</option>
+                                    <option value="0-1 years">0-1 years</option>
+                                    <option value="1-2 years">1-2 years</option>
+                                    <option value="2-3 years">2-3 years</option>
+                                    <option value="3-5 years">3-5 years</option>
+                                    <option value="5-7 years">5-7 years</option>
+                                    <option value="7-10 years">7-10 years</option>
+                                    <option value="10+ years">10+ years</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>Email Address:</label>
-                                <input type="email" id="email" name="email" placeholder="your.email@example.com"
+                                <label>Current Salary per annum (in INR) <span class="required">*</span></label>
+                                <input type="number" id="current_salary" name="current_salary" placeholder="500000"
                                     required>
                             </div>
                         </div>
 
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label>Available to Join (in days) <span class="required">*</span></label>
+                                <select id="available_days" name="available_days" required>
+                                    <option value="" disabled selected>Select Days</option>
+                                    <option value="Immediate">Immediate</option>
+                                    <option value="7 days">Within 7 days</option>
+                                    <option value="15 days">Within 15 days</option>
+                                    <option value="30 days">Within 30 days</option>
+                                    <option value="45 days">Within 45 days</option>
+                                    <option value="60 days">Within 60 days</option>
+                                    <option value="More than 60 days">More than 60 days</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>How did you hear about this job? <span class="required">*</span></label>
+                                <select id="job_source" name="job_source" required>
+                                    <option value="" disabled selected>Select Option</option>
+                                    <option value="Job Portal">Job Portal</option>
+                                    <option value="LinkedIn">LinkedIn</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="Friend/Referral">Friend/Referral</option>
+                                    <option value="Website">Website</option>
+                                    <option value="Newspaper">Newspaper</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Location Information -->
+                    <fieldset>
+                        <legend><i class="fas fa-map-marker-alt"></i> Location Information</legend>
+
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label>Home State <span class="required">*</span></label>
+                                <select id="home_state" name="home_state" required>
+                                    <option value="" disabled selected>Select State</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Home District (Optional)</label>
+                                <input type="text" id="home_district" name="home_district"
+                                    placeholder="Select District">
+                            </div>
+                        </div>
+
                         <div class="form-group">
-                            <label>Upload Resume:</label>
+                            <label>Current Location (State) <span class="required">*</span></label>
+                            <select id="current_location" name="current_location" required>
+                                <option value="" disabled selected>Select State</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <!-- Education Details -->
+                    <fieldset>
+                        <legend><i class="fas fa-graduation-cap"></i> Education Details</legend>
+
+                        <div id="education-container">
+                            <div class="education-entry">
+                                <div class="two-column">
+                                    <div class="form-group">
+                                        <label>Qualification <span class="required">*</span></label>
+                                        <select name="qualification[]" required>
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="B.Ed">B.Ed</option>
+                                            <option value="M.Ed">M.Ed</option>
+                                            <option value="B.Sc">B.Sc</option>
+                                            <option value="M.Sc">M.Sc</option>
+                                            <option value="B.A">B.A</option>
+                                            <option value="M.A">M.A</option>
+                                            <option value="B.Tech">B.Tech</option>
+                                            <option value="M.Tech">M.Tech</option>
+                                            <option value="PhD">PhD</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>College Name <span class="required">*</span></label>
+                                        <input type="text" name="college_name[]" placeholder="Select College" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Year of Graduation <span class="required">*</span></label>
+                                    <select name="graduation_year[]" required>
+                                        <option value="" disabled selected>Select Year</option>
+                                        <script>
+                                            const currentYear = new Date().getFullYear();
+                                            for (let y = currentYear; y >= currentYear - 40; y--) {
+                                                document.write(`<option value="${y}">${y}</option>`);
+                                            }
+                                        </script>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="add-more-btn" id="addEducation">
+                            <i class="fas fa-plus"></i> Add More Education
+                        </button>
+                    </fieldset>
+
+                    <!-- Work Experience Details -->
+                    <fieldset>
+                        <legend><i class="fas fa-building"></i> Work Experience Details</legend>
+
+                        <div id="experience-container">
+                            <div class="experience-entry">
+                                <div class="two-column">
+                                    <div class="form-group">
+                                        <label>Organization Name</label>
+                                        <input type="text" name="organization_name[]" placeholder="Company Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Job Title</label>
+                                        <input type="text" name="job_title[]" placeholder="Senior Developer">
+                                    </div>
+                                </div>
+
+                                <div class="two-column">
+                                    <div class="form-group">
+                                        <label>Date of Joining</label>
+                                        <input type="date" name="joining_date[]">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Location</label>
+                                        <input type="text" name="work_location[]" placeholder="City, State">
+                                    </div>
+                                </div>
+
+                                <div class="two-column">
+                                    <div class="form-group checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="currently_working[]"
+                                                class="currently-working-checkbox">
+                                            <span>Currently I work here</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group relieving-date-group">
+                                        <label>Date of Relieving</label>
+                                        <input type="date" name="relieving_date[]">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="add-more-btn" id="addExperience">
+                            <i class="fas fa-plus"></i> Add Experience Details
+                        </button>
+                    </fieldset>
+
+                    <!-- Additional Documents -->
+                    <fieldset>
+                        <legend><i class="fas fa-file-alt"></i> Additional Documents (Optional)</legend>
+
+                        <p class="field-hint">Upload cover letter, certificates, or other relevant documents</p>
+
+                        <div class="form-group">
                             <div class="file-upload">
-                                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                <input type="file" id="additional_docs" name="additional_docs[]"
+                                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple>
                                 <div class="file-upload-btn">
+                                    <i class="fas fa-upload"></i>
+                                    <span id="docs-label">Choose Files</span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Additional Information -->
+                    <fieldset>
+                        <legend><i class="fas fa-info-circle"></i> Additional Information</legend>
+
+                        <div class="form-group">
+                            <label>Subjects You Can Teach <span class="required">*</span></label>
+                            <input type="text" id="subjects" name="subjects"
+                                placeholder="e.g., Mathematics, Physics, Chemistry" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Classes You Can Handle <span class="required">*</span></label>
+                            <input type="text" id="classes" name="classes" placeholder="e.g., 9th, 10th, 11th, 12th"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Brief About Yourself</label>
+                            <textarea id="about_yourself" name="about_yourself" rows="4"
+                                placeholder="Tell us about your teaching philosophy, achievements, and why you want to join SRL Academy..."></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- Upload Resume - At the Last -->
+                    <fieldset>
+                        <legend><i class="fas fa-file-pdf"></i> Upload Your Resume <span class="required">*</span>
+                        </legend>
+
+                        <p class="field-hint">Upload your resume (PDF only, max 5MB)</p>
+
+                        <div class="form-group">
+                            <div class="file-upload resume-upload">
+                                <input type="file" id="resume" name="resume" accept=".pdf" required>
+                                <div class="file-upload-btn resume-btn">
                                     <i class="fas fa-cloud-upload-alt"></i>
-                                    <span id="file-label">Choose Resume File (PDF, DOC, DOCX)</span>
+                                    <span id="file-label">Choose PDF Resume</span>
                                 </div>
                             </div>
                         </div>
@@ -379,7 +640,7 @@
             navLinks.classList.toggle('active');
         });
 
-        // File upload functionality
+        // File upload functionality for Resume
         const fileInput = document.getElementById('resume');
         const fileLabel = document.getElementById('file-label');
 
@@ -388,8 +649,174 @@
                 const fileName = this.files[0].name;
                 fileLabel.textContent = `Selected: ${fileName}`;
             } else {
-                fileLabel.textContent = 'Choose Resume File (PDF, DOC, DOCX)';
+                fileLabel.textContent = 'Choose PDF Resume';
             }
+        });
+
+        // File upload functionality for Photo
+        const photoInput = document.getElementById('photo');
+        const photoLabel = document.getElementById('photo-label');
+
+        photoInput.addEventListener('change', function () {
+            if (this.files && this.files[0]) {
+                const fileName = this.files[0].name;
+                photoLabel.textContent = `Selected: ${fileName}`;
+            } else {
+                photoLabel.textContent = 'Choose Photo';
+            }
+        });
+
+        // File upload functionality for Additional Documents
+        const docsInput = document.getElementById('additional_docs');
+        const docsLabel = document.getElementById('docs-label');
+
+        docsInput.addEventListener('change', function () {
+            if (this.files && this.files.length > 0) {
+                const fileCount = this.files.length;
+                docsLabel.textContent = `Selected: ${fileCount} file(s)`;
+            } else {
+                docsLabel.textContent = 'Choose Files';
+            }
+        });
+
+        // Add More Education functionality
+        const addEducationBtn = document.getElementById('addEducation');
+        const educationContainer = document.getElementById('education-container');
+
+        addEducationBtn.addEventListener('click', function () {
+            const educationEntry = document.createElement('div');
+            educationEntry.className = 'education-entry';
+            educationEntry.innerHTML = `
+                <div class="entry-header">
+                    <button type="button" class="remove-entry-btn"><i class="fas fa-times"></i> Remove</button>
+                </div>
+                <div class="two-column">
+                    <div class="form-group">
+                        <label>Qualification <span class="required">*</span></label>
+                        <select name="qualification[]" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="B.Ed">B.Ed</option>
+                            <option value="M.Ed">M.Ed</option>
+                            <option value="B.Sc">B.Sc</option>
+                            <option value="M.Sc">M.Sc</option>
+                            <option value="B.A">B.A</option>
+                            <option value="M.A">M.A</option>
+                            <option value="B.Tech">B.Tech</option>
+                            <option value="M.Tech">M.Tech</option>
+                            <option value="PhD">PhD</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>College Name <span class="required">*</span></label>
+                        <input type="text" name="college_name[]" placeholder="Select College" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Year of Graduation <span class="required">*</span></label>
+                    <select name="graduation_year[]" required>
+                        <option value="" disabled selected>Select Year</option>
+                        ${generateYearOptions()}
+                    </select>
+                </div>
+            `;
+            educationContainer.appendChild(educationEntry);
+
+            // Add remove button functionality
+            educationEntry.querySelector('.remove-entry-btn').addEventListener('click', function () {
+                educationEntry.remove();
+            });
+        });
+
+        // Generate year options
+        function generateYearOptions() {
+            const currentYear = new Date().getFullYear();
+            let options = '';
+            for (let y = currentYear; y >= currentYear - 40; y--) {
+                options += `<option value="${y}">${y}</option>`;
+            }
+            return options;
+        }
+
+        // Add More Experience functionality
+        const addExperienceBtn = document.getElementById('addExperience');
+        const experienceContainer = document.getElementById('experience-container');
+
+        addExperienceBtn.addEventListener('click', function () {
+            const experienceEntry = document.createElement('div');
+            experienceEntry.className = 'experience-entry';
+            experienceEntry.innerHTML = `
+                <div class="entry-header">
+                    <button type="button" class="remove-entry-btn"><i class="fas fa-times"></i> Remove</button>
+                </div>
+                <div class="two-column">
+                    <div class="form-group">
+                        <label>Organization Name</label>
+                        <input type="text" name="organization_name[]" placeholder="Company Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" name="job_title[]" placeholder="Senior Developer">
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div class="form-group">
+                        <label>Date of Joining</label>
+                        <input type="date" name="joining_date[]">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" name="work_location[]" placeholder="City, State">
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="currently_working[]" class="currently-working-checkbox">
+                            <span>Currently I work here</span>
+                        </label>
+                    </div>
+                    <div class="form-group relieving-date-group">
+                        <label>Date of Relieving</label>
+                        <input type="date" name="relieving_date[]">
+                    </div>
+                </div>
+            `;
+            experienceContainer.appendChild(experienceEntry);
+
+            // Add remove button functionality
+            experienceEntry.querySelector('.remove-entry-btn').addEventListener('click', function () {
+                experienceEntry.remove();
+            });
+
+            // Add currently working checkbox functionality
+            const checkbox = experienceEntry.querySelector('.currently-working-checkbox');
+            const relievingGroup = experienceEntry.querySelector('.relieving-date-group');
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    relievingGroup.style.opacity = '0.5';
+                    relievingGroup.querySelector('input').disabled = true;
+                    relievingGroup.querySelector('input').value = '';
+                } else {
+                    relievingGroup.style.opacity = '1';
+                    relievingGroup.querySelector('input').disabled = false;
+                }
+            });
+        });
+
+        // Currently working checkbox functionality for existing entries
+        document.querySelectorAll('.currently-working-checkbox').forEach(checkbox => {
+            const relievingGroup = checkbox.closest('.two-column').querySelector('.relieving-date-group');
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    relievingGroup.style.opacity = '0.5';
+                    relievingGroup.querySelector('input').disabled = true;
+                    relievingGroup.querySelector('input').value = '';
+                } else {
+                    relievingGroup.style.opacity = '1';
+                    relievingGroup.querySelector('input').disabled = false;
+                }
+            });
         });
 
         // Form submission
@@ -455,7 +882,13 @@
         // Reset form
         function resetForm() {
             form.reset();
-            fileLabel.textContent = 'Choose Resume File (PDF, DOC, DOCX)';
+            fileLabel.textContent = 'Choose PDF Resume';
+            photoLabel.textContent = 'Choose Photo';
+            docsLabel.textContent = 'Choose Files';
+
+            // Remove dynamically added entries
+            document.querySelectorAll('.education-entry:not(:first-child)').forEach(entry => entry.remove());
+            document.querySelectorAll('.experience-entry:not(:first-child)').forEach(entry => entry.remove());
         }
 
         form.addEventListener('submit', async function (e) {
@@ -498,6 +931,7 @@
                 setLoading(false);
             }
         });
+
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 

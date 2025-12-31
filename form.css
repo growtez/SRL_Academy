@@ -205,7 +205,7 @@
 .declaration-text {
     background: #fff3cd;
     border: 1px solid #ffeaa7;
-    border-radius: 8px; 
+    border-radius: 8px;
     padding: 15px;
     margin-bottom: 20px;
     font-size: 0.9rem;
@@ -219,6 +219,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
+
 .experience-dates {
     display: flex;
     gap: 10px;
@@ -226,8 +227,10 @@
 }
 
 .experience-dates input {
-    flex: 1; /* makes them equal width in a row */
+    flex: 1;
+    /* makes them equal width in a row */
 }
+
 /* Responsive */
 @media (max-width: 768px) {
     .application-form {
@@ -267,6 +270,7 @@
         max-width: 100%;
     }
 }
+
 /* On small screens, stack them */
 @media (max-width: 768px) {
     .experience-dates {
@@ -288,10 +292,257 @@
         padding: 8px 12px;
     }
 }
+
 .application-form .form-group input[type="date"] {
     max-width: 200px;
     min-width: 0;
 }
+
 .application-form .form-group>div[style*="display:flex"] {
     flex-wrap: wrap;
+}
+
+/* Required asterisk */
+.required {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Field hint text */
+.field-hint {
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/* Add More Button */
+.add-more-btn {
+    background: transparent !important;
+    color: #a00000 !important;
+    border: none !important;
+    padding: 10px 0 !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px !important;
+    transition: all 0.3s ease;
+    width: auto !important;
+    text-transform: none !important;
+}
+
+.add-more-btn:hover {
+    color: #800000 !important;
+    transform: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.add-more-btn i {
+    font-size: 0.9rem;
+    background: #a00000;
+    color: white !important;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+}
+
+.add-more-btn:hover i {
+    background: #800000;
+}
+
+/* Entry Header with Remove Button */
+.entry-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.remove-entry-btn {
+    background: transparent !important;
+    color: #a00000 !important;
+    border: 1px solid rgba(160, 0, 0, 0.3) !important;
+    border-radius: 4px !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 5px 10px !important;
+    font-size: 0.75rem !important;
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 0 !important;
+    transition: all 0.3s ease;
+}
+
+.remove-entry-btn:hover {
+    background: rgba(160, 0, 0, 0.08) !important;
+    color: #800000 !important;
+    border-color: #a00000 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.remove-entry-btn i {
+    font-size: 0.7rem !important;
+}
+
+/* Education and Experience Entry Containers */
+.education-entry,
+.experience-entry {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.education-entry:first-child,
+.experience-entry:first-child {
+    border-color: #e9ecef;
+}
+
+/* Checkbox Group Styling */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0 !important;
+    padding-top: 28px;
+}
+
+.checkbox-label {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 500 !important;
+    margin-bottom: 0 !important;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto !important;
+    height: 18px;
+    margin: 0 !important;
+    cursor: pointer;
+    accent-color: #a00000;
+}
+
+.checkbox-label span {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* File Upload Improvements */
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    border: 2px dashed #e9ecef;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.file-upload:hover {
+    border-color: #a00000;
+    background: rgba(160, 0, 0, 0.02);
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.file-upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 20px;
+    color: #666;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.file-upload-btn i {
+    color: #a00000;
+    font-size: 1.2rem;
+}
+
+/* Resume Upload Special Styling */
+.resume-upload {
+    border-color: #a00000;
+    background: rgba(160, 0, 0, 0.02);
+}
+
+.resume-btn {
+    background: transparent;
+}
+
+/* Photo Upload Styling */
+.photo-upload {
+    min-height: 50px;
+}
+
+/* Relieving Date Group */
+.relieving-date-group {
+    transition: opacity 0.3s ease;
+}
+
+/* Date Input Width Fix */
+.application-form .two-column .form-group input[type="date"] {
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Select Dropdown Arrow Fix */
+.application-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* Form Responsive Adjustments */
+@media (max-width: 768px) {
+    .checkbox-group {
+        padding-top: 10px;
+    }
+
+    .education-entry,
+    .experience-entry {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .file-upload-btn {
+        padding: 12px 15px;
+        font-size: 0.85rem;
+    }
+
+    .add-more-btn {
+        font-size: 0.85rem !important;
+    }
 }

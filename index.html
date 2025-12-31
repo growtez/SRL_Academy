@@ -130,12 +130,6 @@
             /* Account for fixed header (reduced) */
         }
 
-        @media (max-width: 992px) {
-            body {
-                padding-top: 56px;
-            }
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -394,25 +388,6 @@
             font-size: 1rem;
         }
 
-        @media (max-width: 640px) {
-
-            .result-btn,
-            .social-btn {
-                width: 100%;
-                max-width: none;
-                margin: 0.4rem 0;
-            }
-
-            .social-cta-card {
-                width: 100%;
-                padding: 1.25rem;
-            }
-
-            .social-btn {
-                justify-content: center;
-            }
-        }
-
         .swiper-button-next {
             right: 30px;
         }
@@ -438,78 +413,6 @@
             background: var(--primary) !important;
             opacity: 1 !important;
             transform: scale(1.2);
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 992px) {
-            .hero-slider {
-                height: 70vh;
-                min-height: 400px;
-                margin-top: -70px;
-            }
-
-            .slide-content h2 {
-                font-size: 2.5rem;
-            }
-
-            .slide-content p {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-slider {
-                height: 60vh;
-                min-height: 500px;
-                /* Adjusted height for mobile */
-            }
-
-            .swiper-button-next,
-            .swiper-button-prev {
-                transform: scale(0.6);
-                /* Make buttons smaller on mobile */
-            }
-
-            .swiper-button-next {
-                right: 10px;
-                /* Adjust position for mobile */
-            }
-
-            .swiper-button-prev {
-                left: 10px;
-                /* Adjust position for mobile */
-            }
-
-            .slide-content h2 {
-                font-size: 2rem;
-            }
-
-            .slide-content p {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .slider-btn {
-                padding: 10px 24px;
-                font-size: 0.9rem;
-            }
-
-            /* Header brand responsiveness (tablet and down) */
-            .brand {
-                gap: 0.5rem;
-            }
-
-            .logo img {
-                width: 52px;
-            }
-
-            .brand-line-1 {
-                font-size: 1.05rem;
-            }
-
-            .brand-tagline {
-                font-size: 0.74rem;
-            }
         }
 
         /* ===== HEADER ===== */
@@ -715,120 +618,66 @@
             box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.2);
         }
 
-        /* ===== RESPONSIVE STYLES ===== */
-        @media (max-width: 992px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--primary);
-                /* mobile menu on maroon background */
-                flex-direction: column;
-                align-items: center;
-                padding: 1rem 0;
-                box-shadow: var(--shadow);
-            }
+        /* ================================
+   DROPDOWN BASE (ALL DEVICES)
+================================ */
 
-            .nav-links.active {
-                display: flex;
-            }
-
-            /* Mobile menu link colors on primary background */
-            .nav-links a {
-                color: var(--white);
-            }
-
-            .nav-links a::before {
-                background: var(--white);
-            }
-
-            .nav-links a:hover,
-            .nav-links a.active {
-                color: var(--white);
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            /* Mobile dropdown */
-            .dropdown-menu {
-                position: static;
-                background: rgba(0, 0, 0, 0.1);
-                box-shadow: none;
-                border-radius: 0;
-                padding: 0;
-            }
-
-            .dropdown-menu li a {
-                padding: 0.6rem 1rem;
-            }
-        }
-
-        /* ===== DROPDOWN MENU ===== */
         .dropdown {
             position: relative;
-            display: flex;
-            align-items: center;
         }
 
-        .dropdown-toggle {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            height: 100%;
-        }
-
-        .dropdown-toggle i {
-            font-size: 0.7rem;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-toggle i {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
+        /* hidden by default */
+        .dropdown .dropdown-menu {
             position: absolute;
             top: 100%;
             right: 0;
-            background: var(--white);
-            min-width: 150px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
+            min-width: 160px;
+            background: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             list-style: none;
             padding: 0.5rem 0;
             margin: 0;
-        }
 
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            pointer-events: none;
+
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 1000;
         }
 
         .dropdown-menu li a {
             display: block;
             padding: 0.6rem 1rem;
-            color: var(--gray-700);
             text-decoration: none;
-            transition: all 0.2s ease;
+            color: #374151;
+            font-weight: 500;
+            white-space: nowrap;
         }
 
         .dropdown-menu li a:hover {
-            background: var(--gray-100);
-            color: var(--primary);
+            background: #f3f4f6;
+            color: #800000;
         }
 
-        .dropdown-menu li a::before {
-            display: none;
+        /* open state (used by JS + keyboard) */
+        .dropdown.open .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* arrow animation */
+        .dropdown-toggle i {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown.open .dropdown-toggle i {
+            transform: rotate(180deg);
         }
 
         /* ===== BROCHURE BUTTON ===== */
@@ -931,20 +780,6 @@
         .hero-slider .swiper-pagination-bullet-active {
             background: var(--white);
             transform: scale(1.2);
-        }
-
-        @media (max-width: 768px) {
-
-            .hero-slider .swiper-button-next,
-            .hero-slider .swiper-button-prev {
-                width: 40px;
-                height: 40px;
-            }
-
-            .hero-slider .swiper-button-next::after,
-            .hero-slider .swiper-button-prev::after {
-                font-size: 1rem;
-            }
         }
 
         /* Quote card under hero */
@@ -1239,52 +1074,6 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
             display: block;
             background: #eee;
-        }
-
-        @media (max-width: 640px) {
-
-            /* Mobile: stack photo on top and center content; tighten spacing for compact cards */
-            .faculty-card {
-                display: flex;
-                flex-direction: column;
-                min-height: unset;
-                padding: 0.5rem 0.75rem;
-            }
-
-            .faculty-content {
-                align-items: center;
-                text-align: center;
-                padding-top: 0.25rem;
-                gap: 0.35rem;
-            }
-
-            .faculty-photo {
-                order: -1;
-                /* move photo to top */
-                padding: 0.5rem 0 0.25rem;
-            }
-
-            .faculty-photo img {
-                width: 84px;
-                height: 84px;
-            }
-
-            .faculty-name {
-                font-size: 0.98rem;
-                line-height: 1.2;
-                margin: 0;
-            }
-
-            .faculty-role {
-                font-size: 0.9rem;
-                line-height: 1.2;
-            }
-
-            .faculty-meta {
-                font-size: 0.85rem;
-                line-height: 1.25;
-                margin-top: 0.1rem;
-            }
         }
 
         .faculty-pagination .swiper-pagination-bullet {
@@ -1637,52 +1426,6 @@
             background: #eee;
         }
 
-        @media (max-width: 640px) {
-
-            /* Mobile: stack photo on top and center content; tighten spacing for compact cards */
-            .faculty-card {
-                display: flex;
-                flex-direction: column;
-                min-height: unset;
-                padding: 0.5rem 0.75rem;
-            }
-
-            .faculty-content {
-                align-items: center;
-                text-align: center;
-                padding-top: 0.25rem;
-                gap: 0.35rem;
-            }
-
-            .faculty-photo {
-                order: -1;
-                /* move photo to top */
-                padding: 0.5rem 0 0.25rem;
-            }
-
-            .faculty-photo img {
-                width: 84px;
-                height: 84px;
-            }
-
-            .faculty-name {
-                font-size: 0.98rem;
-                line-height: 1.2;
-                margin: 0;
-            }
-
-            .faculty-role {
-                font-size: 0.9rem;
-                line-height: 1.2;
-            }
-
-            .faculty-meta {
-                font-size: 0.85rem;
-                line-height: 1.25;
-                margin-top: 0.1rem;
-            }
-        }
-
         .faculty-pagination .swiper-pagination-bullet {
             background: var(--primary) !important;
             opacity: 0.4 !important;
@@ -1921,62 +1664,6 @@
             color: var(--secondary);
         }
 
-        /* Footer Responsive */
-        @media (max-width: 1024px) {
-            .footer-main {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-
-            .footer-brand {
-                grid-column: 1 / -1;
-                max-width: none;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .footer {
-                padding: 3rem 0 0;
-            }
-
-            .footer-main {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-                text-align: center;
-            }
-
-            .footer-brand {
-                grid-column: auto;
-            }
-
-            .footer-logo {
-                justify-content: center;
-            }
-
-            .footer-social {
-                justify-content: center;
-            }
-
-            .footer-section h4::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .footer-links a {
-                padding-left: 0;
-            }
-
-            .footer-links a::before {
-                display: none;
-            }
-
-            .footer-bottom-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
 
         /* ===== BACK TO TOP ===== */
         .back-to-top {
@@ -2008,7 +1695,6 @@
             transform: translateY(-2px);
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
         /* ===== NOTICE MARQUEE ===== */
         .notice-marquee {
             width: 100%;
@@ -2072,7 +1758,339 @@
             }
         }
 
+        /* ===== UTILITY CLASSES ===== */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .bg-primary {
+            background: var(--primary);
+        }
+
+        .mb-4 {
+            margin-bottom: var(--space-4);
+        }
+
+        .mt-4 {
+            margin-top: var(--space-4);
+        }
+
+        .p-4 {
+            padding: var(--space-4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* ===== DIRECTOR DESK ===== */
+        .director-desk {
+            background: var(--white);
+        }
+
+        .director-desk .section-title {
+            margin-bottom: var(--space-8);
+        }
+
+        .director-desk .desk-wrapper {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .director-desk .desk-photo {
+            flex: 0 0 auto;
+        }
+
+        .director-desk .desk-photo img {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--primary);
+            background: #eee;
+        }
+
+        .director-desk .desk-content {
+            flex: 1;
+        }
+
+        .director-desk .desk-content h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            text-align: justify;
+        }
+
+        .director-desk .desk-content p {
+            color: var(--gray-600);
+            line-height: 1.75;
+            text-align: justify;
+        }
+
+        /* ================================
+   DESKTOP ONLY – HOVER ENABLED
+   (REAL hover devices only)
+================================ */
+
+        @media (hover: hover) and (pointer: fine) {
+            .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+
+            .dropdown:hover .dropdown-toggle i {
+                transform: rotate(180deg);
+            }
+        }
+
+        /* ========================================= */
+        /* ===== RESPONSIVE MEDIA QUERIES ======== */
+        /* ========================================= */
+
+        /* ----- MAX WIDTH 1024PX ----- */
+        @media (max-width: 1024px) {
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+                max-width: none;
+                text-align: center;
+            }
+        }
+
+        /* ----- MAX WIDTH 992PX ----- */
+        @media (max-width: 992px) {
+            .dropdown .dropdown-menu {
+                display: none;
+                /* Changed from just opacity:0 */
+                position: static;
+                background: rgba(0, 0, 0, 0.1);
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                width: 100%;
+                /* Ensure it fills width */
+                opacity: 1;
+                /* Reset opacity since we are using display now */
+                visibility: visible;
+                /* Reset visibility */
+                transform: none;
+                /* Remove desktop animation transform */
+            }
+
+            .dropdown.open .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu li a {
+                color: #fff;
+                padding: 0.6rem 1rem;
+            }
+
+            .dropdown-menu li a:hover {
+                background: rgba(255, 255, 255, 0.15);
+                color: #fff;
+            }
+
+            .nav-links li.dropdown {
+                text-align: center;
+            }
+
+            body {
+                padding-top: 56px;
+            }
+
+            .hero-slider {
+                height: 70vh;
+                min-height: 400px;
+                margin-top: -70px;
+            }
+
+            .slide-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .slide-content p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                /* mobile menu on maroon background */
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            /* Mobile menu link colors on primary background */
+            .nav-links a {
+                color: var(--white);
+            }
+
+            .nav-links a::before {
+                background: var(--white);
+            }
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                color: var(--white);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            /* Mobile dropdown */
+            .dropdown-menu {
+                position: static;
+                background: rgba(0, 0, 0, 0.1);
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+            }
+
+            .dropdown-menu li a {
+                padding: 0.6rem 1rem;
+            }
+
+            .director-desk .desk-photo img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        /* ----- MAX WIDTH 768PX ----- */
         @media (max-width: 768px) {
+            .hero-slider {
+                height: 60vh;
+                min-height: 500px;
+                /* Adjusted height for mobile */
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                transform: scale(0.6);
+                /* Make buttons smaller on mobile */
+            }
+
+            .swiper-button-next {
+                right: 10px;
+                /* Adjust position for mobile */
+            }
+
+            .swiper-button-prev {
+                left: 10px;
+                /* Adjust position for mobile */
+            }
+
+            .slide-content h2 {
+                font-size: 2rem;
+            }
+
+            .slide-content p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .slider-btn {
+                padding: 10px 24px;
+                font-size: 0.9rem;
+            }
+
+            /* Header brand responsiveness (tablet and down) */
+            .brand {
+                gap: 0.5rem;
+            }
+
+            .logo img {
+                width: 52px;
+            }
+
+            .brand-line-1 {
+                font-size: 1.05rem;
+            }
+
+            .brand-tagline {
+                font-size: 0.74rem;
+            }
+
+            .hero-slider .swiper-button-next,
+            .hero-slider .swiper-button-prev {
+                width: 40px;
+                height: 40px;
+            }
+
+            .hero-slider .swiper-button-next::after,
+            .hero-slider .swiper-button-prev::after {
+                font-size: 1rem;
+            }
+
+            .footer {
+                padding: 3rem 0 0;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                text-align: center;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-section h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-links a {
+                padding-left: 0;
+            }
+
+            .footer-links a::before {
+                display: none;
+            }
+
+            .footer-bottom-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
             .nav-links {
                 display: none;
                 position: absolute;
@@ -2185,17 +2203,15 @@
             }
 
             /* Mobile pagination overrides */
-            @media (max-width: 768px) {
-                .gallery-pagination .swiper-pagination-bullet {
-                    width: 10px !important;
-                    height: 10px !important;
-                    margin: 0 4px !important;
-                }
+            .gallery-pagination .swiper-pagination-bullet {
+                width: 10px !important;
+                height: 10px !important;
+                margin: 0 4px !important;
+            }
 
-                .gallery-pagination .swiper-pagination-bullet-active-main {
-                    background: var(--white) !important;
-                    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.4) !important;
-                }
+            .gallery-pagination .swiper-pagination-bullet-active-main {
+                background: var(--white) !important;
+                box-shadow: 0 2px 8px rgba(255, 255, 255, 0.4) !important;
             }
 
             .showcase .container {
@@ -2307,16 +2323,85 @@
                 background: linear-gradient(270deg, var(--primary) 0%, rgba(128, 0, 0, 0.8) 50%, transparent 100%);
             }
 
-            /* Add scroll hint */
-            .showcase-gallery::after {
-                background: linear-gradient(270deg, var(--primary) 0%, rgba(128, 0, 0, 0.8) 50%, transparent 100%);
-            }
-
             .see-more-card {
                 left: 50%;
             }
+
+            .director-desk .desk-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .director-desk .desk-photo img {
+                width: 170px;
+                height: 170px;
+            }
         }
 
+        /* ----- MAX WIDTH 640PX ----- */
+        @media (max-width: 640px) {
+
+            .result-btn,
+            .social-btn {
+                width: 100%;
+                max-width: none;
+                margin: 0.4rem 0;
+            }
+
+            .social-cta-card {
+                width: 100%;
+                padding: 1.25rem;
+            }
+
+            .social-btn {
+                justify-content: center;
+            }
+
+            /* Mobile: stack photo on top and center content; tighten spacing for compact cards */
+            .faculty-card {
+                display: flex;
+                flex-direction: column;
+                min-height: unset;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .faculty-content {
+                align-items: center;
+                text-align: center;
+                padding-top: 0.25rem;
+                gap: 0.35rem;
+            }
+
+            .faculty-photo {
+                order: -1;
+                /* move photo to top */
+                padding: 0.5rem 0 0.25rem;
+            }
+
+            .faculty-photo img {
+                width: 84px;
+                height: 84px;
+            }
+
+            .faculty-name {
+                font-size: 0.98rem;
+                line-height: 1.2;
+                margin: 0;
+            }
+
+            .faculty-role {
+                font-size: 0.9rem;
+                line-height: 1.2;
+            }
+
+            .faculty-meta {
+                font-size: 0.85rem;
+                line-height: 1.25;
+                margin-top: 0.1rem;
+            }
+        }
+
+        /* ----- MAX WIDTH 480PX ----- */
         @media (max-width: 480px) {
             .container {
                 padding: 0 0.5rem;
@@ -2414,105 +2499,6 @@
             .showcase-gallery::before,
             .showcase-gallery::after {
                 width: 16px;
-            }
-        }
-
-        /* ===== UTILITY CLASSES ===== */
-        .text-center {
-            text-align: center;
-        }
-
-        .text-primary {
-            color: var(--primary);
-        }
-
-        .bg-primary {
-            background: var(--primary);
-        }
-
-        .mb-4 {
-            margin-bottom: var(--space-4);
-        }
-
-        .mt-4 {
-            margin-top: var(--space-4);
-        }
-
-        .p-4 {
-            padding: var(--space-4);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* ===== DIRECTOR DESK ===== */
-        .director-desk {
-            background: var(--white);
-        }
-
-        .director-desk .section-title {
-            margin-bottom: var(--space-8);
-        }
-
-        .director-desk .desk-wrapper {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            flex-wrap: wrap;
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .director-desk .desk-photo {
-            flex: 0 0 auto;
-        }
-
-        .director-desk .desk-photo img {
-            width: 240px;
-            height: 240px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: var(--shadow-lg);
-            border: 3px solid var(--primary);
-            background: #eee;
-        }
-
-        .director-desk .desk-content {
-            flex: 1;
-        }
-
-        .director-desk .desk-content h4 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-            text-align: justify;
-        }
-
-        .director-desk .desk-content p {
-            color: var(--gray-600);
-            line-height: 1.75;
-            text-align: justify;
-        }
-
-        @media (max-width: 992px) {
-            .director-desk .desk-photo img {
-                width: 200px;
-                height: 200px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .director-desk .desk-wrapper {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .director-desk .desk-photo img {
-                width: 170px;
-                height: 170px;
             }
         }
     </style>
@@ -3207,14 +3193,16 @@
     <!-- Custom JS -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Preloader
+            // Preloader Logic
             window.addEventListener('load', () => {
                 const preloader = document.querySelector('.preloader');
-                preloader.style.opacity = '0';
-                setTimeout(() => preloader.style.display = 'none', 500);
+                if (preloader) {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => preloader.style.display = 'none', 500);
+                }
             });
 
-            // Initialize Swiper for testimonials
+            // Initialize Swipers (Your existing swiper code remains here...)
             const testimonialSwiper = new Swiper('.testimonial-swiper', {
                 loop: true,
                 autoplay: {
@@ -3228,19 +3216,20 @@
                     clickable: true,
                 },
                 breakpoints: {
-                    640: { slidesPerView: 1 },
-                    768: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 }
+                    640: {
+                        slidesPerView: 1
+                    },
+                    768: {
+                        slidesPerView: 2
+                    },
+                    1024: {
+                        slidesPerView: 3
+                    }
                 }
             });
 
-            // Initialize Swiper for faculty
             const facultySwiper = new Swiper('.faculty-swiper', {
                 loop: false,
-                autoplay: {
-                    delay: 4000,
-                    disableOnInteraction: false,
-                },
                 slidesPerView: 1,
                 spaceBetween: 20,
                 grid: {
@@ -3255,60 +3244,38 @@
                     0: {
                         slidesPerView: 2,
                         spaceBetween: 16,
-                        grid: { rows: 2, fill: 'row' }
+                        grid: {
+                            rows: 2,
+                            fill: 'row'
+                        }
                     },
                     640: {
                         slidesPerView: 2,
                         spaceBetween: 16,
-                        grid: { rows: 2, fill: 'row' }
+                        grid: {
+                            rows: 2,
+                            fill: 'row'
+                        }
                     },
                     768: {
                         slidesPerView: 2,
                         spaceBetween: 24,
-                        grid: { rows: 2, fill: 'row' }
+                        grid: {
+                            rows: 2,
+                            fill: 'row'
+                        }
                     },
                     1024: {
                         slidesPerView: 3,
                         spaceBetween: 28,
-                        grid: { rows: 2, fill: 'row' }
+                        grid: {
+                            rows: 2,
+                            fill: 'row'
+                        }
                     }
                 }
             });
 
-            // Mobile Menu Toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            const header = document.querySelector('.header');
-
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                header.classList.toggle('menu-open');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            });
-
-            // Close menu when clicking on links
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    header.classList.remove('menu-open');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                });
-            });
-
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-            // Initialize Swiper for hero slider
             const swiper = new Swiper('.hero-slider', {
                 loop: true,
                 autoplay: {
@@ -3330,7 +3297,6 @@
                 speed: 1000,
             });
 
-            // Initialize Swiper for gallery (all devices)
             const gallerySwiper = new Swiper('.mobile-gallery', {
                 slidesPerView: 'auto',
                 spaceBetween: 20,
@@ -3345,107 +3311,136 @@
                     clickable: true,
                     dynamicBullets: true,
                 },
-                navigation: {
-                    nextEl: '.gallery-next',
-                    prevEl: '.gallery-prev',
-                },
                 breakpoints: {
                     320: {
                         slidesPerView: 1,
-                        spaceBetween: 15,
+                        spaceBetween: 15
                     },
                     480: {
                         slidesPerView: 1.2,
-                        spaceBetween: 20,
+                        spaceBetween: 20
                     },
                     640: {
                         slidesPerView: 1.5,
-                        spaceBetween: 20,
+                        spaceBetween: 20
                     },
                     768: {
                         slidesPerView: 2,
-                        spaceBetween: 25,
+                        spaceBetween: 25
                     },
                     1024: {
                         slidesPerView: 3,
-                        spaceBetween: 30,
+                        spaceBetween: 30
                     }
                 }
             });
 
-            // Back to top button
-            const backToTop = document.querySelector('.back-to-top');
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const header = document.querySelector('.header');
 
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    header.classList.toggle('menu-open');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars');
+                        icon.classList.toggle('fa-times');
+                    }
+                });
+            }
+
+            // Header scroll effect
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTop.classList.add('show');
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
                 } else {
-                    backToTop.classList.remove('show');
+                    header.classList.remove('scrolled');
                 }
             });
 
-            backToTop.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+            // Back to top button logic
+            const backToTop = document.querySelector('.back-to-top');
+            if (backToTop) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
                 });
-            });
 
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+                backToTop.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Set Current Year
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+            /* =========================================
+               FIXED DROPDOWN LOGIC
+               ========================================= */
+            const dropdowns = document.querySelectorAll(".dropdown");
+
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector(".dropdown-toggle");
+                if (!toggle) return;
+
+                // Accessibility Attributes
+                toggle.setAttribute("aria-haspopup", "true");
+                toggle.setAttribute("aria-expanded", "false");
+
+                // Function to toggle dropdown
+                const toggleMenu = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // Stop click from immediately closing via document listener
+
+                    const isOpen = dropdown.classList.contains("open");
+
+                    // Close all other open dropdowns first (accordion behavior)
+                    document.querySelectorAll(".dropdown.open").forEach(d => {
+                        if (d !== dropdown) {
+                            d.classList.remove("open");
+                            const t = d.querySelector(".dropdown-toggle");
+                            if (t) t.setAttribute("aria-expanded", "false");
+                        }
+                    });
+
+                    // Toggle current
+                    dropdown.classList.toggle("open");
+                    toggle.setAttribute("aria-expanded", !isOpen);
+                };
+
+                // 1. Click Event (Works on Mobile AND Desktop)
+                toggle.addEventListener("click", toggleMenu);
+
+                // 2. Keyboard Support (Enter / Space)
+                toggle.addEventListener("keydown", e => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        toggleMenu(e);
                     }
                 });
             });
 
-            // Active nav link highlighting - only for single page navigation
-            // Since this is a multi-page site, keep Home active on homepage
-            const homeLink = document.querySelector('.nav-links a[href="index.html"]');
-            if (homeLink && !homeLink.classList.contains('active')) {
-                homeLink.classList.add('active');
-            }
-
-            // Initialize animations on scroll (optional)
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe elements for animation
-            document.querySelectorAll('.program-card, .testimonial-card, .section-title').forEach(el => {
-                observer.observe(el);
+            // Close dropdown when clicking outside (Universal)
+            document.addEventListener("click", function (e) {
+                if (!e.target.closest(".dropdown")) {
+                    document.querySelectorAll(".dropdown.open").forEach(dropdown => {
+                        dropdown.classList.remove("open");
+                        const toggle = dropdown.querySelector(".dropdown-toggle");
+                        if (toggle) toggle.setAttribute("aria-expanded", "false");
+                    });
+                }
             });
         });
-        const yearSpan = document.getElementById('current-year');
-        if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-        // Hide preloader when page loads
-        window.addEventListener('load', function () {
-            const preloader = document.getElementById('preloader');
-            if (preloader) {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }
-        });
-
     </script>
 </body>
 

@@ -371,7 +371,7 @@ h4 { font-size: 1.5rem; }
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 1.8rem;
+    gap: 1rem;
     list-style: none;
     margin: 0;
     padding: 0.5rem 0;
@@ -383,7 +383,7 @@ h4 { font-size: 1.5rem; }
 }
 
 .nav-links a {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     color: var(--gray-700);
     text-decoration: none;
@@ -937,62 +937,59 @@ h4 { font-size: 1.5rem; }
 /* Dropdown Menu */
 .dropdown {
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
-.dropdown-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    height: 100%;
-}
-
-.dropdown-toggle i {
-    font-size: 0.7rem;
-    transition: transform 0.3s ease;
-}
-
-.dropdown:hover .dropdown-toggle i {
-    transform: rotate(180deg);
-}
-
-.dropdown-menu {
+/* Hidden by default on Desktop */
+.dropdown .dropdown-menu {
     position: absolute;
     top: 100%;
     right: 0;
-    background: var(--white);
-    min-width: 150px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
+    min-width: 160px;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
-    transition: all 0.3s ease;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
     z-index: 1000;
-    list-style: none;
-    padding: 0.5rem 0;
-}
-
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
 }
 
 .dropdown-menu li a {
     display: block;
     padding: 0.6rem 1rem;
-    color: var(--gray-700);
     text-decoration: none;
-    transition: all 0.2s ease;
+    color: #374151;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
 .dropdown-menu li a:hover {
-    background: var(--gray-100);
-    color: var(--primary);
+    background: #f3f4f6;
+    color: #800000;
 }
 
+/* Desktop Open State (via JS or Keyboard) */
+.dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Arrow Animation */
+.dropdown-toggle i {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown.open .dropdown-toggle i {
+    transform: rotate(180deg);
+}
 /* Brochure Button */
 .brochure-btn {
     background: var(--primary) !important;
@@ -1017,6 +1014,21 @@ h4 { font-size: 1.5rem; }
     font-size: 0.85rem;
 }
 
+/* ================================
+   DESKTOP HOVER (Mouse only)
+================================ */
+@media (hover: hover) and (pointer: fine) {
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .dropdown:hover .dropdown-toggle i {
+        transform: rotate(180deg);
+    }
+}
 /* =========================================================================
    CONSOLIDATED RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================================================= */
@@ -1084,37 +1096,52 @@ h4 { font-size: 1.5rem; }
     .brand-tagline {
         font-size: 0.74rem;
     }
+    /* FIX: Force list items to stack vertically so submenu goes BELOW link */
+    
 
     /* Mobile Dropdown styles */
-    .dropdown-menu {
+    /* 1. Fix Alignment: Center the dropdown items */
+    .nav-links li.dropdown {
+        text-align: center;
+    }
+    .dropdown .dropdown-menu {
+        display: none; 
         position: static;
         background: rgba(0, 0, 0, 0.1);
         box-shadow: none;
         border-radius: 0;
         padding: 0;
+        width: 100%;
         opacity: 1;
         visibility: visible;
         transform: none;
-        display: none;
     }
 
-    .dropdown:hover .dropdown-menu,
-    .dropdown.active .dropdown-menu {
+    /* Show when open */
+    .dropdown.open .dropdown-menu {
         display: block;
     }
 
     .dropdown-menu li a {
+        color: #fff;
         padding: 0.6rem 1rem;
-        color: var(--white);
     }
 
     .dropdown-menu li a:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--white);
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+    }
+
+    /* 3. Fix: Remove white underline on tap for mobile */
+    .nav-links a:hover::before {
+        display: none; 
     }
 
     .brochure-btn {
         margin: 0.5rem auto;
+    }
+    .nav-links li {
+        flex-direction: column;
     }
 }
 

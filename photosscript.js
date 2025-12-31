@@ -12,26 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* =========================================
-       2. NAVIGATION & DROPDOWN LOGIC
+       2. DROPDOWN LOGIC (NO MOBILE MENU)
        ========================================= */
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (menuBtn && navLinks) {
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuBtn.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            }
-        });
-    }
-
     const dropdowns = document.querySelectorAll('.dropdown');
+
     dropdowns.forEach(dropdown => {
         const toggle = dropdown.querySelector('.dropdown-toggle');
-        
+
         if (toggle) {
             toggle.addEventListener('click', (e) => {
                 if (window.innerWidth <= 992) {
@@ -60,55 +47,44 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* =========================================
-       4. VIDEO GALLERY LOGIC (UPDATED)
+       4. VIDEO GALLERY LOGIC
        ========================================= */
     const allVideos = document.querySelectorAll('.video-player');
     const allOverlays = document.querySelectorAll('.video-play-overlay');
 
-    // Helper: Pause all other videos
     function pauseOtherVideos(currentVideo) {
         allVideos.forEach(v => {
-            if (v !== currentVideo) {
-                v.pause();
-            }
+            if (v !== currentVideo) v.pause();
         });
     }
 
     allOverlays.forEach(overlay => {
         const wrapper = overlay.closest('.video-wrapper');
         const video = wrapper ? wrapper.querySelector('.video-player') : null;
-
         if (!video) return;
 
-        // --- 1. Play Button Logic ---
         overlay.addEventListener('click', function (e) {
             e.stopPropagation();
             pauseOtherVideos(video);
-            video.controls = true; // Enable native controls
+            video.controls = true;
             video.play();
         });
 
-        // --- 2. State Syncing (The Fix) ---
-        
-        // When video plays (via button, click, or controls), HIDE overlay
-        video.addEventListener('play', function() {
+        video.addEventListener('play', function () {
             overlay.style.display = 'none';
             pauseOtherVideos(video);
         });
 
-        // When video pauses (via click or controls), SHOW overlay
-        video.addEventListener('pause', function() {
-            // Only show overlay if we aren't scrubbing/seeking through the video
+        video.addEventListener('pause', function () {
             if (!video.seeking) {
                 overlay.style.display = 'flex';
             }
         });
 
-        // When video ends, reset everything
-        video.addEventListener('ended', function() {
-            video.load(); // Reset to poster
-            video.controls = false; // Hide native controls
-            overlay.style.display = 'flex'; // Show big button
+        video.addEventListener('ended', function () {
+            video.load();
+            video.controls = false;
+            overlay.style.display = 'flex';
         });
     });
 

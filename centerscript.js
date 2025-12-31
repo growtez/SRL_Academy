@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Close menu when clicking on navigation links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function () {
+                // FIX: Don't close the menu if the user clicked "More"
+                if (this.classList.contains('dropdown-toggle')) return;
+
                 navLinks.classList.remove('active');
                 header.classList.remove('menu-open');
 
@@ -128,4 +131,63 @@ window.addEventListener('load', function () {
             preloader.style.display = 'none';
         }, 500);
     }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    
+    /* =========================================
+       FIXED DROPDOWN LOGIC (Universal)
+       ========================================= */
+    const dropdowns = document.querySelectorAll(".dropdown");
+
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector(".dropdown-toggle");
+        if (!toggle) return;
+
+        // Accessibility Attributes
+        toggle.setAttribute("aria-haspopup", "true");
+        toggle.setAttribute("aria-expanded", "false");
+
+        // Function to toggle dropdown
+        const toggleMenu = (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // Stop click from bubbling to document
+
+            const isOpen = dropdown.classList.contains("open");
+
+            // Close all other open dropdowns first (accordion style)
+            document.querySelectorAll(".dropdown.open").forEach(d => {
+                if (d !== dropdown) {
+                    d.classList.remove("open");
+                    const t = d.querySelector(".dropdown-toggle");
+                    if (t) t.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            // Toggle current
+            dropdown.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", !isOpen);
+        };
+
+        // 1. Click Event (Works on Mobile AND Desktop clicks)
+        toggle.addEventListener("click", toggleMenu);
+
+        // 2. Keyboard Support (Enter / Space)
+        toggle.addEventListener("keydown", e => {
+            if (e.key === "Enter" || e.key === " ") {
+                toggleMenu(e);
+            }
+        });
+    });
+
+    // Close dropdown when clicking outside (Universal)
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".dropdown")) {
+            document.querySelectorAll(".dropdown.open").forEach(dropdown => {
+                dropdown.classList.remove("open");
+                const toggle = dropdown.querySelector(".dropdown-toggle");
+                if (toggle) toggle.setAttribute("aria-expanded", "false");
+            });
+        }
+    });
 });

@@ -364,85 +364,12 @@
    }
    </style>
 
-   <!-- JavaScript -->
    <script>
-    // Mobile Menu Toggle and Header Behavior
-    const header = document.querySelector('.header');
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    const navLinkItems = document.querySelectorAll('.nav-links a');
-const yearSpan = document.getElementById('current-year');
-            if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-    // Toggle mobile menu
-    function toggleMobileMenu() {
-        const isActive = navLinks.classList.toggle('active');
-        const icon = mobileMenuBtn.querySelector('i');
-
-        if (isActive) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-            document.body.style.overflow = ''; // Re-enable scrolling
-        }
-
-        // Add/remove active class to header when menu is open
-        header.classList.toggle('menu-open', isActive);
-
-        // Sync ARIA
-        if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', String(isActive));
-    }
-
-    // Close mobile menu when clicking outside
-    function closeMobileMenu(event) {
-        if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-            navLinks.classList.remove('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-            document.body.style.overflow = '';
-            header.classList.remove('menu-open');
-            if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        }
-    }
-
-    // Initialize mobile menu when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        if (mobileMenuBtn && navLinks) {
-            // Toggle menu on button click
-            mobileMenuBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent event from bubbling to document
-                toggleMobileMenu();
-            });
-
-            // Keyboard accessibility (Enter/Space)
-            mobileMenuBtn.addEventListener('keydown', (e) => {
-                const key = e.key;
-                if (key === 'Enter' || key === ' ') {
-                    e.preventDefault();
-                    toggleMobileMenu();
-                }
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', closeMobileMenu);
-
-            // Prevent clicks inside the menu from closing it
-            navLinks.addEventListener('click', (e) => e.stopPropagation());
-
-            // Close menu when clicking on a link
-            navLinkItems.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth <= 992) { // Only for mobile
-                        toggleMobileMenu();
-                    }
-                });
-            });
-        }
-    });
+    // Wrapped in IIFE to prevent variable conflicts with script.js
+    (function() {
+        const yearSpan = document.getElementById('current-year');
+        if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+    })();
    </script>
    
    <script>
@@ -691,19 +618,19 @@ const yearSpan = document.getElementById('current-year');
     <div style="display:flex; flex-wrap: wrap; gap: 8px; justify-content: space-between;">
         <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:10px 12px; border-radius:5px; transition:all 0.3s; background:rgba(255,255,255,0.9); box-shadow:0 2px 4px rgba(0,0,0,0.08); white-space: nowrap; flex: 1; min-width: 120px; margin: 4px;">
             <input type="checkbox" name="project_science" value="1" style="margin-right:8px; transform:scale(1.3);"> 
-            <i class="fas fa-flask" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Science
+            <i class="fas fa-flask" style="color:#800000; margin-right:6px; font-size:1rem;"></i>IIT JEE
         </label>
         <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:10px 12px; border-radius:5px; transition:all 0.3s; background:rgba(255,255,255,0.9); box-shadow:0 2px 4px rgba(0,0,0,0.08); white-space: nowrap; flex: 1; min-width: 120px; margin: 4px;">
             <input type="checkbox" name="project_math" value="1" style="margin-right:8px; transform:scale(1.3);"> 
-            <i class="fas fa-calculator" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Math
+            <i class="fas fa-calculator" style="color:#800000; margin-right:6px; font-size:1rem;"></i>NEET
         </label>
         <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:10px 12px; border-radius:5px; transition:all 0.3s; background:rgba(255,255,255,0.9); box-shadow:0 2px 4px rgba(0,0,0,0.08); white-space: nowrap; flex: 1; min-width: 120px; margin: 4px;">
             <input type="checkbox" name="project_language" value="1" style="margin-right:8px; transform:scale(1.3);"> 
-            <i class="fas fa-book" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Language
+            <i class="fas fa-book" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Olympiad 
         </label>
         <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:10px 12px; border-radius:5px; transition:all 0.3s; background:rgba(255,255,255,0.9); box-shadow:0 2px 4px rgba(0,0,0,0.08); white-space: nowrap; flex: 1; min-width: 120px; margin: 4px;">
             <input type="checkbox" name="project_social" value="1" style="margin-right:8px; transform:scale(1.3);"> 
-            <i class="fas fa-globe" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Social
+            <i class="fas fa-globe" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Board
         </label>
 
         <!-- Fixed OTHER -->
@@ -2054,5 +1981,8 @@ document.addEventListener('keydown', function(event) {
         aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- Main Script for hamburger menu dropdown -->
+    <script src="script.js"></script>
 </body>
 </html>

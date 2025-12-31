@@ -163,9 +163,6 @@ if (mobileMenuBtn && navLinks) {
     // Close menu when clicking outside
     document.addEventListener('click', closeMobileMenu);
 
-    // Prevent clicks inside the menu from closing it
-    navLinks.addEventListener('click', (e) => e.stopPropagation());
-
     // Close menu when clicking on a link (EXCEPT the dropdown toggle)
     navLinkItems.forEach(link => {
         link.addEventListener('click', () => {

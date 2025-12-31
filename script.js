@@ -244,6 +244,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Form handling (for contact and other forms)
 const forms = document.querySelectorAll('form');
 forms.forEach(form => {
+    // Skip forms that have their own custom handlers
+    if (form.id === 'contactForm') return;
+
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -272,6 +275,9 @@ forms.forEach(form => {
 
 // Add loading animation to buttons
 document.querySelectorAll('.btn').forEach(btn => {
+    // Skip the contact form submit button - it has its own handler
+    if (btn.id === 'submitBtn') return;
+
     btn.addEventListener('click', function (e) {
         if (this.getAttribute('href') === '#' || this.type === 'submit') {
             e.preventDefault();

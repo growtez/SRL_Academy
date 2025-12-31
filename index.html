@@ -636,6 +636,7 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 1.8rem;
             list-style: none;
             margin: 0;
@@ -792,7 +793,7 @@
         .dropdown-menu {
             position: absolute;
             top: 100%;
-            left: 0;
+            right: 0;
             background: var(--white);
             min-width: 150px;
             border-radius: var(--radius);
@@ -804,6 +805,7 @@
             z-index: 1000;
             list-style: none;
             padding: 0.5rem 0;
+            margin: 0;
         }
 
         .dropdown:hover .dropdown-menu {
@@ -823,6 +825,10 @@
         .dropdown-menu li a:hover {
             background: var(--gray-100);
             color: var(--primary);
+        }
+
+        .dropdown-menu li a::before {
+            display: none;
         }
 
         /* ===== BROCHURE BUTTON ===== */
@@ -2528,7 +2534,7 @@
                     <span class="brand-text">
                         <span class="brand-row">
                             <span class="brand-line-1">SRL Academy</span>
-                            <!--  -->
+
                         </span>
                         <span class="brand-tagline">Smart Study, Solid Result </span>
                     </span>
@@ -2537,17 +2543,16 @@
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
-                    <li><a href="educator.html">Careers</a></li>
+                    <li><a href="photos.html">Gallery</a></li>
                     <li><a href="partnership.html">Partnership</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="about.html">About Us</a></li>
+                            <li><a href="educator.html">Careers</a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </li>
-                    <li><a href="images/brochure.pdf" class="brochure-btn" download><i class="fas fa-download"></i>
-                            Brochure</a></li>
                 </ul>
                 <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>
@@ -2566,7 +2571,8 @@
                         <h2>Leading Coaching Institute For NEET, IIT-JEE & I & II PUC</h2>
                         <p>Institute focusing on Knowledge & Experience sharing. Guiding Aspirants with Affordable
                             Quality Education.</p>
-                        <a href="about.html" class="slider-btn">Learn More</a>
+                        <a href="images/brochure.pdf" class="slider-btn" download><i class="fas fa-download"></i>
+                            Download Brochure</a>
                     </div>
                 </div>
 
@@ -2576,7 +2582,8 @@
                         <h2>Top Class Faculty Team</h2>
                         <p>Expert educators from IITs, NITs & premier institutions with individual attention making us
                             the most preferred Institute in Bangalore.</p>
-                        <a href="centers.html" class="slider-btn">Our Centers</a>
+                        <a href="images/brochure.pdf" class="slider-btn" download><i class="fas fa-download"></i>
+                            Download Brochure</a>
                     </div>
                 </div>
 
@@ -2586,7 +2593,8 @@
                         <h2>Join Our Growing Community</h2>
                         <p>Become part of a network of successful students who achieved their dreams with SRL Academy.
                         </p>
-                        <a href="contact.html" class="slider-btn">Get Started</a>
+                        <a href="images/brochure.pdf" class="slider-btn" download><i class="fas fa-download"></i>
+                            Download Brochure</a>
                     </div>
                 </div>
             </div>

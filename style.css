@@ -72,17 +72,33 @@ body {
 }
 
 /* ===== TYPOGRAPHY ===== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-primary);
     font-weight: 600;
     line-height: 1.2;
     color: var(--gray-900);
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 2rem; }
-h4 { font-size: 1.5rem; }
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
 
 /* ===== BUTTONS ===== */
 .btn {
@@ -148,8 +164,13 @@ h4 { font-size: 1.5rem; }
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* ===== IMAGE SLIDER ===== */
@@ -241,8 +262,13 @@ h4 { font-size: 1.5rem; }
     z-index: 10;
 }
 
-.swiper-button-next { right: 30px; }
-.swiper-button-prev { left: 30px; }
+.swiper-button-next {
+    right: 30px;
+}
+
+.swiper-button-prev {
+    left: 30px;
+}
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
@@ -550,7 +576,14 @@ h4 { font-size: 1.5rem; }
 
 /* ===== SECTIONS ===== */
 .section {
-    padding: var(--space-20) 0;
+    padding: var(--space-8) 0;
+}
+
+/* Faculty section - more gap on desktop */
+@media (min-width: 768px) {
+    #faculty {
+        padding-top: 2rem !important;
+    }
 }
 
 .programs {
@@ -559,7 +592,7 @@ h4 { font-size: 1.5rem; }
 
 .section-title {
     text-align: center;
-    margin-bottom: var(--space-16);
+    margin-bottom: var(--space-6);
 }
 
 .section-subtitle {
@@ -925,14 +958,39 @@ h4 { font-size: 1.5rem; }
     transform: translateY(-2px);
 }
 
-.text-center { text-align: center; }
-.text-primary { color: var(--primary); }
-.bg-primary { background: var(--primary); }
-.mb-4 { margin-bottom: var(--space-4); }
-.mt-4 { margin-top: var(--space-4); }
-.p-4 { padding: var(--space-4); }
-.hidden { display: none; }
-.card-image { width: 100%; height: auto; display: block; }
+.text-center {
+    text-align: center;
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.bg-primary {
+    background: var(--primary);
+}
+
+.mb-4 {
+    margin-bottom: var(--space-4);
+}
+
+.mt-4 {
+    margin-top: var(--space-4);
+}
+
+.p-4 {
+    padding: var(--space-4);
+}
+
+.hidden {
+    display: none;
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
 /* Dropdown Menu */
 .dropdown {
@@ -990,6 +1048,7 @@ h4 { font-size: 1.5rem; }
 .dropdown.open .dropdown-toggle i {
     transform: rotate(180deg);
 }
+
 /* Brochure Button */
 .brochure-btn {
     background: var(--primary) !important;
@@ -1029,6 +1088,7 @@ h4 { font-size: 1.5rem; }
         transform: rotate(180deg);
     }
 }
+
 /* =========================================================================
    CONSOLIDATED RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================================================= */
@@ -1096,16 +1156,18 @@ h4 { font-size: 1.5rem; }
     .brand-tagline {
         font-size: 0.74rem;
     }
+
     /* FIX: Force list items to stack vertically so submenu goes BELOW link */
-    
+
 
     /* Mobile Dropdown styles */
     /* 1. Fix Alignment: Center the dropdown items */
     .nav-links li.dropdown {
         text-align: center;
     }
+
     .dropdown .dropdown-menu {
-        display: none; 
+        display: none;
         position: static;
         background: rgba(0, 0, 0, 0.1);
         box-shadow: none;
@@ -1134,12 +1196,13 @@ h4 { font-size: 1.5rem; }
 
     /* 3. Fix: Remove white underline on tap for mobile */
     .nav-links a:hover::before {
-        display: none; 
+        display: none;
     }
 
     .brochure-btn {
         margin: 0.5rem auto;
     }
+
     .nav-links li {
         flex-direction: column;
     }
@@ -1147,6 +1210,7 @@ h4 { font-size: 1.5rem; }
 
 /* --- Mobile Landscape / Tablet Portrait (max-width: 768px) --- */
 @media (max-width: 768px) {
+
     /* Navigation Overrides (Specific to this breakpoint range if needed) */
     .nav-links {
         display: none;
@@ -1175,8 +1239,13 @@ h4 { font-size: 1.5rem; }
         transform: scale(0.6);
     }
 
-    .swiper-button-next { right: 10px; }
-    .swiper-button-prev { left: 10px; }
+    .swiper-button-next {
+        right: 10px;
+    }
+
+    .swiper-button-prev {
+        left: 10px;
+    }
 
     .slide-content h2 {
         font-size: 2rem;
@@ -1257,7 +1326,8 @@ h4 { font-size: 1.5rem; }
     .showcase .container {
         padding-left: max(0.75rem, env(safe-area-inset-left));
         padding-right: max(0.75rem, env(safe-area-inset-right));
-        overflow: hidden; /* For image strip */
+        overflow: hidden;
+        /* For image strip */
     }
 
     .showcase-text {
@@ -1349,7 +1419,7 @@ h4 { font-size: 1.5rem; }
     }
 
     .section {
-        padding: var(--space-12) 0;
+        padding: var(--space-4) 0;
     }
 
     .hero-stats {

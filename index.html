@@ -1087,6 +1087,56 @@
             opacity: 1 !important;
         }
 
+        /* Faculty Swiper Navigation Buttons */
+        .faculty-swiper .swiper-button-next,
+        .faculty-swiper .swiper-button-prev {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border-radius: 50%;
+            color: white !important;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) scale(0.8);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faculty-swiper .swiper-button-next {
+            right: 0px;
+        }
+
+        .faculty-swiper .swiper-button-prev {
+            left: 0px;
+        }
+
+        .faculty-swiper .swiper-button-next:hover,
+        .faculty-swiper .swiper-button-prev:hover {
+            background: var(--primary-dark);
+            transform: translateY(-50%) scale(0.9);
+            box-shadow: 0 4px 12px rgba(128, 0, 0, 0.3);
+        }
+
+        .faculty-swiper .swiper-button-next::after,
+        .faculty-swiper .swiper-button-prev::after {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Mobile styles for faculty swiper navigation */
+        @media (max-width: 992px) {
+            .faculty-swiper .swiper-button-next,
+            .faculty-swiper .swiper-button-prev {
+                display: none;
+            }
+
+            
+        }
+
+
 
         /* ===== SHOWCASE (semi-circle graphic + text) ===== */
         .showcase {
@@ -2745,7 +2795,7 @@
                         <div class="swiper-slide">
                             <div class="faculty-card">
                                 <div class="faculty-content">
-                                    <div class="faculty-name">Faculty Sir 1</div>
+                                    <div class="faculty-name">Rahul Rana</div>
                                     <div class="faculty-role">Physics Faculty</div>
                                     <div class="faculty-meta">B.Tech. (Electronics and Electrical Engineering) · IIT
                                         Guwahati</div>
@@ -2774,12 +2824,56 @@
                         <div class="swiper-slide">
                             <div class="faculty-card">
                                 <div class="faculty-content">
-                                    <div class="faculty-name">Faculty Sir 3</div>
+                                    <div class="faculty-name">Rahul Yadav</div>
                                     <div class="faculty-role">Chemistry Faculty</div>
                                     <div class="faculty-meta">M.Sc Chemistry · Premier Institution</div>
                                 </div>
                                 <div class="faculty-photo">
                                     <img src="images/faculty_sir3.jpg" alt="Photo of Chemistry Faculty"
+                                        onerror="this.onerror=null;this.src='images/logo.png';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Ravindra</div>
+                                    <div class="faculty-role">Physics Faculty</div>
+                                    <div class="faculty-meta">M.Sc Physics from IIEST, SHIBPUR</div>
+                                    <div class="faculty-meta">Gate Qualified · IIT JAM Qualified</div>
+
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/physics - ravindra.jpeg" alt="Photo of Chemistry Faculty"
+                                        onerror="this.onerror=null;this.src='images/logo.png';">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Gopala Varma</div>
+                                    <div class="faculty-role">HOD, Physics</div>
+                                    <div class="faculty-meta">B.E. (Metallurgy) (First Class) · IISc, Bangalore (1983)
+                                    </div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/faculty_sir1.jpg" alt="Photo of Gopala Varma"
+                                        onerror="this.onerror=null;this.src='images/logo.png';">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">K Pattabhi</div>
+                                    <div class="faculty-role">HOD, Mathematics</div>
+                                    <div class="faculty-meta">M.Sc (Tech) Mathematics (First Class) · JNTU, Hyderabad
+                                    </div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/director.jpg" alt="Photo of K Pattabhi"
                                         onerror="this.onerror=null;this.src='images/logo.png';">
                                 </div>
                             </div>
@@ -2799,37 +2893,14 @@
                             </div>
                         </div>
 
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">K Pattabhi</div>
-                                    <div class="faculty-role">HOD, Mathematics</div>
-                                    <div class="faculty-meta">M.Sc (Tech) Mathematics (First Class) · JNTU, Hyderabad
-                                    </div>
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/director.jpg" alt="Photo of K Pattabhi"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
-                            </div>
-                        </div>
+                        
 
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">Gopala Varma</div>
-                                    <div class="faculty-role">HOD, Physics</div>
-                                    <div class="faculty-meta">B.E. (Metallurgy) (First Class) · IISc, Bangalore (1983)
-                                    </div>
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/faculty_sir1.jpg" alt="Photo of Gopala Varma"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
-                            </div>
-                        </div>
+    
                     </div>
                     <div class="swiper-pagination faculty-pagination"></div>
+                    <!-- Navigation buttons -->
+                    <div class="swiper-button-prev faculty-prev"></div>
+                    <div class="swiper-button-next faculty-next"></div>
                 </div>
             </div>
         </section>
@@ -3238,6 +3309,10 @@
                 pagination: {
                     el: '.faculty-pagination',
                     clickable: true,
+                },
+                navigation: {
+                    nextEl: '.faculty-next',
+                    prevEl: '.faculty-prev',
                 },
                 breakpoints: {
                     0: {

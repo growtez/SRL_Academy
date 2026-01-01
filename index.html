@@ -847,7 +847,7 @@
 
         /* ===== SECTIONS ===== */
         .section {
-            padding: var(--space-20) 0;
+            padding: var(--space-10) 0;
         }
 
         .programs {
@@ -856,7 +856,7 @@
 
         .section-title {
             text-align: center;
-            margin-bottom: var(--space-16);
+            margin-bottom: var(--space-10);
         }
 
         .section-subtitle {
@@ -2695,7 +2695,7 @@
         </section>
 
         <!-- Scholarship Test & Courses Section - Stacked Layout -->
-        <section class="scholarship-courses-section" style="padding: 2rem 0;">
+        <section class="scholarship-courses-section" style="padding: 1rem 0;">
             <div class="container">
                 <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto;">
 
@@ -2758,20 +2758,20 @@
                 </div>
             </div>
         </section>
-
+        <hr
+            style="border: none; height: 1px; background: linear-gradient(90deg, transparent, #800000, transparent); margin: 0.5rem auto 1.5rem; max-width: 80%;">
         <!-- Director Desk Section -->
         <section id="director-desk" class="section director-desk">
             <div class="container">
-                <div class="section-title">
+                <div class="section-title" style="margin-bottom: 1rem;">
                     <span class="section-subtitle">Director Desk</span>
-
                 </div>
-                <div class="desk-wrapper">
-                    <div class="desk-photo">
+                <div class="desk-wrapper" style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;">
+                    <div class="desk-photo" style="flex: 0 0 auto;">
                         <img src="images/director.jpg" alt="Managing Director"
                             onerror="this.onerror=null;this.src='images/principal.jpg';">
                     </div>
-                    <div class="desk-content">
+                    <div class="desk-content" style="flex: 1; min-width: 250px;">
                         <h4>At SRL Academy, we go beyond traditional teaching.</h4>
                         <p> We prepare students for the real challenges of learning. Our passionate faculty brings deep
                             expertise and a student-first approach to every classroom. We focus on nurturing individual
@@ -2785,7 +2785,7 @@
         </section>
 
         <!-- Faculty Members Section -->
-        <section id="faculty" class="section">
+        <section id="faculty" class="section" style="padding-top: 2rem;">
             <div class="container">
                 <div class="section-title">
 
@@ -2915,9 +2915,6 @@
 
                     </div>
                     <div class="swiper-pagination faculty-pagination"></div>
-                    <!-- Navigation buttons -->
-                    <div class="swiper-button-prev faculty-prev"></div>
-                    <div class="swiper-button-next faculty-next"></div>
                 </div>
             </div>
         </section>
@@ -2974,7 +2971,7 @@
 
         <!-- Student Achievements Section -->
         <section class="achievements-section"
-            style="padding: 3rem 0; background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);">
+            style="padding: 1.5rem 0; background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);">
             <div class="container">
                 <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
                     <span class="section-subtitle">Our Pride</span>
@@ -2984,22 +2981,22 @@
 
 
                 <!-- Full Width Image -->
-                <div
-                    style="width: 100%; margin: 2rem 0; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                <div class="achievement-image"
+                    style="width: 100%; margin: 0.5rem 0; border-radius: 0.5rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                     <img src="images/posters/wide-poster1.png" alt="SRL Academy"
                         style="width: 100%; height: auto; display: block;" onerror="this.style.display='none';">
                 </div>
 
                 <!-- Full Width Image -->
-                <div
-                    style="width: 100%; margin: 2rem 0; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                <div class="achievement-image"
+                    style="width: 100%; margin: 0.5rem 0; border-radius: 0.5rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                     <img src="images/posters/wide-poster2.png" alt="SRL Academy"
                         style="width: 100%; height: auto; display: block;" onerror="this.style.display='none';">
                 </div>
 
                 <!-- Full Width Image -->
-                <div
-                    style="width: 100%; margin: 2rem 0; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                <div class="achievement-image"
+                    style="width: 100%; margin: 0.5rem 0; border-radius: 0.5rem; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                     <img src="images/posters/wide-poster3.png" alt="SRL Academy"
                         style="width: 100%; height: auto; display: block;" onerror="this.style.display='none';">
                 </div>
@@ -3019,7 +3016,7 @@
 
         <!-- Student Success Stories Video Section -->
         <section id="success-stories" class="section"
-            style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 3rem 0;">
+            style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 1.5rem 0;">
             <div class="container">
                 <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
                     <span class="section-subtitle">Inspiring Journeys</span>
@@ -3200,10 +3197,10 @@
         </script>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="section testimonials">
+        <section id="testimonials" class="section testimonials" style="padding-bottom: 0; margin-bottom: 0;">
             <div class="container">
                 <div class="section-title">
-                    <span class="section-subtitle">Testimonials</span>
+                    <span class="section-subtitle" style="margin-top: 1rem;">Testimonials</span>
                     <h2>What Principals Say</h2>
                     <p>Words from Principals of our centers</p>
                 </div>
@@ -3345,8 +3342,8 @@
                 <div style="text-align: center;">
                     <a href="partnership.html" style="display: inline-block; transition: transform 0.3s ease;"
                         onmouseover="this.style.transform='scale(1.02';" onmouseout="this.style.transform='scale(1)';">
-                        <img src="images/Partnership With Us.png" alt="Partner With Us - SRL Academy"
-                            style="max-width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 12px 35px rgba(128, 0, 0, 0.3);"
+                        <img src="images/Partnership.png" alt="Partner With Us - SRL Academy"
+                            style="max-width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 12px 35px rgba(119, 119, 119, 0.3);"
                             onerror="this.style.display='none';">
                     </a>
                 </div>
@@ -3525,53 +3522,26 @@
             });
 
             const facultySwiper = new Swiper('.faculty-swiper', {
-                loop: false,
-                slidesPerView: 1,
-                spaceBetween: 20,
-                grid: {
-                    rows: 1,
-                    fill: 'row',
+                loop: true,
+                slidesPerView: 2,
+                spaceBetween: 16,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
                 },
                 pagination: {
                     el: '.faculty-pagination',
                     clickable: true,
-                },
-                navigation: {
-                    nextEl: '.faculty-next',
-                    prevEl: '.faculty-prev',
+                    dynamicBullets: true,
                 },
                 breakpoints: {
-                    0: {
-                        slidesPerView: 2,
-                        spaceBetween: 16,
-                        grid: {
-                            rows: 2,
-                            fill: 'row'
-                        }
-                    },
-                    640: {
-                        slidesPerView: 2,
-                        spaceBetween: 16,
-                        grid: {
-                            rows: 2,
-                            fill: 'row'
-                        }
-                    },
                     768: {
                         slidesPerView: 2,
                         spaceBetween: 24,
-                        grid: {
-                            rows: 2,
-                            fill: 'row'
-                        }
                     },
                     1024: {
                         slidesPerView: 3,
                         spaceBetween: 28,
-                        grid: {
-                            rows: 2,
-                            fill: 'row'
-                        }
                     }
                 }
             });

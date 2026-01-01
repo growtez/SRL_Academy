@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRL Academy | Photo Gallery</title>
+    <title>SRL Academy | Photo & Video Gallery</title>
     <meta name="description"
-        content="Explore our photo gallery showcasing events, achievements, and moments from SRL Academy.">
+        content="Explore our gallery showcasing media coverage, videos, and student achievements from SRL Academy.">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -14,361 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="photos.css">
 
-    <style>
-        :root {
-            --primary: #800000;
-            --primary-dark: #5e0f0f;
-            --gray-700: #374151;
-            --gray-900: #111827;
-            --white: #ffffff;
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --radius: 0.5rem;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--white);
-            color: var(--gray-700);
-            padding-top: 64px;
-            display: flex;
-            flex-direction: column;
-            min-height: calc(100vh - 64px);
-        }
-
-        h1,
-        h2,
-        h3 {
-            font-family: 'Oswald', sans-serif;
-            color: var(--gray-900);
-        }
-
-        /* ===== Header Logo ===== */
-        .logo img {
-            width: 64px;
-            height: auto;
-            display: block;
-        }
-
-        /* ===== Photo Gallery Section ===== */
-        .photo-section {
-            padding: 2rem 1rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .photo-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .photo-section p {
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        /* ===== Masonry Collage Layout ===== */
-        .photo-masonry {
-            column-count: 3;
-            column-gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .photo-card {
-            break-inside: avoid;
-            margin-bottom: 1rem;
-            border: 2px solid var(--primary);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            background: #fff;
-            position: relative;
-        }
-
-        .photo-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 24px rgba(128, 0, 0, 0.25);
-            z-index: 10;
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .photo-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Photo overlay effect */
-        .photo-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 50%, rgba(128, 0, 0, 0.3) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .photo-card:hover::after {
-            opacity: 1;
-        }
-
-        /* ===== Footer ===== */
-        .footer {
-            background: var(--primary);
-            color: var(--white);
-            padding: 40px 20px 20px;
-            margin-top: auto;
-            width: 100%;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .footer-column h3 {
-            margin-bottom: 15px;
-            color: var(--white);
-        }
-
-        .footer-column p {
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .footer-column p .fas {
-            margin-right: 8px;
-            width: 14px;
-        }
-
-        .footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 8px;
-        }
-
-        .footer-links li a {
-            color: var(--white);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: text-decoration 0.2s;
-        }
-
-        .footer-links li a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-links .material-symbols-outlined {
-            font-size: 1.2rem;
-        }
-
-        .footer-copyright {
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 15px;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        .footer-copyright p {
-            margin: 0;
-        }
-
-        .footer-copyright a {
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .footer-copyright a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== Back to Top ===== */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--white);
-            border-radius: 50%;
-            text-decoration: none;
-            font-size: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
-        }
-
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            color: var(--white);
-        }
-
-        /* Empty State Styling */
-        .empty-state {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 2rem;
-            color: var(--gray-700);
-        }
-
-        .empty-state i {
-            font-size: 4rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            opacity: 0.6;
-        }
-
-        .empty-state p {
-            font-size: 1.2rem;
-            margin: 0;
-        }
-
-        /* ===== MOBILE OPTIMIZATIONS ===== */
-        @media (max-width: 992px) {
-            .photo-masonry {
-                column-count: 2;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .photo-section {
-                height: auto;
-                padding: 1.5rem 0.5rem;
-            }
-
-            .photo-masonry {
-                column-count: 2;
-                column-gap: 0.75rem;
-            }
-
-            .photo-card {
-                margin-bottom: 0.75rem;
-                border-width: 3px;
-            }
-
-            .photo-section h2 {
-                font-size: 2rem;
-            }
-
-            /* Header brand responsiveness (tablet and down) */
-            .brand {
-                gap: 0.5rem;
-            }
-
-            .logo img {
-                width: 52px;
-            }
-
-            .brand-line-1 {
-                font-size: 1.05rem;
-            }
-
-            .brand-tagline {
-                font-size: 0.74rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .photo-section {
-                padding: 1rem 0;
-            }
-
-            .photo-section h2 {
-                font-size: 1.75rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .photo-section>p {
-                font-size: 0.95rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .photo-masonry {
-                column-count: 1;
-                padding: 0 0.75rem;
-                max-width: 100%;
-            }
-
-            .photo-card {
-                margin-bottom: 1rem;
-                border-radius: 0.75rem;
-                border-width: 3px;
-            }
-
-            .photo-card img {
-                border-radius: 0.5rem;
-            }
-
-            /* Tighter header + brand on very small devices */
-            .header {
-                padding: 0.4rem 0;
-            }
-
-            .header .container {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-            }
-
-            .brand {
-                gap: 0.4rem;
-            }
-
-            .logo img {
-                width: 44px;
-            }
-
-            .brand-text {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.1rem;
-                line-height: 1.05;
-                white-space: normal;
-            }
-
-            .brand-line-1 {
-                font-size: 1.05rem;
-                white-space: normal;
-            }
-
-        }
-    </style>
 </head>
 
 <body>
@@ -394,7 +41,14 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
-                    <li><a href="photos.html" class="active">Gallery</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#media-news-images">Media News Images</a></li>
+                            <li><a href="#media-news-videos">Media News Videos</a></li>
+                            <li><a href="#student-moments">Student Moments</a></li>
+                        </ul>
+                    </li>
                     <li><a href="partnership.html">Partnership</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
@@ -413,41 +67,106 @@
     </header>
 
     <section class="photo-section">
-        <h2>Photo Gallery</h2>
-        <p>Capturing memorable moments from our events, prize distributions, and celebrations</p>
+        <h2>SRL Gallery</h2>
+        <p>A glimpse into our journey, media features, and student success stories.</p>
 
-        <div class="photo-masonry">
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ .jpg" alt="Prize Distribution Event" loading="lazy">
+        <div class="gallery-subsection" id="media-news-images">
+            <div class="subsection-header">
+                <h3>Media News Images</h3>
+                <p>SRL Academy in the press and newspaper cuttings</p>
             </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (3).jpg" alt="Award Ceremony" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (4).jpg" alt="Scholarship Winners" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (9).jpg" alt="Student Achievement" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (10).jpg" alt="Prize Ceremony" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (12).jpg" alt="Celebration Event" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (19).jpg" alt="Award Function" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo from XYZ (20).jpg" alt="Group Photo" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/pp.jpg" alt="Winner Announcement" loading="lazy">
-            </div>
-            <div class="photo-card">
-                <img src="images/photos/Photo.jpg" alt="Prize Distribution" loading="lazy">
+
+            <div class="photo-masonry">
+                <div class="photo-card news-photo-card">
+                    <img src="/images/photos/media-news-images/paper image1.jpg" alt="News Article 1" loading="lazy">
+                    <!-- <div class="photo-card-caption">Featured in Times of India</div> -->
+                </div>
+                <div class="photo-card news-photo-card">
+                    <img src="/images/photos/media-news-images/paper image2.jpg" alt="News Article 2" loading="lazy">
+                    <!-- <div class="photo-card-caption">Local Daily Coverage</div> -->
+                </div>
+                <div class="photo-card news-photo-card">
+                    <img src="/images/photos/media-news-images/paper image3.jpg" alt="News Article 3" loading="lazy">
+                    <!-- <div class="photo-card-caption">Award Ceremony Press Release</div> -->
+                </div>
             </div>
         </div>
+
+        <div class="gallery-subsection" id="media-news-videos">
+            <div class="subsection-header">
+                <h3>Media News Videos</h3>
+                <p>Video coverage and news features</p>
+            </div>
+
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video preload="none" playsinline class="video-player"
+                            poster="images/photos/media-news-videos/video-poster-1.jpg">
+                            <source src="images/photos/media-news-videos/news-video1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay" data-video="video1">
+                            <i class="fas fa-play video-play-button"></i>
+                        </div>
+                    </div>
+                    <!-- <div class="video-caption">
+                        <h4>News Channel Interview</h4>
+                        <p>Discussion on Education Trends</p>
+                    </div> -->
+                </div>
+
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video preload="none" playsinline class="video-player"
+                            poster="images/photos/media-news-videos/video-poster-2.jpg">
+                            <source src="images/photos/media-news-videos/news-video2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-play-overlay" data-video="video2">
+                            <i class="fas fa-play video-play-button"></i>
+                        </div>
+                    </div>
+                    <!-- <div class="video-caption">
+                        <h4>Award Ceremony Highlights</h4>
+                        <p>Coverage by City News</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-subsection" id="student-moments">
+            <div class="subsection-header">
+                <h3>Student Moments</h3>
+                <p>Capturing events, prize distributions, and celebrations</p>
+            </div>
+
+            <div class="photo-masonry">
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl1.jpg" alt="image1" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl2.jpg" alt="image2" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl3.jpg" alt="image3" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl4.jpg" alt="image4" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/centers/srl-academy/srl5.jpg" alt="image5" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/photos/student-moments/srl6.jpg" alt="image6" loading="lazy">
+                </div>
+                <div class="photo-card student-photo-card">
+                    <img src="images/photos/student-moments/srl7.jpg" alt="image7" loading="lazy">
+                </div>
+
+            </div>
+        </div>
+
     </section>
 
     <footer style="background:#800000; color:#fff; padding:40px 20px 20px; margin-top:auto; width:100%;">
@@ -482,11 +201,9 @@
 
                 <div style="flex:1; min-width:200px;">
                     <h3 style="margin-bottom:15px; color:#ffff;">Contact Info</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga Parameshwari Temple Arch,<br>
-                        HMT Layout, Vidyaranyapura Main Road,<br>
-                        Bangalore - 560 097</p>
-                    <p><i class="fas fa-phone"></i> +91 8088107550, 8088003792</p>
-                    <p><i class="fas fa-envelope"></i> srl4education@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga Parameshwari Temple Arch, HMT Layout, Vidyaranyapura Main Road, Bangalore - 560 097</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+918088107550" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">+91 8088107550</a>, <a href="tel:+918088003792" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">8088003792</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:srl4education@gmail.com" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">srl4education@gmail.com</a></p>
                 </div>
 
                 <!-- Social Media Section -->
@@ -538,31 +255,8 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
-    <script>
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
-
-        const yearSpan = document.getElementById('current-year');
-        if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-        // Hide preloader when page loads
-        window.addEventListener('load', function () {
-            const preloader = document.getElementById('preloader');
-            if (preloader) {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }
-        });
-
-    </script>
+    <script src="script.js"></script>
+    <script src="photosscript.js"></script>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/918088107550" target="_blank" class="whatsapp-float" style="position:fixed; bottom:20px; right:20px; 

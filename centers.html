@@ -54,7 +54,14 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html" class="active">Centers</a></li>
-                    <li><a href="photos.html">Gallery</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="photos.html#media-news-images">Media News Images</a></li>
+                            <li><a href="photos.html#media-news-videos">Media News Videos</a></li>
+                            <li><a href="photos.html#student-moments">Student Moments</a></li>
+                        </ul>
+                    </li>
                     <li><a href="partnership.html">Partnership</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
@@ -185,11 +192,9 @@
 
                 <div style="flex:1; min-width:200px;">
                     <h3 style="margin-bottom:15px; color:#ffff;">Contact Info</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga Parameshwari Temple Arch,<br>
-                        HMT Layout, Vidyaranyapura Main Road,<br>
-                        Bangalore - 560 097</p>
-                    <p><i class="fas fa-phone"></i> +91 8088107550, 8088003792</p>
-                    <p><i class="fas fa-envelope"></i> srl4education@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga Parameshwari Temple Arch, HMT Layout, Vidyaranyapura Main Road, Bangalore - 560 097</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+918088107550" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">+91 8088107550</a>, <a href="tel:+918088003792" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">8088003792</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:srl4education@gmail.com" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">srl4education@gmail.com</a></p>
                 </div>
 
                 <!-- Social Media Section -->
@@ -242,7 +247,7 @@
           width:50px; height:50px; 
           background:#800000; color:#fff; 
           display:flex; align-items:center; justify-content:center; 
-          border:2px solid #fff; border-radius:50%; 
+          border:1px solid #fff; border-radius:50%; 
           text-decoration:none; font-size:20px; 
           box-shadow:0 0 10px rgba(0,0,0,0.3); 
           transition:all 0.3s; z-index:1000;">
@@ -254,7 +259,7 @@
           width:55px; height:55px; 
           background:#800000; color:#fff; 
           display:flex; align-items:center; justify-content:center; 
-          border-radius:50%; border:2px solid #fff;
+          border-radius:50%; border:1px solid #fff;
           text-decoration:none; font-size:28px; 
           box-shadow:0 4px 15px rgba(128, 0, 0, 0.4); 
           transition:all 0.3s; z-index:1000;"

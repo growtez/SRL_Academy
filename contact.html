@@ -46,7 +46,14 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
-                    <li><a href="photos.html">Gallery</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="photos.html#media-news-images">Media News Images</a></li>
+                            <li><a href="photos.html#media-news-videos">Media News Videos</a></li>
+                            <li><a href="photos.html#student-moments">Student Moments</a></li>
+                        </ul>
+                    </li>
                     <li><a href="partnership.html">Partnership</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
@@ -102,9 +109,10 @@
                                 </div>
                                 <div>
                                     <label for="program">Program Interest</label>
-                                    <select id="program" name="program">
+                                    <select id="program" name="program"
+                                        style="text-align: center; font-weight: normal; color: #666;">
 
-                                        <option value="">Select Program</option>
+                                        <option value="">Select Program ▼</option>
                                         <option value="sip">School Integrated Program</option>
                                         <option value="foundation">Foundation (VI-X)</option>
                                         <option value="class11-12">Class XI & XII</option>
@@ -112,6 +120,17 @@
                                         <option value="olympiad">Olympiad</option>
 
 
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                                <div style="width: 100%; max-width: 380px;">
+                                    <label for="programType">Program Type</label>
+                                    <select id="programType" name="program_type"
+                                        style="text-align: center; font-weight: normal; color: #666;">
+                                        <option value="">Select Program Type ▼</option>
+                                        <option value="offline">Offline Program</option>
+                                        <option value="online">Online Program</option>
                                     </select>
                                 </div>
                             </div>
@@ -206,11 +225,9 @@
 
                 <div style="flex:1; min-width:200px;">
                     <h3 style="margin-bottom:15px; color:#ffff;">Contact Info</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga Parameshwari Temple Arch,<br>
-                        HMT Layout, Vidyaranyapura Main Road,<br>
-                        Bangalore - 560 097</p>
-                    <p><i class="fas fa-phone"></i> +91 8088107550, 8088003792</p>
-                    <p><i class="fas fa-envelope"></i> srl4education@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga Parameshwari Temple Arch, HMT Layout, Vidyaranyapura Main Road, Bangalore - 560 097</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+918088107550" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">+91 8088107550</a>, <a href="tel:+918088003792" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">8088003792</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:srl4education@gmail.com" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">srl4education@gmail.com</a></p>
                 </div>
 
                 <!-- Social Media Section -->
@@ -258,14 +275,15 @@
         </div>
     </footer>
 
-    <a href="#" style="position:fixed; bottom:20px; right:20px; 
-            width:50px; height:50px; 
-            background:#800000; color:#fff; 
-            display:flex; align-items:center; justify-content:center; 
-            border:2px solid #fff; border-radius:50%; 
-            text-decoration:none; font-size:20px; 
-            box-shadow:0 0 10px rgba(0,0,0,0.3); 
-            transition:all 0.3s;">
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top" style="position:fixed; bottom:85px; right:20px; 
+          width:50px; height:50px; 
+          background:#800000; color:#fff; 
+          display:flex; align-items:center; justify-content:center; 
+          border:2px solid #fff; border-radius:50%; 
+          text-decoration:none; font-size:20px; 
+          box-shadow:0 0 10px rgba(0,0,0,0.3); 
+          transition:all 0.3s; z-index:1000;">
         <i class="fas fa-arrow-up"></i>
     </a>
 
@@ -396,6 +414,12 @@
 
             // Handle form submission
             contactForm.addEventListener("submit", async function (e) {
+                // Let browser show native validation first
+                if (!contactForm.checkValidity()) {
+                    // Don't prevent default - let browser show native validation tooltips
+                    return;
+                }
+
                 e.preventDefault();
 
                 const originalBtnText = submitBtn.querySelector("span").innerHTML;
@@ -404,14 +428,6 @@
 
                 const formData = new FormData(contactForm);
                 const data = Object.fromEntries(formData.entries());
-
-                // Client-side validation
-                if (!data.name || !data.email || !data.phone || !data.message) {
-                    showDialog("Error", "Please fill out all required fields.");
-                    submitBtn.disabled = false;
-                    submitBtn.querySelector("span").innerHTML = originalBtnText;
-                    return;
-                }
 
                 // Email validation
                 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -482,24 +498,6 @@
                     closeDialog();
                 }
             });
-
-            // Back to top button functionality
-            const backToTopButton = document.querySelector('a[href="#"]');
-
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.style.opacity = '1';
-                    backToTopButton.style.visibility = 'visible';
-                } else {
-                    backToTopButton.style.opacity = '0';
-                    backToTopButton.style.visibility = 'hidden';
-                }
-            });
-
-            backToTopButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
         });
 
         // Preloader
@@ -513,6 +511,9 @@
             }
         });
     </script>
+
+    <!-- Main Script for hamburger menu -->
+    <script src="script.js"></script>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/918088107550" target="_blank" class="whatsapp-float" style="position:fixed; bottom:20px; right:20px; 

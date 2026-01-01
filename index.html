@@ -2794,125 +2794,15 @@
                 </div>
 
                 <div class="faculty-swiper swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">Durganad Jha</div>
-                                    <div class="faculty-role">Physics Faculty</div>
-                                    <div class="faculty-meta">B.Tech (NIT Surathkal)</div>
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/physics.jpeg" alt="Photo of Durganad Jha"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
+                    <!-- Faculty cards will be loaded dynamically from API -->
+                    <div class="swiper-wrapper" id="faculty-wrapper">
+                        <!-- Loading placeholder -->
+                        <div class="swiper-slide" id="faculty-loading">
+                            <div class="faculty-card"
+                                style="display: flex; align-items: center; justify-content: center; min-height: 200px;">
+                                <p style="color: #666;">Loading faculty...</p>
                             </div>
                         </div>
-
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">Rahul Rana</div>
-                                    <div class="faculty-role">Physics Faculty</div>
-                                    <div class="faculty-meta">B.Tech. (Electronics and Electrical Engineering) · IIT
-                                        Guwahati</div>
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/physics2.jpeg" alt="Photo of Physics Faculty"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">Faculty Sir 2</div>
-                                    <div class="faculty-role">Mathematics Faculty</div>
-                                    <div class="faculty-meta">M.Sc Mathematics · Premier Institution</div>
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/faculty_sir2.jpg" alt="Photo of Mathematics Faculty"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">Rahul Yadav</div>
-                                    <div class="faculty-role">Chemistry Faculty</div>
-                                    <div class="faculty-meta">M.Sc Chemistry · Premier Institution</div>
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/faculty_sir3.jpg" alt="Photo of Chemistry Faculty"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">Ravindra</div>
-                                    <div class="faculty-role">Physics Faculty</div>
-                                    <div class="faculty-meta">M.Sc Physics from IIEST, SHIBPUR</div>
-                                    <div class="faculty-meta">Gate Qualified · IIT JAM Qualified</div>
-
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/physics - ravindra.jpeg" alt="Photo of Chemistry Faculty"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">Gopala Varma</div>
-                                    <div class="faculty-role">HOD, Physics</div>
-                                    <div class="faculty-meta">B.E. (Metallurgy) (First Class) · IISc, Bangalore (1983)
-                                    </div>
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/faculty_sir1.jpg" alt="Photo of Gopala Varma"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">K Pattabhi</div>
-                                    <div class="faculty-role">HOD, Mathematics</div>
-                                    <div class="faculty-meta">M.Sc (Tech) Mathematics (First Class) · JNTU, Hyderabad
-                                    </div>
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/director.jpg" alt="Photo of K Pattabhi"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="faculty-card">
-                                <div class="faculty-content">
-                                    <div class="faculty-name">Faculty Mam</div>
-                                    <div class="faculty-role">Biology Faculty</div>
-                                    <div class="faculty-meta">M.Sc Biology · Premier Institution</div>
-                                </div>
-                                <div class="faculty-photo">
-                                    <img src="images/faculty_mam.jpg" alt="Photo of Biology Faculty"
-                                        onerror="this.onerror=null;this.src='images/logo.png';">
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
                     </div>
                     <div class="swiper-pagination faculty-pagination"></div>
                 </div>
@@ -3521,30 +3411,100 @@
                 }
             });
 
-            const facultySwiper = new Swiper('.faculty-swiper', {
-                loop: true,
-                slidesPerView: 2,
-                spaceBetween: 16,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.faculty-pagination',
-                    clickable: true,
-                    dynamicBullets: true,
-                },
-                breakpoints: {
-                    768: {
-                        slidesPerView: 2,
-                        spaceBetween: 24,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 28,
-                    }
+            // ========== FACULTY API CONFIGURATION ==========
+            // Change this URL to your backend API endpoint when ready
+            const FACULTY_API_URL = 'api/faculty.json';
+
+            // Faculty swiper instance (will be initialized after data loads)
+            let facultySwiper = null;
+
+            // Function to render faculty cards
+            function renderFacultyCards(facultyData) {
+                const wrapper = document.getElementById('faculty-wrapper');
+                if (!wrapper) return;
+
+                // Clear loading placeholder
+                wrapper.innerHTML = '';
+
+                // Create slides for each faculty member
+                facultyData.forEach(faculty => {
+                    const qualifications = faculty.qualifications.join(' · ');
+                    const slide = document.createElement('div');
+                    slide.className = 'swiper-slide';
+                    slide.innerHTML = `
+                        <div class="faculty-card">
+                            <div class="faculty-content">
+                                <div class="faculty-name">${faculty.name}</div>
+                                <div class="faculty-role">${faculty.role}</div>
+                                <div class="faculty-meta">${qualifications}</div>
+                            </div>
+                            <div class="faculty-photo">
+                                <img src="${faculty.photo}" alt="Photo of ${faculty.name}"
+                                    onerror="this.onerror=null;this.src='images/logo.png';">
+                            </div>
+                        </div>
+                    `;
+                    wrapper.appendChild(slide);
+                });
+            }
+
+            // Function to initialize/reinitialize faculty swiper
+            function initFacultySwiper() {
+                // Destroy existing instance if any
+                if (facultySwiper) {
+                    facultySwiper.destroy(true, true);
                 }
-            });
+
+                facultySwiper = new Swiper('.faculty-swiper', {
+                    loop: true,
+                    slidesPerView: 2,
+                    spaceBetween: 16,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.faculty-pagination',
+                        clickable: true,
+                        dynamicBullets: true,
+                    },
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 2,
+                            spaceBetween: 24,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                            spaceBetween: 28,
+                        }
+                    }
+                });
+            }
+
+            // Fetch faculty data from API
+            fetch(FACULTY_API_URL)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to fetch faculty data');
+                    return response.json();
+                })
+                .then(data => {
+                    renderFacultyCards(data.faculty);
+                    initFacultySwiper();
+                })
+                .catch(error => {
+                    console.error('Error loading faculty:', error);
+                    // Show error message
+                    const wrapper = document.getElementById('faculty-wrapper');
+                    if (wrapper) {
+                        wrapper.innerHTML = `
+                            <div class="swiper-slide">
+                                <div class="faculty-card" style="display: flex; align-items: center; justify-content: center; min-height: 200px;">
+                                    <p style="color: #800000;">Unable to load faculty. Please refresh.</p>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
 
             const swiper = new Swiper('.hero-slider', {
                 loop: true,

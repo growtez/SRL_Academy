@@ -1,0 +1,114 @@
+{
+    "faculty": [
+        {
+            "id": 1,
+            "name": "Durganad Jha",
+            "role": "Physics Faculty",
+            "qualifications": [
+                "B.Tech (NIT Surathkal)"
+            ],
+            "photo": "images/physics.jpeg"
+        },
+        {
+            "id": 2,
+            "name": "Rahul Rana",
+            "role": "Physics Faculty",
+            "qualifications": [
+                "B.Tech. (Electronics and Electrical Engineering)",
+                "IIT Guwahati"
+            ],
+            "photo": "images/physics2.jpeg"
+        },
+        {
+            "id": 3,
+            "name": "Faculty Sir 2",
+            "role": "Mathematics Faculty",
+            "qualifications": [
+                "M.Sc Mathematics",
+                "Premier Institution"
+            ],
+            "photo": "images/faculty_sir2.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Rahul Yadav",
+            "role": "Chemistry Faculty",
+            "qualifications": [
+                "M.Sc Chemistry",
+                "Premier Institution"
+            ],
+            "photo": "images/faculty_sir3.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Ravindra",
+            "role": "Physics Faculty",
+            "qualifications": [
+                "M.Sc Physics from IIEST, SHIBPUR",
+                "Gate Qualified",
+                "IIT JAM Qualified"
+            ],
+            "photo": "images/physics - ravindra.jpeg"
+        },
+        {
+            "id": 6,
+            "name": "Gopala Varma",
+            "role": "HOD, Physics",
+            "qualifications": [
+                "B.E. (Metallurgy) (First Class)",
+                "IISc, Bangalore (1983)"
+            ],
+            "photo": "images/faculty_sir1.jpg"
+        },
+        {
+            "id": 7,
+            "name": "K Pattabhi",
+            "role": "HOD, Mathematics",
+            "qualifications": [
+                "M.Sc (Tech) Mathematics (First Class)",
+                "JNTU, Hyderabad"
+            ],
+            "photo": "images/director.jpg"
+        },
+        {
+            "id": 8,
+            "name": "Faculty Mam",
+            "role": "Biology Faculty",
+            "qualifications": [
+                "M.Sc Biology",
+                "Premier Institution"
+            ],
+            "photo": "images/faculty_mam.jpg"
+        },
+        {
+            "id": 9,
+            "name": "Faculty Mam",
+            "role": "Biology Faculty",
+            "qualifications": [
+                "M.Sc Biology",
+                "Premier Institution"
+            ],
+            "photo": "images/faculty_mam.jpg"
+        },
+        {
+            "id": 10,
+            "name": "Faculty Mam",
+            "role": "Biology Faculty",
+            "qualifications": [
+                "M.Sc Biology",
+                "Premier Institution"
+            ],
+            "photo": "images/faculty_mam.jpg"
+        },
+        {
+            "id": 11,
+            "name": "Faculty Mam",
+            "role": "Biology Faculty",
+            "qualifications": [
+                "M.Sc Biology",
+                "Premier Institution"
+            ],
+            "photo": "images/faculty_mam.jpg"
+        }
+    ]
+}

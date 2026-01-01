@@ -41,7 +41,14 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
-                    <li><a href="photos.html" class="active">Gallery</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#media-news-images">Media News Images</a></li>
+                            <li><a href="#media-news-videos">Media News Videos</a></li>
+                            <li><a href="#student-moments">Student Moments</a></li>
+                        </ul>
+                    </li>
                     <li><a href="partnership.html">Partnership</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
@@ -63,7 +70,7 @@
         <h2>SRL Gallery</h2>
         <p>A glimpse into our journey, media features, and student success stories.</p>
 
-        <div class="gallery-subsection">
+        <div class="gallery-subsection" id="media-news-images">
             <div class="subsection-header">
                 <h3>Media News Images</h3>
                 <p>SRL Academy in the press and newspaper cuttings</p>
@@ -85,7 +92,7 @@
             </div>
         </div>
 
-        <div class="gallery-subsection">
+        <div class="gallery-subsection" id="media-news-videos">
             <div class="subsection-header">
                 <h3>Media News Videos</h3>
                 <p>Video coverage and news features</p>
@@ -128,7 +135,7 @@
             </div>
         </div>
 
-        <div class="gallery-subsection">
+        <div class="gallery-subsection" id="student-moments">
             <div class="subsection-header">
                 <h3>Student Moments</h3>
                 <p>Capturing events, prize distributions, and celebrations</p>

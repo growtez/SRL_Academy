@@ -1746,6 +1746,9 @@
             background: var(--primary-dark);
             transform: translateY(-2px);
         }
+        .partner-section{
+            padding-bottom: 3rem; background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
 
         /* ===== NOTICE MARQUEE ===== */
         .notice-marquee {
@@ -2388,6 +2391,9 @@
                 width: 170px;
                 height: 170px;
             }
+            .partner-section{
+                padding-bottom: 1rem;
+            }
         }
 
         /* ----- MAX WIDTH 640PX ----- */
@@ -2581,7 +2587,14 @@
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
-                    <li><a href="photos.html">Gallery</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="photos.html#media-news-images">Media News Images</a></li>
+                            <li><a href="photos.html#media-news-videos">Media News Videos</a></li>
+                            <li><a href="photos.html#student-moments">Student Moments</a></li>
+                        </ul>
+                    </li>
                     <li><a href="partnership.html">Partnership</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
@@ -3141,7 +3154,7 @@
         </section>
 
          <!-- Partner With Us Section -->
-        <section class="partner-section" style="padding-bottom: 3rem; background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);">
+        <section class="partner-section">
             <div class="container">
                 <div style="text-align: center;">
                     <a href="partnership.html" style="display: inline-block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02';" onmouseout="this.style.transform='scale(1)';">

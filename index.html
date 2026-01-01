@@ -2938,6 +2938,121 @@
             </div>
         </section>
 
+        <!-- Student Success Stories Video Section -->
+        <section id="success-stories" class="section"
+            style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 3rem 0;">
+            <div class="container">
+                <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
+                    <span class="section-subtitle">Inspiring Journeys</span>
+                    <h2>Student Success Stories</h2>
+                    <p>Watch how our students achieved their dreams</p>
+                </div>
+
+                <!-- Video Grid -->
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
+
+                    <!-- Video 1 -->
+                    <div class="video-card"
+                        style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000; border: 2px solid #800000;">
+                        <video id="video1" style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                            playsinline preload="metadata">
+                            <source src="images/videos/1.mp4" type="video/mp4">
+                        </video>
+                        <div id="play-overlay1" onclick="playVideo(1)"
+                            style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s;">
+                            <div
+                                style="width: 60px; height: 60px; background: #a100008e; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(66,133,244,0.4);">
+                                <i class="fas fa-play" style="color: #fff; font-size: 1.5rem; margin-left: 4px;"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="video-card"
+                        style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000; border: 2px solid #800000;">
+                        <video id="video2" style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                            playsinline preload="metadata">
+                            <source src="images/videos/2.mp4" type="video/mp4">
+                        </video>
+                        <div id="play-overlay2" onclick="playVideo(2)"
+                            style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s;">
+                            <div
+                                style="width: 60px; height: 60px; background: #a100008e; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(66,133,244,0.4);">
+                                <i class="fas fa-play" style="color: #fff; font-size: 1.5rem; margin-left: 4px;"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="video-card"
+                        style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000; border: 2px solid #800000;">
+                        <video id="video3" style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                            playsinline preload="metadata">
+                            <source src="images/videos/3.mp4" type="video/mp4">
+                        </video>
+                        <div id="play-overlay3" onclick="playVideo(3)"
+                            style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s;">
+                            <div
+                                style="width: 60px; height: 60px; background: #a100008e; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(66,133,244,0.4);">
+                                <i class="fas fa-play" style="color: #fff; font-size: 1.5rem; margin-left: 4px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View More Button -->
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="https://youtube.com/@SRLAcademycoachinginstitute" target="_blank" class="result-btn"
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+                        <i class="fab fa-youtube"></i>
+                        Watch More on YouTube
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            function playVideo(num) {
+                const video = document.getElementById('video' + num);
+                const overlay = document.getElementById('play-overlay' + num);
+
+                if (video.paused) {
+                    // Pause all other videos first
+                    for (let i = 1; i <= 3; i++) {
+                        if (i !== num) {
+                            const otherVideo = document.getElementById('video' + i);
+                            const otherOverlay = document.getElementById('play-overlay' + i);
+                            if (otherVideo && !otherVideo.paused) {
+                                otherVideo.pause();
+                                otherOverlay.style.display = 'flex';
+                            }
+                        }
+                    }
+                    video.play();
+                    overlay.style.display = 'none';
+                } else {
+                    video.pause();
+                    overlay.style.display = 'flex';
+                }
+            }
+
+            // Show overlay when video ends
+            document.querySelectorAll('video').forEach((video, index) => {
+                video.addEventListener('ended', () => {
+                    const overlay = document.getElementById('play-overlay' + (index + 1));
+                    overlay.style.display = 'flex';
+                });
+
+                // Also allow clicking video to pause
+                video.addEventListener('click', () => {
+                    const overlay = document.getElementById('play-overlay' + (index + 1));
+                    video.pause();
+                    overlay.style.display = 'flex';
+                });
+            });
+        </script>
+
         <!-- Testimonials Section -->
         <section id="testimonials" class="section testimonials">
             <div class="container">
@@ -3369,6 +3484,45 @@
                     1024: {
                         slidesPerView: 3,
                         spaceBetween: 30,
+                    }
+                }
+            });
+
+            // Initialize Swiper for success stories videos
+            const successVideosSwiper = new Swiper('.success-videos-swiper', {
+                slidesPerView: 1.2,
+                spaceBetween: 15,
+                centeredSlides: false,
+                loop: true,
+                autoplay: {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.success-pagination',
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                breakpoints: {
+                    480: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 15,
+                    },
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 20,
+                    },
+                    1024: {
+                        slidesPerView: 3.5,
+                        spaceBetween: 25,
+                    },
+                    1280: {
+                        slidesPerView: 4,
+                        spaceBetween: 25,
                     }
                 }
             });

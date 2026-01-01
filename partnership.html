@@ -116,7 +116,7 @@
                 
                 <div style="text-align: center; margin-bottom: 40px;">
                     <label for="partnershipType" style="display: block; font-weight: 600; color: #333; margin-bottom: 15px; font-size: 1.1rem;">Select Your Partnership Interest:</label>
-                    <select id="partnershipType" style="padding: 15px 20px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem; background: white; color: #333; min-width: 250px; transition: all 0.3s ease; cursor: pointer;" onchange="showForm()">
+                    <select id="partnershipType" style="padding: 15px 20px; border: 1px solid #e9ecef; border-radius: 10px; font-size: 1rem; background: white; color: #333; min-width: 250px; transition: all 0.3s ease; cursor: pointer;" onchange="showForm()">
                         <option value="">-- Choose Partnership Type --</option>
                         <option value="school">School Integration Projects</option>
                         <option value="study">Study Center Establishment</option>
@@ -288,7 +288,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid #fff;
+            border: 1px solid #fff;
             border-radius: 50%;
             text-decoration: none;
             font-size: 20px;
@@ -388,7 +388,7 @@
 
         if (type === "school") {
     formHtml = `
-        <form id="schoolForm" style="background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 20px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); opacity: 0; animation: fadeInUp 0.6s ease forwards;">
+        <form id="schoolForm" style="background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 1px solid #800000; border-radius: 15px; padding: 20px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); opacity: 0; animation: fadeInUp 0.6s ease forwards;">
             <style>
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -756,7 +756,7 @@ div[style*="flex-wrap: wrap"]::-webkit-scrollbar {
                 </div>
             </div>
 
-            <div style="background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(128,0,0,0.1)); border: 2px solid #800000; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+            <div style="background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(128,0,0,0.1)); border: 1px solid #800000; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
                 <h3 style="color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; text-align:center;">
                     <i class="fas fa-file-signature" style="margin-right:8px;"></i>Declaration & Signature
                 </h3>
@@ -803,7 +803,7 @@ if (type === "study") {
         <p style="margin: 10px 0 0 0; font-size: 1.1rem;">Thank you for your application. We will contact you soon.</p>
     </div>
 
-    <form id="studyForm" style="background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 30px; margin-top: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); opacity: 0; animation: fadeInUp 0.6s ease forwards;">
+    <form id="studyForm" style="background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 1px solid #800000; border-radius: 15px; padding: 30px; margin-top: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); opacity: 0; animation: fadeInUp 0.6s ease forwards;">
         <style>
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -847,7 +847,7 @@ if (type === "study") {
                 display: block !important; 
                 width: calc(100% - 10px) !important; 
                 margin: 10px 0 !important; 
-                border: 2px solid #800000 !important; 
+                border: 1px solid #800000 !important; 
                 border-radius: 5px !important; 
                 padding: 10px !important; 
                 background: white !important; 
@@ -1084,33 +1084,33 @@ if (type === "study") {
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-calendar-alt" style="color:#800000; margin-right:5px;"></i>Application Date:</label>
-                    <input type="date" name="application_date" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <input type="date" name="application_date" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-user-circle" style="color:#800000; margin-right:5px;"></i>Principal Name:</label>
-                    <input type="text" name="principal_name" placeholder="Principal's Full Name" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <input type="text" name="principal_name" placeholder="Principal's Full Name" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-phone" style="color:#800000; margin-right:5px;"></i>Contact Number:</label>
-                    <input type="tel" name="contact_number" placeholder="+91-XXXXXXXXXX" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <input type="tel" name="contact_number" placeholder="+91-XXXXXXXXXX" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-envelope" style="color:#800000; margin-right:5px;"></i>Email Address:</label>
-                    <input type="email" name="email" placeholder="your.email@example.com" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <input type="email" name="email" placeholder="your.email@example.com" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-graduation-cap" style="color:#800000; margin-right:5px;"></i>Affiliated Board:</label>
-                    <input type="text" name="affiliated_board" placeholder="e.g., CBSE, State Board" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <input type="text" name="affiliated_board" placeholder="e.g., CBSE, State Board" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-clock" style="color:#800000; margin-right:5px;"></i>Experience (Years):</label>
-                    <input type="number" name="experience" placeholder="Years of experience" style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <input type="number" name="experience" placeholder="Years of experience" style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                 </div>
             </div>
 
             <div style="margin-top: 20px;">
                 <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-map-marker-alt" style="color:#800000; margin-right:5px;"></i>Complete Address:</label>
-                <textarea name="address" rows="3" placeholder="Enter your complete address..." required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
+                <textarea name="address" rows="3" placeholder="Enter your complete address..." required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
             </div>
         </div>
 
@@ -1123,19 +1123,19 @@ if (type === "study") {
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-book" style="color:#800000; margin-right:5px;"></i>Available Courses:</label>
-                    <textarea name="available_courses" rows="3" placeholder="List all available courses..." required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
+                    <textarea name="available_courses" rows="3" placeholder="List all available courses..." required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-laptop" style="color:#800000; margin-right:5px;"></i>Infrastructure:</label>
-                    <textarea name="infrastructure" rows="3" placeholder="Describe your infrastructure..." required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
+                    <textarea name="infrastructure" rows="3" placeholder="Describe your infrastructure..." required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-users" style="color:#800000; margin-right:5px;"></i>Staff Strength:</label>
-                    <input type="number" name="staff_strength" placeholder="Number of staff members" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <input type="number" name="staff_strength" placeholder="Number of staff members" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-user-graduate" style="color:#800000; margin-right:5px;"></i>Student Capacity:</label>
-                    <input type="number" name="student_capacity" placeholder="Maximum student capacity" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <input type="number" name="student_capacity" placeholder="Maximum student capacity" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                 </div>
             </div>
         </div>
@@ -1149,15 +1149,15 @@ if (type === "study") {
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-tools" style="color:#800000; margin-right:5px;"></i>Resources Required:</label>
-                    <textarea name="resources_required" rows="3" placeholder="What resources do you need from us?" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
+                    <textarea name="resources_required" rows="3" placeholder="What resources do you need from us?" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-briefcase" style="color:#800000; margin-right:5px;"></i>Previous Experience:</label>
-                    <textarea name="previous_experience" rows="3" placeholder="Describe your previous experience in education..." required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
+                    <textarea name="previous_experience" rows="3" placeholder="Describe your previous experience in education..." required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-star" style="color:#800000; margin-right:5px;"></i>Benefits of Partnership:</label>
-                    <textarea name="benefits" rows="3" placeholder="What benefits do you see in this partnership?" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
+                    <textarea name="benefits" rows="3" placeholder="What benefits do you see in this partnership?" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; resize: vertical; transition: all 0.3s ease; font-family: inherit;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'"></textarea>
                 </div>
             </div>
         </div>
@@ -1210,7 +1210,7 @@ if (type === "study") {
         </div>
 
         <!-- Declaration & Signature Section -->
-        <div style="background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(128,0,0,0.1)); border: 2px solid #800000; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+        <div style="background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(128,0,0,0.1)); border: 1px solid #800000; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
             <h3 style="color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; text-align:center;">
                 <i class="fas fa-file-signature" style="margin-right:8px;"></i>Declaration & Agreement
             </h3>
@@ -1227,11 +1227,11 @@ if (type === "study") {
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; background: white; padding: 20px; border-radius: 8px;">
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-signature" style="color:#800000; margin-right:5px;"></i>Principal's Name (for Signature):</label>
-                    <input type="text" name="declaration_principal" required placeholder="Principal's full name" style="width: 100%; border: 2px solid #e9ecef; border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                    <input type="text" name="declaration_principal" required placeholder="Principal's full name" style="width: 100%; border: 1px solid #e9ecef; border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                 </div>
                 <div>
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-calendar" style="color:#800000; margin-right:5px;"></i>Declaration Date:</label>
-                    <input type="date" name="declaration_date" required style="width: 100%; border: 2px solid #e9ecef; border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s;" onfocus="this.style.borderColor='#800000'" onblur="this.style.borderColor='#e9ecef'">
+                    <input type="date" name="declaration_date" required style="width: 100%; border: 1px solid #e9ecef; border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s;" onfocus="this.style.borderColor='#800000'" onblur="this.style.borderColor='#e9ecef'">
                 </div>
             </div>
 
@@ -1259,7 +1259,7 @@ if (type === "distance") {
             <p style="margin: 10px 0 0 0; font-size: 1.1rem;">Thank you for your application. We will contact you soon.</p>
         </div>
 
-        <form id="distanceForm" style="background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 30px; margin-top: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); opacity: 0; animation: fadeInUp 0.6s ease forwards;">
+        <form id="distanceForm" style="background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 1px solid #800000; border-radius: 15px; padding: 30px; margin-top: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); opacity: 0; animation: fadeInUp 0.6s ease forwards;">
             <style>
             @keyframes fadeInUp {
                 from { opacity: 0; transform: translateY(30px); }
@@ -1303,7 +1303,7 @@ if (type === "distance") {
                     display: block !important; 
                     width: calc(100% - 10px) !important; 
                     margin: 10px 0 !important; 
-                    border: 2px solid #800000 !important; 
+                    border: 1px solid #800000 !important; 
                     border-radius: 5px !important; 
                     padding: 10px !important; 
                     background: white !important; 
@@ -1547,19 +1547,19 @@ if (type === "distance") {
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-calendar-alt" style="color:#800000; margin-right:5px;"></i>Application Date:</label>
-                        <input type="date" name="application_date" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                        <input type="date" name="application_date" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                     </div>
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-phone" style="color:#800000; margin-right:5px;"></i>Contact Number:</label>
-                        <input type="tel" name="contact_number" placeholder="+91-XXXXXXXXXX" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                        <input type="tel" name="contact_number" placeholder="+91-XXXXXXXXXX" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                     </div>
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-envelope" style="color:#800000; margin-right:5px;"></i>Email Address:</label>
-                        <input type="email" name="email_address" placeholder="your.email@example.com" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                        <input type="email" name="email_address" placeholder="your.email@example.com" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                     </div>
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-graduation-cap" style="color:#800000; margin-right:5px;"></i>Educational Qualification:</label>
-                        <input type="text" name="educational_qualification" placeholder="Your highest qualification" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                        <input type="text" name="educational_qualification" placeholder="Your highest qualification" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                     </div>
                 </div>
             </div>
@@ -1573,19 +1573,19 @@ if (type === "distance") {
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-map" style="color:#800000; margin-right:5px;"></i>Center Area for Study Centre:</label>
-                        <input type="text" name="center_area" placeholder="Specify Area/Location" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                        <input type="text" name="center_area" placeholder="Specify Area/Location" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                     </div>
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-rupee-sign" style="color:#800000; margin-right:5px;"></i>Minimum Amount of Investment:</label>
-                        <input type="text" name="investment_amount" value="₹1,00,000/- (One Lakh Rupees)" readonly style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; background-color: #f8f9fa; color: #800000; font-weight: 600;">
+                        <input type="text" name="investment_amount" value="₹1,00,000/- (One Lakh Rupees)" readonly style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; background-color: #f8f9fa; color: #800000; font-weight: 600;">
                     </div>
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-school" style="color:#800000; margin-right:5px;"></i>Number of Schools in the Area:</label>
-                        <input type="number" name="number_of_schools" placeholder="Number of Schools" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                        <input type="number" name="number_of_schools" placeholder="Number of Schools" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                     </div>
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-users" style="color:#800000; margin-right:5px;"></i>Average Number of Students Passed in Class X Each Year:</label>
-                        <input type="number" name="avg_students" placeholder="Average Number" required style="width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                        <input type="number" name="avg_students" placeholder="Average Number" required style="width: 100%; padding: 12px 15px; border: 1px solid #e9ecef; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                     </div>
                 </div>
             </div>
@@ -1665,7 +1665,7 @@ if (type === "distance") {
             </div>
 
             <!-- Declaration & Signature Section -->
-            <div style="background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(128,0,0,0.1)); border: 2px solid #800000; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+            <div style="background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(128,0,0,0.1)); border: 1px solid #800000; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
                 <h3 style="color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; text-align:center;">
                     <i class="fas fa-file-signature" style="margin-right:8px;"></i>Declaration & Agreement
                 </h3>
@@ -1682,11 +1682,11 @@ if (type === "distance") {
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; background: white; padding: 20px; border-radius: 8px;">
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-signature" style="color:#800000; margin-right:5px;"></i>Applicant's Name (for Signature):</label>
-                        <input type="text" name="signature_name" required placeholder="Full name for signature" style="width: 100%; border: 2px solid #e9ecef; border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
+                        <input type="text" name="signature_name" required placeholder="Full name for signature" style="width: 100%; border: 1px solid #e9ecef; border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 3px rgba(128,0,0,0.1)'" onblur="this.style.borderColor='#e9ecef'; this.style.boxShadow='none'">
                     </div>
                     <div>
                         <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-calendar" style="color:#800000; margin-right:5px;"></i>Signature Date:</label>
-                        <input type="date" name="signature_date" required style="width: 100%; border: 2px solid #e9ecef; border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s;" onfocus="this.style.borderColor='#800000'" onblur="this.style.borderColor='#e9ecef'">
+                        <input type="date" name="signature_date" required style="width: 100%; border: 1px solid #e9ecef; border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s;" onfocus="this.style.borderColor='#800000'" onblur="this.style.borderColor='#e9ecef'">
                     </div>
                 </div>
 

@@ -1128,12 +1128,13 @@
 
         /* Mobile styles for faculty swiper navigation */
         @media (max-width: 992px) {
+
             .faculty-swiper .swiper-button-next,
             .faculty-swiper .swiper-button-prev {
                 display: none;
             }
 
-            
+
         }
 
 
@@ -1746,8 +1747,10 @@
             background: var(--primary-dark);
             transform: translateY(-2px);
         }
-        .partner-section{
-            padding-bottom: 3rem; background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+
+        .partner-section {
+            padding-bottom: 3rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
         }
 
         /* ===== NOTICE MARQUEE ===== */
@@ -2391,7 +2394,8 @@
                 width: 170px;
                 height: 170px;
             }
-            .partner-section{
+
+            .partner-section {
                 padding-bottom: 1rem;
             }
         }
@@ -2906,9 +2910,9 @@
                             </div>
                         </div>
 
-                        
 
-    
+
+
                     </div>
                     <div class="swiper-pagination faculty-pagination"></div>
                     <!-- Navigation buttons -->
@@ -2919,7 +2923,7 @@
         </section>
 
 
-       
+
 
 
         <!-- Showcase Section (semi-circle graphic + text) -->
@@ -3012,6 +3016,167 @@
                 </div>
             </div>
         </section>
+
+        <!-- Student Success Stories Video Section -->
+        <section id="success-stories" class="section"
+            style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 3rem 0;">
+            <div class="container">
+                <div class="section-title" style="text-align: center; margin-bottom: 2rem;">
+                    <span class="section-subtitle">Inspiring Journeys</span>
+                    <h2>Student Success Stories</h2>
+                    <p>Watch how our students achieved their dreams</p>
+                </div>
+
+                <!-- Video Grid -->
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
+
+                    <!-- Video 1 -->
+                    <div class="video-card"
+                        style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000; border: 2px solid #800000;">
+                        <video id="video1" style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                            playsinline preload="metadata">
+                            <source src="images/videos/1.mp4" type="video/mp4">
+                        </video>
+                        <div id="play-overlay1" onclick="playVideo(1)"
+                            style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s;">
+                            <div
+                                style="width: 60px; height: 60px; background: #800000; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(128,0,0,0.4);">
+                                <i class="fas fa-play" style="color: #fff; font-size: 1.5rem; margin-left: 4px;"></i>
+                            </div>
+                        </div>
+                        <!-- Time Display -->
+                        <div id="time-display1"
+                            style="position: absolute; bottom: 8px; right: 8px; background: #800000; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; display: none;">
+                            <span id="current-time1">0:00</span> / <span id="total-time1">0:00</span>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="video-card"
+                        style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000; border: 2px solid #800000;">
+                        <video id="video2" style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                            playsinline preload="metadata">
+                            <source src="images/videos/2.mp4" type="video/mp4">
+                        </video>
+                        <div id="play-overlay2" onclick="playVideo(2)"
+                            style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s;">
+                            <div
+                                style="width: 60px; height: 60px; background: #800000; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(128,0,0,0.4);">
+                                <i class="fas fa-play" style="color: #fff; font-size: 1.5rem; margin-left: 4px;"></i>
+                            </div>
+                        </div>
+                        <!-- Time Display -->
+                        <div id="time-display2"
+                            style="position: absolute; bottom: 8px; right: 8px; background: #800000; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; display: none;">
+                            <span id="current-time2">0:00</span> / <span id="total-time2">0:00</span>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="video-card"
+                        style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000; border: 2px solid #800000;">
+                        <video id="video3" style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                            playsinline preload="metadata">
+                            <source src="images/videos/3.mp4" type="video/mp4">
+                        </video>
+                        <div id="play-overlay3" onclick="playVideo(3)"
+                            style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s;">
+                            <div
+                                style="width: 60px; height: 60px; background: #800000; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(128,0,0,0.4);">
+                                <i class="fas fa-play" style="color: #fff; font-size: 1.5rem; margin-left: 4px;"></i>
+                            </div>
+                        </div>
+                        <!-- Time Display -->
+                        <div id="time-display3"
+                            style="position: absolute; bottom: 8px; right: 8px; background: #800000; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; display: none;">
+                            <span id="current-time3">0:00</span> / <span id="total-time3">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View More Button -->
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="https://youtube.com/@SRLAcademycoachinginstitute" target="_blank" class="result-btn"
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+                        <i class="fab fa-youtube"></i>
+                        Watch More on YouTube
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // Format time as M:SS
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return mins + ':' + (secs < 10 ? '0' : '') + secs;
+            }
+
+            function playVideo(num) {
+                const video = document.getElementById('video' + num);
+                const overlay = document.getElementById('play-overlay' + num);
+                const timeDisplay = document.getElementById('time-display' + num);
+
+                if (video.paused) {
+                    // Pause all other videos first
+                    for (let i = 1; i <= 3; i++) {
+                        if (i !== num) {
+                            const otherVideo = document.getElementById('video' + i);
+                            const otherOverlay = document.getElementById('play-overlay' + i);
+                            const otherTimeDisplay = document.getElementById('time-display' + i);
+                            if (otherVideo && !otherVideo.paused) {
+                                otherVideo.pause();
+                                otherOverlay.style.display = 'flex';
+                                if (otherTimeDisplay) otherTimeDisplay.style.display = 'none';
+                            }
+                        }
+                    }
+                    video.play();
+                    overlay.style.display = 'none';
+                    if (timeDisplay) timeDisplay.style.display = 'block';
+                } else {
+                    video.pause();
+                    overlay.style.display = 'flex';
+                    if (timeDisplay) timeDisplay.style.display = 'none';
+                }
+            }
+
+            // Initialize video time displays
+            document.querySelectorAll('.video-card video').forEach((video, index) => {
+                const num = index + 1;
+
+                // Update total time when metadata loads
+                video.addEventListener('loadedmetadata', () => {
+                    const totalTimeEl = document.getElementById('total-time' + num);
+                    if (totalTimeEl) totalTimeEl.textContent = formatTime(video.duration);
+                });
+
+                // Update current time during playback
+                video.addEventListener('timeupdate', () => {
+                    const currentTimeEl = document.getElementById('current-time' + num);
+                    if (currentTimeEl) currentTimeEl.textContent = formatTime(video.currentTime);
+                });
+
+                // Show overlay when video ends
+                video.addEventListener('ended', () => {
+                    const overlay = document.getElementById('play-overlay' + num);
+                    const timeDisplay = document.getElementById('time-display' + num);
+                    if (overlay) overlay.style.display = 'flex';
+                    if (timeDisplay) timeDisplay.style.display = 'none';
+                });
+
+                // Allow clicking video to pause
+                video.addEventListener('click', () => {
+                    const overlay = document.getElementById('play-overlay' + num);
+                    const timeDisplay = document.getElementById('time-display' + num);
+                    video.pause();
+                    if (overlay) overlay.style.display = 'flex';
+                    if (timeDisplay) timeDisplay.style.display = 'none';
+                });
+            });
+        </script>
 
         <!-- Testimonials Section -->
         <section id="testimonials" class="section testimonials">
@@ -3153,12 +3318,15 @@
             </div>
         </section>
 
-         <!-- Partner With Us Section -->
+        <!-- Partner With Us Section -->
         <section class="partner-section">
             <div class="container">
                 <div style="text-align: center;">
-                    <a href="partnership.html" style="display: inline-block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02';" onmouseout="this.style.transform='scale(1)';">
-                        <img src="images/Partnership With Us.png" alt="Partner With Us - SRL Academy" style="max-width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 12px 35px rgba(128, 0, 0, 0.3);" onerror="this.style.display='none';">
+                    <a href="partnership.html" style="display: inline-block; transition: transform 0.3s ease;"
+                        onmouseover="this.style.transform='scale(1.02';" onmouseout="this.style.transform='scale(1)';">
+                        <img src="images/Partnership With Us.png" alt="Partner With Us - SRL Academy"
+                            style="max-width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 12px 35px rgba(128, 0, 0, 0.3);"
+                            onerror="this.style.display='none';">
                     </a>
                 </div>
             </div>
@@ -3206,9 +3374,19 @@
 
                 <div style="flex:1; min-width:200px;">
                     <h3 style="margin-bottom:15px; color:#ffff;">Contact Info</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga Parameshwari Temple Arch, HMT Layout, Vidyaranyapura Main Road, Bangalore - 560 097</p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+918088107550" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">+91 8088107550</a>, <a href="tel:+918088003792" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">8088003792</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:srl4education@gmail.com" style="color:#fff; text-decoration:none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">srl4education@gmail.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga Parameshwari Temple Arch, HMT
+                        Layout, Vidyaranyapura Main Road, Bangalore - 560 097</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+918088107550"
+                            style="color:#fff; text-decoration:none;"
+                            onmouseover="this.style.textDecoration='underline';"
+                            onmouseout="this.style.textDecoration='none';">+91 8088107550</a>, <a
+                            href="tel:+918088003792" style="color:#fff; text-decoration:none;"
+                            onmouseover="this.style.textDecoration='underline';"
+                            onmouseout="this.style.textDecoration='none';">8088003792</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:srl4education@gmail.com"
+                            style="color:#fff; text-decoration:none;"
+                            onmouseover="this.style.textDecoration='underline';"
+                            onmouseout="this.style.textDecoration='none';">srl4education@gmail.com</a></p>
                 </div>
 
                 <!-- Social Media Section -->

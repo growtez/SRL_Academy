@@ -41,15 +41,27 @@
                 font-size: 1.8rem !important;
             }
 
-            /* Key Benefits Grid */
-            .benefits-grid {
-                grid-template-columns: 1fr !important;
-                gap: 20px !important;
+            /* Key Benefits Grid - 2 columns on mobile */
+            .benefits-grid, .partner-features-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
             }
 
-            .benefit-card {
-                padding: 25px !important;
+            .benefit-card, .partner-feature-card {
+                padding: 15px !important;
                 min-height: auto !important;
+            }
+
+            .partner-feature-card h3 {
+                font-size: 1rem !important;
+            }
+
+            .partner-feature-card p {
+                font-size: 0.85rem !important;
+            }
+
+            .partner-feature-card i {
+                font-size: 1.5rem !important;
             }
 
             /* Collaboration Section */
@@ -162,8 +174,9 @@
 
         /* Smoothing for smaller phones */
         @media (max-width: 480px) {
-            .partners-grid {
-                grid-template-columns: 1fr !important;
+            .partners-grid, .benefits-grid, .partner-features-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
             }
             
             #success-stories h2 {
@@ -174,8 +187,8 @@
                 margin-bottom: 20px !important;
             }
             
-            .benefit-card {
-                padding: 20px !important;
+            .benefit-card, .partner-feature-card {
+                padding: 12px !important;
             }
             
             .collaboration-container {
@@ -409,11 +422,11 @@
                 <h2 style="font-family: 'Oswald', sans-serif; font-size: 2rem; color: #800000; text-align: center; margin-bottom: 15px;">Why Partner With SRL Academy?</h2>
                 <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">Comprehensive educational solutions designed to maximize student potential</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
+                <div class="partner-features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
                     
                     <!-- Holistic Preparation -->
-                    <div style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="partner-feature-card" style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
+                        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 15px;">
                             <i class="fas fa-brain" style="font-size: 2rem; color: #800000; margin-top: 5px;"></i>
                             <div>
                                 <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #333; margin-bottom: 10px;">Holistic Preparation</h3>
@@ -423,8 +436,8 @@
                     </div>
 
                     <!-- Expert Faculty -->
-                    <div style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="partner-feature-card" style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
+                        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 15px;">
                             <i class="fas fa-chalkboard-teacher" style="font-size: 2rem; color: #800000; margin-top: 5px;"></i>
                             <div>
                                 <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #333; margin-bottom: 10px;">Expert Faculty</h3>
@@ -434,8 +447,8 @@
                     </div>
 
                     <!-- Advanced Study Materials -->
-                    <div style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="partner-feature-card" style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
+                        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 15px;">
                             <i class="fas fa-book-open" style="font-size: 2rem; color: #800000; margin-top: 5px;"></i>
                             <div>
                                 <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #333; margin-bottom: 10px;">Advanced Study Materials</h3>
@@ -445,8 +458,8 @@
                     </div>
 
                     <!-- Regular Assessments -->
-                    <div style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="partner-feature-card" style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
+                        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 15px;">
                             <i class="fas fa-clipboard-check" style="font-size: 2rem; color: #800000; margin-top: 5px;"></i>
                             <div>
                                 <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #333; margin-bottom: 10px;">Regular Assessments</h3>
@@ -456,8 +469,8 @@
                     </div>
 
                     <!-- Career Guidance -->
-                    <div style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="partner-feature-card" style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
+                        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 15px;">
                             <i class="fas fa-compass" style="font-size: 2rem; color: #800000; margin-top: 5px;"></i>
                             <div>
                                 <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #333; margin-bottom: 10px;">Career Guidance</h3>
@@ -467,8 +480,8 @@
                     </div>
 
                     <!-- Doubt Solving & Parent Interaction -->
-                    <div style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                    <div class="partner-feature-card" style="padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 4px solid #800000;">
+                        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 15px;">
                             <i class="fas fa-users" style="font-size: 2rem; color: #800000; margin-top: 5px;"></i>
                             <div>
                                 <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #333; margin-bottom: 10px;">Doubt Solving & Parent Interaction</h3>

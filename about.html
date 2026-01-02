@@ -19,7 +19,107 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     <!-- Favicon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
+    <style>
+        /* Responsive Grid for Story Section */
+        @media (max-width: 768px) {
+            .story-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            .exclusive-methodology-title {
+                font-size: 2.5rem !important;
+            }
+
+            /* Container Adjustments */
+            .section {
+                padding: 60px 0 !important;
+            }
+
+            /* Main Story Grid */
+            .about-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+                padding: 0 10px;
+            }
+
+            /* Achievements Grid - 2 columns on mobile */
+            .achievements-flex {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+                padding: 0 10px;
+            }
+
+            .stat-card {
+                width: 100% !important;
+                height: auto !important;
+                padding: 20px 10px !important;
+            }
+
+            .stat-number {
+                font-size: 28px !important;
+            }
+
+            /* Why Choose Us - 2 columns on mobile */
+            .why-choose-flex {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+                padding: 0 10px;
+            }
+
+            .why-card {
+                width: 100% !important;
+                padding: 20px 15px !important;
+            }
+
+            .why-card h3 {
+                font-size: 16px !important;
+            }
+
+            .why-card p {
+                font-size: 12px !important;
+            }
+
+            /* Methodology Grid - 2 columns on mobile */
+            .methodology-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+                padding: 0 5px;
+            }
+
+            .methodology-card {
+                padding: 20px 15px !important;
+            }
+
+            .methodology-card i {
+                font-size: 1.8rem !important;
+            }
+
+            .methodology-card h4 {
+                font-size: 1.1rem !important;
+            }
+
+            .methodology-card p {
+                font-size: 0.9rem !important;
+            }
+
+            /* Footer Mentoring */
+            .mentoring-block {
+                flex-direction: column !important;
+                text-align: center !important;
+                padding: 25px !important;
+                gap: 20px !important;
+            }
+
+            .mentoring-icon {
+                margin: 0 auto !important;
+            }
+        }
+    </style>
 </head>
 
 <body
@@ -79,69 +179,116 @@
         </section>
 
         <!-- About Content -->
-        <section style="padding: 60px 20px; background: #f9f9f9;">
+        <section style="padding: 60px 20px 20px; background: #f9f9f9;">
             <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
 
                 <!-- Section Title -->
-                <div style="margin-bottom: 40px;">
+                <div style="margin-bottom: 50px;">
                     <span
-                        style="display: block; font-size: 20px; color: rgb(128,0,0); font-weight: bold; margin-bottom: 8px;">
-                        Our Story
-                    </span>
-                    <h2 style="font-size: 32px; margin: 0; color: #222;">
-                        Excellence in Education Since 2008
+                        style="display: inline-block; padding: 6px 15px; background: rgba(128,0,0,0.08); color: #800000; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Our
+                        Legacy of Excellence</span>
+                    <h2
+                        style="font-family: 'Oswald', sans-serif; font-size: 3rem; margin: 0; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1.1;">
+                        Shaping Futures Since <span style="color: #800000;">2008</span>
                     </h2>
-                    <p style="font-size: 16px; color: #555; margin-top: 10px;">
-                        From humble beginnings in Bangalore to 12+ centers across India, our journey has been dedicated
-                        to student success.
-                    </p>
+                    <div
+                        style="width: 60px; height: 5px; background: #800000; margin: 25px auto 0; border-radius: 10px;">
+                    </div>
                 </div>
 
-                <!-- Program Cards -->
-                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <!-- Main About Grid -->
+                <div class="about-main-grid"
+                    style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; text-align: left; margin-bottom: 30px; align-items: start;">
 
-                    <!-- Vision -->
+                    <!-- Left Column: Story -->
                     <div
-                        style="box-shadow: 0 4px 10px rgba(128,0,0,0.6); border-radius: 12px; padding: 20px; width: 300px; background: #fff; text-align: center;">
+                        style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); border-left: 5px solid #800000;">
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 20px;">
+                            <strong style="color: #800000;">SRL Academy</strong> has been instrumental in shaping the
+                            educational paths of thousands of aspirants. Our meticulously designed materials facilitate
+                            efficient learning, featuring a wide spectrum of practice questions and exercises that
+                            reinforce fundamental concepts.
+                        </p>
+
                         <div
-                            style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px;">
-                            <i class="fas fa-eye" style="font-size: 24px; color: rgb(128,0,0);"></i>
-                            <h3 style="margin: 0; font-size: 20px; color: rgb(128,0,0);">Our Vision</h3>
+                            style="margin: 25px 0; padding: 20px; background: rgba(128,0,0,0.03); border-radius: 12px; position: relative;">
+                            <i class="fas fa-quote-left"
+                                style="position: absolute; top: 10px; left: 10px; font-size: 1.5rem; color: rgba(128,0,0,0.1);"></i>
+                            <p
+                                style="font-size: 1.15rem; line-height: 1.7; color: #1a1a1a; margin: 0; font-weight: 500; font-style: italic; position: relative; z-index: 1;">
+                                "SRL Academy played an instrumental role in shaping my educational path. Their materials
+                                are designed to facilitate <span style="color: #800000;">efficient learning</span>, with
+                                a wide range of practice questions that truly reinforce every complex concept."
+                            </p>
                         </div>
-                        <p style="margin: 0; color: #333; line-height: 1.5;">
-                            To be the most trusted name in education, empowering students to achieve their dreams
-                            through quality coaching and comprehensive support.
+
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 0;">
+                            We have consistently produced excellent results in prestigious engineering and medical
+                            entrance examinations, including <strong style="color: #800000;">JEE (Main + Advanced),
+                                NEET, K-CET, and KVPY</strong>. Our expertise isn't limited geographically; we are
+                            currently training students in <strong style="color: #800000;">Uttarakhand</strong> for JEE
+                            and NEET under the <strong style="color: #1a1a1a;">American India Foundation</strong>.
                         </p>
                     </div>
 
-                    <!-- Mission -->
-                    <div
-                        style="box-shadow: 0 4px 10px rgba(128,0,0,0.6); border-radius: 12px; padding: 20px; width: 300px; background: #fff; text-align: center;">
-                        <div
-                            style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px;">
-                            <i class="fas fa-bullseye" style="font-size: 24px; color: rgb(128,0,0);"></i>
-                            <h3 style="margin: 0; font-size: 20px; color: rgb(128,0,0);">Our Mission</h3>
-                        </div>
-                        <p style="margin: 0; color: #333; line-height: 1.5;">
-                            Providing world-class education with innovative teaching methods, experienced faculty, and
-                            personalized attention to every student.
-                        </p>
-                    </div>
+                    <!-- Right Column: Vision, Mission & Values -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
 
-                    <!-- Values -->
-                    <div
-                        style="box-shadow: 0 4px 10px rgba(128,0,0,0.6); border-radius: 12px; padding: 20px; width: 300px; background: #fff; text-align: center;">
+                        <!-- Vision -->
                         <div
-                            style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px;">
-                            <i class="fas fa-heart" style="font-size: 24px; color: rgb(128,0,0);"></i>
-                            <h3 style="margin: 0; font-size: 20px; color: rgb(128,0,0);">Our Values</h3>
+                            style="box-shadow: 0 8px 25px rgba(128,0,0,0.08); border-radius: 15px; padding: 25px; background: #fff; text-align: left; border: 1px solid rgba(128,0,0,0.05); display: flex; align-items: flex-start; gap: 20px;">
+                            <div
+                                style="min-width: 50px; height: 50px; background: rgba(128,0,0,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-eye" style="font-size: 20px; color: #800000;"></i>
+                            </div>
+                            <div>
+                                <h3
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #800000; margin-bottom: 8px; text-transform: uppercase;">
+                                    Our Vision</h3>
+                                <p style="margin: 0; color: #555; line-height: 1.6; font-size: 0.95rem;">
+                                    To be the most trusted name in education, empowering students to achieve their
+                                    dreams through quality coaching and comprehensive support.
+                                </p>
+                            </div>
                         </div>
-                        <p style="margin: 0; color: #333; line-height: 1.5;">
-                            Excellence, integrity, innovation, and student-centric approach form the foundation of
-                            everything we do at SRL Academy.
-                        </p>
-                    </div>
 
+                        <!-- Mission -->
+                        <div
+                            style="box-shadow: 0 8px 25px rgba(128,0,0,0.08); border-radius: 15px; padding: 25px; background: #fff; text-align: left; border: 1px solid rgba(128,0,0,0.05); display: flex; align-items: flex-start; gap: 20px;">
+                            <div
+                                style="min-width: 50px; height: 50px; background: rgba(128,0,0,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-bullseye" style="font-size: 20px; color: #800000;"></i>
+                            </div>
+                            <div>
+                                <h3
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #800000; margin-bottom: 8px; text-transform: uppercase;">
+                                    Our Mission</h3>
+                                <p style="margin: 0; color: #555; line-height: 1.6; font-size: 0.95rem;">
+                                    Providing world-class education with innovative teaching methods, experienced
+                                    faculty, and personalized attention to every student.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Values -->
+                        <div
+                            style="box-shadow: 0 8px 25px rgba(128,0,0,0.08); border-radius: 15px; padding: 25px; background: #fff; text-align: left; border: 1px solid rgba(128,0,0,0.05); display: flex; align-items: flex-start; gap: 20px;">
+                            <div
+                                style="min-width: 50px; height: 50px; background: rgba(128,0,0,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-heart" style="font-size: 20px; color: #800000;"></i>
+                            </div>
+                            <div>
+                                <h3
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #800000; margin-bottom: 8px; text-transform: uppercase;">
+                                    Our Values</h3>
+                                <p style="margin: 0; color: #555; line-height: 1.6; font-size: 0.95rem;">
+                                    Excellence, integrity, innovation, and student-centric approach form the foundation
+                                    of everything we do at SRL Academy.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
@@ -149,7 +296,7 @@
 
 
         <!-- Stats Section -->
-        <section style="padding: 60px 20px; background: #fff;">
+        <section style="padding: 90px 20px 160px; background: #fff;">
             <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
 
                 <!-- Section Title -->
@@ -164,11 +311,13 @@
                 </div>
 
                 <!-- Stats -->
-                <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;">
+                <div class="achievements-flex"
+                    style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;">
 
                     <!-- Study Centers -->
-                    <div style="text-align: center; width: 200px;">
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 1px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
+                    <div style="text-align: center;">
+                        <div class="stat-card"
+                            style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 1px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
                             data-target="12">
                             <span class="stat-number">0</span>
                             <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Study
@@ -177,8 +326,9 @@
                     </div>
 
                     <!-- Years of Excellence -->
-                    <div style="text-align: center; width: 200px;">
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 1px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
+                    <div style="text-align: center;">
+                        <div class="stat-card"
+                            style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 1px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
                             data-target="15">
                             <span class="stat-number">0</span>
                             <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Years of
@@ -187,8 +337,9 @@
                     </div>
 
                     <!-- Students Enrolled -->
-                    <div style="text-align: center; width: 200px;">
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 1px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
+                    <div style="text-align: center;">
+                        <div class="stat-card"
+                            style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 1px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
                             data-target="8000" data-suffix="+">
                             <span class="stat-number">0+</span>
                             <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Students
@@ -197,8 +348,9 @@
                     </div>
 
                     <!-- Success Rate -->
-                    <div style="text-align: center; width: 200px;">
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 1px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
+                    <div style="text-align: center;">
+                        <div class="stat-card"
+                            style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 1px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
                             data-target="72" data-suffix="%">
                             <span class="stat-number">0%</span>
                             <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Success
@@ -260,7 +412,7 @@
 
 
                 <!-- Why Choose Us -->
-                <section class="section">
+                <section class="section" style="padding: 100px 0;">
                     <div class="container">
                         <div class="section-title">
                             <span class="section-subtitle">Why Choose Us</span>
@@ -268,10 +420,11 @@
                         </div>
 
                         <!-- Cards -->
-                        <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
+                        <div class="why-choose-flex"
+                            style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
 
                             <!-- Expert Faculty -->
-                            <div
+                            <div class="why-card"
                                 style="border: 1px solid #800000; border-radius: 8px; padding: 30px 20px; width: 280px; background: white; text-align: center;">
                                 <div style="margin-bottom: 20px;">
                                     <i class="fas fa-chalkboard-teacher" style="font-size: 32px; color: #800000;"></i>
@@ -285,7 +438,7 @@
                             </div>
 
                             <!-- Comprehensive Study Material -->
-                            <div
+                            <div class="why-card"
                                 style="border: 1px solid #800000; border-radius: 8px; padding: 30px 20px; width: 280px; background: white; text-align: center;">
                                 <div style="margin-bottom: 20px;">
                                     <i class="fas fa-book" style="font-size: 32px; color: #800000;"></i>
@@ -299,7 +452,7 @@
                             </div>
 
                             <!-- Small Batch Size -->
-                            <div
+                            <div class="why-card"
                                 style="border: 1px solid #800000; border-radius: 8px; padding: 30px 20px; width: 280px; background: white; text-align: center;">
                                 <div style="margin-bottom: 20px;">
                                     <i class="fas fa-users" style="font-size: 32px; color: #800000;"></i>
@@ -313,7 +466,7 @@
                             </div>
 
                             <!-- Regular Assessment -->
-                            <div
+                            <div class="why-card"
                                 style="border: 1px solid #800000; border-radius: 8px; padding: 30px 20px; width: 280px; background: white; text-align: center;">
                                 <div style="margin-bottom: 20px;">
                                     <i class="fas fa-chart-line" style="font-size: 32px; color: #800000;"></i>
@@ -327,7 +480,7 @@
                             </div>
 
                             <!-- Doubt Clearing -->
-                            <div
+                            <div class="why-card"
                                 style="border: 1px solid #800000; border-radius: 8px; padding: 30px 20px; width: 280px; background: white; text-align: center;">
                                 <div style="margin-bottom: 20px;">
                                     <i class="fas fa-question-circle" style="font-size: 32px; color: #800000;"></i>
@@ -341,7 +494,7 @@
                             </div>
 
                             <!-- Parent Engagement -->
-                            <div
+                            <div class="why-card"
                                 style="border: 1px solid #800000; border-radius: 8px; padding: 30px 20px; width: 280px; background: white; text-align: center;">
                                 <div style="margin-bottom: 20px;">
                                     <i class="fas fa-handshake" style="font-size: 32px; color: #800000;"></i>
@@ -354,6 +507,143 @@
                                 </p>
                             </div>
 
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Exclusive Teaching Methodology Section -->
+                <section
+                    style="padding: 100px 20px 60px; background: #f2f2f2; color: #333; border-radius: 50px; margin: 0 20px 20px; overflow: hidden;">
+                    <div style="max-width: 1100px; margin: 0 auto;">
+                        <div style="text-align: center; margin-bottom: 60px;">
+                            <span
+                                style="display: inline-block; padding: 6px 15px; background: rgba(128,0,0,0.08); color: #800000; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Our
+                                Secret Sauce</span>
+                            <h2 class="exclusive-methodology-title"
+                                style="font-family: 'Oswald', sans-serif; font-size: 3.5rem; color: #1a1a1a; margin-bottom: 10px; font-weight: 700; line-height: 1.1;">
+                                Exclusive <span
+                                    style="background: linear-gradient(120deg, #800000 0%, #b30000 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Teaching
+                                    Methodology</span>
+                            </h2>
+                            <p
+                                style="color: #666; font-size: 1.1rem; max-width: 800px; margin: 25px auto 0; line-height: 1.6;">
+                                Today's competitive exams demand more than just memorization. They require precision,
+                                swiftness, and the ability to apply concepts to diverse, complex situations.
+                            </p>
+                        </div>
+
+                        <!-- Methodology Grid -->
+                        <div class="methodology-grid"
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+
+                            <!-- Card 1: 100% Interactive Lectures -->
+                            <div class="methodology-card"
+                                style="background: white; padding: 40px; border-radius: 20px; border: 1px solid rgba(128,0,0,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;"
+                                onmouseover="this.style.transform='translateY(-10px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <i class="fas fa-comments"
+                                    style="font-size: 2.5rem; color: #800000; margin-bottom: 20px;"></i>
+                                <h4
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; margin-bottom: 15px; color: #800000;">
+                                    100% Interactive Lectures</h4>
+                                <p style="color: #666; line-height: 1.7;">Delivery is fully
+                                    interactive, ensuring maximum student engagement and involvement in every single
+                                    topic discussed.</p>
+                            </div>
+
+                            <!-- Card 2: Conceptual Clarity -->
+                            <div class="methodology-card"
+                                style="background: white; padding: 40px; border-radius: 20px; border: 1px solid rgba(128,0,0,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;"
+                                onmouseover="this.style.transform='translateY(-10px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <i class="fas fa-lightbulb"
+                                    style="font-size: 2.5rem; color: #800000; margin-bottom: 20px;"></i>
+                                <h4
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; margin-bottom: 15px; color: #800000;">
+                                    Deep Conceptual Clarity</h4>
+                                <p style="color: #666; line-height: 1.7;">Topics are layer-peeled so
+                                    students understand the 'why' and 'how' behind every concept before moving to
+                                    solution techniques.</p>
+                            </div>
+
+                            <!-- Card 3: Real-Life Application -->
+                            <div class="methodology-card"
+                                style="background: white; padding: 40px; border-radius: 20px; border: 1px solid rgba(128,0,0,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;"
+                                onmouseover="this.style.transform='translateY(-10px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <i class="fas fa-vial"
+                                    style="font-size: 2.5rem; color: #800000; margin-bottom: 20px;"></i>
+                                <h4
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; margin-bottom: 15px; color: #800000;">
+                                    Real-Life Application</h4>
+                                <p style="color: #666; line-height: 1.7;">Numerous examples based on
+                                    real-life situations are discussed to help students bridge the gap between theory
+                                    and practical application.</p>
+                            </div>
+
+                            <!-- Card 4: Tips & Shortcuts -->
+                            <div class="methodology-card"
+                                style="background: white; padding: 40px; border-radius: 20px; border: 1px solid rgba(128,0,0,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;"
+                                onmouseover="this.style.transform='translateY(-10px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <i class="fas fa-bolt"
+                                    style="font-size: 2.5rem; color: #800000; margin-bottom: 20px;"></i>
+                                <h4
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; margin-bottom: 15px; color: #800000;">
+                                    Speed & Strategy</h4>
+                                <p style="color: #666; line-height: 1.7;">Once concepts are mastered,
+                                    we provide necessary tips & shortcuts to overcome strict time constraints imposed
+                                    during exams.</p>
+                            </div>
+
+                            <!-- Card 5: Creative Problem Solving -->
+                            <div class="methodology-card"
+                                style="background: white; padding: 40px; border-radius: 20px; border: 1px solid rgba(128,0,0,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;"
+                                onmouseover="this.style.transform='translateY(-10px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <i class="fas fa-puzzle-piece"
+                                    style="font-size: 2.5rem; color: #800000; margin-bottom: 20px;"></i>
+                                <h4
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; margin-bottom: 15px; color: #800000;">
+                                    Creative Problem Solving</h4>
+                                <p style="color: #666; line-height: 1.7;">We encourage students to
+                                    think independently and solve complex problems creatively through structured
+                                    learning paths.</p>
+                            </div>
+
+                            <!-- Card 6: Comprehensive Practice -->
+                            <div class="methodology-card"
+                                style="background: white; padding: 40px; border-radius: 20px; border: 1px solid rgba(128,0,0,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;"
+                                onmouseover="this.style.transform='translateY(-10px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <i class="fas fa-tasks"
+                                    style="font-size: 2.5rem; color: #800000; margin-bottom: 20px;"></i>
+                                <h4
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; margin-bottom: 15px; color: #800000;">
+                                    Comprehensive Homework</h4>
+                                <p style="color: #666; line-height: 1.7;">Homework assignments from a
+                                    wide spectrum of sources are given after each topic to build unshakeable confidence.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Footer Mentoring -->
+                        <div class="mentoring-block"
+                            style="margin-top: 50px; padding: 35px; background: linear-gradient(135deg, rgba(128,0,0,0.12) 0%, rgba(128,0,0,0.02) 50%, rgba(255,255,255,0) 100%); border-radius: 20px; border: 1px solid rgba(128,0,0,0.08); display: flex; align-items: center; gap: 30px; flex-wrap: wrap; box-shadow: 0 8px 30px rgba(128,0,0,0.03); position: relative; overflow: hidden; margin-left: 10px; margin-right: 10px;">
+
+                            <div class="mentoring-icon"
+                                style="width: 80px; height: 80px; flex: 0 0 80px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(128,0,0,0.05); box-shadow: 0 5px 15px rgba(0,0,0,0.03); position: relative; z-index: 1; flex-shrink: 0;">
+                                <i class="fas fa-user-friends" style="font-size: 2rem; color: #800000; margin: 0;"></i>
+                            </div>
+                            <div style="flex: 1; min-width: 300px;">
+                                <h4
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: #800000; margin-bottom: 10px;">
+                                    Continuous Mentoring & Counseling</h4>
+                                <p style="color: #555; font-size: 1.1rem; line-height: 1.6; margin: 0;">
+                                    Periodic parent-teacher meetings and counseling sessions ensure performance is
+                                    monitored and enhanced continuously. We create an environment where students clarify
+                                    doubts without any hesitation.</p>
+                            </div>
                         </div>
                     </div>
                 </section>

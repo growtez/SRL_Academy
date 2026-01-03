@@ -1309,26 +1309,84 @@
             color: var(--gray-600);
         }
 
-        .testimonial-author {
+        .student-testimonial-card {
+            background: #fff5f5;
+            /* Light maroon background */
+            padding: 3rem 2rem 2rem;
+            /* Increased top padding to avoid content overlapping with quote */
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(128, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-top: 2rem;
+            /* Add margin to top so quote doesn't hit the section above */
+        }
+
+        .student-testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .student-quote-icon {
+            position: absolute;
+            top: -25px;
+            /* Position half outside the card */
+            left: 20px;
+            font-size: 4.5rem;
+            /* Larger quotes like in the image */
+            color: var(--primary);
+            opacity: 1;
+            /* More visible like the image */
+            line-height: 1;
+            z-index: 10;
+        }
+
+        .student-testimonial-content {
+            flex-grow: 1;
+        }
+
+        .student-testimonial-content p {
+            color: var(--gray-700);
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-style: normal;
+            /* Matching the image's non-italic style */
+        }
+
+        .student-testimonial-author {
             display: flex;
             align-items: center;
             gap: 1rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(128, 0, 0, 0.05);
+            padding-top: 1rem;
         }
 
-        .testimonial-author img {
-            width: 50px;
-            height: 50px;
+        .student-author-avatar {
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
         }
 
-        .author-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
+        .student-author-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+            color: var(--primary-dark);
+            font-weight: 700;
         }
 
-        .author-info span {
+        .student-author-info span {
             color: var(--gray-500);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            display: block;
         }
 
         /* Author avatar */
@@ -1348,9 +1406,27 @@
             background: #eee;
         }
 
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info span {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
         /* Swiper layout for testimonials */
         .testimonial-swiper {
-            padding: 0.5rem 0 2.5rem;
+            padding: 0.5rem 0 4rem;
+            /* Increased bottom padding to move dots further out */
+            position: relative;
+        }
+
+        .testimonial-pagination {
+            bottom: 0 !important;
+            /* Forces it to the bottom of the padded container */
+            margin-top: 1rem;
         }
 
         .testimonial-swiper .swiper-slide {
@@ -3189,18 +3265,21 @@
                 <div class="testimonial-swiper swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
+                            <div class="student-testimonial-card">
+                                <div class="student-quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="student-testimonial-content">
                                     <p>"The rigorous academic environment at SRL Academy challenged me to push my
                                         boundaries.
                                         The faculty's mentorship went beyond just academics, shaping my overall
                                         personality
                                         and confidence for the IIT journey."</p>
                                 </div>
-                                <div class="testimonial-author">
-                                    <img class="author-avatar" src="images/students/student1.jpg"
+                                <div class="student-testimonial-author">
+                                    <img class="student-author-avatar" src="images/students/student1.jpg"
                                         alt="Photo of Saurav Kumar" onerror="this.src='images/logo.png';">
-                                    <div class="author-info">
+                                    <div class="student-author-info">
                                         <h4>Saurav Kumar</h4>
                                         <span>IIT Mumbai (2018 Batch)</span>
                                     </div>
@@ -3209,16 +3288,19 @@
                         </div>
 
                         <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
+                            <div class="student-testimonial-card">
+                                <div class="student-quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="student-testimonial-content">
                                     <p>"SRL Academy's teaching methodology is unique. The way they break down complex
                                         problems into simple steps helped me develop a strong analytical approach that
                                         was crucial for cracking JEE."</p>
                                 </div>
-                                <div class="testimonial-author">
-                                    <img class="author-avatar" src="images/students/student2.jpg"
+                                <div class="student-testimonial-author">
+                                    <img class="student-author-avatar" src="images/students/student2.jpg"
                                         alt="Photo of Rahul Maheswari" onerror="this.src='images/logo.png';">
-                                    <div class="author-info">
+                                    <div class="student-author-info">
                                         <h4>Rahul Maheswari</h4>
                                         <span>IIT BHU (2020 Batch)</span>
                                     </div>
@@ -3227,16 +3309,19 @@
                         </div>
 
                         <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
+                            <div class="student-testimonial-card">
+                                <div class="student-quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="student-testimonial-content">
                                     <p>"The faculty at SRL Academy are truly exceptional. Their personalized approach
                                         to teaching and constant motivation helped me achieve my dream of getting into
                                         a top medical college."</p>
                                 </div>
-                                <div class="testimonial-author">
-                                    <img class="author-avatar" src="images/students/student3.jpg"
+                                <div class="student-testimonial-author">
+                                    <img class="student-author-avatar" src="images/students/student3.jpg"
                                         alt="Photo of Priya Sharma" onerror="this.src='images/logo.png';">
-                                    <div class="author-info">
+                                    <div class="student-author-info">
                                         <h4>Priya Sharma</h4>
                                         <span>AIIMS Delhi (2021 Batch)</span>
                                     </div>
@@ -3245,17 +3330,20 @@
                         </div>
 
                         <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
+                            <div class="student-testimonial-card">
+                                <div class="student-quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="student-testimonial-content">
                                     <p>"The structured curriculum and regular mock tests at SRL Academy were game
                                         changers
                                         for my preparation. I improved from AIR 50,000 to AIR 1,500 in just one year."
                                     </p>
                                 </div>
-                                <div class="testimonial-author">
-                                    <img class="author-avatar" src="images/students/student4.jpg"
+                                <div class="student-testimonial-author">
+                                    <img class="student-author-avatar" src="images/students/student4.jpg"
                                         alt="Photo of Amit Verma" onerror="this.src='images/logo.png';">
-                                    <div class="author-info">
+                                    <div class="student-author-info">
                                         <h4>Amit Verma</h4>
                                         <span>IIT Kharagpur (2022 Batch)</span>
                                     </div>
@@ -3264,16 +3352,19 @@
                         </div>
 
                         <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
+                            <div class="student-testimonial-card">
+                                <div class="student-quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="student-testimonial-content">
                                     <p>"What sets SRL Academy apart is their focus on building strong fundamentals.
                                         The doubt-clearing sessions were incredibly helpful in understanding complex
                                         topics."</p>
                                 </div>
-                                <div class="testimonial-author">
-                                    <img class="author-avatar" src="images/students/student5.jpg"
+                                <div class="student-testimonial-author">
+                                    <img class="student-author-avatar" src="images/students/student5.jpg"
                                         alt="Photo of Neha Patel" onerror="this.src='images/logo.png';">
-                                    <div class="author-info">
+                                    <div class="student-author-info">
                                         <h4>Neha Patel</h4>
                                         <span>JIPMER Puducherry (2021 Batch)</span>
                                     </div>
@@ -3282,16 +3373,19 @@
                         </div>
 
                         <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <div class="testimonial-content">
+                            <div class="student-testimonial-card">
+                                <div class="student-quote-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <div class="student-testimonial-content">
                                     <p>"Being from a small town, I never thought I could crack JEE Advanced. SRL
                                         Academy's
                                         online classes and dedicated mentors made my IIT dream come true."</p>
                                 </div>
-                                <div class="testimonial-author">
-                                    <img class="author-avatar" src="images/students/student6.jpg"
+                                <div class="student-testimonial-author">
+                                    <img class="student-author-avatar" src="images/students/student6.jpg"
                                         alt="Photo of Vikash Singh" onerror="this.src='images/logo.png';">
-                                    <div class="author-info">
+                                    <div class="student-author-info">
                                         <h4>Vikash Singh</h4>
                                         <span>IIT Roorkee (2023 Batch)</span>
                                     </div>

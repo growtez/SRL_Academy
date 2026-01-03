@@ -171,7 +171,7 @@ h3 {
 /* ===== Masonry Layout (For Student Moments) ===== */
 .photo-masonry {
     column-count: 3;
-    column-gap: 1.5rem;
+    column-gap: 1rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
@@ -179,26 +179,28 @@ h3 {
 
 .photo-card {
     break-inside: avoid;
-    margin-bottom: 1.5rem;
-    border: 1px solid #eee;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: #fff;
-    position: relative;
+    display: inline-block;
+    width: 100%;
 }
 
 .photo-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 30px rgba(128, 0, 0, 0.18);
 }
 
 .photo-card img {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s ease;
 }
 
 .photo-card:hover img {
@@ -411,7 +413,11 @@ h3 {
 @media (max-width: 992px) {
     .photo-masonry {
         column-count: 2;
-        column-gap: 1rem;
+        column-gap: 0.75rem;
+    }
+
+    .photo-card {
+        margin-bottom: 1rem;
     }
 }
 
@@ -426,9 +432,13 @@ h3 {
     }
 
     .photo-masonry {
-        column-count: 2 !important;
-        /* Force 2 columns for better readability of snippets */
-        column-gap: 0.75rem;
+        column-count: 2;
+        column-gap: 0.5rem;
+    }
+
+    .photo-card {
+        margin-bottom: 0.75rem;
+        border-radius: 10px;
     }
 
     .video-grid {
@@ -459,7 +469,7 @@ h3 {
 
 @media (max-width: 480px) {
     .news-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 
@@ -468,9 +478,14 @@ h3 {
     }
 
     .photo-masonry {
-        column-count: 2 !important;
-        /* Keep 2 columns even on very small screens to maintain layout integrity */
+        column-count: 2;
         column-gap: 0.5rem;
+        column-fill: balance;
+    }
+
+    .photo-card {
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
     }
 
     /* Tighter header */

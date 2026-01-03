@@ -1354,18 +1354,17 @@
             color: var(--gray-700);
             line-height: 1.6;
             font-size: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.2rem;
             font-style: normal;
-            /* Matching the image's non-italic style */
         }
 
         .student-testimonial-author {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-top: auto;
-            border-top: 1px solid rgba(128, 0, 0, 0.05);
-            padding-top: 1rem;
+            margin-top: 0.2rem;
+            border-top: none;
+            padding-top: 0;
         }
 
         .student-author-avatar {
@@ -2289,6 +2288,45 @@
 
             .testimonial-slider {
                 grid-template-columns: 1fr;
+            }
+
+            /* Student Testimonial Mobile Adjustments */
+            .student-testimonial-card {
+                padding: 2.5rem 1.5rem 1.5rem;
+                /* Tighter padding */
+                margin: 2rem 1rem 0.5rem;
+                /* Added horizontal margin to prevent overlap feel */
+            }
+
+            .student-testimonial-content p {
+                margin-bottom: 0.1rem;
+                font-size: 0.95rem;
+                line-height: 1.4;
+            }
+
+            .student-testimonial-author {
+                padding-top: 0;
+                margin-top: 0.1rem;
+            }
+
+            .student-quote-icon {
+                font-size: 3.5rem;
+                /* Slightly smaller on mobile */
+                top: -18px;
+                left: 15px;
+            }
+
+            .student-author-avatar {
+                width: 42px;
+                height: 42px;
+            }
+
+            .student-author-info h4 {
+                font-size: 0.9rem;
+            }
+
+            .student-author-info span {
+                font-size: 0.8rem;
             }
 
             .showcase-grid {

@@ -146,6 +146,45 @@
                 border-radius: 20px !important;
                 padding: 60px 15px 40px !important;
             }
+
+            /* About Section Mobile Optimizations */
+            .about-content-section {
+                padding: 60px 0 40px !important;
+            }
+
+            .about-main-title {
+                font-size: 2.2rem !important;
+                letter-spacing: -1px !important;
+            }
+
+            .about-badge {
+                padding: 6px 16px !important;
+                font-size: 0.75rem !important;
+                margin-bottom: 15px !important;
+            }
+
+            .about-story-card {
+                padding: 30px 20px !important;
+                border-radius: 15px !important;
+            }
+
+            .about-story-card p {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+            }
+
+            .about-info-card {
+                padding: 20px !important;
+                gap: 15px !important;
+            }
+
+            .about-info-card i {
+                font-size: 20px !important;
+            }
+
+            .about-info-card h3 {
+                font-size: 1.2rem !important;
+            }
         }
     </style>
 </head>
@@ -207,100 +246,111 @@
         </section>
 
         <!-- About Content -->
-        <section style="padding: 60px 20px 20px; background: #f9f9f9;">
-            <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+        <section class="about-content-section" style="padding: 100px 0 60px; background: #fafafa;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
 
                 <!-- Section Title -->
-                <div style="margin-bottom: 50px;">
-                    <span
-                        style="display: inline-block; padding: 6px 15px; background: rgba(128,0,0,0.08); color: #800000; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Our
+                <div style="text-align: center; margin-bottom: 60px;">
+                    <span class="about-badge"
+                        style="display: inline-block; padding: 8px 24px; background: #fff1f1; color: #800000; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(128,0,0,0.05);">Our
                         Legacy of Excellence</span>
-                    <h2
-                        style="font-family: 'Oswald', sans-serif; font-size: 3rem; margin: 0; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1.1;">
+                    <h2 class="about-main-title"
+                        style="font-family: 'Oswald', sans-serif; font-size: 3.5rem; margin: 0; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1.1;">
                         Shaping Futures Since <span style="color: #800000;">2008</span>
                     </h2>
                     <div
-                        style="width: 60px; height: 5px; background: #800000; margin: 25px auto 0; border-radius: 10px;">
+                        style="width: 80px; height: 6px; background: #800000; margin: 30px auto 0; border-radius: 10px;">
                     </div>
                 </div>
 
-                <!-- Story Section -->
-                <div
-                    style="text-align: left; margin-bottom: 40px; max-width: 900px; margin-left: auto; margin-right: auto;">
-                    <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 20px;">
-                        <strong style="color: #800000;">SRL Academy</strong> has been instrumental in shaping the
-                        educational paths of thousands of aspirants. Our meticulously designed materials facilitate
-                        efficient learning, featuring a wide spectrum of practice questions and exercises that
-                        reinforce fundamental concepts.
-                    </p>
+                <!-- Two-Column Layout -->
+                <div class="about-main-grid" style="display: flex; gap: 40px; flex-wrap: wrap;">
 
-                    <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 0;">
-                        We have consistently produced excellent results in prestigious engineering and medical
-                        entrance examinations, including <strong style="color: #800000;">JEE (Main + Advanced),
-                            NEET, K-CET, and KVPY</strong>. Our expertise isn't limited geographically; we are
-                        currently training students in <strong style="color: #800000;">Uttarakhand</strong> for JEE
-                        and NEET under the <strong style="color: #1a1a1a;">American India Foundation</strong>.
-                    </p>
-                </div>
+                    <!-- Left Column: Story Section -->
+                    <div class="about-story-card"
+                        style="flex: 1.2; min-width: 320px; background: #fff; padding: 50px; border-radius: 25px; border-left: 6px solid #800000; box-shadow: 0 15px 40px rgba(0,0,0,0.06); text-align: left;">
+                        <p style="font-size: 1.15rem; line-height: 1.8; color: #444; margin-bottom: 30px;">
+                            <strong style="color: #800000;">SRL Academy</strong> is driven by a team of highly qualified
+                            and accomplished senior faculty
+                            members. each bringing decades of rich teaching experience and a proven record of academic
+                            excellence. Our faculty has consistently mentored students to achieve outstanding results in
+                            (Main & Advanced), NEET, K-CET, NTSE, Olympiads, IPM, NOA, and CLAT.
 
-                <!-- Vision, Mission & Values Cards -->
-                <div class="about-main-grid"
-                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; text-align: left;">
+                        </p>
 
-                    <!-- Vision -->
-                    <div
-                        style="box-shadow: 0 8px 25px rgba(128,0,0,0.08); border-radius: 15px; padding: 25px; background: #fff; text-align: left; border: 1px solid rgba(128,0,0,0.05); display: flex; align-items: flex-start; gap: 20px;">
-                        <div
-                            style="min-width: 50px; height: 50px; background: rgba(128,0,0,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-eye" style="font-size: 20px; color: #800000;"></i>
-                        </div>
-                        <div>
-                            <h3
-                                style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #800000; margin-bottom: 8px; text-transform: uppercase;">
-                                Our Vision</h3>
-                            <p style="margin: 0; color: #555; line-height: 1.6; font-size: 0.95rem;">
-                                To be the most trusted name in education, empowering students to achieve their
-                                dreams through quality coaching and comprehensive support.
-                            </p>
-                        </div>
+                        <p style="font-size: 1.15rem; line-height: 1.8; color: #444; margin-bottom: 0;">
+                            In particular, students from Jawahar Navodaya Vidyalaya (JNV) Bagalur, Bangalore Urban, JNV
+                            Rural, JNV Kolhapur, JNV Medak, JNV Hassan and other associated schools trained and mentored
+                            by our faculty have achieved exceptional outcomes. The results from this single batch stand
+                            as a strong testament to the effectiveness of our integrated teaching methodology.
+
+                        </p>
                     </div>
 
-                    <!-- Mission -->
-                    <div
-                        style="box-shadow: 0 8px 25px rgba(128,0,0,0.08); border-radius: 15px; padding: 25px; background: #fff; text-align: left; border: 1px solid rgba(128,0,0,0.05); display: flex; align-items: flex-start; gap: 20px;">
-                        <div
-                            style="min-width: 50px; height: 50px; background: rgba(128,0,0,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-bullseye" style="font-size: 20px; color: #800000;"></i>
-                        </div>
-                        <div>
-                            <h3
-                                style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #800000; margin-bottom: 8px; text-transform: uppercase;">
-                                Our Mission</h3>
-                            <p style="margin: 0; color: #555; line-height: 1.6; font-size: 0.95rem;">
-                                Providing world-class education with innovative teaching methods, experienced
-                                faculty, and personalized attention to every student.
-                            </p>
-                        </div>
-                    </div>
+                    <!-- Right Column: Vision, Mission & Values -->
+                    <div style="flex: 1; min-width: 320px; display: flex; flex-direction: column; gap: 25px;">
 
-                    <!-- Values -->
-                    <div
-                        style="box-shadow: 0 8px 25px rgba(128,0,0,0.08); border-radius: 15px; padding: 25px; background: #fff; text-align: left; border: 1px solid rgba(128,0,0,0.05); display: flex; align-items: flex-start; gap: 20px;">
-                        <div
-                            style="min-width: 50px; height: 50px; background: rgba(128,0,0,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-heart" style="font-size: 20px; color: #800000;"></i>
+                        <!-- Vision/Mission/Values -->
+                        <div class="about-info-card"
+                            style="box-shadow: 0 12px 30px rgba(0,0,0,0.05); border-radius: 20px; padding: 30px; background: #fff; border: 1px solid rgba(128,0,0,0.03); display: flex; align-items: flex-start; gap: 25px; transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='translateX(10px)'; "
+                            onmouseout="this.style.transform='translateX(0)';">
+                            <div
+                                style="min-width: 55px; height: 55px; background: #fff1f1; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-eye" style="font-size: 24px; color: #800000;"></i>
+                            </div>
+                            <div>
+                                <h3
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.4rem; color: #800000; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Our Vision</h3>
+                                <p style="margin: 0; color: #666; line-height: 1.6; font-size: 1rem;">
+                                    To be the most trusted name in education, empowering students to achieve their
+                                    dreams through quality coaching and comprehensive support.
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <h3
-                                style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: #800000; margin-bottom: 8px; text-transform: uppercase;">
-                                Our Values</h3>
-                            <p style="margin: 0; color: #555; line-height: 1.6; font-size: 0.95rem;">
-                                Excellence, integrity, innovation, and student-centric approach form the foundation
-                                of everything we do at SRL Academy.
-                            </p>
-                        </div>
-                    </div>
 
+                        <!-- Mission -->
+                        <div class="about-info-card"
+                            style="box-shadow: 0 12px 30px rgba(0,0,0,0.05); border-radius: 20px; padding: 30px; background: #fff; border: 1px solid rgba(128,0,0,0.03); display: flex; align-items: flex-start; gap: 25px; transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='translateX(10px)'; "
+                            onmouseout="this.style.transform='translateX(0)';">
+                            <div
+                                style="min-width: 55px; height: 55px; background: #fff1f1; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-bullseye" style="font-size: 24px; color: #800000;"></i>
+                            </div>
+                            <div>
+                                <h3
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.4rem; color: #800000; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Our Mission</h3>
+                                <p style="margin: 0; color: #666; line-height: 1.6; font-size: 1rem;">
+                                    Providing world-class education with innovative teaching methods, experienced
+                                    faculty, and personalized attention to every student.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Values -->
+                        <div class="about-info-card"
+                            style="box-shadow: 0 12px 30px rgba(0,0,0,0.05); border-radius: 20px; padding: 30px; background: #fff; border: 1px solid rgba(128,0,0,0.03); display: flex; align-items: flex-start; gap: 25px; transition: transform 0.3s ease;"
+                            onmouseover="this.style.transform='translateX(10px)'; "
+                            onmouseout="this.style.transform='translateX(0)';">
+                            <div
+                                style="min-width: 55px; height: 55px; background: #fff1f1; border-radius: 15px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-heart" style="font-size: 24px; color: #800000;"></i>
+                            </div>
+                            <div>
+                                <h3
+                                    style="font-family: 'Oswald', sans-serif; font-size: 1.4rem; color: #800000; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+                                    Our Values</h3>
+                                <p style="margin: 0; color: #666; line-height: 1.6; font-size: 1rem;">
+                                    Excellence, integrity, innovation, and student-centric approach form the foundation
+                                    of everything we do at SRL Academy.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>

@@ -23,45 +23,85 @@
     <style>
         /* Mobile Specific Responsive Styles */
         @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0 !important;
+            }
+
             .hero h1 {
-                font-size: 2.2rem !important;
+                font-size: 2rem !important;
                 padding: 0 15px;
             }
             
             .hero p {
-                font-size: 0.9rem !important;
+                font-size: 0.95rem !important;
                 padding: 0 20px;
+                margin-bottom: 20px !important;
             }
 
             main {
-                padding: 20px 10px !important;
+                padding: 30px 10px !important;
+            }
+
+            .partnership-intro {
+                margin-bottom: 40px !important;
+            }
+
+            .partnership-intro p {
+                font-size: 1.05rem !important;
+                padding: 0 10px;
             }
 
             .section-header h2 {
                 font-size: 1.8rem !important;
             }
 
-            /* Key Benefits Grid - 2 columns on mobile */
-            .benefits-grid, .partner-features-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 12px !important;
+            .partnership-application-title {
+                font-size: 1.6rem !important;
+                margin-bottom: 20px !important;
             }
 
-            .benefit-card, .partner-feature-card {
-                padding: 15px !important;
+            /* Partnership Cards Grid */
+            .partnership-cards-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+                margin-bottom: 40px !important;
+            }
+
+            /* Key Benefits Grid - extra vertical clearance for badges */
+            .benefits-grid {
+                grid-template-columns: 1fr !important;
+                row-gap: 100px !important;
+                gap: 100px !important;
+                padding-top: 30px !important;
+                margin-top: 40px !important;
+            }
+
+            .partner-features-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            .benefit-card {
+                padding: 40px 20px 30px !important;
+                min-height: auto !important;
+                margin-top: 15px !important;
+            }
+
+            .partner-feature-card {
+                padding: 25px 20px !important;
                 min-height: auto !important;
             }
 
             .partner-feature-card h3 {
-                font-size: 1rem !important;
+                font-size: 1.15rem !important;
             }
 
             .partner-feature-card p {
-                font-size: 0.85rem !important;
+                font-size: 0.9rem !important;
             }
 
             .partner-feature-card i {
-                font-size: 1.5rem !important;
+                font-size: 1.8rem !important;
             }
 
             /* Collaboration Section */
@@ -70,11 +110,21 @@
                 text-align: center;
                 gap: 20px !important;
                 padding: 30px 20px !important;
+                margin-top: 40px !important;
             }
 
             .collaboration-icon {
                 flex: 0 0 auto !important;
                 margin: 0 auto;
+            }
+
+            .collaboration-icon div {
+                width: 80px !important;
+                height: 80px !important;
+            }
+
+            .collaboration-icon i {
+                font-size: 2rem !important;
             }
 
             /* Success Stories */
@@ -83,20 +133,26 @@
             }
 
             #success-stories h2 {
-                font-size: 2rem !important;
+                font-size: 2.2rem !important;
+                letter-spacing: -1px !important;
             }
 
             .success-content-area {
-                padding: 40px 20px !important;
+                padding: 40px 15px !important;
             }
 
             .success-glass-card {
-                padding: 30px 20px !important;
+                padding: 25px 15px !important;
             }
 
             .success-narrative {
-                font-size: 1rem !important;
-                line-height: 1.7 !important;
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+                text-align: left;
+            }
+
+            .success-narrative p {
+                margin-bottom: 20px !important;
             }
 
             .stats-row {
@@ -110,7 +166,7 @@
             }
 
             .stat-value {
-                font-size: 2.2rem !important;
+                font-size: 2.22rem !important;
             }
 
             /* Partners & Awards */
@@ -127,18 +183,24 @@
             }
 
             .tab-nav button {
-                padding: 12px 20px !important;
-                font-size: 0.9rem !important;
+                padding: 12px 15px !important;
+                font-size: 0.85rem !important;
                 flex: 1;
             }
 
             .partners-grid {
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 15px !important;
+                gap: 12px !important;
             }
 
             .partner-card {
                 max-width: none !important;
+                height: 90px !important;
+                padding: 12px !important;
+            }
+
+            .partner-card span {
+                font-size: 0.7rem !important;
             }
 
             .awards-grid {
@@ -148,22 +210,35 @@
             }
 
             .award-card {
-                padding: 25px 20px !important;
+                padding: 0 !important;
+            }
+
+            .award-card div[style*="padding: 35px 25px"] {
+                padding: 25px 15px !important;
             }
 
             /* Benefits Section general padding */
-            section[style*="padding: 40px"] {
-                padding: 25px 15px !important;
-            }
-            
+            section[style*="padding: 40px"], 
             section[style*="padding: 50px 30px"] {
                 padding: 30px 15px !important;
+                border-radius: 15px !important;
             }
-        
+            
             /* Extra adjustments */
+            .partnership-selection-area {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+
             #partnershipType {
                 width: 100% !important;
-                min-width: unset !important;
+                max-width: 320px !important;
+                margin: 0 auto !important;
+                font-size: 0.95rem !important;
+                text-align-last: center; /* Centers the selected text */
+                padding: 12px 15px !important;
             }
             
             #successModal > div {
@@ -270,7 +345,7 @@
         <div style="max-width: 900px; margin: 0 auto;">
     
             <!-- Partnership Introduction (Move this first) -->
-            <section style="text-align: center; margin-bottom: 50px;">
+            <section class="partnership-intro" style="text-align: center; margin-bottom: 50px;">
                 <p style="font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 30px; line-height: 1.7;">
                     SRL Academy invites visionary institutions and individuals to collaborate with us through our comprehensive partnership programs. Choose from three distinct partnership opportunities designed to expand quality education and create mutual growth.
                 </p>
@@ -278,7 +353,7 @@
     
             <!-- Partnership Application (Now comes after intro) -->
             <section class="responsive-section">
-                                <h2 style="font-family: 'Oswald', sans-serif; font-size: 2rem; color: #800000; text-align: center; margin-bottom: 30px; position: relative;">
+                <h2 class="partnership-application-title" style="font-family: 'Oswald', sans-serif; font-size: 2rem; color: #800000; text-align: center; margin-bottom: 30px; position: relative;">
                     Partnership Application
                     <span style="content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(45deg, #800000, #a00000); border-radius: 2px; display: block;"></span>
                 </h2>
@@ -314,7 +389,7 @@
                 </style>
 
             <!-- Partnership Cards -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px;">
+            <div class="partnership-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px;">
                 <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border-top: 4px solid #800000; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
                     <i class="fas fa-school" style="font-size: 3rem; color: #800000; margin-bottom: 20px; display: block;"></i>
                     <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; color: #800000;">School Integration Projects</h3>

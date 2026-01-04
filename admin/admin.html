@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRL Academy Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Login Screen (initially hidden) -->
+    <div id="loginScreen" class="login-screen hidden">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="brand-badge">SRL</div>
+                    <h2>Admin Login</h2>
+                    <p>Enter your credentials to access the admin panel</p>
+                </div>
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="material-symbols-outlined">login</span>
+                        Login
+                    </button>
+                </form>
+                <div id="loginError" class="error-message hidden">Invalid credentials</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="brand-badge">SRL</div>
+                <div class="brand-text">
+                    <div class="brand-line-1">Admin Panel</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="logoutBtn" class="btn btn-outline">
+                    <span class="material-symbols-outlined">logout</span>
+                    Logout
+                </button>
+            </div>
+        </header>
+
+        <div class="admin-container">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <nav class="sidebar-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#" data-tab="faculty" class="nav-link active">
+                                <span class="material-symbols-outlined">school</span>
+                                Faculty
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" data-tab="gallery" class="nav-link">
+                                <span class="material-symbols-outlined">photo_library</span>
+                                Gallery
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" data-tab="partnership" class="nav-link">
+                                <span class="material-symbols-outlined">handshake</span>
+                                Partnership
+                            </a>
+                            <ul class="sub-nav">
+                                <li><a href="#" data-subtab="school-integration" class="sub-nav-link">School Integration
+                                        Projects</a></li>
+                                <li><a href="#" data-subtab="study-center" class="sub-nav-link">Study Center
+                                        Establishment</a></li>
+                                <li><a href="#" data-subtab="online-learning" class="sub-nav-link">Online Learning
+                                        Program</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" data-tab="career" class="nav-link">
+                                <span class="material-symbols-outlined">work</span>
+                                Career
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" data-tab="contact" class="nav-link">
+                                <span class="material-symbols-outlined">contact_mail</span>
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="admin-content">
+                <div id="contentArea">
+                    <!-- Content will be loaded here dynamically -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loader"></div>
+        <p>Loading...</p>
+    </div>
+
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://127.0.0.1:8000/api';
+        const ADMIN_CREDENTIALS = {
+            username: 'admin',
+            password: 'admin123'
+        };
+
+        // State management
+        let currentTab = 'faculty';
+        let isAuthenticated = false;
+
+        // DOM Elements
+        const loginScreen = document.getElementById('loginScreen');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const contentArea = document.getElementById('contentArea');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAuthentication();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Login form
+            loginForm.addEventListener('submit', handleLogin);
+
+            // Logout
+            logoutBtn.addEventListener('click', handleLogout);
+
+            // Navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', handleNavigation);
+            });
+
+            document.querySelectorAll('.sub-nav-link').forEach(link => {
+                link.addEventListener('click', handleSubNavigation);
+            });
+        }
+
+        function checkAuthentication() {
+            const auth = localStorage.getItem('adminAuth');
+            if (auth === 'true') {
+                isAuthenticated = true;
+                showAdminPanel();
+                loadTab('faculty');
+            } else {
+                showLoginScreen();
+            }
+        }
+
+        function showLoginScreen() {
+            loginScreen.classList.remove('hidden');
+            adminPanel.classList.add('hidden');
+        }
+
+        function showAdminPanel() {
+            loginScreen.classList.add('hidden');
+            adminPanel.classList.remove('hidden');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                isAuthenticated = true;
+                localStorage.setItem('adminAuth', 'true');
+                showAdminPanel();
+                loadTab('faculty');
+                loginError.classList.add('hidden');
+            } else {
+                loginError.classList.remove('hidden');
+            }
+        }
+
+        function handleLogout() {
+            isAuthenticated = false;
+            localStorage.removeItem('adminAuth');
+            showLoginScreen();
+            loginForm.reset();
+        }
+
+        function handleNavigation(e) {
+            e.preventDefault();
+            const tab = e.currentTarget.dataset.tab;
+
+            // Update active state
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            e.currentTarget.classList.add('active');
+
+            // Load tab content
+            loadTab(tab);
+        }
+
+        function handleSubNavigation(e) {
+            e.preventDefault();
+            const subtab = e.currentTarget.dataset.subtab;
+
+            // Update active state for partnership tab
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector('[data-tab="partnership"]').classList.add('active');
+
+            // Update sub-nav active state
+            document.querySelectorAll('.sub-nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            e.currentTarget.classList.add('active');
+
+            // Load sub-tab content
+            loadSubTab(subtab);
+        }
+
+        function showLoading() {
+            loadingOverlay.classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            loadingOverlay.classList.add('hidden');
+        }
+
+        async function loadTab(tab) {
+            currentTab = tab;
+            showLoading();
+
+            try {
+                const response = await fetch(`${tab}/${tab}.html`);
+                const html = await response.text();
+                contentArea.innerHTML = html;
+
+                // Load tab-specific CSS
+                loadCSS(`${tab}/${tab}.css`);
+
+                // Load tab-specific JavaScript
+                loadTabScript(tab);
+
+            } catch (error) {
+                console.error('Error loading tab:', error);
+                contentArea.innerHTML = '<div class="error">Error loading content</div>';
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function loadSubTab(subtab) {
+            showLoading();
+
+            try {
+                const response = await fetch(`partnership/${subtab}.html`);
+                const html = await response.text();
+                contentArea.innerHTML = html;
+
+                // Load sub-tab-specific CSS
+                loadCSS(`partnership/${subtab}.css`);
+
+                // Load sub-tab-specific JavaScript
+                loadSubTabScript(subtab);
+
+            } catch (error) {
+                console.error('Error loading sub-tab:', error);
+                contentArea.innerHTML = '<div class="error">Error loading content</div>';
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function loadCSS(cssPath) {
+            // Remove existing tab-specific CSS
+            const existingLink = document.querySelector('link[data-tab-css]');
+            if (existingLink) {
+                existingLink.remove();
+            }
+
+            // Add new CSS
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = cssPath;
+            link.setAttribute('data-tab-css', 'true');
+            document.head.appendChild(link);
+        }
+
+        function loadTabScript(tab) {
+            // Check if script is already loaded
+            const existingScript = document.querySelector(`script[data-tab-script="${tab}"]`);
+            if (existingScript) {
+                console.log(`Script ${tab} already loaded, reinitializing...`);
+
+                // Re-run tab-specific initializer for newly injected HTML
+                if (tab === 'faculty' && typeof initializeFaculty === 'function') {
+                    try {
+                        initializeFaculty();
+                    } catch (e) {
+                        console.error('Error reinitializing faculty module:', e);
+                    }
+                }
+
+                return; // Script already loaded, don't reload again
+            }
+
+            console.log(`Loading script: ${tab}/${tab}.js`);
+            // Add new script
+            const script = document.createElement('script');
+            script.src = `${tab}/${tab}.js`;
+            script.setAttribute('data-tab-script', tab);
+
+            // Add error handling
+            script.onerror = function () {
+                console.error(`Failed to load script: ${tab}/${tab}.js`);
+            };
+
+            script.onload = function () {
+                console.log(`Script loaded successfully: ${tab}/${tab}.js`);
+
+                // Run tab-specific initializer after script loads for the first time
+                if (tab === 'faculty' && typeof initializeFaculty === 'function') {
+                    try {
+                        initializeFaculty();
+                    } catch (e) {
+                        console.error('Error initializing faculty module:', e);
+                    }
+                }
+            };
+
+            document.body.appendChild(script);
+        }
+
+        function loadSubTabScript(subtab) {
+            // Remove existing sub-tab-specific scripts
+            const existingScript = document.querySelector('script[data-subtab-script]');
+            if (existingScript) {
+                existingScript.remove();
+            }
+
+            // Add new script
+            const script = document.createElement('script');
+            script.src = `partnership/${subtab}.js`;
+            script.setAttribute('data-subtab-script', 'true');
+            document.body.appendChild(script);
+        }
+
+        // Utility functions for API calls
+        async function apiCall(endpoint, options = {}) {
+            const url = `${API_BASE_URL}${endpoint}`;
+            const defaultOptions = {
+                headers: {
+                    'Accept': 'application/json'
+                },
+                timeout: 30000 // 30 second timeout
+            };
+
+            // Don't set Content-Type for FormData to let browser set it automatically
+            if (!(options.body instanceof FormData)) {
+                defaultOptions.headers['Content-Type'] = 'application/json';
+            }
+
+            const finalOptions = { ...defaultOptions, ...options };
+
+            try {
+                console.log('Making API call to:', url);
+                console.log('Request options:', finalOptions);
+
+                // Add timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+                finalOptions.signal = controller.signal;
+
+                const response = await fetch(url, finalOptions);
+                clearTimeout(timeoutId);
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (!response.ok) {
+                    throw new Error(data.message || `HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                return data;
+            } catch (error) {
+                console.error('API Error:', error);
+                console.error('Response details:', error.response);
+
+                if (error.name === 'AbortError') {
+                    throw new Error('Request timed out. Please check your internet connection and try again.');
+                }
+
+                throw error;
+            }
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

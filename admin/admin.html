@@ -183,7 +183,7 @@
 
     async function handleLogin(e) {
         e.preventDefault();
-        const email = document.getElementById('username').value; // Using username field for email
+        const username = document.getElementById('username').value; // Changed from email to username
         const password = document.getElementById('password').value;
         
         // Show loading state on button if desired
@@ -196,7 +196,7 @@
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ username, password }) // Changed from email to username
             });
 
             const data = await response.json();

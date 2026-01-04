@@ -1,0 +1,203 @@
+<div class="school-projects-management">
+    <div class="page-header">
+        <div>
+            <h1>School Integration Project Applications</h1>
+            <p>View and manage all school integration project applications</p>
+        </div>
+    </div>
+
+    <div class="projects-list-container">
+        <div class="list-header">
+            <h2>Applications</h2>
+            <div class="list-actions">
+                <input
+                    type="text"
+                    id="searchSchoolProjects"
+                    class="search-input"
+                    placeholder="Search by school or principal..."
+                >
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="projects-table">
+                <thead>
+                    <tr>
+                        <th>Principal Name</th>
+                        <th>School Name</th>
+                        <th>Date</th>
+                        <th class="actions-column">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="schoolProjectsTableBody">
+                    <!-- Rows will be injected via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="schoolProjectsEmptyState" class="empty-state hidden">
+            <span class="material-symbols-outlined">school</span>
+            <h3>No Applications Found</h3>
+            <p>Applications will appear here when schools submit the form.</p>
+        </div>
+    </div>
+</div>
+
+<!-- View Application Modal -->
+<div id="schoolProjectViewModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-lg">
+        <div class="modal-header">
+            <h2>Application Details</h2>
+            <button type="button" class="modal-close" data-close-modal="schoolProjectViewModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="details-grid">
+                <div class="details-group">
+                    <h3>Basic Information</h3>
+                    <div class="details-row">
+                        <span class="details-label">Application Date</span>
+                        <span id="detailApplicationDate" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">School Name</span>
+                        <span id="detailSchoolName" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Address</span>
+                        <span id="detailAddress" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Principal Name</span>
+                        <span id="detailPrincipalName" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Contact Number</span>
+                        <span id="detailContactNumber" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Email</span>
+                        <span id="detailEmail" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Affiliated Board</span>
+                        <span id="detailAffiliatedBoard" class="details-value"></span>
+                    </div>
+                </div>
+
+                <div class="details-group">
+                    <h3>Project Type</h3>
+                    <div class="details-row">
+                        <span class="details-label">IIT-JEE</span>
+                        <span id="detailProjectIITJEE" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">NEET</span>
+                        <span id="detailProjectNEET" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Olympiad</span>
+                        <span id="detailProjectOlympiad" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Board</span>
+                        <span id="detailProjectBoard" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Other</span>
+                        <span id="detailProjectOther" class="details-value"></span>
+                    </div>
+                </div>
+
+                <div class="details-group">
+                    <h3>Project Details</h3>
+                    <div class="details-row">
+                        <span class="details-label">Objective</span>
+                        <span id="detailObjective" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Target Audience</span>
+                        <span id="detailTargetAudience" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Duration</span>
+                        <span id="detailDuration" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Students Involved</span>
+                        <span id="detailStudentsInvolved" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Resources Required</span>
+                        <span id="detailResourcesRequired" class="details-value"></span>
+                    </div>
+                </div>
+
+                <div class="details-group">
+                    <h3>Additional Information</h3>
+                    <div class="details-row">
+                        <span class="details-label">Previous Projects</span>
+                        <span id="detailPreviousProjects" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Benefits</span>
+                        <span id="detailBenefits" class="details-value"></span>
+                    </div>
+                </div>
+
+                <div class="details-group">
+                    <h3>Declaration</h3>
+                    <div class="details-row">
+                        <span class="details-label">Principal</span>
+                        <span id="detailDeclarationPrincipal" class="details-value"></span>
+                    </div>
+                    <div class="details-row">
+                        <span class="details-label">Declaration Date</span>
+                        <span id="detailDeclarationDate" class="details-value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" data-close-modal="schoolProjectViewModal">
+                Close
+            </button>
+            <button type="button" class="btn btn-primary" id="viewPdfButton">
+                <span class="material-symbols-outlined">picture_as_pdf</span>
+                Download PDF
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="schoolProjectDeleteModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-sm">
+        <div class="modal-header">
+            <h2>Delete Application</h2>
+            <button type="button" class="modal-close" data-close-modal="schoolProjectDeleteModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <p>Are you sure you want to delete this application? This action cannot be undone.</p>
+            <div id="deleteSchoolProjectInfo" class="delete-info"></div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" data-close-modal="schoolProjectDeleteModal">
+                Cancel
+            </button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteSchoolProjectButton">
+                <span class="material-symbols-outlined">delete</span>
+                Delete
+            </button>
+        </div>
+    </div>
+</div>

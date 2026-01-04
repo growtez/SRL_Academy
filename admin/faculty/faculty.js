@@ -6,7 +6,7 @@ let isLoading = false;
 let initializationAttempts = 0;
 let isOperationInProgress = false; // Prevent multiple operations
 
-// Explicit initializer called from admin.html after faculty.html is injected
+// Explicit initializer called from admin/admin.html after faculty.html is injected
 function initializeFaculty() {
     console.log('Initializing faculty module');
 

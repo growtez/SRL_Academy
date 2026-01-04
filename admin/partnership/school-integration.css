@@ -151,7 +151,7 @@
     margin-bottom: var(--space-6);
 }
 
-/* Modals (based on faculty styles) */
+/* ===== MODAL STYLES ===== */
 .modal {
     position: fixed;
     top: 0;
@@ -188,13 +188,246 @@
 }
 
 .modal-lg {
-    max-width: 900px;
+    max-width: 1000px;
 }
 
 .modal-sm {
     max-width: 400px;
 }
 
+/* Close button for view modal */
+.modal-close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.modal-close-button:hover {
+    background: var(--white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.modal-close-button .material-symbols-outlined {
+    color: var(--gray-700);
+    font-size: 1.5rem;
+}
+
+/* School Image Header */
+.school-image-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #a00000 100%);
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.school-image-placeholder {
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.15) url('../../images/logo2.png') center/contain no-repeat;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.school-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: var(--radius);
+}
+
+.school-image-placeholder .material-symbols-outlined {
+    font-size: 3rem;
+    color: var(--white);
+}
+
+.school-header-info {
+    flex: 1;
+    color: var(--white);
+}
+
+.school-name {
+    font-family: var(--font-primary);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--white);
+}
+
+.school-address {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 0;
+}
+
+/* Info Cards Grid */
+.info-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.info-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: var(--gray-300);
+}
+
+.info-card.full-width {
+    grid-column: 1 / -1;
+    margin: 0 2rem 1.5rem 2rem;
+}
+
+.info-card-header {
+    background: var(--gray-50);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.info-card-header .material-symbols-outlined {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.info-card-header h3 {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin: 0;
+}
+
+.info-card-body {
+    padding: 1.25rem;
+}
+
+/* Info Items */
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    font-size: 0.95rem;
+    color: var(--gray-900);
+    line-height: 1.5;
+}
+
+.info-value.text-content {
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* Project Type List */
+.project-type-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.project-type-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--gray-50);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    transition: var(--transition);
+}
+
+.project-type-item:hover {
+    background: var(--gray-100);
+}
+
+.project-type-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.project-type-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gray-900);
+    padding: 0.25rem 0.75rem;
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-300);
+}
+
+/* Declaration Card */
+.declaration-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid var(--primary);
+}
+
+.declaration-card .info-card-header {
+    background: rgba(128, 0, 0, 0.05);
+    border-bottom-color: rgba(128, 0, 0, 0.2);
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    gap: var(--space-3);
+    justify-content: flex-end;
+    background: var(--gray-50);
+}
+
+/* Delete Modal Styles */
 .modal-header {
     padding: var(--space-6);
     border-bottom: 1px solid var(--gray-200);
@@ -223,51 +456,6 @@
 .modal-close:hover {
     background: var(--gray-100);
     color: var(--gray-700);
-}
-
-.modal-body {
-    padding: var(--space-6);
-}
-
-.modal-footer {
-    padding: var(--space-6);
-    border-top: 1px solid var(--gray-200);
-    display: flex;
-    gap: var(--space-3);
-    justify-content: flex-end;
-}
-
-/* Details layout */
-.details-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-6);
-}
-
-.details-group h3 {
-    font-family: var(--font-primary);
-    font-size: 1.1rem;
-    color: var(--gray-900);
-    margin-bottom: var(--space-3);
-}
-
-.details-row {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--space-3);
-    margin-bottom: var(--space-2);
-}
-
-.details-label {
-    font-weight: 600;
-    color: var(--gray-600);
-    white-space: nowrap;
-}
-
-.details-value {
-    color: var(--gray-800);
-    text-align: right;
-    flex: 1;
 }
 
 /* Delete info box */
@@ -312,9 +500,33 @@
         width: 100%;
     }
 
-    .details-grid {
+    .info-cards-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-4);
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .info-card.full-width {
+        margin: 0 0 1rem 0;
+    }
+
+    .school-image-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+    }
+
+    .school-image-placeholder {
+        width: 80px;
+        height: 80px;
+    }
+
+    .school-image-placeholder .material-symbols-outlined {
+        font-size: 2.5rem;
+    }
+
+    .school-name {
+        font-size: 1.5rem;
     }
 
     .modal-content {
@@ -328,6 +540,10 @@
         padding: var(--space-4);
     }
 
+    .modal-footer {
+        padding: 1rem 1.5rem;
+    }
+
     .projects-actions {
         flex-direction: column;
         align-items: stretch;
@@ -335,6 +551,13 @@
 
     .projects-actions .btn {
         width: 100%;
+    }
+
+    .modal-close-button {
+        width: 36px;
+        height: 36px;
+        top: 0.75rem;
+        right: 0.75rem;
     }
 }
 
@@ -349,5 +572,18 @@
 
     .modal-footer .btn {
         width: 100%;
+    }
+
+    .info-card-body {
+        padding: 1rem;
+    }
+
+    .project-type-badges {
+        gap: 0.5rem;
+    }
+
+    .project-badge {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
     }
 }

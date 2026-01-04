@@ -456,6 +456,226 @@
         </div>
     </section>
 
+    <!-- COURSES OFFERED -->
+    <section style="padding: 3rem 0; background: #fff;">
+        <div class="container">
+            <h2 class="section-title">Courses Offered at SRL Academy</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">Classroom & Online Programs</p>
+
+            <style>
+                .course-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                    gap: 1rem;
+                }
+
+                .course-card {
+                    background: #fff;
+                    border-radius: 16px;
+                    padding: 1.5rem;
+                    position: relative;
+                    overflow: hidden;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+                    transition: all 0.3s ease;
+                    border: 1px solid #f0f0f0;
+                    min-height: 140px;
+                }
+
+                .course-card:hover {
+                    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+                }
+
+                .course-card .gradient-blob {
+                    position: absolute;
+                    top: -20px;
+                    right: -20px;
+                    width: 130px;
+                    height: 130px;
+                    border-radius: 50%;
+                    opacity: 0.6;
+                }
+
+                .course-card.pink .gradient-blob {
+                    background: radial-gradient(circle, #ffcdd2 0%, #ffebee 50%, transparent 70%);
+                }
+
+                .course-card.yellow .gradient-blob {
+                    background: radial-gradient(circle, #fff9c4 0%, #fffde7 50%, transparent 70%);
+                }
+
+                .course-card.blue .gradient-blob {
+                    background: radial-gradient(circle, #bbdefb 0%, #e3f2fd 50%, transparent 70%);
+                }
+
+                .course-card.green .gradient-blob {
+                    background: radial-gradient(circle, #c8e6c9 0%, #e8f5e9 50%, transparent 70%);
+                }
+
+                .course-card.purple .gradient-blob {
+                    background: radial-gradient(circle, #e1bee7 0%, #f3e5f5 50%, transparent 70%);
+                }
+
+                .course-card.orange .gradient-blob {
+                    background: radial-gradient(circle, #ffe0b2 0%, #fff3e0 50%, transparent 70%);
+                }
+
+                .course-card h4 {
+                    font-family: 'Oswald', sans-serif;
+                    font-size: 1.4rem;
+                    color: #1a1a1a;
+                    margin-bottom: 0.75rem;
+                    font-weight: 600;
+                }
+
+                .course-tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.35rem;
+                    margin-bottom: 0;
+                    position: relative;
+                    z-index: 1;
+                    max-width: calc(100% - 90px);
+                }
+
+                .course-tag {
+                    display: inline-block;
+                    padding: 0.25rem 0.5rem;
+                    background: #fff;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 15px;
+                    font-size: 0.75rem;
+                    color: #444;
+                    white-space: nowrap;
+                }
+
+                .course-icon {
+                    position: absolute;
+                    top: 1.25rem;
+                    right: 1.25rem;
+                    width: 55px;
+                    height: 55px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 2;
+                }
+
+                .course-icon img,
+                .course-icon i {
+                    font-size: 2rem;
+                    opacity: 0.9;
+                }
+
+                .course-card.pink .course-icon i {
+                    color: #e57373;
+                }
+
+                .course-card.yellow .course-icon i {
+                    color: #ffa726;
+                }
+
+                .course-card.blue .course-icon i {
+                    color: #42a5f5;
+                }
+
+                .course-card.green .course-icon i {
+                    color: #66bb6a;
+                }
+
+                .course-card.purple .course-icon i {
+                    color: #ab47bc;
+                }
+
+                .course-card.orange .course-icon i {
+                    color: #ff7043;
+                }
+
+                @media (max-width: 768px) {
+                    .course-grid {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            </style>
+
+            <div class="course-grid">
+                <!-- NEET -->
+                <div class="course-card pink">
+                    <div class="gradient-blob"></div>
+                    <div class="course-icon"><i class="fas fa-user-md"></i></div>
+                    <h4>NEET</h4>
+                    <div class="course-tags">
+                        <span class="course-tag">Class 11</span>
+                        <span class="course-tag">Class 12</span>
+                        <span class="course-tag">Dropper</span>
+                    </div>
+                </div>
+
+                <!-- IIT JEE -->
+                <div class="course-card yellow">
+                    <div class="gradient-blob"></div>
+                    <div class="course-icon"><i class="fas fa-atom"></i></div>
+                    <h4>IIT JEE</h4>
+                    <div class="course-tags">
+                        <span class="course-tag">Class 11</span>
+                        <span class="course-tag">Class 12</span>
+                        <span class="course-tag">Dropper</span>
+                    </div>
+                </div>
+
+                <!-- K-CET -->
+                <div class="course-card blue">
+                    <div class="gradient-blob"></div>
+                    <div class="course-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h4>K-CET</h4>
+                    <div class="course-tags">
+                        <span class="course-tag">Class 11</span>
+                        <span class="course-tag">Class 12</span>
+                        <span class="course-tag">Dropper</span>
+                    </div>
+                </div>
+
+                <!-- Foundation Program -->
+                <div class="course-card orange">
+                    <div class="gradient-blob"></div>
+                    <div class="course-icon"><i class="fas fa-book-open"></i></div>
+                    <h4>Foundation Program</h4>
+                    <div class="course-tags">
+                        <span class="course-tag">Class 6</span>
+                        <span class="course-tag">Class 7</span>
+                        <span class="course-tag">Class 8</span>
+                        <span class="course-tag">Class 9</span>
+                        <span class="course-tag">Class 10</span>
+                    </div>
+                </div>
+
+                <!-- Olympiads -->
+                <div class="course-card purple">
+                    <div class="gradient-blob"></div>
+                    <div class="course-icon"><i class="fas fa-trophy"></i></div>
+                    <h4>Olympiads</h4>
+                    <div class="course-tags">
+                        <span class="course-tag">IMO</span>
+                        <span class="course-tag">NTSE</span>
+                        <span class="course-tag">KVPY</span>
+                    </div>
+                </div>
+
+                <!-- School Boards -->
+                <div class="course-card green">
+                    <div class="gradient-blob"></div>
+                    <div class="course-icon"><i class="fas fa-school"></i></div>
+                    <h4>School Boards</h4>
+                    <div class="course-tags">
+                        <span class="course-tag">CBSE</span>
+                        <span class="course-tag">Karnataka Board</span>
+                        <span class="course-tag">Class 10</span>
+                        <span class="course-tag">Class 12</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SLABS -->
     <section class="slabs">
         <div class="container">

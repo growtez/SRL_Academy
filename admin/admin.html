@@ -52,12 +52,64 @@
                 </div>
             </div>
             <div class="header-right">
+                <button id="mobileMenuToggle" class="mobile-menu-toggle">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
                 <button id="logoutBtn" class="btn btn-outline">
                     <span class="material-symbols-outlined">logout</span>
                     Logout
                 </button>
             </div>
         </header>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="brand-badge">SRL</div>
+                <button id="mobileMenuClose" class="mobile-menu-close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <ul class="mobile-nav-list">
+                    <li class="mobile-nav-item">
+                        <a href="#" data-tab="faculty" class="mobile-nav-link">
+                            <span class="material-symbols-outlined">school</span>
+                            Faculty
+                        </a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#" data-tab="gallery" class="mobile-nav-link">
+                            <span class="material-symbols-outlined">photo_library</span>
+                            Gallery
+                        </a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#" data-tab="partnership" class="mobile-nav-link">
+                            <span class="material-symbols-outlined">handshake</span>
+                            Partnership
+                        </a>
+                        <ul class="mobile-sub-nav">
+                            <li><a href="#" data-subtab="school-integration" class="mobile-sub-nav-link">School Integration Projects</a></li>
+                            <li><a href="#" data-subtab="study-center" class="mobile-sub-nav-link">Study Center Establishment</a></li>
+                            <li><a href="#" data-subtab="online-learning-program" class="mobile-sub-nav-link">Online Learning Program</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#" data-tab="career" class="mobile-nav-link">
+                            <span class="material-symbols-outlined">work</span>
+                            Career
+                        </a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#" data-tab="contact" class="mobile-nav-link">
+                            <span class="material-symbols-outlined">contact_mail</span>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
         <div class="admin-container">
             <!-- Sidebar -->
@@ -86,7 +138,8 @@
                                         Projects</a></li>
                                 <li><a href="#" data-subtab="study-center" class="sub-nav-link">Study Center
                                         Establishment</a></li>
-                                <li><a href="#" data-subtab="online-learning" class="sub-nav-link">Online Learning
+                                <li><a href="#" data-subtab="online-learning-program" class="sub-nav-link">Online
+                                        Learning
                                         Program</a></li>
                             </ul>
                         </li>
@@ -122,305 +175,455 @@
     </div>
 
     <script>
-    // Configuration
-    const API_BASE_URL = 'http://127.0.0.1:8000/api';
-    
-    // REMOVED: const ADMIN_CREDENTIALS ... (We don't hardcode credentials anymore)
+        // Configuration
+        const API_BASE_URL = 'http://127.0.0.1:8000/api';
 
-    // State management
-    let currentTab = 'faculty';
-    let authToken = localStorage.getItem('adminToken'); // Store token, not just boolean
+        // REMOVED: const ADMIN_CREDENTIALS ... (We don't hardcode credentials anymore)
 
-    // DOM Elements
-    const loginScreen = document.getElementById('loginScreen');
-    const adminPanel = document.getElementById('adminPanel');
-    const loginForm = document.getElementById('loginForm');
-    const loginError = document.getElementById('loginError');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const contentArea = document.getElementById('contentArea');
-    const loadingOverlay = document.getElementById('loadingOverlay');
+        // State management
+        let currentTab = 'faculty';
+        let authToken = localStorage.getItem('adminToken'); // Store token, not just boolean
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function () {
-        checkAuthentication();
-        setupEventListeners();
-    });
+        // DOM Elements
+        const loginScreen = document.getElementById('loginScreen');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const contentArea = document.getElementById('contentArea');
+        const loadingOverlay = document.getElementById('loadingOverlay');
 
-    function setupEventListeners() {
-        loginForm.addEventListener('submit', handleLogin);
-        logoutBtn.addEventListener('click', handleLogout);
-
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', handleNavigation);
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAuthentication();
+            setupEventListeners();
         });
 
-        document.querySelectorAll('.sub-nav-link').forEach(link => {
-            link.addEventListener('click', handleSubNavigation);
-        });
-    }
+        function setupEventListeners() {
+            loginForm.addEventListener('submit', handleLogin);
+            logoutBtn.addEventListener('click', handleLogout);
 
-    function checkAuthentication() {
-        // Check if we have a token
-        authToken = localStorage.getItem('adminToken');
-        
-        if (authToken) {
-            showAdminPanel();
-            loadTab('faculty');
-        } else {
-            showLoginScreen();
-        }
-    }
-
-    function showLoginScreen() {
-        loginScreen.classList.remove('hidden');
-        adminPanel.classList.add('hidden');
-    }
-
-    function showAdminPanel() {
-        loginScreen.classList.add('hidden');
-        adminPanel.classList.remove('hidden');
-    }
-
-    async function handleLogin(e) {
-        e.preventDefault();
-        const username = document.getElementById('username').value; // Changed from email to username
-        const password = document.getElementById('password').value;
-        
-        // Show loading state on button if desired
-        loginError.classList.add('hidden');
-
-        try {
-            const response = await fetch(`${API_BASE_URL}/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({ username, password }) // Changed from email to username
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', handleNavigation);
             });
 
-            const data = await response.json();
+            document.querySelectorAll('.sub-nav-link').forEach(link => {
+                link.addEventListener('click', handleSubNavigation);
+            });
 
-            if (response.ok) {
-                // Success! Store the token
-                authToken = data.token;
-                localStorage.setItem('adminToken', authToken);
-                localStorage.setItem('adminUser', JSON.stringify(data.user));
-                
-                showAdminPanel();
-                loadTab('faculty');
-                loginForm.reset();
-            } else {
-                // Show error message from backend
-                loginError.textContent = data.message || 'Invalid credentials';
-                loginError.classList.remove('hidden');
+            // Mobile menu event listeners
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenuClose = document.getElementById('mobileMenuClose');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', openMobileMenu);
             }
-        } catch (error) {
-            console.error('Login error:', error);
-            loginError.textContent = 'Connection error. Please check server.';
-            loginError.classList.remove('hidden');
-        }
-    }
 
-    async function handleLogout() {
-        if (!authToken) {
-            cleanupAuth();
-            return;
-        }
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', closeMobileMenu);
+            }
 
-        try {
-            // Call backend to invalidate token
-            await fetch(`${API_BASE_URL}/logout`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${authToken}`,
-                    'Accept': 'application/json'
+            // Mobile navigation event listeners
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', handleMobileNavigation);
+            });
+
+            document.querySelectorAll('.mobile-sub-nav-link').forEach(link => {
+                link.addEventListener('click', handleMobileSubNavigation);
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (mobileMenu && !mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    closeMobileMenu();
                 }
             });
-        } catch (error) {
-            console.error('Logout error:', error);
-        } finally {
-            cleanupAuth();
         }
-    }
 
-    function cleanupAuth() {
-        authToken = null;
-        localStorage.removeItem('adminToken');
-        localStorage.removeItem('adminUser');
-        showLoginScreen();
-    }
+        function checkAuthentication() {
+            // Check if we have a token
+            authToken = localStorage.getItem('adminToken');
 
-    // --- Navigation Functions (Unchanged logic) ---
-    function handleNavigation(e) {
-        e.preventDefault();
-        const tab = e.currentTarget.dataset.tab;
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-        loadTab(tab);
-    }
-
-    function handleSubNavigation(e) {
-        e.preventDefault();
-        const subtab = e.currentTarget.dataset.subtab;
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        document.querySelector('[data-tab="partnership"]').classList.add('active');
-        document.querySelectorAll('.sub-nav-link').forEach(link => link.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-        loadSubTab(subtab);
-    }
-
-    function showLoading() { loadingOverlay.classList.remove('hidden'); }
-    function hideLoading() { loadingOverlay.classList.add('hidden'); }
-
-    async function loadTab(tab) {
-        currentTab = tab;
-        showLoading();
-        try {
-            const response = await fetch(`${tab}/${tab}.html`);
-            const html = await response.text();
-            contentArea.innerHTML = html;
-            loadCSS(`${tab}/${tab}.css`);
-            loadTabScript(tab);
-        } catch (error) {
-            console.error('Error loading tab:', error);
-            contentArea.innerHTML = '<div class="error">Error loading content</div>';
-        } finally {
-            hideLoading();
-        }
-    }
-
-    async function loadSubTab(subtab) {
-        showLoading();
-        try {
-            const response = await fetch(`partnership/${subtab}.html`);
-            const html = await response.text();
-            contentArea.innerHTML = html;
-            loadCSS(`partnership/${subtab}.css`);
-            loadSubTabScript(subtab);
-        } catch (error) {
-            console.error('Error loading sub-tab:', error);
-            contentArea.innerHTML = '<div class="error">Error loading content</div>';
-        } finally {
-            hideLoading();
-        }
-    }
-
-    function loadCSS(cssPath) {
-        const existingLink = document.querySelector('link[data-tab-css]');
-        if (existingLink) existingLink.remove();
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssPath;
-        link.setAttribute('data-tab-css', 'true');
-        document.head.appendChild(link);
-    }
-
-    function loadTabScript(tab) {
-        // (Keep your existing loadTabScript logic here, it is fine)
-        const existingScript = document.querySelector(`script[data-tab-script="${tab}"]`);
-        if (existingScript) {
-            if (tab === 'faculty' && typeof initializeFaculty === 'function') {
-                try { initializeFaculty(); } catch (e) { console.error(e); }
+            if (authToken) {
+                showAdminPanel();
+                loadTab('faculty');
+            } else {
+                showLoginScreen();
             }
-            return;
         }
-        const script = document.createElement('script');
-        script.src = `${tab}/${tab}.js`;
-        script.setAttribute('data-tab-script', tab);
-        script.onload = function () {
-            if (tab === 'faculty' && typeof initializeFaculty === 'function') {
-                try { initializeFaculty(); } catch (e) { console.error(e); }
+
+        function showLoginScreen() {
+            loginScreen.classList.remove('hidden');
+            adminPanel.classList.add('hidden');
+        }
+
+        function showAdminPanel() {
+            loginScreen.classList.add('hidden');
+            adminPanel.classList.remove('hidden');
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value; // Changed from email to username
+            const password = document.getElementById('password').value;
+
+            // Show loading state on button if desired
+            loginError.classList.add('hidden');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password }) // Changed from email to username
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Success! Store the token
+                    authToken = data.token;
+                    localStorage.setItem('adminToken', authToken);
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+
+                    showAdminPanel();
+                    loadTab('faculty');
+                    loginForm.reset();
+                } else {
+                    // Show error message from backend
+                    loginError.textContent = data.message || 'Invalid credentials';
+                    loginError.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                loginError.textContent = 'Connection error. Please check server.';
+                loginError.classList.remove('hidden');
             }
-        };
-        document.body.appendChild(script);
-    }
-
-    function loadSubTabScript(subtab) {
-        // (Keep your existing loadSubTabScript logic here)
-        const existingScript = document.querySelector('script[data-subtab-script]');
-        if (existingScript) existingScript.remove();
-        const script = document.createElement('script');
-        script.src = `partnership/${subtab}.js`;
-        script.setAttribute('data-subtab-script', 'true');
-        document.body.appendChild(script);
-    }
-
-    // --- CRITICAL UPDATE: API CALL FUNCTION ---
-    // This function now attaches the token to every request automatically
-    async function apiCall(endpoint, options = {}) {
-        const url = `${API_BASE_URL}${endpoint}`;
-        
-        const defaultOptions = {
-            headers: {
-                'Accept': 'application/json'
-            },
-            timeout: 30000
-        };
-
-        // Add Authorization Header if token exists
-        if (authToken) {
-            defaultOptions.headers['Authorization'] = `Bearer ${authToken}`;
         }
 
-        // Handle Content-Type for JSON (skip for FormData)
-        if (!(options.body instanceof FormData)) {
-            defaultOptions.headers['Content-Type'] = 'application/json';
-        }
-
-        const finalOptions = { ...defaultOptions, ...options };
-        
-        // Merge headers specifically (to avoid overwriting Auth header)
-        if (options.headers) {
-            finalOptions.headers = { ...defaultOptions.headers, ...options.headers };
-        }
-
-        try {
-            console.log('Making API call to:', url);
-            
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 30000);
-            finalOptions.signal = controller.signal;
-
-            const response = await fetch(url, finalOptions);
-            clearTimeout(timeoutId);
-
-            // Handle 401 Unauthorized (Token expired/invalid)
-            if (response.status === 401) {
-                console.warn('Session expired. Redirecting to login.');
+        async function handleLogout() {
+            if (!authToken) {
                 cleanupAuth();
-                throw new Error('Session expired');
+                return;
             }
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || `HTTP ${response.status}`);
+            try {
+                // Call backend to invalidate token
+                await fetch(`${API_BASE_URL}/logout`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Accept': 'application/json'
+                    }
+                });
+            } catch (error) {
+                console.error('Logout error:', error);
+            } finally {
+                cleanupAuth();
             }
-
-            return data;
-        } catch (error) {
-            console.error('API Error:', error);
-            if (error.name === 'AbortError') {
-                throw new Error('Request timed out.');
-            }
-            throw error;
         }
-    }
 
-    // (Keep showNotification logic unchanged)
-    function showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        setTimeout(() => notification.classList.add('show'), 100);
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-</script>
+        function cleanupAuth() {
+            authToken = null;
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminUser');
+            showLoginScreen();
+        }
+
+        // --- Navigation Functions (Unchanged logic) ---
+        function handleNavigation(e) {
+            e.preventDefault();
+            const tab = e.currentTarget.dataset.tab;
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            loadTab(tab);
+        }
+
+        function handleSubNavigation(e) {
+            e.preventDefault();
+            const subtab = e.currentTarget.dataset.subtab;
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelector('[data-tab="partnership"]').classList.add('active');
+            document.querySelectorAll('.sub-nav-link').forEach(link => link.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            loadSubTab(subtab);
+        }
+
+        // --- Mobile Navigation Functions ---
+        function openMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu) {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu) {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+
+        function handleMobileNavigation(e) {
+            e.preventDefault();
+            const tab = e.currentTarget.dataset.tab;
+            
+            // Close mobile menu
+            closeMobileMenu();
+            
+            // Update active states for both desktop and mobile
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-link').forEach(link => link.classList.remove('active'));
+            
+            const desktopLink = document.querySelector(`[data-tab="${tab}"]`);
+            const mobileLink = e.currentTarget;
+            
+            if (desktopLink) desktopLink.classList.add('active');
+            mobileLink.classList.add('active');
+            
+            loadTab(tab);
+        }
+
+        function handleMobileSubNavigation(e) {
+            e.preventDefault();
+            const subtab = e.currentTarget.dataset.subtab;
+            
+            // Close mobile menu
+            closeMobileMenu();
+            
+            // Update active states for both desktop and mobile
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelectorAll('.sub-nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelectorAll('.mobile-sub-nav-link').forEach(link => link.classList.remove('active'));
+            
+            const desktopLink = document.querySelector('[data-tab="partnership"]');
+            const desktopSubLink = document.querySelector(`[data-subtab="${subtab}"]`);
+            const mobileLink = document.querySelector('[data-tab="partnership"].mobile-nav-link');
+            const mobileSubLink = e.currentTarget;
+            
+            if (desktopLink) desktopLink.classList.add('active');
+            if (desktopSubLink) desktopSubLink.classList.add('active');
+            if (mobileLink) mobileLink.classList.add('active');
+            mobileSubLink.classList.add('active');
+            
+            loadSubTab(subtab);
+        }
+
+        function showLoading() { loadingOverlay.classList.remove('hidden'); }
+        function hideLoading() { loadingOverlay.classList.add('hidden'); }
+
+        async function loadTab(tab) {
+            currentTab = tab;
+            showLoading();
+            try {
+                const response = await fetch(`${tab}/${tab}.html`);
+                const html = await response.text();
+                contentArea.innerHTML = html;
+                loadCSS(`${tab}/${tab}.css`);
+                loadTabScript(tab);
+            } catch (error) {
+                console.error('Error loading tab:', error);
+                contentArea.innerHTML = '<div class="error">Error loading content</div>';
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function loadSubTab(subtab) {
+            showLoading();
+            try {
+                const response = await fetch(`partnership/${subtab}.html`);
+                const html = await response.text();
+                contentArea.innerHTML = html;
+                loadCSS(`partnership/${subtab}.css`);
+                loadSubTabScript(subtab);
+            } catch (error) {
+                console.error('Error loading sub-tab:', error);
+                contentArea.innerHTML = '<div class="error">Error loading content</div>';
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function loadCSS(cssPath) {
+            const existingLink = document.querySelector('link[data-tab-css]');
+            if (existingLink) existingLink.remove();
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = cssPath;
+            link.setAttribute('data-tab-css', 'true');
+            document.head.appendChild(link);
+        }
+
+        function loadTabScript(tab) {
+            // (Keep your existing loadTabScript logic here, it is fine)
+            const existingScript = document.querySelector(`script[data-tab-script="${tab}"]`);
+            if (existingScript) {
+                if (tab === 'faculty' && typeof initializeFaculty === 'function') {
+                    try { initializeFaculty(); } catch (e) { console.error(e); }
+                }
+                return;
+            }
+            const script = document.createElement('script');
+            script.src = `${tab}/${tab}.js`;
+            script.setAttribute('data-tab-script', tab);
+            script.onload = function () {
+                if (tab === 'faculty' && typeof initializeFaculty === 'function') {
+                    try { initializeFaculty(); } catch (e) { console.error(e); }
+                }
+            };
+            document.body.appendChild(script);
+        }
+
+        function loadSubTabScript(subtab) {
+            const existingScript = document.querySelector(`script[data-subtab-script="${subtab}"]`);
+
+            if (existingScript) {
+                // Script already loaded, just re-initialize
+                console.log(`Script for ${subtab} already loaded, re-initializing...`);
+
+                if (subtab === 'school-integration' && typeof initializeSchoolIntegration === 'function') {
+                    try {
+                        initializeSchoolIntegration();
+                    } catch (e) {
+                        console.error('Error initializing school integration:', e);
+                    }
+                } else if (subtab === 'study-center' && typeof initializeStudyCenter === 'function') {
+                    try {
+                        initializeStudyCenter();
+                    } catch (e) {
+                        console.error('Error initializing study center:', e);
+                    }
+                } else if (subtab === 'online-learning-program' && typeof initializeOnlineLearning === 'function') {
+                    try {
+                        initializeOnlineLearning();
+                    } catch (e) {
+                        console.error('Error initializing online learning:', e);
+                    }
+                }
+                return;
+            }
+
+            // Remove any old subtab scripts
+            const oldScripts = document.querySelectorAll('script[data-subtab-script]');
+            oldScripts.forEach(script => script.remove());
+
+            // Load new script
+            const script = document.createElement('script');
+            script.src = `partnership/${subtab}.js`;
+            script.setAttribute('data-subtab-script', subtab);
+
+            script.onload = function () {
+                console.log(`Script loaded for ${subtab}, initializing...`);
+
+                if (subtab === 'school-integration' && typeof initializeSchoolIntegration === 'function') {
+                    try {
+                        initializeSchoolIntegration();
+                    } catch (e) {
+                        console.error('Error initializing school integration:', e);
+                    }
+                } else if (subtab === 'study-center' && typeof initializeStudyCenter === 'function') {
+                    try {
+                        initializeStudyCenter();
+                    } catch (e) {
+                        console.error('Error initializing study center:', e);
+                    }
+                } else if (subtab === 'online-learning-program' && typeof initializeOnlineLearning === 'function') {
+                    try {
+                        initializeOnlineLearning();
+                    } catch (e) {
+                        console.error('Error initializing online learning:', e);
+                    }
+                }
+            };
+
+            script.onerror = function () {
+                console.error(`Failed to load script: partnership/${subtab}.js`);
+            };
+
+            document.body.appendChild(script);
+        }
+        // --- CRITICAL UPDATE: API CALL FUNCTION ---
+        // This function now attaches the token to every request automatically
+        async function apiCall(endpoint, options = {}) {
+            const url = `${API_BASE_URL}${endpoint}`;
+
+            const defaultOptions = {
+                headers: {
+                    'Accept': 'application/json'
+                },
+                timeout: 30000
+            };
+
+            // Add Authorization Header if token exists
+            if (authToken) {
+                defaultOptions.headers['Authorization'] = `Bearer ${authToken}`;
+            }
+
+            // Handle Content-Type for JSON (skip for FormData)
+            if (!(options.body instanceof FormData)) {
+                defaultOptions.headers['Content-Type'] = 'application/json';
+            }
+
+            const finalOptions = { ...defaultOptions, ...options };
+
+            // Merge headers specifically (to avoid overwriting Auth header)
+            if (options.headers) {
+                finalOptions.headers = { ...defaultOptions.headers, ...options.headers };
+            }
+
+            try {
+                console.log('Making API call to:', url);
+
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+                finalOptions.signal = controller.signal;
+
+                const response = await fetch(url, finalOptions);
+                clearTimeout(timeoutId);
+
+                // Handle 401 Unauthorized (Token expired/invalid)
+                if (response.status === 401) {
+                    console.warn('Session expired. Redirecting to login.');
+                    cleanupAuth();
+                    throw new Error('Session expired');
+                }
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || `HTTP ${response.status}`);
+                }
+
+                return data;
+            } catch (error) {
+                console.error('API Error:', error);
+                if (error.name === 'AbortError') {
+                    throw new Error('Request timed out.');
+                }
+                throw error;
+            }
+        }
+
+        // (Keep showNotification logic unchanged)
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
 
 </body>
 

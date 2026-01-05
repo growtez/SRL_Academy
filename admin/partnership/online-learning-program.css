@@ -1,6 +1,6 @@
-/* ===== STUDY CENTRE APPLICATIONS STYLES ===== */
+/* ===== ONLINE LEARNING PROGRAM APPLICATIONS STYLES ===== */
 
-.study-centre-management {
+.online-learning-management {
     padding: var(--space-6);
 }
 
@@ -237,40 +237,40 @@
     justify-content: flex-end;
 }
 
-/* Details layout */
-.details-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-6);
+/* Card-based Modal Layout */
+.center-info-section {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
 }
 
-.details-group h3 {
-    font-family: var(--font-primary);
-    font-size: 1.1rem;
-    color: var(--gray-900);
+.center-info-section .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: var(--space-3);
 }
 
-.details-row {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--space-3);
-    margin-bottom: var(--space-2);
+.center-info-section .info-item:last-child {
+    margin-bottom: 0;
 }
 
-.details-label {
+.center-info-section .info-label {
     font-weight: 600;
-    color: var(--gray-600);
-    white-space: nowrap;
+    color: var(--gray-700);
+    min-width: 120px;
+    flex-shrink: 0;
 }
 
-.details-value {
+.center-info-section .info-value {
     color: var(--gray-800);
     text-align: right;
     flex: 1;
+    word-break: break-word;
 }
 
-/* Card-based Modal Layout */
 .school-image-header {
     display: flex;
     align-items: center;
@@ -423,11 +423,6 @@
 
     .search-input {
         width: 100%;
-    }
-
-    .details-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-4);
     }
 
     .info-cards-grid {

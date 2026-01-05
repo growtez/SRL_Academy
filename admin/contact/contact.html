@@ -1,0 +1,110 @@
+<div class="contacts-management">
+    <div class="page-header">
+        <div>
+            <h1>Contact Form Submissions</h1>
+            <p>View and manage all contact form submissions</p>
+        </div>
+    </div>
+
+    <div class="contacts-list-container">
+        <div class="list-header">
+            <h2>Submissions</h2>
+            <div class="list-actions">
+                <input type="text" id="searchContacts" class="search-input" placeholder="Search by name or email...">
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="contacts-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th class="actions-column">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="contactsTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="contactsEmptyState" class="empty-state hidden">
+            <span class="material-symbols-outlined">contact_mail</span>
+            <h3>No Submissions Found</h3>
+            <p>Contact form submissions will appear here.</p>
+        </div>
+    </div>
+</div>
+
+<div id="contactViewModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-sm">
+        <div class="modal-header">
+            <h2>Contact Details</h2>
+            <button type="button" class="modal-close" data-close-modal="contactViewModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="modal-body contact-modal-body">
+            <div class="info-item">
+                <span class="info-label">Name</span>
+                <span id="detailContactName" class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Email</span>
+                <span id="detailContactEmail" class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Phone</span>
+                <span id="detailContactPhone" class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Goal</span>
+                <span id="detailContactGoal" class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Class</span>
+                <span id="detailContactClass" class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Class Type</span>
+                <span id="detailContactClassType" class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Submitted At</span>
+                <span id="detailContactCreatedAt" class="info-value"></span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" data-close-modal="contactViewModal">Close</button>
+            <button type="button" class="btn btn-primary" id="contactPdfButton">
+                <span class="material-symbols-outlined">picture_as_pdf</span>
+                Download PDF
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="contactDeleteModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-sm">
+        <div class="modal-header">
+            <h2>Delete Submission</h2>
+            <button type="button" class="modal-close" data-close-modal="contactDeleteModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to delete this contact submission? This action cannot be undone.</p>
+            <div id="deleteContactInfo" class="delete-info"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" data-close-modal="contactDeleteModal">Cancel</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteContactButton">
+                <span class="material-symbols-outlined">delete</span>
+                Delete
+            </button>
+        </div>
+    </div>
+</div>

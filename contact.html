@@ -263,9 +263,9 @@
                         </div>
 
                         <div style="margin-top: 1.5rem;">
-                            <button type="submit" id="submitBtn" class="submit-btn">
-                                Submit
-                            </button>
+                        <button type="submit" id="submitBtn" class="submit-btn">
+                            <span>Submit</span>
+                        </button>
                         </div>
                     </form>
                 </div>
@@ -467,7 +467,7 @@
             if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
             // Configuration - Update these URLs for your Laravel setup
-            const API_BASE_URL = 'https://srlacademyedu.com/api'; // Laravel's default dev server
+            const API_BASE_URL = 'http://127.0.0.1:8000/api'; // Laravel's default dev server
 
             // Add styles for dialog
             const dialogStyles = `

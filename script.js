@@ -1,5 +1,43 @@
 // ===== SRL Academy - JAVASCRIPT =====
 
+// ===== RANDOM HERO BACKGROUND IMAGES =====
+// Applies random hero images from home page to all other pages
+function setRandomHeroImage() {
+    // Only run on non-home pages
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    if (currentPage === 'index.html' || currentPage === '' || currentPage === '/') {
+        return; // Skip for home page
+    }
+
+    // Home page gallery images (not using logo.png)
+    const heroImages = [
+        'images/5.jpg',
+        'images/6.jpg',
+        'images/9.jpg'
+    ];
+
+    // Select a random image
+    const randomImage = heroImages[Math.floor(Math.random() * heroImages.length)];
+
+    // Find the hero section and update its background
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        // Apply the random background image with the same gradient overlay
+        heroSection.style.backgroundImage = `linear-gradient(0deg, rgba(128, 0, 0, 0.7), rgba(128, 0, 0, 0.5)), url('${randomImage}')`;
+        heroSection.style.backgroundSize = 'cover';
+        heroSection.style.backgroundPosition = 'center';
+        heroSection.style.backgroundRepeat = 'no-repeat';
+    }
+}
+
+// Run when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setRandomHeroImage);
+} else {
+    // DOM already loaded, run immediately
+    setRandomHeroImage();
+}
+
 // Initialize Swiper
 const initSwiper = () => {
     // Check if Swiper is defined and if the element exists

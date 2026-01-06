@@ -476,7 +476,7 @@ h4 {
 
 /* ===== HERO SECTION ===== */
 .hero {
-    background: linear-gradient(0deg, rgba(128, 0, 0, 0.7), rgba(128, 0, 0, 0.5)), url('images/9.jpg') center/cover no-repeat;
+    background: linear-gradient(0deg, rgba(128, 0, 0, 0.7), rgba(128, 0, 0, 0.5)), url('images/5.jpg') center/cover no-repeat;
     color: var(--white);
     padding: var(--space-20) 0;
     position: relative;

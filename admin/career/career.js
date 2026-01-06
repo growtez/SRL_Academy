@@ -73,50 +73,62 @@ function initializeCareer() {
 async function handleDownloadFile(id, type) {
     if (!id) return;
     
-    // 1. Get the Token
     const token = localStorage.getItem('adminToken');
-    console.log('Using token:', token);
     if (!token) {
         showNotification('You are not logged in', 'error');
         return;
     }
 
+    // Build URL (e.g., /api/career/5/resume)
     const url = `${API_BASE_URL}/career/${id}/${type}`;
     showNotification('Starting download...', 'success');
 
     try {
-        // 2. Fetch the file manually so we can attach the Header
         const response = await fetch(url, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`, // PASS THE TOKEN HERE
-                'Accept': 'application/json'
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/json' 
             }
         });
 
-        if (!response.ok) throw new Error('Download failed');
+        // --- NEW: BETTER ERROR HANDLING ---
+        if (!response.ok) {
+            // Try to read the error message sent by Laravel (e.g., "Resume file missing")
+            let errorMessage = `Error ${response.status}`;
+            try {
+                const errorData = await response.json();
+                errorMessage = errorData.message || errorMessage;
+            } catch (e) {
+                // If response isn't JSON (like a 500 crash HTML page), stick to status code
+                console.warn('Could not parse error JSON', e);
+            }
+            throw new Error(errorMessage);
+        }
+        // ----------------------------------
 
-        // 3. Convert the response to a "Blob" (Binary Large Object)
         const blob = await response.blob();
-        
-        // 4. Create an invisible link to download the Blob
         const downloadUrl = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = downloadUrl;
         
-        // Try to guess filename (Optional improvement)
-        a.download = type === 'resume' ? 'resume.pdf' : 'application.pdf';
+        // Intelligent naming
+        const date = new Date().toISOString().split('T')[0];
+        a.download = type === 'resume' ? `resume_${id}_${date}.pdf` : `application_${id}_${date}.pdf`;
         
         document.body.appendChild(a);
         a.click();
         
-        // 5. Cleanup
-        a.remove();
-        window.URL.revokeObjectURL(downloadUrl);
+        // Cleanup
+        setTimeout(() => {
+            a.remove();
+            window.URL.revokeObjectURL(downloadUrl);
+        }, 100);
 
     } catch (error) {
-        console.error('Download error:', error);
-        showNotification('Download failed: ' + error.message, 'error');
+        console.error('Download detailed error:', error);
+        // This will now show "Resume file missing on server" or specific PHP errors
+        showNotification(error.message, 'error');
     }
 }
 

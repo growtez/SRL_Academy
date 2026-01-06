@@ -48,6 +48,9 @@
                 <button id="mobileMenuToggle" class="mobile-menu-toggle">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
+                <button id="sidebarToggle" class="sidebar-toggle" title="Toggle Sidebar">
+                    <span class="material-symbols-outlined">menu_open</span>
+                </button>
                 <div class="brand-badge">SRL</div>
                 <div class="brand-text">
                     <div class="brand-line-1">Admin Panel</div>
@@ -225,6 +228,26 @@
             document.querySelectorAll('.mobile-sub-nav-link').forEach(link => {
                 link.addEventListener('click', handleMobileSubNavClick);
             });
+
+
+            // --- NEW: Desktop Sidebar Toggle Logic ---
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const adminSidebar = document.querySelector('.admin-sidebar');
+
+            if (sidebarToggle && adminSidebar) {
+                sidebarToggle.addEventListener('click', () => {
+                    // Toggle the class
+                    adminSidebar.classList.toggle('collapsed');
+
+                    // Optional: Toggle Icon (Menu <-> Menu Open)
+                    const icon = sidebarToggle.querySelector('.material-symbols-outlined');
+                    if (adminSidebar.classList.contains('collapsed')) {
+                        icon.textContent = 'menu'; // Show 'menu' icon when closed
+                    } else {
+                        icon.textContent = 'menu_open'; // Show 'menu_open' icon when open
+                    }
+                });
+            }
         }
 
         // --- AUTH & LOGIN FUNCTIONS ---

@@ -216,6 +216,26 @@ body {
     font-family: var(--font-primary);
 }
 
+/* ===== SIDEBAR TOGGLE (DESKTOP) ===== */
+.sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--gray-500);
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius);
+    transition: var(--transition);
+    margin-right: var(--space-2);
+}
+
+.sidebar-toggle:hover {
+    background: var(--gray-100);
+    color: var(--gray-800);
+}
+
 /* Admin Container */
 .admin-container {
     display: flex;
@@ -295,7 +315,7 @@ body {
     margin-left: var(--space-8);
     margin-top: var(--space-2);
     /* HIDDEN BY DEFAULT */
-    display: none; 
+    display: none;
 }
 
 /* REMOVED: .nav-item:hover .sub-nav { display: block; } */
@@ -658,7 +678,8 @@ body {
 .mobile-nav-link {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Keeps arrow to right */
+    justify-content: space-between;
+    /* Keeps arrow to right */
     padding: var(--space-3) var(--space-4);
     color: var(--gray-700);
     text-decoration: none;
@@ -674,7 +695,7 @@ body {
     gap: var(--space-3);
 }
 
-.mobile-nav-link:hover, 
+.mobile-nav-link:hover,
 .mobile-nav-link.active {
     background: rgba(128, 0, 0, 0.08);
     color: var(--primary);
@@ -704,7 +725,8 @@ body {
     list-style: none;
     margin: 0 var(--space-2);
     padding: 0;
-    max-height: 0; /* Hidden by default */
+    max-height: 0;
+    /* Hidden by default */
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
@@ -765,6 +787,10 @@ body {
         display: none;
     }
 
+    .sidebar-toggle {
+        display: none;
+    }
+
     .mobile-menu-toggle {
         display: flex;
     }
@@ -800,4 +826,12 @@ body {
     .brand-line-1 {
         font-size: 0.9rem;
     }
+}
+
+/* Collapsed Sidebar State */
+.admin-sidebar.collapsed {
+    width: 0;
+    border-right: none;
+    overflow: hidden;
+    /* Hides content when width is 0 */
 }

@@ -65,9 +65,20 @@ function initializeCareer() {
     loadCareerApplications();
 }
 
-// Helper function to trigger downloads
+// --- KEEP THIS ONE (It handles BOTH Resume and PDF) ---
 function handleDownloadFile(id, type) {
-    if (!id) return;
+    if (!id) {
+        console.error("No career ID selected for download");
+        return;
+    }
+    
+    // Ensure API_BASE_URL is defined (usually in your main layout or config)
+    if (typeof API_BASE_URL === 'undefined') {
+        console.error("API_BASE_URL is not defined");
+        alert("System error: API URL missing.");
+        return;
+    }
+
     // Opens: /api/career/123/resume  OR  /api/career/123/pdf
     const url = `${API_BASE_URL}/career/${id}/${type}`;
     window.open(url, '_blank');
@@ -277,20 +288,6 @@ async function deleteCareerApplication() {
         isCareerOperationInProgress = false;
         if (typeof hideLoading === 'function') hideLoading();
     }
-}
-
-function handleDownloadFile(id, type) {
-    // Download Resume
-    if (!id) return;
-    const url = `${API_BASE_URL}/career/${id}/${type}`;
-    window.open(url, '_blank');
-}
-
-function handleDownloadApplicationPdf(id) {
-    // Download Generated Application PDF
-    if (!id) return;
-    const url = `${API_BASE_URL}/career/${id}/pdf`; // New Endpoint
-    window.open(url, '_blank');
 }
 
 function attachModalCloseHandlers() {

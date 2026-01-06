@@ -90,9 +90,12 @@
                             Partnership
                         </a>
                         <ul class="mobile-sub-nav">
-                            <li><a href="#" data-subtab="school-integration" class="mobile-sub-nav-link">School Integration Projects</a></li>
-                            <li><a href="#" data-subtab="study-center" class="mobile-sub-nav-link">Study Center Establishment</a></li>
-                            <li><a href="#" data-subtab="online-learning-program" class="mobile-sub-nav-link">Online Learning Program</a></li>
+                            <li><a href="#" data-subtab="school-integration" class="mobile-sub-nav-link">School
+                                    Integration Projects</a></li>
+                            <li><a href="#" data-subtab="study-center" class="mobile-sub-nav-link">Study Center
+                                    Establishment</a></li>
+                            <li><a href="#" data-subtab="online-learning-program" class="mobile-sub-nav-link">Online
+                                    Learning Program</a></li>
                         </ul>
                     </li>
                     <li class="mobile-nav-item">
@@ -234,7 +237,7 @@
             });
 
             // Close mobile menu when clicking outside
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 if (mobileMenu && !mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                     closeMobileMenu();
                 }
@@ -372,46 +375,46 @@
         function handleMobileNavigation(e) {
             e.preventDefault();
             const tab = e.currentTarget.dataset.tab;
-            
+
             // Close mobile menu
             closeMobileMenu();
-            
+
             // Update active states for both desktop and mobile
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             document.querySelectorAll('.mobile-nav-link').forEach(link => link.classList.remove('active'));
-            
+
             const desktopLink = document.querySelector(`[data-tab="${tab}"]`);
             const mobileLink = e.currentTarget;
-            
+
             if (desktopLink) desktopLink.classList.add('active');
             mobileLink.classList.add('active');
-            
+
             loadTab(tab);
         }
 
         function handleMobileSubNavigation(e) {
             e.preventDefault();
             const subtab = e.currentTarget.dataset.subtab;
-            
+
             // Close mobile menu
             closeMobileMenu();
-            
+
             // Update active states for both desktop and mobile
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             document.querySelectorAll('.sub-nav-link').forEach(link => link.classList.remove('active'));
             document.querySelectorAll('.mobile-nav-link').forEach(link => link.classList.remove('active'));
             document.querySelectorAll('.mobile-sub-nav-link').forEach(link => link.classList.remove('active'));
-            
+
             const desktopLink = document.querySelector('[data-tab="partnership"]');
             const desktopSubLink = document.querySelector(`[data-subtab="${subtab}"]`);
             const mobileLink = document.querySelector('[data-tab="partnership"].mobile-nav-link');
             const mobileSubLink = e.currentTarget;
-            
+
             if (desktopLink) desktopLink.classList.add('active');
             if (desktopSubLink) desktopSubLink.classList.add('active');
             if (mobileLink) mobileLink.classList.add('active');
             mobileSubLink.classList.add('active');
-            
+
             loadSubTab(subtab);
         }
 
@@ -467,6 +470,10 @@
             if (existingScript) {
                 if (tab === 'faculty' && typeof initializeFaculty === 'function') {
                     try { initializeFaculty(); } catch (e) { console.error(e); }
+                } else if (tab === 'career' && typeof initializeCareer === 'function') {
+                    try { initializeCareer(); } catch (e) { console.error(e); }
+                } else if (tab === 'contact' && typeof initializeContactManagement === 'function') {
+                    try { initializeContactManagement(); } catch (e) { console.error(e); }
                 }
                 return;
             }
@@ -477,6 +484,7 @@
                 if (tab === 'faculty' && typeof initializeFaculty === 'function') {
                     try { initializeFaculty(); } catch (e) { console.error(e); }
                 }
+                // Career and Contact initialize themselves automatically on first load via their file content
             };
             document.body.appendChild(script);
         }
@@ -552,7 +560,13 @@
         // --- CRITICAL UPDATE: API CALL FUNCTION ---
         // This function now attaches the token to every request automatically
         async function apiCall(endpoint, options = {}) {
-            const url = `${API_BASE_URL}${endpoint}`;
+            let url = `${API_BASE_URL}${endpoint}`;
+
+            // Add cache-busting timestamp for GET requests
+            if (!options.method || options.method.toUpperCase() === 'GET') {
+                const separator = url.includes('?') ? '&' : '?';
+                url = `${url}${separator}_t=${Date.now()}`;
+            }
 
             const defaultOptions = {
                 headers: {

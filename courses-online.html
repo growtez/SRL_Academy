@@ -914,9 +914,559 @@
         </div>
     </section>
 
-    <!-- PROGRAMS SECTION -->
-    <section class="programs-section">
+    <!-- COURSES CATALOG SECTION -->
+    <section class="courses-catalog-section">
         <div class="container">
+            <style>
+                .courses-catalog-section {
+                    background: #fdfdfd;
+                    padding: 5rem 0;
+                    position: relative;
+                    overflow: visible;
+                }
+
+                /* Premium background blobs */
+                .courses-catalog-section::before {
+                    content: '';
+                    position: absolute;
+                    top: -10%;
+                    right: -10%;
+                    width: 450px;
+                    height: 450px;
+                    background: radial-gradient(circle, rgba(128, 0, 0, 0.04) 0%, transparent 70%);
+                    z-index: 0;
+                    pointer-events: none;
+                }
+
+                .courses-catalog-section::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10%;
+                    left: -10%;
+                    width: 450px;
+                    height: 450px;
+                    background: radial-gradient(circle, rgba(128, 0, 0, 0.04) 0%, transparent 70%);
+                    z-index: 0;
+                    pointer-events: none;
+                }
+
+                .courses-catalog-section .container {
+                    position: relative;
+                    z-index: 1;
+                }
+
+                .category-tabs-container {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    margin-bottom: 4rem;
+                    padding: 0 15px;
+                    /* Prevent clipping on very small screens */
+                }
+
+                .category-tabs {
+                    display: flex;
+                    gap: 1rem;
+                    flex-wrap: nowrap;
+                    justify-content: center;
+                    background: rgba(255, 255, 255, 0.9);
+                    padding: 0.6rem 1rem;
+                    border-radius: 60px;
+                    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+                    backdrop-filter: blur(20px);
+                    border: 1px solid rgba(128, 0, 0, 0.08);
+                    width: 100%;
+                    max-width: 1100px;
+                    transition: all 0.3s ease;
+                }
+
+                .category-tabs::-webkit-scrollbar {
+                    display: none;
+                }
+
+                @media (min-width: 900px) {
+                    .category-tabs {
+                        justify-content: center;
+                    }
+                }
+
+                @media (max-width: 900px) {
+                    .courses-catalog-section {
+                        overflow: visible !important;
+                    }
+
+                    .courses-catalog-section::before,
+                    .courses-catalog-section::after {
+                        display: none;
+                    }
+
+                    .courses-catalog-section .container {
+                        overflow: visible !important;
+                        padding: 0 !important;
+                    }
+
+                    .category-tabs-container {
+                        display: block !important;
+                        justify-content: flex-start !important;
+                        padding: 0 !important;
+                        margin: 0 0 4rem 0 !important;
+                        width: 100% !important;
+                        overflow-x: scroll !important;
+                        overflow-y: visible !important;
+                        -webkit-overflow-scrolling: touch;
+                        scrollbar-width: none;
+                        -ms-overflow-style: none;
+                    }
+
+                    .category-tabs-container::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    .category-tabs {
+                        display: flex !important;
+                        flex-wrap: nowrap !important;
+                        gap: 0.5rem !important;
+                        padding: 0.6rem 1rem !important;
+                        margin: 0 1rem 0 0.5rem !important;
+                        border-radius: 30px !important;
+                        justify-content: flex-start !important;
+                        width: max-content !important;
+                        max-width: none !important;
+                        background: rgba(255, 255, 255, 0.95);
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                        border: 1px solid rgba(128, 0, 0, 0.1) !important;
+                    }
+
+                    .category-tab {
+                        padding: 0.5rem 0.9rem !important;
+                        font-size: 0.8rem !important;
+                        gap: 0.3rem !important;
+                        flex: 0 0 auto !important;
+                        white-space: nowrap !important;
+                        border-radius: 20px;
+                    }
+
+                    .category-tab i {
+                        display: none;
+                    }
+
+                    /* Add padding to course sections on mobile */
+                    .course-section {
+                        padding: 0 1rem;
+                    }
+
+                    .course-category-title {
+                        padding-left: 0;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .category-tab {
+                        padding: 0.4rem 0.3rem !important;
+                        font-size: 0.65rem !important;
+                    }
+                }
+
+                .category-tabs:hover {
+                    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+                    transform: translateY(-2px);
+                }
+
+                .category-tab {
+                    padding: 0.7rem 1.4rem;
+                    border: none;
+                    background: transparent;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    color: #555;
+                    cursor: pointer;
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    border-radius: 40px;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.6rem;
+                    position: relative;
+                    border: 1px solid transparent;
+                    flex: 1 1 auto;
+                    white-space: nowrap;
+                    justify-content: center;
+                }
+
+                .category-tab i {
+                    font-size: 1.1rem;
+                    transition: all 0.3s ease;
+                }
+
+                .category-tab:hover {
+                    color: var(--primary);
+                    background: #fff;
+                    transform: translateY(-3px);
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+                    border-color: rgba(128, 0, 0, 0.1);
+                }
+
+                .category-tab:hover i {
+                    transform: scale(1.2) rotate(5deg);
+                }
+
+                .category-tab.active {
+                    color: #fff;
+                    background: linear-gradient(135deg, #800000 0%, #a52a2a 100%);
+                    font-weight: 600;
+                    box-shadow: 0 12px 30px rgba(128, 0, 0, 0.25);
+                    border-color: transparent;
+                }
+
+                .category-tab.active i {
+                    color: #ffd700;
+                    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4));
+                }
+
+                .category-tab.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -8px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 0;
+                    height: 0;
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                    border-top: 8px solid #800000;
+                    opacity: 0.8;
+                }
+
+                .category-tab.active i {
+                    color: #ffca28;
+                    /* Goldish color for icon in active state */
+                }
+
+                .course-category-title {
+                    font-family: 'Oswald', sans-serif;
+                    font-size: 1.6rem;
+                    color: #1a1a1a;
+                    margin-bottom: 1.5rem;
+                    font-weight: 600;
+                }
+
+                .courses-grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 1.5rem;
+                    margin-bottom: 2rem;
+                }
+
+                .course-card {
+                    background: #fff;
+                    border-radius: 15px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+                    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    position: relative;
+                    /* Premium Dual-Tone Boundary: Maroon Top, White Bottom */
+                    border: 1.5px solid transparent;
+                    background-image: linear-gradient(white, white),
+                        linear-gradient(to bottom, #800000 0%, rgba(255, 255, 255, 0) 80%);
+                    background-origin: border-box;
+                    background-clip: padding-box, border-box;
+                }
+
+                .course-card:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 15px 35px rgba(128, 0, 0, 0.12);
+                    background-image: linear-gradient(white, white),
+                        linear-gradient(to bottom, #a52a2a 0%, rgba(255, 255, 255, 0) 100%);
+                }
+
+                .course-card-image {
+                    position: relative;
+                    height: 180px;
+                    overflow: hidden;
+                }
+
+                .course-card-image img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .course-card-image .online-badge {
+                    position: absolute;
+                    top: 10px;
+                    left: -12px;
+                    background: #800000;
+                    color: #fff;
+                    padding: 4px 25px 4px 15px;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    z-index: 20;
+                    clip-path: polygon(0 0, 100% 0, 88% 50%, 100% 100%, 0 100%);
+                    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+                }
+
+                .course-card-image .online-badge::before {
+                    content: '';
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 12px;
+                    height: 8px;
+                    background: #4a0000;
+                    clip-path: polygon(100% 0, 100% 100%, 0 0);
+                    z-index: -1;
+                }
+
+                .course-card-body {
+                    padding: 1rem;
+                }
+
+                .course-card-title {
+                    font-family: 'Oswald', sans-serif;
+                    font-size: 1.1rem;
+                    color: #1a1a1a;
+                    margin-bottom: 0.5rem;
+                    font-weight: 600;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                .course-card-tags {
+                    display: flex;
+                    gap: 0.4rem;
+                    flex-wrap: wrap;
+                    margin-bottom: 0.6rem;
+                }
+
+                .tag {
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-size: 0.65rem;
+                    font-weight: 600;
+                }
+
+                .tag-new {
+                    background: #4caf50;
+                    color: #fff;
+                }
+
+                .tag-hinglish {
+                    background: #e3f2fd;
+                    color: #1976d2;
+                }
+
+                .tag-hindi {
+                    background: #fff3e0;
+                    color: #e65100;
+                }
+
+                .tag-pro {
+                    background: #7c4dff;
+                    color: #fff;
+                }
+
+                .course-card-desc {
+                    font-size: 0.78rem;
+                    color: #666;
+                    margin-bottom: 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                .course-card-desc i {
+                    color: var(--primary);
+                    font-size: 0.85rem;
+                }
+
+                .date-highlight {
+                    color: #000;
+                    font-weight: 600;
+                }
+
+                .course-card-dates {
+                    font-size: 0.75rem;
+                    color: #888;
+                    margin-bottom: 0.6rem;
+                }
+
+                .course-card-dates i {
+                    color: var(--primary);
+                    margin-right: 4px;
+                }
+
+                .course-card-plan {
+                    display: inline-block;
+                    background: #f5f5f5;
+                    color: #666;
+                    padding: 4px 10px;
+                    border-radius: 4px;
+                    font-size: 0.7rem;
+                    margin-bottom: 0.8rem;
+                }
+
+                .course-card-plan.pro {
+                    background: linear-gradient(135deg, #800000, #a52a2a);
+                    color: #fff;
+                }
+
+                .course-card-pricing {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 0.8rem;
+                    gap: 0.5rem;
+                }
+
+                .price-left {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .price-main {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                .price-caption {
+                    font-size: 0.65rem;
+                    color: #888;
+                    font-weight: 600;
+                    margin-top: 2px;
+                }
+
+                .price-current {
+                    font-family: 'Oswald', sans-serif;
+                    font-size: 1.3rem;
+                    font-weight: 700;
+                    color: #800000;
+                }
+
+                .price-original {
+                    font-size: 0.85rem;
+                    color: #999;
+                    text-decoration: line-through;
+                }
+
+                .price-discount {
+                    background: #e8f5e9;
+                    color: #2e7d32;
+                    padding: 4px 10px 4px 15px;
+                    border-radius: 4px;
+                    font-size: 0.65rem;
+                    font-weight: 600;
+                    clip-path: polygon(8% 0, 100% 0, 100% 100%, 8% 100%, 0% 50%);
+                }
+
+                .price-discount i {
+                    margin-right: 3px;
+                }
+
+                .course-card-buttons {
+                    display: flex;
+                    gap: 0.6rem;
+                }
+
+                .btn-card-explore {
+                    flex: 1;
+                    padding: 0.6rem;
+                    border: 2px solid var(--primary);
+                    background: #fff;
+                    color: var(--primary);
+                    border-radius: 6px;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-align: center;
+                    transition: all 0.3s;
+                }
+
+                .btn-card-explore:hover {
+                    background: #fff5f5;
+                }
+
+                .btn-card-buy {
+                    flex: 1;
+                    padding: 0.6rem;
+                    background: linear-gradient(135deg, #800000 0%, #a52a2a 100%);
+                    color: #fff;
+                    border: none;
+                    border-radius: 6px;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-align: center;
+                    transition: all 0.3s;
+                }
+
+                .btn-card-buy:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 15px rgba(128, 0, 0, 0.4);
+                }
+
+                .view-all-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0.6rem 1.5rem;
+                    border: 1px solid #ddd;
+                    background: #fff;
+                    color: #666;
+                    border-radius: 20px;
+                    font-size: 0.85rem;
+                    cursor: pointer;
+                    margin: 1rem auto;
+                }
+
+                .view-all-btn:hover {
+                    border-color: var(--primary);
+                    color: var(--primary);
+                }
+
+                @media (max-width: 992px) {
+                    .courses-grid {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                }
+
+                @media (max-width: 576px) {
+                    .courses-grid {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        overflow-x: auto;
+                        -webkit-overflow-scrolling: touch;
+                        scroll-snap-type: x mandatory;
+                        gap: 1rem;
+                        padding-bottom: 1rem;
+                        scrollbar-width: none;
+                        -ms-overflow-style: none;
+                    }
+
+                    .courses-grid::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    .courses-grid .course-card {
+                        flex: 0 0 280px;
+                        scroll-snap-align: start;
+                    }
+
+                    /* Disable hover zoom effect on mobile */
+                    .course-card:hover {
+                        transform: none;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+                    }
+
+                    .category-tabs {
+                        justify-content: center;
+                    }
+                }
+            </style>
+
             <div class="section-header">
                 <span class="section-label">Our Programs</span>
                 <h2 class="section-title">Available Online Courses</h2>
@@ -924,102 +1474,1043 @@
                     journey towards success.</p>
             </div>
 
-            <div class="programs-grid">
-                <!-- Foundation Program -->
-                <div class="program-card">
-                    <div class="program-header">
-                        <div class="program-icon"><i class="fa-solid fa-seedling"></i></div>
-                        <h3>Foundation Program</h3>
-                        <span>Class VI - X</span>
-                    </div>
-                    <div class="program-body">
-                        <p>Building strong conceptual understanding and developing problem-solving skills from an early
-                            age.</p>
-                        <ul class="program-features">
-                            <li><i class="fa-solid fa-check"></i> Comprehensive syllabus coverage</li>
-                            <li><i class="fa-solid fa-check"></i> Regular assessments & tests</li>
-                            <li><i class="fa-solid fa-check"></i> Doubt clearing sessions</li>
-                            <li><i class="fa-solid fa-check"></i> Parent-teacher interactions</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Class XI & XII -->
-                <div class="program-card">
-                    <div class="program-header">
-                        <div class="program-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <h3>Class XI & XII Coaching</h3>
-                        <span>CBSE, ISC & State Boards</span>
-                    </div>
-                    <div class="program-body">
-                        <p>Specialized coaching with focus on board exam excellence and competitive exam preparation.
-                        </p>
-                        <ul class="program-features">
-                            <li><i class="fa-solid fa-check"></i> Chapter-wise study material</li>
-                            <li><i class="fa-solid fa-check"></i> Regular tests & mock exams</li>
-                            <li><i class="fa-solid fa-check"></i> Dedicated doubt sessions</li>
-                            <li><i class="fa-solid fa-check"></i> Board exam preparation</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- JEE/NEET -->
-                <div class="program-card">
-                    <div class="program-header">
-                        <div class="program-icon"><i class="fa-solid fa-atom"></i></div>
-                        <h3>JEE / NEET Online Coaching</h3>
-                        <span>Class XI, XII & Droppers</span>
-                    </div>
-                    <div class="program-body">
-                        <p>Comprehensive preparation for engineering and medical entrance examinations.</p>
-                        <ul class="program-features">
-                            <li><i class="fa-solid fa-check"></i> Expert faculty guidance</li>
-                            <li><i class="fa-solid fa-check"></i> Dropper & repeater batches</li>
-                            <li><i class="fa-solid fa-check"></i> All-India test series</li>
-                            <li><i class="fa-solid fa-check"></i> Daily Practice Problems</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Olympiad Training -->
-                <div class="program-card">
-                    <div class="program-header">
-                        <div class="program-icon"><i class="fa-solid fa-medal"></i></div>
-                        <h3>Olympiad Exam Training</h3>
-                        <span>NTSE, KVPY, IMO & More</span>
-                    </div>
-                    <div class="program-body">
-                        <p>Specialized training for various national and international Olympiads and scholarship exams.
-                        </p>
-                        <ul class="program-features">
-                            <li><i class="fa-solid fa-check"></i> NTSE, KVPY, IMO prep</li>
-                            <li><i class="fa-solid fa-check"></i> Conceptual clarity focus</li>
-                            <li><i class="fa-solid fa-check"></i> Problem-solving techniques</li>
-                            <li><i class="fa-solid fa-check"></i> Mock tests & analysis</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Competitive Exams -->
-                <div class="program-card">
-                    <div class="program-header">
-                        <div class="program-icon"><i class="fa-solid fa-bullseye"></i></div>
-                        <h3>Competitive Exam Preparation</h3>
-                        <span>K-CET, CLAT, NDA & More</span>
-                    </div>
-                    <div class="program-body">
-                        <p>Comprehensive preparation for K-CET, CLAT, and various competitive examinations.</p>
-                        <ul class="program-features">
-                            <li><i class="fa-solid fa-check"></i> K-CET & CLAT preparation</li>
-                            <li><i class="fa-solid fa-check"></i> NDA exam preparation</li>
-                            <li><i class="fa-solid fa-check"></i> State PSC exam prep</li>
-                            <li><i class="fa-solid fa-check"></i> Mock test series</li>
-                        </ul>
-                    </div>
+            <!-- Category Tabs Container -->
+            <div class="category-tabs-container">
+                <div class="category-tabs">
+                    <button class="category-tab active" data-filter="all"><i class="fas fa-th-large"></i> All
+                        Batches</button>
+                    <button class="category-tab" data-filter="class-8"><i class="fas fa-school"></i> Class 8</button>
+                    <button class="category-tab" data-filter="class-9"><i class="fas fa-school"></i> Class 9</button>
+                    <button class="category-tab" data-filter="class-10"><i class="fas fa-graduation-cap"></i> Class
+                        10</button>
+                    <button class="category-tab" data-filter="class-11"><i class="fas fa-book-reader"></i> Class
+                        11</button>
+                    <button class="category-tab" data-filter="class-12"><i class="fas fa-user-graduate"></i> Class
+                        12</button>
+                    <button class="category-tab" data-filter="dropper"><i class="fas fa-rocket"></i> Dropper</button>
                 </div>
             </div>
+
+            <!-- Class 11 NEET Courses -->
+            <div class="course-section" data-category="class-11">
+                <h3 class="course-category-title">Class 11 NEET Courses</h3>
+                <div class="courses-grid">
+
+                    <!-- Crash Course -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result1.jpeg" alt="Class 11 NEET Crash Course">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 11 NEET Crash Course 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹2,500</span>
+                                        <span class="price-original">₹5,500</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 55%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2011%20NEET%20Crash%20Course"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Year Long Program -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result2.jpg" alt="Class 11 NEET Year Long">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 11 NEET Year Long 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹1,200</span>
+                                        <span class="price-original">₹2,450</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 51%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2011%20NEET%20Year%20Long%20Program"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SRL Batch -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/posters/poster1.png" alt="Class 11 NEET SRL Batch">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 11 NEET SRL Batch 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-book-reader"></i> For Class 11th Science
+                                Students
+                            </p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹6,500</span>
+                                        <span class="price-original">₹11,200</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 42%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2011%20NEET%20SRL%20Batch"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Grid -->
+            </div> <!-- End Section -->
+
+            <!-- Class 12 NEET Courses -->
+            <div class="course-section" data-category="class-12">
+                <h3 class="course-category-title">Class 12 NEET Courses</h3>
+                <div class="courses-grid">
+                    <!-- Crash Course -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result1.jpeg" alt="Class 12 NEET Crash Course">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 12 NEET Crash Course 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹2,800</span>
+                                        <span class="price-original">₹6,200</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 55%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2012%20NEET%20Crash%20Course"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Year Long Program -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result2.jpg" alt="Class 12 NEET Year Long">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 12 NEET Year Long 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹1,500</span>
+                                        <span class="price-original">₹3,100</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 51%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2012%20NEET%20Year%20Long%20Program"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SRL Batch -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/posters/poster1.png" alt="Class 12 NEET SRL Batch">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 12 NEET SRL Batch 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-book-reader"></i> For Class 12th Science
+                                Students
+                            </p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹7,200</span>
+                                        <span class="price-original">₹12,400</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 42%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2012%20NEET%20SRL%20Batch"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Grid -->
+            </div> <!-- End Section -->
+
+            <!-- Dropper NEET Courses -->
+            <div class="course-section" data-category="dropper">
+                <h3 class="course-category-title">Dropper NEET Courses</h3>
+                <div class="courses-grid">
+                    <!-- Crash Course -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result1.jpeg" alt="Dropper NEET Crash Course">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Dropper NEET Crash Course 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Droppers</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹3,200</span>
+                                        <span class="price-original">₹7,100</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 55%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Dropper%20NEET%20Crash%20Course"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Year Long Program -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result2.jpg" alt="Dropper NEET Year Long">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Dropper NEET Year Long 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Droppers</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹1,800</span>
+                                        <span class="price-original">₹3,650</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 51%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Dropper%20NEET%20Year%20Long%20Program"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SRL Batch -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/posters/poster1.png" alt="Dropper NEET SRL Batch">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Dropper NEET SRL Batch 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-book-reader"></i> For Dedicated NEET
+                                Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹8,500</span>
+                                        <span class="price-original">₹14,600</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 42%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Dropper%20NEET%20SRL%20Batch"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Grid -->
+            </div> <!-- End Section -->
+
+            <!-- Class 11 JEE Courses -->
+            <div class="course-section" data-category="class-11">
+                <h3 class="course-category-title">Class 11 JEE Courses</h3>
+                <div class="courses-grid">
+                    <!-- Crash Course -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result1.jpeg" alt="Class 11 JEE Crash Course">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 11 JEE Crash Course 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹3,000</span>
+                                        <span class="price-original">₹6,500</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 55%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2011%20JEE%20Crash%20Course"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Year Long Program -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result2.jpg" alt="Class 11 JEE Year Long">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 11 JEE Year Long 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹2,000</span>
+                                        <span class="price-original">₹4,200</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 51%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2011%20JEE%20Year%20Long%20Program"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SRL Batch -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/posters/poster1.png" alt="Class 11 JEE SRL Batch">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 11 JEE SRL Batch 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-flask"></i> For Class 11th
+                                Engineering Aspirants
+                            </p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹9,000</span>
+                                        <span class="price-original">₹16,500</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 42%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2011%20JEE%20SRL%20Batch"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Grid -->
+            </div> <!-- End Section -->
+
+            <!-- Class 12 JEE Courses -->
+            <div class="course-section" data-category="class-12">
+                <h3 class="course-category-title">Class 12 JEE Courses</h3>
+                <div class="courses-grid">
+                    <!-- Crash Course -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result1.jpeg" alt="Class 12 JEE Crash Course">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 12 JEE Crash Course 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Aspirants
+                            </p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹3,200</span>
+                                        <span class="price-original">₹7,200</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of
+                                        55% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2012%20JEE%20Crash%20Course"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Year Long Program -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result2.jpg" alt="Class 12 JEE Year Long">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 12 JEE Year Long 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Aspirants
+                            </p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹2,200</span>
+                                        <span class="price-original">₹4,600</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of
+                                        51% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2012%20JEE%20Year%20Long%20Program"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SRL Batch -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/posters/poster1.png" alt="Class 12 JEE SRL Batch">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 12 JEE SRL Batch 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-flask"></i> For Class 12th
+                                Engineering Aspirants
+                            </p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹9,500</span>
+                                        <span class="price-original">₹17,800</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of
+                                        42% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Class%2012%20JEE%20SRL%20Batch"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Grid -->
+            </div> <!-- End Section -->
+
+            <!-- Dropper JEE Courses -->
+            <div class="course-section" data-category="dropper">
+                <h3 class="course-category-title">Dropper JEE Courses</h3>
+                <div class="courses-grid">
+                    <!-- Crash Course -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result1.jpeg" alt="Dropper JEE Crash Course">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Dropper JEE Crash Course 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Droppers
+                            </p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on
+                                <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span>
+                            </p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹3,500</span>
+                                        <span class="price-original">₹7,800</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount
+                                        of 55% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Dropper%20JEE%20Crash%20Course"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Year Long Program -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result2.jpg" alt="Dropper JEE Year Long">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Dropper JEE Year Long 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Droppers
+                            </p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on
+                                <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span>
+                            </p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹2,500</span>
+                                        <span class="price-original">₹5,100</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount
+                                        of 51% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Dropper%20JEE%20Year%20Long%20Program"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SRL Batch -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/posters/poster1.png" alt="Dropper JEE SRL Batch">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Dropper JEE SRL Batch 2026</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-flask"></i> For Dedicated
+                                JEE Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on
+                                <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span>
+                            </p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹9,800</span>
+                                        <span class="price-original">₹16,900</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount
+                                        of 42% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%20Dropper%20JEE%20SRL%20Batch"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Grid -->
+            </div> <!-- End Section -->
+
+            <!-- Class 10 Olympiad & Board -->
+            <div class="course-section" data-category="class-10">
+                <h3 class="course-category-title">Class 10 Olympiad & Board Courses</h3>
+                <div class="courses-grid">
+                    <!-- Crash Course -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result1.jpeg" alt="Class 10 Olympiad Crash Course">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 10 Olympiad Crash Course</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-graduation-cap"></i>
+                                For Olympiad & Board Prep</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts
+                                on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹1,500</span>
+                                        <span class="price-original">₹3,500</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i>
+                                        Discount of 55% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%2010th%20Olympiad%20Crash%20Course"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Year Long -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result2.jpg" alt="Class 10 Olympiad Year Long">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 10 Olympiad Year Long</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-graduation-cap"></i>
+                                For Olympiad & Board Prep</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts
+                                on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹1,100</span>
+                                        <span class="price-original">₹2,250</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i>
+                                        Discount of 51% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%2010th%20Olympiad%20Year%20Long"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SRL Batch -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/posters/poster1.png" alt="Class 10 Olympiad SRL Batch">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 10 Olympiad SRL Batch</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-book"></i> For
+                                Dedicated Foundation Students</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts
+                                on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹5,200</span>
+                                        <span class="price-original">₹8,900</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i>
+                                        Discount of 42% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%2010th%20Olympiad%20SRL%20Batch"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Grid -->
+            </div> <!-- End Section -->
+
+            <!-- Class 9 Olympiad & Board -->
+            <div class="course-section" data-category="class-9">
+                <h3 class="course-category-title">Class 9 Olympiad & Board Courses</h3>
+                <div class="courses-grid">
+                    <!-- Crash Course -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result1.jpeg" alt="Class 9 Olympiad Crash Course">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 9 Olympiad Crash Course</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-graduation-cap"></i> For Olympiad & Board
+                                Prep</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i>
+                                Starts on <span class="date-highlight">14 Apr, 2025</span>
+                                &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹1,400</span>
+                                        <span class="price-original">₹3,200</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i>
+                                        Discount of 55% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%209th%20Olympiad%20Crash%20Course"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Year Long -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result2.jpg" alt="Class 9 Olympiad Year Long">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 9 Olympiad Year Long</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-graduation-cap"></i> For Olympiad & Board
+                                Prep</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i>
+                                Starts on <span class="date-highlight">14 Apr, 2025</span>
+                                &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹1,000</span>
+                                        <span class="price-original">₹2,100</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i>
+                                        Discount of 51% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%209th%20Olympiad%20Year%20Long"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SRL Batch -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/posters/poster1.png" alt="Class 9 Olympiad SRL Batch">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 9 Olympiad SRL Batch</h5>
+
+                            <p class="course-card-desc"><i class="fas fa-book"></i> For
+                                Dedicated Foundation Students</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i>
+                                Starts on <span class="date-highlight">14 Apr, 2025</span>
+                                &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹5,000</span>
+                                        <span class="price-original">₹8,600</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i>
+                                        Discount of 42% applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%209th%20Olympiad%20SRL%20Batch"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Grid -->
+            </div> <!-- End Section -->
+
+            <!-- Class 8 Olympiad & Board -->
+            <div class="course-section" data-category="class-8">
+                <h3 class="course-category-title">Class 8 Olympiad & Board Courses</h3>
+                <div class="courses-grid">
+                    <!-- Crash Course -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result1.jpeg" alt="Class 8 Olympiad Crash Course">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 8 Olympiad Crash Course
+                            </h5>
+
+                            <p class="course-card-desc"><i class="fas fa-graduation-cap"></i> For Olympiad &
+                                Board Prep</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i>
+                                Starts on <span class="date-highlight">14 Apr,
+                                    2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹1,200</span>
+                                        <span class="price-original">₹2,800</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 55%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%208th%20Olympiad%20Crash%20Course"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Year Long -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/results/result2.jpg" alt="Class 8 Olympiad Year Long">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 8 Olympiad Year Long
+                            </h5>
+
+                            <p class="course-card-desc"><i class="fas fa-graduation-cap"></i> For Olympiad &
+                                Board Prep</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i>
+                                Starts on <span class="date-highlight">14 Apr,
+                                    2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹900</span>
+                                        <span class="price-original">₹1,850</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 51%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%208th%20Olympiad%20Year%20Long"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SRL Batch -->
+                    <div class="course-card">
+                        <div class="course-card-image">
+                            <img src="images/posters/poster1.png" alt="Class 8 Olympiad SRL Batch">
+                            <span class="online-badge">ONLINE</span>
+                        </div>
+                        <div class="course-card-body">
+                            <h5 class="course-card-title">Class 8 Olympiad SRL Batch
+                            </h5>
+
+                            <p class="course-card-desc"><i class="fas fa-book"></i> For
+                                Dedicated Foundation Students</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i>
+                                Starts on <span class="date-highlight">14 Apr,
+                                    2025</span> &nbsp; Ends
+                                on <span class="date-highlight">30 Jun, 2027</span></p>
+                            <div class="course-card-pricing">
+                                <div class="price-left">
+                                    <div class="price-main">
+                                        <span class="price-current">₹4,800</span>
+                                        <span class="price-original">₹8,200</span>
+                                    </div>
+                                </div>
+                                <div class="price-right">
+                                    <span class="price-discount"><i class="fas fa-tag"></i> Discount of 42%
+                                        applied</span>
+                                </div>
+                            </div>
+                            <div class="course-card-buttons">
+                                <a href="contact.html" class="btn-card-explore">EXPLORE</a>
+                                <a href="https://wa.me/919296351242?text=I%20want%20to%20buy%208th%20Olympiad%20SRL%20Batch"
+                                    target="_blank" class="btn-card-buy">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Grid -->
+            </div> <!-- End Section -->
         </div>
     </section>
+
+    <!-- Filter Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.category-tab');
+            const sections = document.querySelectorAll('.course-section');
+            const tabsContainer = document.querySelector('.category-tabs');
+
+            // Reset tabs scroll to start (ensure All Batches is visible)
+            if (tabsContainer) {
+                tabsContainer.scrollLeft = 0;
+            }
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+
+                    // Save current scroll position
+                    const scrollX = window.scrollX;
+                    const scrollY = window.scrollY;
+
+                    const filter = tab.getAttribute('data-filter');
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Filter sections
+                    sections.forEach(section => {
+                        if (filter === 'all' || section.getAttribute('data-category') === filter) {
+                            section.style.display = 'block';
+                            section.style.animation = 'fadeIn 0.3s ease forwards';
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+
+                    // Restore scroll position to prevent any movement
+                    window.scrollTo(scrollX, scrollY);
+                });
+            });
+        });
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
 
     <!-- STATS SECTION -->
     <section class="stats-section">

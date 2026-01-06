@@ -280,6 +280,15 @@ body {
     font-size: 20px;
 }
 
+.nav-link .dropdown-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.nav-link.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
 /* Sub Navigation */
 .sub-nav {
     list-style: none;

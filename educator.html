@@ -648,95 +648,32 @@
             navLinks.classList.toggle('active');
         });
 
-        // File upload functionality for Resume
+        // --- File Upload Logic ---
         const fileInput = document.getElementById('resume');
         const fileLabel = document.getElementById('file-label');
-
         fileInput.addEventListener('change', function () {
-            if (this.files && this.files[0]) {
-                const fileName = this.files[0].name;
-                fileLabel.textContent = `Selected: ${fileName}`;
-            } else {
-                fileLabel.textContent = 'Choose PDF Resume';
-            }
+            if (this.files && this.files[0]) fileLabel.textContent = `Selected: ${this.files[0].name}`;
+            else fileLabel.textContent = 'Choose PDF Resume';
         });
 
-        // File upload functionality for Photo
         const photoInput = document.getElementById('photo');
         const photoLabel = document.getElementById('photo-label');
-
         photoInput.addEventListener('change', function () {
-            if (this.files && this.files[0]) {
-                const fileName = this.files[0].name;
-                photoLabel.textContent = `Selected: ${fileName}`;
-            } else {
-                photoLabel.textContent = 'Choose Photo';
-            }
+            if (this.files && this.files[0]) photoLabel.textContent = `Selected: ${this.files[0].name}`;
+            else photoLabel.textContent = 'Choose Photo';
         });
 
-        // File upload functionality for Additional Documents
         const docsInput = document.getElementById('additional_docs');
         const docsLabel = document.getElementById('docs-label');
-
         docsInput.addEventListener('change', function () {
-            if (this.files && this.files.length > 0) {
-                const fileCount = this.files.length;
-                docsLabel.textContent = `Selected: ${fileCount} file(s)`;
-            } else {
-                docsLabel.textContent = 'Choose Files';
-            }
+            if (this.files && this.files.length > 0) docsLabel.textContent = `Selected: ${this.files.length} file(s)`;
+            else docsLabel.textContent = 'Choose Files';
         });
 
-        // Add More Education functionality
+        // --- Dynamic Education Logic ---
         const addEducationBtn = document.getElementById('addEducation');
         const educationContainer = document.getElementById('education-container');
 
-        addEducationBtn.addEventListener('click', function () {
-            const educationEntry = document.createElement('div');
-            educationEntry.className = 'education-entry';
-            educationEntry.innerHTML = `
-                <div class="entry-header">
-                    <button type="button" class="remove-entry-btn"><i class="fas fa-times"></i> Remove</button>
-                </div>
-                <div class="two-column">
-                    <div class="form-group">
-                        <label>Qualification <span class="required">*</span></label>
-                        <select name="qualification[]" required>
-                            <option value="" disabled selected>Select</option>
-                            <option value="B.Ed">B.Ed</option>
-                            <option value="M.Ed">M.Ed</option>
-                            <option value="B.Sc">B.Sc</option>
-                            <option value="M.Sc">M.Sc</option>
-                            <option value="B.A">B.A</option>
-                            <option value="M.A">M.A</option>
-                            <option value="B.Tech">B.Tech</option>
-                            <option value="M.Tech">M.Tech</option>
-                            <option value="PhD">PhD</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>College Name <span class="required">*</span></label>
-                        <input type="text" name="college_name[]" placeholder="Select College" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Year of Graduation <span class="required">*</span></label>
-                    <select name="graduation_year[]" required>
-                        <option value="" disabled selected>Select Year</option>
-                        ${generateYearOptions()}
-                    </select>
-                </div>
-            `;
-            educationContainer.appendChild(educationEntry);
-
-            // Add remove button functionality
-            educationEntry.querySelector('.remove-entry-btn').addEventListener('click', function () {
-                educationEntry.remove();
-            });
-        });
-
-        // Generate year options
         function generateYearOptions() {
             const currentYear = new Date().getFullYear();
             let options = '';
@@ -746,88 +683,126 @@
             return options;
         }
 
-        // Add More Experience functionality
+        addEducationBtn.addEventListener('click', function () {
+            const educationEntry = document.createElement('div');
+            educationEntry.className = 'education-entry';
+            educationEntry.innerHTML = `
+            <div class="entry-header">
+                <button type="button" class="remove-entry-btn"><i class="fas fa-times"></i> Remove</button>
+            </div>
+            <div class="two-column">
+                <div class="form-group">
+                    <label>Qualification <span class="required">*</span></label>
+                    <select name="qualification[]" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="B.Ed">B.Ed</option>
+                        <option value="M.Ed">M.Ed</option>
+                        <option value="B.Sc">B.Sc</option>
+                        <option value="M.Sc">M.Sc</option>
+                        <option value="B.A">B.A</option>
+                        <option value="M.A">M.A</option>
+                        <option value="B.Tech">B.Tech</option>
+                        <option value="M.Tech">M.Tech</option>
+                        <option value="PhD">PhD</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>College Name <span class="required">*</span></label>
+                    <input type="text" name="college_name[]" placeholder="Select College" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Year of Graduation <span class="required">*</span></label>
+                <select name="graduation_year[]" required>
+                    <option value="" disabled selected>Select Year</option>
+                    ${generateYearOptions()}
+                </select>
+            </div>
+        `;
+            educationContainer.appendChild(educationEntry);
+            educationEntry.querySelector('.remove-entry-btn').addEventListener('click', function () {
+                educationEntry.remove();
+            });
+        });
+
+        // --- Dynamic Experience Logic ---
         const addExperienceBtn = document.getElementById('addExperience');
         const experienceContainer = document.getElementById('experience-container');
+
+        // Helper to attach checkbox listener
+        function attachCheckboxListener(container) {
+            const checkbox = container.querySelector('.currently-working-checkbox');
+            const relievingGroup = container.querySelector('.relieving-date-group');
+            const relievingInput = relievingGroup.querySelector('input');
+
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    relievingGroup.style.opacity = '0.5';
+                    relievingInput.disabled = true; // We will handle this temporarily on submit
+                    relievingInput.value = '';
+                } else {
+                    relievingGroup.style.opacity = '1';
+                    relievingInput.disabled = false;
+                }
+            });
+        }
+
+        // Attach to initial existing entry
+        document.querySelectorAll('.experience-entry').forEach(entry => attachCheckboxListener(entry));
 
         addExperienceBtn.addEventListener('click', function () {
             const experienceEntry = document.createElement('div');
             experienceEntry.className = 'experience-entry';
+
+            // NOTE: removed name="currently_working[]" from the checkbox to handle it manually in JS
             experienceEntry.innerHTML = `
-                <div class="entry-header">
-                    <button type="button" class="remove-entry-btn"><i class="fas fa-times"></i> Remove</button>
+            <div class="entry-header">
+                <button type="button" class="remove-entry-btn"><i class="fas fa-times"></i> Remove</button>
+            </div>
+            <div class="two-column">
+                <div class="form-group">
+                    <label>Organization Name</label>
+                    <input type="text" name="organization_name[]" placeholder="Company Name">
                 </div>
-                <div class="two-column">
-                    <div class="form-group">
-                        <label>Organization Name</label>
-                        <input type="text" name="organization_name[]" placeholder="Company Name">
-                    </div>
-                    <div class="form-group">
-                        <label>Job Title</label>
-                        <input type="text" name="job_title[]" placeholder="Senior Developer">
-                    </div>
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" name="job_title[]" placeholder="Senior Developer">
                 </div>
-                <div class="two-column">
-                    <div class="form-group">
-                        <label>Date of Joining</label>
-                        <input type="date" name="joining_date[]">
-                    </div>
-                    <div class="form-group">
-                        <label>Location</label>
-                        <input type="text" name="work_location[]" placeholder="City, State">
-                    </div>
+            </div>
+            <div class="two-column">
+                <div class="form-group">
+                    <label>Date of Joining</label>
+                    <input type="date" name="joining_date[]">
                 </div>
-                <div class="two-column">
-                    <div class="form-group checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="currently_working[]" class="currently-working-checkbox">
-                            <span>Currently I work here</span>
-                        </label>
-                    </div>
-                    <div class="form-group relieving-date-group">
-                        <label>Date of Relieving</label>
-                        <input type="date" name="relieving_date[]">
-                    </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" name="work_location[]" placeholder="City, State">
                 </div>
-            `;
+            </div>
+            <div class="two-column">
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="currently-working-checkbox">
+                        <span>Currently I work here</span>
+                    </label>
+                </div>
+                <div class="form-group relieving-date-group">
+                    <label>Date of Relieving</label>
+                    <input type="date" name="relieving_date[]">
+                </div>
+            </div>
+        `;
             experienceContainer.appendChild(experienceEntry);
 
-            // Add remove button functionality
             experienceEntry.querySelector('.remove-entry-btn').addEventListener('click', function () {
                 experienceEntry.remove();
             });
 
-            // Add currently working checkbox functionality
-            const checkbox = experienceEntry.querySelector('.currently-working-checkbox');
-            const relievingGroup = experienceEntry.querySelector('.relieving-date-group');
-            checkbox.addEventListener('change', function () {
-                if (this.checked) {
-                    relievingGroup.style.opacity = '0.5';
-                    relievingGroup.querySelector('input').disabled = true;
-                    relievingGroup.querySelector('input').value = '';
-                } else {
-                    relievingGroup.style.opacity = '1';
-                    relievingGroup.querySelector('input').disabled = false;
-                }
-            });
+            attachCheckboxListener(experienceEntry);
         });
 
-        // Currently working checkbox functionality for existing entries
-        document.querySelectorAll('.currently-working-checkbox').forEach(checkbox => {
-            const relievingGroup = checkbox.closest('.two-column').querySelector('.relieving-date-group');
-            checkbox.addEventListener('change', function () {
-                if (this.checked) {
-                    relievingGroup.style.opacity = '0.5';
-                    relievingGroup.querySelector('input').disabled = true;
-                    relievingGroup.querySelector('input').value = '';
-                } else {
-                    relievingGroup.style.opacity = '1';
-                    relievingGroup.querySelector('input').disabled = false;
-                }
-            });
-        });
-
-        // Form submission
+        // --- Form Submission Logic ---
         const form = document.getElementById('educatorForm');
         const submitBtn = document.getElementById('submitBtn');
         const submitText = document.getElementById('submit-text');
@@ -837,21 +812,18 @@
         const formErrors = document.getElementById('form-errors');
         const errorList = document.getElementById('error-list');
 
-        // Hide all alerts initially
         function hideAlerts() {
             alertSuccess.style.display = 'none';
             alertError.style.display = 'none';
             formErrors.style.display = 'none';
         }
 
-        // Show success message
         function showSuccess() {
             hideAlerts();
             alertSuccess.style.display = 'block';
             alertSuccess.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Show error message
         function showError(message) {
             hideAlerts();
             errorMessage.textContent = message;
@@ -859,11 +831,9 @@
             alertError.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Show validation errors
         function showValidationErrors(errors) {
             hideAlerts();
             errorList.innerHTML = '';
-
             for (const field in errors) {
                 errors[field].forEach(error => {
                     const li = document.createElement('li');
@@ -871,12 +841,10 @@
                     errorList.appendChild(li);
                 });
             }
-
             formErrors.style.display = 'block';
             formErrors.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Set loading state
         function setLoading(loading) {
             if (loading) {
                 submitBtn.disabled = true;
@@ -887,35 +855,56 @@
             }
         }
 
-        // Reset form
         function resetForm() {
             form.reset();
             fileLabel.textContent = 'Choose PDF Resume';
             photoLabel.textContent = 'Choose Photo';
             docsLabel.textContent = 'Choose Files';
-
-            // Remove dynamically added entries
+            // Remove dynamic entries except the first one (optional, or you can remove all extra)
             document.querySelectorAll('.education-entry:not(:first-child)').forEach(entry => entry.remove());
             document.querySelectorAll('.experience-entry:not(:first-child)').forEach(entry => entry.remove());
         }
 
-        // USE THIS INSTEAD
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
-
             hideAlerts();
             setLoading(true);
 
+            // 1. Handle Disabled Inputs temporarily so FormData catches empty strings instead of missing keys
+            const disabledInputs = form.querySelectorAll('input:disabled');
+            disabledInputs.forEach(input => input.disabled = false);
+
+            // 2. Create FormData
             const formData = new FormData(form);
 
+            // 3. Re-disable the inputs immediately
+            disabledInputs.forEach(input => input.disabled = true);
+
+            // 4. Manually handle "Currently Working" Checkboxes logic
+            // We removed name="currently_working[]" from HTML to prevent FormData from capturing it automatically.
+            // We now append '1' or '0' manually for EACH row to keep arrays aligned.
+            const experienceEntries = document.querySelectorAll('.experience-entry');
+
+            // Remove any existing currently_working entries just in case
+            formData.delete('currently_working[]');
+
+            experienceEntries.forEach(entry => {
+                const checkbox = entry.querySelector('.currently-working-checkbox');
+                // If checking existing HTML that might still have the name attribute
+                if (checkbox) {
+                    formData.append('currently_working[]', checkbox.checked ? '1' : '0');
+                } else {
+                    // Fallback if no checkbox found in a row
+                    formData.append('currently_working[]', '0');
+                }
+            });
+
             try {
-                // Make the actual request to your Laravel backend
                 const response = await fetch('http://127.0.0.1:8000/api/career', {
                     method: 'POST',
                     body: formData,
                     headers: {
                         'Accept': 'application/json'
-                        // Do NOT set Content-Type header here; FormData sets it automatically
                     }
                 });
 
@@ -925,12 +914,10 @@
                     showSuccess();
                     resetForm();
                 } else {
-                    // Handle validation errors (e.g. email already taken, file too big)
                     if (response.status === 422) {
                         showValidationErrors(result.errors);
                     } else {
                         showError(result.message || 'Submission failed');
-                        console.error('Server Error:', result);
                     }
                 }
             } catch (error) {
@@ -944,29 +931,19 @@
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
+        // Dropdown Logic
         document.addEventListener('DOMContentLoaded', function () {
-
-            /* =========================================
-               FIXED DROPDOWN LOGIC (Universal)
-               ========================================= */
             const dropdowns = document.querySelectorAll(".dropdown");
-
             dropdowns.forEach(dropdown => {
                 const toggle = dropdown.querySelector(".dropdown-toggle");
                 if (!toggle) return;
-
-                // Accessibility Attributes
                 toggle.setAttribute("aria-haspopup", "true");
                 toggle.setAttribute("aria-expanded", "false");
 
-                // Function to toggle dropdown
                 const toggleMenu = (e) => {
                     e.preventDefault();
-                    e.stopPropagation(); // Stop click from bubbling to document
-
+                    e.stopPropagation();
                     const isOpen = dropdown.classList.contains("open");
-
-                    // Close all other open dropdowns first (accordion style)
                     document.querySelectorAll(".dropdown.open").forEach(d => {
                         if (d !== dropdown) {
                             d.classList.remove("open");
@@ -974,24 +951,16 @@
                             if (t) t.setAttribute("aria-expanded", "false");
                         }
                     });
-
-                    // Toggle current
                     dropdown.classList.toggle("open");
                     toggle.setAttribute("aria-expanded", !isOpen);
                 };
 
-                // 1. Click Event (Works on Mobile AND Desktop clicks)
                 toggle.addEventListener("click", toggleMenu);
-
-                // 2. Keyboard Support (Enter / Space)
                 toggle.addEventListener("keydown", e => {
-                    if (e.key === "Enter" || e.key === " ") {
-                        toggleMenu(e);
-                    }
+                    if (e.key === "Enter" || e.key === " ") toggleMenu(e);
                 });
             });
 
-            // Close dropdown when clicking outside (Universal)
             document.addEventListener("click", function (e) {
                 if (!e.target.closest(".dropdown")) {
                     document.querySelectorAll(".dropdown.open").forEach(dropdown => {

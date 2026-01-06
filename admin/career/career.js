@@ -69,67 +69,12 @@ function initializeCareer() {
     loadCareerApplications();
 }
 
-// --- KEEP THIS ONE (It handles BOTH Resume and PDF) ---
-async function handleDownloadFile(id, type) {
+// Handles BOTH application PDF and resume downloads by opening the API URL
+function handleDownloadFile(id, type) {
     if (!id) return;
-    
-    const token = localStorage.getItem('adminToken');
-    if (!token) {
-        showNotification('You are not logged in', 'error');
-        return;
-    }
 
-    // Build URL (e.g., /api/career/5/resume)
     const url = `${API_BASE_URL}/career/${id}/${type}`;
-    showNotification('Starting download...', 'success');
-
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Accept': 'application/json' 
-            }
-        });
-
-        // --- NEW: BETTER ERROR HANDLING ---
-        if (!response.ok) {
-            // Try to read the error message sent by Laravel (e.g., "Resume file missing")
-            let errorMessage = `Error ${response.status}`;
-            try {
-                const errorData = await response.json();
-                errorMessage = errorData.message || errorMessage;
-            } catch (e) {
-                // If response isn't JSON (like a 500 crash HTML page), stick to status code
-                console.warn('Could not parse error JSON', e);
-            }
-            throw new Error(errorMessage);
-        }
-        // ----------------------------------
-
-        const blob = await response.blob();
-        const downloadUrl = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = downloadUrl;
-        
-        // Intelligent naming
-        const date = new Date().toISOString().split('T')[0];
-        a.download = type === 'resume' ? `resume_${id}_${date}.pdf` : `application_${id}_${date}.pdf`;
-        
-        document.body.appendChild(a);
-        a.click();
-        
-        // Cleanup
-        setTimeout(() => {
-            a.remove();
-            window.URL.revokeObjectURL(downloadUrl);
-        }, 100);
-
-    } catch (error) {
-        console.error('Download detailed error:', error);
-        // This will now show "Resume file missing on server" or specific PHP errors
-        showNotification(error.message, 'error');
-    }
+    window.open(url, '_blank');
 }
 
 async function loadCareerApplications() {

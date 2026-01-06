@@ -125,12 +125,14 @@
                                 Faculty
                             </a>
                         </li>
+                        <!-- Gallery Tab Commented Out 
                         <li class="nav-item">
                             <a href="#" data-tab="gallery" class="nav-link">
                                 <span class="material-symbols-outlined">photo_library</span>
                                 Gallery
                             </a>
                         </li>
+                        -->
                         <li class="nav-item">
                             <a href="#" data-tab="partnership" class="nav-link">
                                 <span class="material-symbols-outlined">handshake</span>
@@ -341,7 +343,25 @@
         function handleNavigation(e) {
             e.preventDefault();
             const tab = e.currentTarget.dataset.tab;
+
+            // Redirect Partnership to first sub-tab
+            if (tab === 'partnership') {
+                const schoolLink = document.querySelector('[data-subtab="school-integration"]');
+                if (schoolLink) {
+                    // Trigger sub-navigation logic
+                    schoolLink.click();
+                    // Ensure the dropdown icon rotates immediately (visual feedback)
+                    e.currentTarget.classList.add('active');
+                    // Force the sub-tab to be active in case the click handler didn't stick
+                    schoolLink.classList.add('active');
+                    return;
+                }
+            }
+
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            // CRITICAL FIX: Close Partnership menu when navigating to other tabs
+            document.querySelectorAll('.sub-nav-link').forEach(link => link.classList.remove('active'));
+
             e.currentTarget.classList.add('active');
             loadTab(tab);
         }

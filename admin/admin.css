@@ -301,7 +301,13 @@ body {
     display: block;
 }
 
+/* Keep open if parent link is active */
 .nav-item:has(.nav-link.active) .sub-nav {
+    display: block;
+}
+
+/* Keep open if any sub-link is active (Double Safety) */
+.nav-item:has(.sub-nav-link.active) .sub-nav {
     display: block;
 }
 
@@ -549,6 +555,7 @@ body {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
+
     /* Hide desktop sidebar, show mobile menu toggle */
     .admin-sidebar {
         display: none;

@@ -1,20 +1,21 @@
 <div class="faculty-management">
     <div class="page-header">
-        <h1>Faculty Management</h1>
-        <p>Manage faculty members displayed on the website</p>
+        <div>
+            <h1>Faculty Management</h1>
+            <p>Manage faculty members displayed on the website</p>
+        </div>
         <button id="addFacultyBtn" class="btn btn-primary">
             <span class="material-symbols-outlined">add</span>
             Add Faculty Member
         </button>
     </div>
 
-    <!-- Faculty List -->
     <div class="faculty-list-container">
         <div class="list-header">
             <h2>Faculty Members</h2>
             <div class="list-actions">
-                <input type="text" id="searchFaculty" placeholder="Search faculty..." class="search-input">
-                <select id="statusFilter" class="filter-select">
+                <input type="text" id="searchFaculty" placeholder="Search faculty..." class="search-input" aria-label="Search faculty">
+                <select id="statusFilter" class="filter-select" aria-label="Filter by status">
                     <option value="">All Status</option>
                     <option value="1">Active</option>
                     <option value="0">Inactive</option>
@@ -23,8 +24,7 @@
         </div>
 
         <div id="facultyList" class="faculty-grid">
-            <!-- Faculty members will be loaded here -->
-        </div>
+            </div>
 
         <div id="emptyState" class="empty-state hidden">
             <span class="material-symbols-outlined">school</span>
@@ -34,13 +34,12 @@
     </div>
 </div>
 
-<!-- Add/Edit Faculty Modal -->
 <div id="facultyModal" class="modal hidden">
     <div class="modal-overlay" onclick="closeFacultyModal()"></div>
     <div class="modal-content">
         <div class="modal-header">
             <h2 id="modalTitle">Add Faculty Member</h2>
-            <button class="modal-close" onclick="closeFacultyModal()">
+            <button class="modal-close" onclick="closeFacultyModal()" type="button">
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
@@ -50,42 +49,43 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="name">Name <span style="color:var(--danger)">*</span></label>
+                    <input type="text" id="name" name="name" required placeholder="e.g. Mr. Rohit Sharma">
                     <span class="error-text"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="department">Department *</label>
-                    <input type="text" id="department" name="department" required>
+                    <label for="department">Department <span style="color:var(--danger)">*</span></label>
+                    <input type="text" id="department" name="department" required placeholder="e.g. Mathematics">
                     <span class="error-text"></span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="description">Description *</label>
-                <textarea id="description" name="description" rows="4" required></textarea>
+                <label for="description">Description <span style="color:var(--danger)">*</span></label>
+                <textarea id="description" name="description" rows="4" required placeholder="Enter qualifications, college..."></textarea>
                 <span class="error-text"></span>
             </div>
 
             <div class="form-group">
                 <label for="photo">Photo</label>
                 <input type="file" id="photo" name="photo" accept="image/*">
+                
                 <div id="photoPreview" class="photo-preview hidden">
                     <img src="" alt="Preview">
+                    <br>
                     <button type="button" class="btn btn-danger btn-sm" onclick="removePhoto()">
                         <span class="material-symbols-outlined">delete</span>
-                        Remove
+                        Remove Photo
                     </button>
                 </div>
-                <small class="form-help">Accepted formats: JPEG, JPG, PNG, GIF, WebP. Max size: 2MB</small>
+                <small class="form-help">Accepted formats: JPEG, JPG, PNG, WebP. Max size: 2MB</small>
             </div>
 
             <div class="form-group">
                 <label class="checkbox-label">
                     <input type="checkbox" id="is_active" name="is_active" checked>
-                    <span class="checkmark"></span>
-                    Active (display on website)
+                    <span>Active (Display on website)</span>
                 </label>
             </div>
         </form>
@@ -94,19 +94,18 @@
             <button type="button" class="btn btn-outline" onclick="closeFacultyModal()">Cancel</button>
             <button id="saveFacultyBtn" type="submit" form="facultyForm" class="btn btn-primary">
                 <span class="material-symbols-outlined">save</span>
-                Save Faculty Member
+                Save Changes
             </button>
         </div>
     </div>
 </div>
 
-<!-- Delete Confirmation Modal -->
 <div id="deleteModal" class="modal hidden">
     <div class="modal-overlay" onclick="closeDeleteModal()"></div>
     <div class="modal-content modal-sm">
         <div class="modal-header">
-            <h2>Delete Faculty Member</h2>
-            <button class="modal-close" onclick="closeDeleteModal()">
+            <h2>Delete Faculty</h2>
+            <button class="modal-close" onclick="closeDeleteModal()" type="button">
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
@@ -120,7 +119,7 @@
             <button type="button" class="btn btn-outline" onclick="closeDeleteModal()">Cancel</button>
             <button type="button" class="btn btn-danger" onclick="confirmDelete()">
                 <span class="material-symbols-outlined">delete</span>
-                Delete
+                Confirm Delete
             </button>
         </div>
     </div>

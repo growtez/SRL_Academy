@@ -1,123 +1,101 @@
 // Faculty Management JavaScript
 let facultyData = [];
 let editingFacultyId = null;
-let isInitialized = false;
 let isLoading = false;
-let initializationAttempts = 0;
-let isOperationInProgress = false; // Prevent multiple operations
+let isOperationInProgress = false;
 
-// Explicit initializer called from admin.html after faculty.html is injected
+// Debounce Utility for Search
+function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+// Initializer called from admin.html
 function initializeFaculty() {
     console.log('Initializing faculty module');
-
-    const addBtn = document.getElementById('addFacultyBtn');
-    const form = document.getElementById('facultyForm');
-    const saveBtn = document.getElementById('saveFacultyBtn');
-
-    console.log('initializeFaculty elements:', {
-        hasAddBtn: !!addBtn,
-        hasForm: !!form,
-        hasSaveBtn: !!saveBtn
-    });
-
-    if (!addBtn || !form) {
-        console.warn('Faculty DOM elements not found, cannot initialize');
+    
+    // Check if we already bound listeners to prevent duplicates
+    if (document.getElementById('facultyList')?.dataset.initialized === 'true') {
+        // Just reload data if coming back to tab
+        loadFaculty(); 
         return;
     }
 
     setupEventListeners();
     loadFaculty();
+    
+    // Mark as initialized
+    const list = document.getElementById('facultyList');
+    if(list) list.dataset.initialized = 'true';
 }
 
 function setupEventListeners() {
-    console.log('Setting up faculty event listeners');
-
-    // Add faculty button
     const addBtn = document.getElementById('addFacultyBtn');
-    if (addBtn) {
-        // Remove existing listener to prevent duplicates
-        const newAddBtn = addBtn.cloneNode(true);
-        addBtn.parentNode.replaceChild(newAddBtn, addBtn);
-        newAddBtn.addEventListener('click', openAddFacultyModal);
-        console.log('Bound click handler to addFacultyBtn');
-    } else {
-        console.warn('addFacultyBtn not found when setting up listeners');
-    }
-
-    // Faculty form submission
     const form = document.getElementById('facultyForm');
-    if (form) {
-        form.removeEventListener('submit', handleFacultySubmit);
-        form.addEventListener('submit', handleFacultySubmit);
-        console.log('Bound submit handler to facultyForm');
-    } else {
-        console.warn('facultyForm not found when setting up listeners');
-    }
-
-    // Save button click handler
     const saveBtn = document.getElementById('saveFacultyBtn');
-    if (saveBtn) {
-        const newSaveBtn = saveBtn.cloneNode(true);
-        saveBtn.parentNode.replaceChild(newSaveBtn, saveBtn);
-        newSaveBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Save Faculty button clicked');
-            handleFacultySubmit(e);
-        });
-        console.log('Bound click handler to saveFacultyBtn');
-    } else {
-        console.warn('saveFacultyBtn not found when setting up listeners');
-    }
-
-    // Search and filter
     const searchInput = document.getElementById('searchFaculty');
     const statusFilter = document.getElementById('statusFilter');
-    if (searchInput) {
-        searchInput.addEventListener('input', filterFaculty);
-    }
-    if (statusFilter) {
-        statusFilter.addEventListener('change', filterFaculty);
+    const photoInput = document.getElementById('photo');
+
+    // Clean Event Binding (No Cloning needed if we check flags)
+    if (addBtn && !addBtn.dataset.bound) {
+        addBtn.addEventListener('click', openAddFacultyModal);
+        addBtn.dataset.bound = 'true';
     }
 
-    // Photo input change
-    const photoInput = document.getElementById('photo');
-    if (photoInput) {
+    if (form && !form.dataset.bound) {
+        form.addEventListener('submit', handleFacultySubmit);
+        form.dataset.bound = 'true';
+    }
+
+    if (saveBtn && !saveBtn.dataset.bound) {
+        // Optional: The form submit handles this, but if button is outside form:
+        saveBtn.addEventListener('click', (e) => {
+            // Only trigger if button type is not submit, otherwise it submits twice
+            if(saveBtn.type !== 'submit') handleFacultySubmit(e);
+        });
+        saveBtn.dataset.bound = 'true';
+    }
+
+    if (searchInput && !searchInput.dataset.bound) {
+        // Debounce search by 300ms
+        searchInput.addEventListener('input', debounce(filterFaculty, 300));
+        searchInput.dataset.bound = 'true';
+    }
+
+    if (statusFilter && !statusFilter.dataset.bound) {
+        statusFilter.addEventListener('change', filterFaculty);
+        statusFilter.dataset.bound = 'true';
+    }
+
+    if (photoInput && !photoInput.dataset.bound) {
         photoInput.addEventListener('change', handlePhotoPreview);
+        photoInput.dataset.bound = 'true';
     }
 }
 
 async function loadFaculty() {
-    if (isLoading) {
-        console.log('Already loading faculty, skipping...');
-        return;
-    }
-
-    if (!document.getElementById('facultyList')) {
-        console.log('Faculty list element not found, skipping load');
-        return;
-    }
+    if (isLoading) return;
 
     isLoading = true;
-    console.log('Loading faculty data...');
+    showLoading();
 
     try {
-        showLoading();
         const response = await apiCall('/admin/faculty');
         
-        // Handle different response structures
         if (response.data) {
             facultyData = Array.isArray(response.data) ? response.data : [];
-        } else if (Array.isArray(response)) {
-            facultyData = response;
         } else {
-            facultyData = [];
+            facultyData = Array.isArray(response) ? response : [];
         }
         
         renderFacultyList();
-        console.log('Faculty data loaded successfully:', facultyData.length, 'items');
     } catch (error) {
         console.error('Error loading faculty:', error);
-        showNotification('Failed to load faculty members: ' + error.message, 'error');
+        showNotification('Failed to load faculty members', 'error');
         facultyData = [];
         renderFacultyList();
     } finally {
@@ -129,12 +107,10 @@ async function loadFaculty() {
 function renderFacultyList(filteredData = null) {
     const facultyList = document.getElementById('facultyList');
     const emptyState = document.getElementById('emptyState');
-    const data = filteredData || facultyData;
+    
+    if (!facultyList || !emptyState) return;
 
-    if (!facultyList || !emptyState) {
-        console.error('Faculty list or empty state element not found');
-        return;
-    }
+    const data = filteredData || facultyData;
 
     if (data.length === 0) {
         facultyList.innerHTML = '';
@@ -144,31 +120,24 @@ function renderFacultyList(filteredData = null) {
 
     emptyState.classList.add('hidden');
 
+    // Use map and join for efficient rendering
     facultyList.innerHTML = data.map(faculty => {
-        // Construct proper photo URL
         let photoUrl = '';
         if (faculty.photo_url) {
-            // If it's already a full URL, use it as is
-            if (faculty.photo_url.startsWith('http')) {
-                photoUrl = faculty.photo_url;
-            } else {
-                // Otherwise, construct the full URL
-                const baseUrl = API_BASE_URL.replace('/api', '');
-                photoUrl = faculty.photo_url.startsWith('/') 
-                    ? `${baseUrl}${faculty.photo_url}` 
-                    : `${baseUrl}/${faculty.photo_url}`;
-            }
+            photoUrl = faculty.photo_url.startsWith('http') 
+                ? faculty.photo_url 
+                : `${API_BASE_URL.replace('/api', '')}/${faculty.photo_url.replace(/^\//, '')}`;
         }
 
-        console.log('Faculty:', faculty.name, 'Photo URL:', photoUrl);
+        // Fallback image logic handled inline for simplicity in template literal
+        const imgHtml = photoUrl
+            ? `<img src="${photoUrl}" alt="${escapeHtml(faculty.name)}" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\\'material-symbols-outlined\\'>person</span>'">`
+            : `<span class="material-symbols-outlined">person</span>`;
 
         return `
         <div class="faculty-card ${!faculty.is_active ? 'inactive' : ''}" data-id="${faculty.id}">
             <div class="faculty-photo">
-                ${photoUrl
-                ? `<img src="${photoUrl}" alt="${faculty.name}" onerror="console.error('Image failed to load:', this.src); this.parentElement.innerHTML='<span class=\\'material-symbols-outlined\\'>person</span>'">`
-                : `<span class="material-symbols-outlined">person</span>`
-            }
+                ${imgHtml}
             </div>
             <div class="faculty-info">
                 <h3 class="faculty-name">${escapeHtml(faculty.name)}</h3>
@@ -205,19 +174,15 @@ function filterFaculty() {
     const searchInput = document.getElementById('searchFaculty');
     const statusFilter = document.getElementById('statusFilter');
     
-    if (!searchInput || !statusFilter) {
-        console.warn('Search or filter elements not found');
-        return;
-    }
+    if (!searchInput || !statusFilter) return;
 
-    const searchTerm = searchInput.value.toLowerCase();
+    const searchTerm = searchInput.value.toLowerCase().trim();
     const statusFilterValue = statusFilter.value;
 
     const filtered = facultyData.filter(faculty => {
         const matchesSearch = !searchTerm ||
             faculty.name.toLowerCase().includes(searchTerm) ||
-            faculty.department.toLowerCase().includes(searchTerm) ||
-            faculty.description.toLowerCase().includes(searchTerm);
+            faculty.department.toLowerCase().includes(searchTerm);
 
         const matchesStatus = statusFilterValue === '' ||
             (faculty.is_active ? '1' : '0') === statusFilterValue;
@@ -227,6 +192,8 @@ function filterFaculty() {
 
     renderFacultyList(filtered);
 }
+
+// --- CRUD Operations ---
 
 function openAddFacultyModal() {
     editingFacultyId = null;
@@ -239,76 +206,54 @@ function openAddFacultyModal() {
     if (photoPreview) photoPreview.classList.add('hidden');
     
     clearFormErrors();
-    
-    const modal = document.getElementById('facultyModal');
-    if (modal) modal.classList.remove('hidden');
+    toggleModal('facultyModal', true);
 }
 
 async function editFaculty(id) {
-    if (isOperationInProgress) {
-        console.log('Operation already in progress, skipping...');
-        return;
-    }
+    if (isOperationInProgress) return;
 
     try {
         showLoading();
         isOperationInProgress = true;
-        console.log('Loading faculty for edit, ID:', id);
         
-        const response = await apiCall(`/admin/faculty/${id}`);
-        const faculty = response.data || response;
-        console.log('Faculty data received:', faculty);
-
-        editingFacultyId = id;
-        const modalTitle = document.getElementById('modalTitle');
-        if (modalTitle) modalTitle.textContent = 'Edit Faculty Member';
-
-        // Check if elements exist before trying to populate them
-        const nameField = document.getElementById('name');
-        const departmentField = document.getElementById('department');
-        const descriptionField = document.getElementById('description');
-        const activeField = document.getElementById('is_active');
-
-        if (!nameField || !departmentField || !descriptionField || !activeField) {
-            throw new Error('Form elements not found in DOM');
+        // Find locally first to save an API call (Optional, but faster UX)
+        let faculty = facultyData.find(f => f.id === id);
+        
+        if (!faculty) {
+            const response = await apiCall(`/admin/faculty/${id}`);
+            faculty = response.data || response;
         }
 
-        // Populate form
-        nameField.value = faculty.name || '';
-        departmentField.value = faculty.department || '';
-        descriptionField.value = faculty.description || '';
-        activeField.checked = faculty.is_active ? true : false;
+        editingFacultyId = id;
+        document.getElementById('modalTitle').textContent = 'Edit Faculty Member';
+        document.getElementById('name').value = faculty.name || '';
+        document.getElementById('department').value = faculty.department || '';
+        document.getElementById('description').value = faculty.description || '';
+        document.getElementById('is_active').checked = !!faculty.is_active;
 
-        // Show photo preview if exists
+        // Handle Photo Preview
+        const photoPreview = document.getElementById('photoPreview');
+        const previewImg = photoPreview?.querySelector('img');
+        
         if (faculty.photo_url) {
-            const photoPreview = document.getElementById('photoPreview');
-            const previewImg = photoPreview?.querySelector('img');
+            let photoUrl = faculty.photo_url.startsWith('http') 
+                ? faculty.photo_url 
+                : `${API_BASE_URL.replace('/api', '')}/${faculty.photo_url.replace(/^\//, '')}`;
             
             if (photoPreview && previewImg) {
-                // Construct proper photo URL
-                let photoUrl = faculty.photo_url;
-                if (!photoUrl.startsWith('http')) {
-                    const baseUrl = API_BASE_URL.replace('/api', '');
-                    photoUrl = photoUrl.startsWith('/') 
-                        ? `${baseUrl}${photoUrl}` 
-                        : `${baseUrl}/${photoUrl}`;
-                }
-                
                 photoPreview.classList.remove('hidden');
                 previewImg.src = photoUrl;
             }
         } else {
-            const photoPreview = document.getElementById('photoPreview');
             if (photoPreview) photoPreview.classList.add('hidden');
         }
 
         clearFormErrors();
-        const modal = document.getElementById('facultyModal');
-        if (modal) modal.classList.remove('hidden');
+        toggleModal('facultyModal', true);
         
     } catch (error) {
-        console.error('Error loading faculty:', error);
-        showNotification('Failed to load faculty member: ' + error.message, 'error');
+        console.error(error);
+        showNotification('Failed to load faculty details', 'error');
     } finally {
         isOperationInProgress = false;
         hideLoading();
@@ -317,40 +262,21 @@ async function editFaculty(id) {
 
 async function handleFacultySubmit(e) {
     e.preventDefault();
-    console.log('Form submission started');
-
-    if (isOperationInProgress) {
-        console.log('Operation already in progress, skipping...');
-        return;
-    }
+    if (isOperationInProgress) return;
 
     isOperationInProgress = true;
-    console.log('Operation in progress set to true');
 
     try {
-        // Get form values
-        const nameField = document.getElementById('name');
-        const departmentField = document.getElementById('department');
-        const descriptionField = document.getElementById('description');
-        const activeField = document.getElementById('is_active');
+        const name = document.getElementById('name').value.trim();
+        const department = document.getElementById('department').value.trim();
+        const description = document.getElementById('description').value.trim();
+        const isActive = document.getElementById('is_active').checked;
+        const photoInput = document.getElementById('photo');
 
-        if (!nameField || !departmentField || !descriptionField || !activeField) {
-            throw new Error('Form fields not found');
-        }
-
-        const name = nameField.value.trim();
-        const department = departmentField.value.trim();
-        const description = descriptionField.value.trim();
-        const isActive = activeField.checked;
-
-        // Client-side validation
         if (!name || !department || !description) {
             showNotification('Please fill in all required fields', 'error');
-            isOperationInProgress = false;
             return;
         }
-
-        console.log('Form values:', { name, department, description, isActive });
 
         const formData = new FormData();
         formData.append('name', name);
@@ -358,91 +284,62 @@ async function handleFacultySubmit(e) {
         formData.append('description', description);
         formData.append('is_active', isActive ? '1' : '0');
 
-        // Add photo if selected
-        const photoInput = document.getElementById('photo');
         if (photoInput && photoInput.files[0]) {
-            console.log('Photo file found:', photoInput.files[0].name);
             formData.append('photo', photoInput.files[0]);
-        } else {
-            console.log('No photo file found');
         }
 
-        // If editing, some Laravel backends expect a _method field for PUT
-        if (editingFacultyId) {
-            formData.append('_method', 'POST');
-        }
+        // Method spoofing for Laravel if editing
+        if (editingFacultyId) formData.append('_method', 'POST'); 
+        // Note: Usually Update is PUT/PATCH, but FormData with files often requires POST 
+        // combined with _method field in PHP frameworks.
 
         showLoading();
-        console.log('Loading shown, making API call...');
 
         const endpoint = editingFacultyId 
             ? `/admin/faculty/${editingFacultyId}` 
             : '/admin/faculty';
-        
-        // Use POST for both create and update (Laravel will see _method=PUT for updates)
-        const method = 'POST';
-        
-        console.log('API endpoint:', endpoint);
-        console.log('Method:', method);
-        console.log('Is editing:', !!editingFacultyId);
-
+            
+        // Always POST when sending FormData with files in many frameworks
         const response = await apiCall(endpoint, {
-            method: method,
+            method: 'POST',
             body: formData
         });
 
-        console.log('API response received:', response);
-
-        showNotification(response.message || 'Faculty member saved successfully', 'success');
+        showNotification(response.message || 'Saved successfully', 'success');
         closeFacultyModal();
-
-        // Add a small delay before reload to prevent rapid calls
-        setTimeout(() => {
-            console.log('Reloading faculty list...');
-            loadFaculty();
-        }, 500);
+        loadFaculty(); // Reload list
 
     } catch (error) {
-        console.error('Error in form submission:', error);
-        
-        // Handle validation errors
+        console.error(error);
         if (error.errors) {
             displayFormErrors(error.errors);
             showNotification('Please fix the form errors', 'error');
         } else {
-            showNotification(error.message || 'Failed to save faculty member', 'error');
+            showNotification(error.message || 'Failed to save', 'error');
         }
     } finally {
         isOperationInProgress = false;
         hideLoading();
-        console.log('Operation completed, cleanup done');
     }
 }
 
 async function toggleFacultyStatus(id) {
-    if (isOperationInProgress) {
-        console.log('Operation already in progress, skipping...');
-        return;
-    }
-
+    if (isOperationInProgress) return;
     isOperationInProgress = true;
 
     try {
         showLoading();
-        const response = await apiCall(`/admin/faculty/${id}/toggle-status`, {
-            method: 'PATCH'
-        });
-
-        showNotification(response.message || 'Faculty status updated successfully', 'success');
-
-        // Add delay before reload
-        setTimeout(() => {
-            loadFaculty();
-        }, 300);
+        await apiCall(`/admin/faculty/${id}/toggle-status`, { method: 'PATCH' });
+        showNotification('Status updated', 'success');
+        
+        // Optimistic update locally
+        const f = facultyData.find(i => i.id === id);
+        if(f) f.is_active = !f.is_active;
+        renderFacultyList(); // Re-render without network call if possible, or call loadFaculty()
 
     } catch (error) {
-        console.error('Error toggling status:', error);
-        showNotification(error.message || 'Failed to update faculty status', 'error');
+        showNotification('Failed to update status', 'error');
+        loadFaculty(); // Revert on error
     } finally {
         isOperationInProgress = false;
         hideLoading();
@@ -451,193 +348,116 @@ async function toggleFacultyStatus(id) {
 
 function deleteFaculty(id) {
     const faculty = facultyData.find(f => f.id === id);
-    if (!faculty) {
-        console.error('Faculty not found:', id);
-        return;
-    }
+    if (!faculty) return;
 
-    // Show delete confirmation modal
-    const deleteFacultyInfo = document.getElementById('deleteFacultyInfo');
-    if (deleteFacultyInfo) {
-        deleteFacultyInfo.innerHTML = `
-            <h4>${escapeHtml(faculty.name)}</h4>
-            <p><strong>Department:</strong> ${escapeHtml(faculty.department)}</p>
-            <p><strong>Status:</strong> ${faculty.is_active ? 'Active' : 'Inactive'}</p>
-        `;
-    }
-
-    // Store the ID for deletion
+    document.getElementById('deleteFacultyInfo').innerHTML = `
+        <h4>${escapeHtml(faculty.name)}</h4>
+        <p><strong>Department:</strong> ${escapeHtml(faculty.department)}</p>
+    `;
     window.facultyToDeleteId = id;
-    
-    const deleteModal = document.getElementById('deleteModal');
-    if (deleteModal) deleteModal.classList.remove('hidden');
+    toggleModal('deleteModal', true);
 }
 
 async function confirmDelete() {
     const id = window.facultyToDeleteId;
-    if (!id) {
-        console.error('No faculty ID to delete');
-        return;
-    }
-
-    if (isOperationInProgress) {
-        console.log('Operation already in progress, skipping...');
-        return;
-    }
+    if (!id || isOperationInProgress) return;
 
     isOperationInProgress = true;
+    showLoading();
 
     try {
-        showLoading();
-        const response = await apiCall(`/admin/faculty/${id}`, {
-            method: 'DELETE'
-        });
-
-        showNotification(response.message || 'Faculty member deleted successfully', 'success');
+        await apiCall(`/admin/faculty/${id}`, { method: 'DELETE' });
+        showNotification('Faculty member deleted', 'success');
         closeDeleteModal();
-
-        // Add delay before reload
-        setTimeout(() => {
-            loadFaculty();
-        }, 300);
-
+        
+        // Remove locally
+        facultyData = facultyData.filter(f => f.id !== id);
+        renderFacultyList();
+        
     } catch (error) {
-        console.error('Error deleting faculty:', error);
-        showNotification(error.message || 'Failed to delete faculty member', 'error');
+        showNotification(error.message || 'Delete failed', 'error');
+        loadFaculty();
     } finally {
         isOperationInProgress = false;
         hideLoading();
     }
 }
 
+// --- Helpers ---
+
 function handlePhotoPreview(e) {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Validate file type
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
-    if (!allowedTypes.includes(file.type)) {
-        showNotification('Invalid file type. Please select a valid image file (JPEG, PNG, GIF, WebP).', 'error');
+    if (file.size > 2 * 1024 * 1024) {
+        showNotification('File too large (>2MB)', 'error');
         e.target.value = '';
         return;
     }
 
-    // Validate file size (2MB)
-    const maxSize = 2 * 1024 * 1024; // 2MB in bytes
-    if (file.size > maxSize) {
-        showNotification('File size must be less than 2MB', 'error');
-        e.target.value = '';
-        return;
-    }
-
-    // Show preview
     const reader = new FileReader();
-    reader.onload = function (e) {
-        const photoPreview = document.getElementById('photoPreview');
-        const previewImg = photoPreview?.querySelector('img');
-        
-        if (photoPreview && previewImg) {
-            photoPreview.classList.remove('hidden');
-            previewImg.src = e.target.result;
+    reader.onload = (ev) => {
+        const preview = document.getElementById('photoPreview');
+        const img = preview.querySelector('img');
+        if (preview && img) {
+            preview.classList.remove('hidden');
+            img.src = ev.target.result;
         }
-    };
-    reader.onerror = function() {
-        showNotification('Failed to read file', 'error');
     };
     reader.readAsDataURL(file);
 }
 
 function removePhoto() {
-    const photoInput = document.getElementById('photo');
-    const photoPreview = document.getElementById('photoPreview');
+    document.getElementById('photo').value = '';
+    document.getElementById('photoPreview').classList.add('hidden');
+}
+
+function toggleModal(modalId, show) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
     
-    if (photoInput) photoInput.value = '';
-    if (photoPreview) photoPreview.classList.add('hidden');
+    if (show) {
+        modal.classList.remove('hidden');
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+    } else {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
 }
 
 function closeFacultyModal() {
-    const modal = document.getElementById('facultyModal');
-    const form = document.getElementById('facultyForm');
-    const photoInput = document.getElementById('photo');
-    const photoPreview = document.getElementById('photoPreview');
-    
-    if (modal) modal.classList.add('hidden');
-    if (form) form.reset();
-    if (photoInput) photoInput.value = '';
-    if (photoPreview) photoPreview.classList.add('hidden');
-    
+    toggleModal('facultyModal', false);
+    document.getElementById('facultyForm').reset();
     editingFacultyId = null;
     clearFormErrors();
+    removePhoto();
 }
 
 function closeDeleteModal() {
-    const modal = document.getElementById('deleteModal');
-    if (modal) modal.classList.add('hidden');
+    toggleModal('deleteModal', false);
     window.facultyToDeleteId = null;
 }
 
 function clearFormErrors() {
     document.querySelectorAll('.error-text').forEach(el => el.textContent = '');
-    document.querySelectorAll('.form-group input, .form-group textarea').forEach(el => {
-        el.style.borderColor = '';
-    });
+    document.querySelectorAll('.form-group input').forEach(el => el.style.borderColor = '');
 }
 
 function displayFormErrors(errors) {
     clearFormErrors();
-
     Object.keys(errors).forEach(field => {
         const input = document.getElementById(field);
-        const errorText = input?.parentElement?.querySelector('.error-text');
-
+        const errorText = input?.closest('.form-group')?.querySelector('.error-text');
         if (input && errorText) {
             input.style.borderColor = 'var(--danger)';
-            errorText.textContent = Array.isArray(errors[field]) 
-                ? errors[field][0] 
-                : errors[field];
+            errorText.textContent = Array.isArray(errors[field]) ? errors[field][0] : errors[field];
         }
     });
 }
 
-// Utility function to escape HTML and prevent XSS
 function escapeHtml(text) {
-    const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-    };
-    return text.replace(/[&<>"']/g, m => map[m]);
-}
-
-// Loading functions (reuse from main admin.js)
-function showLoading() {
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    if (loadingOverlay) loadingOverlay.classList.remove('hidden');
-}
-
-function hideLoading() {
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    if (loadingOverlay) loadingOverlay.classList.add('hidden');
-}
-
-// Notification function (reuse from main admin.js)
-function showNotification(message, type = 'success') {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    }, 3000);
+    if (!text) return '';
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return String(text).replace(/[&<>"']/g, m => map[m]);
 }

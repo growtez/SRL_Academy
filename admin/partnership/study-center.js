@@ -178,26 +178,33 @@ function openStudyCentreView(id) {
 
     currentStudyCentreId = id;
 
-    setTextContent('detailPrincipalIntro', application.principal_name_intro);
-    setTextContent('detailCentreName', application.centre_name);
-    setTextContent('detailApplicationDate', formatDate(application.application_date));
+    // Header section
+    setTextContent('detailCentreNameHeader', application.centre_name);
+    setTextContent('detailAddressHeader', application.address);
 
+    // Contact Information Card
     setTextContent('detailPrincipalName', application.principal_name);
     setTextContent('detailContactNumber', application.contact_number);
     setTextContent('detailEmail', application.email);
-    setTextContent('detailAddress', application.address);
     setTextContent('detailAffiliatedBoard', application.affiliated_board);
     setTextContent('detailExperience', application.experience);
 
+    // Intro Information Card
+    setTextContent('detailPrincipalIntro', application.principal_name_intro);
+    setTextContent('detailApplicationDate', formatDate(application.application_date));
+
+    // Study Centre Details Card
     setTextContent('detailAvailableCourses', application.available_courses);
     setTextContent('detailInfrastructure', application.infrastructure);
     setTextContent('detailStaffStrength', application.staff_strength);
     setTextContent('detailStudentCapacity', application.student_capacity);
-
     setTextContent('detailResourcesRequired', application.resources_required);
+
+    // Additional Information Card
     setTextContent('detailPreviousExperience', application.previous_experience);
     setTextContent('detailBenefits', application.benefits);
 
+    // Declaration Card
     setTextContent('detailDeclarationPrincipal', application.declaration_principal);
     setTextContent('detailDeclarationDate', formatDate(application.declaration_date));
 

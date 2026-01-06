@@ -13,7 +13,8 @@
 </head>
 
 <body>
-    <!-- Login Screen (initially hidden) -->
+    <div id="mobileBackdrop" class="mobile-backdrop"></div>
+
     <div id="loginScreen" class="login-screen hidden">
         <div class="login-container">
             <div class="login-card">
@@ -41,11 +42,15 @@
         </div>
     </div>
 
-    <!-- Main Admin Panel -->
     <div id="adminPanel" class="admin-panel">
-        <!-- Header -->
         <header class="admin-header">
             <div class="header-left">
+                <button id="mobileMenuToggle" class="mobile-menu-toggle">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <button id="sidebarToggle" class="sidebar-toggle" title="Toggle Sidebar">
+                    <span class="material-symbols-outlined">menu_open</span>
+                </button>
                 <div class="brand-badge">SRL</div>
                 <div class="brand-text">
                     <div class="brand-line-1">Admin Panel</div>
@@ -59,8 +64,62 @@
             </div>
         </header>
 
+        <div id="mobileMenu" class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="brand-badge">SRL</div>
+                <button id="mobileMenuClose" class="mobile-menu-close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <ul class="mobile-nav-list">
+                    <li class="mobile-nav-item">
+                        <a href="#" data-tab="faculty" class="mobile-nav-link">
+                            <div class="link-content">
+                                <span class="material-symbols-outlined">school</span>
+                                Faculty
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="mobile-nav-item">
+                        <a href="#" data-tab="partnership" class="mobile-nav-link accordion-toggle">
+                            <div class="link-content">
+                                <span class="material-symbols-outlined">handshake</span>
+                                Partnership
+                            </div>
+                            <span class="material-symbols-outlined arrow-icon">expand_more</span>
+                        </a>
+                        <ul class="mobile-sub-nav">
+                            <li><a href="#" data-subtab="school-integration" class="mobile-sub-nav-link">School
+                                    Integration Projects</a></li>
+                            <li><a href="#" data-subtab="study-center" class="mobile-sub-nav-link">Study Center
+                                    Establishment</a></li>
+                            <li><a href="#" data-subtab="online-learning-program" class="mobile-sub-nav-link">Online
+                                    Learning Program</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#" data-tab="career" class="mobile-nav-link">
+                            <div class="link-content">
+                                <span class="material-symbols-outlined">work</span>
+                                Career
+                            </div>
+                        </a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="#" data-tab="contact" class="mobile-nav-link">
+                            <div class="link-content">
+                                <span class="material-symbols-outlined">contact_mail</span>
+                                Contact
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
         <div class="admin-container">
-            <!-- Sidebar -->
             <aside class="admin-sidebar">
                 <nav class="sidebar-nav">
                     <ul class="nav-list">
@@ -70,26 +129,25 @@
                                 Faculty
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" data-tab="gallery" class="nav-link">
-                                <span class="material-symbols-outlined">photo_library</span>
-                                Gallery
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" data-tab="partnership" class="nav-link">
-                                <span class="material-symbols-outlined">handshake</span>
-                                Partnership
-                            </a>
-                            <ul class="sub-nav">
-                                <li><a href="#" data-subtab="school-integration" class="sub-nav-link">School Integration
-                                        Projects</a></li>
-                                <li><a href="#" data-subtab="study-center" class="sub-nav-link">Study Center
-                                        Establishment</a></li>
-                                <li><a href="#" data-subtab="online-learning" class="sub-nav-link">Online Learning
-                                        Program</a></li>
-                            </ul>
-                        </li>
+
+                        <ul class="nav-list">
+                            <li class="nav-item expanded">
+                                <a href="#" data-tab="partnership" class="nav-link">
+                                    <span class="material-symbols-outlined">handshake</span>
+                                    Partnership
+                                    <span class="material-symbols-outlined dropdown-icon">expand_more</span>
+                                </a>
+                                <ul class="sub-nav">
+                                    <li><a href="#" data-subtab="school-integration" class="sub-nav-link">School
+                                            Integration Projects</a></li>
+                                    <li><a href="#" data-subtab="study-center" class="sub-nav-link">Study Center
+                                            Establishment</a></li>
+                                    <li><a href="#" data-subtab="online-learning-program" class="sub-nav-link">Online
+                                            Learning Program</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
                         <li class="nav-item">
                             <a href="#" data-tab="career" class="nav-link">
                                 <span class="material-symbols-outlined">work</span>
@@ -106,16 +164,13 @@
                 </nav>
             </aside>
 
-            <!-- Main Content Area -->
             <main class="admin-content">
                 <div id="contentArea">
-                    <!-- Content will be loaded here dynamically -->
                 </div>
             </main>
         </div>
     </div>
 
-    <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay hidden">
         <div class="loader"></div>
         <p>Loading...</p>
@@ -124,14 +179,10 @@
     <script>
         // Configuration
         const API_BASE_URL = 'http://127.0.0.1:8000/api';
-        const ADMIN_CREDENTIALS = {
-            username: 'admin',
-            password: 'admin123'
-        };
 
         // State management
         let currentTab = 'faculty';
-        let isAuthenticated = false;
+        let authToken = localStorage.getItem('adminToken');
 
         // DOM Elements
         const loginScreen = document.getElementById('loginScreen');
@@ -149,13 +200,10 @@
         });
 
         function setupEventListeners() {
-            // Login form
             loginForm.addEventListener('submit', handleLogin);
-
-            // Logout
             logoutBtn.addEventListener('click', handleLogout);
 
-            // Navigation
+            // Desktop Nav Listeners
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', handleNavigation);
             });
@@ -163,12 +211,49 @@
             document.querySelectorAll('.sub-nav-link').forEach(link => {
                 link.addEventListener('click', handleSubNavigation);
             });
+
+            // --- OPTIMIZED MOBILE HANDLERS ---
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenuClose = document.getElementById('mobileMenuClose');
+            const mobileBackdrop = document.getElementById('mobileBackdrop');
+
+            if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openMobileMenu);
+            if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
+            if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileMenu);
+
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', handleMobileNavClick);
+            });
+
+            document.querySelectorAll('.mobile-sub-nav-link').forEach(link => {
+                link.addEventListener('click', handleMobileSubNavClick);
+            });
+
+
+            // --- NEW: Desktop Sidebar Toggle Logic ---
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const adminSidebar = document.querySelector('.admin-sidebar');
+
+            if (sidebarToggle && adminSidebar) {
+                sidebarToggle.addEventListener('click', () => {
+                    // Toggle the class
+                    adminSidebar.classList.toggle('collapsed');
+
+                    // Optional: Toggle Icon (Menu <-> Menu Open)
+                    const icon = sidebarToggle.querySelector('.material-symbols-outlined');
+                    if (adminSidebar.classList.contains('collapsed')) {
+                        icon.textContent = 'menu'; // Show 'menu' icon when closed
+                    } else {
+                        icon.textContent = 'menu_open'; // Show 'menu_open' icon when open
+                    }
+                });
+            }
         }
 
+        // --- AUTH & LOGIN FUNCTIONS ---
         function checkAuthentication() {
-            const auth = localStorage.getItem('adminAuth');
-            if (auth === 'true') {
-                isAuthenticated = true;
+            authToken = localStorage.getItem('adminToken');
+            if (authToken) {
                 showAdminPanel();
                 loadTab('faculty');
             } else {
@@ -186,86 +271,188 @@
             adminPanel.classList.remove('hidden');
         }
 
-        function handleLogin(e) {
+        async function handleLogin(e) {
             e.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            loginError.classList.add('hidden');
 
-            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-                isAuthenticated = true;
-                localStorage.setItem('adminAuth', 'true');
-                showAdminPanel();
-                loadTab('faculty');
-                loginError.classList.add('hidden');
-            } else {
+            try {
+                const response = await fetch(`${API_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await response.json();
+
+                if (response.ok) {
+                    authToken = data.token;
+                    localStorage.setItem('adminToken', authToken);
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+                    showAdminPanel();
+                    loadTab('faculty');
+                    loginForm.reset();
+                } else {
+                    loginError.textContent = data.message || 'Invalid credentials';
+                    loginError.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                loginError.textContent = 'Connection error. Please check server.';
                 loginError.classList.remove('hidden');
             }
         }
 
-        function handleLogout() {
-            isAuthenticated = false;
-            localStorage.removeItem('adminAuth');
-            showLoginScreen();
-            loginForm.reset();
+        async function handleLogout() {
+            if (!authToken) { cleanupAuth(); return; }
+            try {
+                await fetch(`${API_BASE_URL}/logout`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${authToken}`, 'Accept': 'application/json' }
+                });
+            } catch (error) { console.error('Logout error:', error); }
+            finally { cleanupAuth(); }
         }
 
+        function cleanupAuth() {
+            authToken = null;
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminUser');
+            showLoginScreen();
+        }
+
+        // --- DESKTOP NAVIGATION ---
         function handleNavigation(e) {
             e.preventDefault();
-            const tab = e.currentTarget.dataset.tab;
+            const link = e.currentTarget;
+            const tab = link.dataset.tab;
 
-            // Update active state
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            e.currentTarget.classList.add('active');
+            // --- UPDATED LOGIC FOR LAPTOP PARTNERSHIP TOGGLE ---
+            if (tab === 'partnership') {
+                const parentItem = link.closest('.nav-item');
 
-            // Load tab content
+                // Toggle the class to Show/Hide
+                if (parentItem) {
+                    parentItem.classList.toggle('expanded');
+                }
+
+                // Note: We return here so we don't load a "Partnership" page, 
+                // effectively making this just a collapsible header.
+                return;
+            }
+            // ---------------------------------------------------
+
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+            // Don't remove sub-nav active states if we are just switching main tabs
+            if (!link.closest('.sub-nav')) {
+                document.querySelectorAll('.sub-nav-link').forEach(l => l.classList.remove('active'));
+            }
+
+            link.classList.add('active');
             loadTab(tab);
         }
 
         function handleSubNavigation(e) {
             e.preventDefault();
             const subtab = e.currentTarget.dataset.subtab;
-
-            // Update active state for partnership tab
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            document.querySelector('[data-tab="partnership"]').classList.add('active');
-
-            // Update sub-nav active state
-            document.querySelectorAll('.sub-nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            e.currentTarget.classList.add('active');
-
-            // Load sub-tab content
+            updateActiveState('partnership', subtab);
             loadSubTab(subtab);
         }
 
-        function showLoading() {
-            loadingOverlay.classList.remove('hidden');
+        // --- MOBILE NAVIGATION LOGIC ---
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('open');
+            document.getElementById('mobileBackdrop').classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
 
-        function hideLoading() {
-            loadingOverlay.classList.add('hidden');
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('open');
+            document.getElementById('mobileBackdrop').classList.remove('show');
+            document.body.style.overflow = '';
         }
+
+        function handleMobileNavClick(e) {
+            e.preventDefault();
+            const link = e.currentTarget;
+            const tab = link.dataset.tab;
+
+            // Accordion Logic
+            if (link.classList.contains('accordion-toggle')) {
+                const subNav = link.nextElementSibling;
+                const isExpanded = subNav.classList.contains('expanded');
+
+                if (isExpanded) {
+                    subNav.classList.remove('expanded');
+                    link.setAttribute('aria-expanded', 'false');
+                } else {
+                    document.querySelectorAll('.mobile-sub-nav.expanded').forEach(el => el.classList.remove('expanded'));
+                    document.querySelectorAll('.accordion-toggle[aria-expanded="true"]').forEach(el => el.setAttribute('aria-expanded', 'false'));
+
+                    subNav.classList.add('expanded');
+                    link.setAttribute('aria-expanded', 'true');
+                }
+                return;
+            }
+
+            closeMobileMenu();
+            updateActiveState(tab, null);
+            loadTab(tab);
+        }
+
+        function handleMobileSubNavClick(e) {
+            e.preventDefault();
+            const subtab = e.currentTarget.dataset.subtab;
+            closeMobileMenu();
+            updateActiveState('partnership', subtab);
+            loadSubTab(subtab);
+        }
+
+        // Unified State Management (Syncs Desktop & Mobile)
+        function updateActiveState(tabName, subTabName) {
+            // Reset all
+            document.querySelectorAll('.nav-link, .mobile-nav-link, .sub-nav-link, .mobile-sub-nav-link')
+                .forEach(el => el.classList.remove('active'));
+
+            // Activate Parent
+            const desktopTab = document.querySelector(`.nav-link[data-tab="${tabName}"]`);
+            const mobileTab = document.querySelector(`.mobile-nav-link[data-tab="${tabName}"]`);
+
+            if (desktopTab) desktopTab.classList.add('active');
+            if (mobileTab) {
+                mobileTab.classList.add('active');
+                // Ensure mobile accordion stays open if subtab is active
+                if (subTabName && mobileTab.classList.contains('accordion-toggle')) {
+                    mobileTab.setAttribute('aria-expanded', 'true');
+                    if (mobileTab.nextElementSibling) {
+                        mobileTab.nextElementSibling.classList.add('expanded');
+                    }
+                }
+            }
+
+            // Activate Sub
+            if (subTabName) {
+                const desktopSub = document.querySelector(`.sub-nav-link[data-subtab="${subTabName}"]`);
+                const mobileSub = document.querySelector(`.mobile-sub-nav-link[data-subtab="${subTabName}"]`);
+                if (desktopSub) desktopSub.classList.add('active');
+                if (mobileSub) mobileSub.classList.add('active');
+            }
+        }
+
+        // --- CONTENT LOADING ---
+        function showLoading() { loadingOverlay.classList.remove('hidden'); }
+        function hideLoading() { loadingOverlay.classList.add('hidden'); }
 
         async function loadTab(tab) {
             currentTab = tab;
             showLoading();
-
             try {
                 const response = await fetch(`${tab}/${tab}.html`);
                 const html = await response.text();
                 contentArea.innerHTML = html;
-
-                // Load tab-specific CSS
                 loadCSS(`${tab}/${tab}.css`);
-
-                // Load tab-specific JavaScript
                 loadTabScript(tab);
-
             } catch (error) {
                 console.error('Error loading tab:', error);
                 contentArea.innerHTML = '<div class="error">Error loading content</div>';
@@ -276,18 +463,12 @@
 
         async function loadSubTab(subtab) {
             showLoading();
-
             try {
                 const response = await fetch(`partnership/${subtab}.html`);
                 const html = await response.text();
                 contentArea.innerHTML = html;
-
-                // Load sub-tab-specific CSS
                 loadCSS(`partnership/${subtab}.css`);
-
-                // Load sub-tab-specific JavaScript
                 loadSubTabScript(subtab);
-
             } catch (error) {
                 console.error('Error loading sub-tab:', error);
                 contentArea.innerHTML = '<div class="error">Error loading content</div>';
@@ -297,13 +478,8 @@
         }
 
         function loadCSS(cssPath) {
-            // Remove existing tab-specific CSS
             const existingLink = document.querySelector('link[data-tab-css]');
-            if (existingLink) {
-                existingLink.remove();
-            }
-
-            // Add new CSS
+            if (existingLink) existingLink.remove();
             const link = document.createElement('link');
             link.rel = 'stylesheet';
             link.href = cssPath;
@@ -312,86 +488,61 @@
         }
 
         function loadTabScript(tab) {
-            // Check if script is already loaded
             const existingScript = document.querySelector(`script[data-tab-script="${tab}"]`);
             if (existingScript) {
-                console.log(`Script ${tab} already loaded, reinitializing...`);
-
-                // Re-run tab-specific initializer for newly injected HTML
-                if (tab === 'faculty' && typeof initializeFaculty === 'function') {
-                    try {
-                        initializeFaculty();
-                    } catch (e) {
-                        console.error('Error reinitializing faculty module:', e);
-                    }
-                }
-
-                return; // Script already loaded, don't reload again
+                if (tab === 'faculty' && typeof initializeFaculty === 'function') try { initializeFaculty(); } catch (e) { }
+                else if (tab === 'career' && typeof initializeCareer === 'function') try { initializeCareer(); } catch (e) { }
+                else if (tab === 'contact' && typeof initializeContactManagement === 'function') try { initializeContactManagement(); } catch (e) { }
+                return;
             }
-
-            console.log(`Loading script: ${tab}/${tab}.js`);
-            // Add new script
             const script = document.createElement('script');
             script.src = `${tab}/${tab}.js`;
             script.setAttribute('data-tab-script', tab);
-
-            // Add error handling
-            script.onerror = function () {
-                console.error(`Failed to load script: ${tab}/${tab}.js`);
-            };
-
             script.onload = function () {
-                console.log(`Script loaded successfully: ${tab}/${tab}.js`);
-
-                // Run tab-specific initializer after script loads for the first time
-                if (tab === 'faculty' && typeof initializeFaculty === 'function') {
-                    try {
-                        initializeFaculty();
-                    } catch (e) {
-                        console.error('Error initializing faculty module:', e);
-                    }
-                }
+                if (tab === 'faculty' && typeof initializeFaculty === 'function') try { initializeFaculty(); } catch (e) { }
             };
-
             document.body.appendChild(script);
         }
 
         function loadSubTabScript(subtab) {
-            // Remove existing sub-tab-specific scripts
-            const existingScript = document.querySelector('script[data-subtab-script]');
+            const existingScript = document.querySelector(`script[data-subtab-script="${subtab}"]`);
             if (existingScript) {
-                existingScript.remove();
+                if (subtab === 'school-integration' && typeof initializeSchoolIntegration === 'function') try { initializeSchoolIntegration(); } catch (e) { }
+                else if (subtab === 'study-center' && typeof initializeStudyCenter === 'function') try { initializeStudyCenter(); } catch (e) { }
+                else if (subtab === 'online-learning-program' && typeof initializeOnlineLearning === 'function') try { initializeOnlineLearning(); } catch (e) { }
+                return;
             }
-
-            // Add new script
             const script = document.createElement('script');
             script.src = `partnership/${subtab}.js`;
-            script.setAttribute('data-subtab-script', 'true');
+            script.setAttribute('data-subtab-script', subtab);
+            script.onload = function () {
+                if (subtab === 'school-integration' && typeof initializeSchoolIntegration === 'function') try { initializeSchoolIntegration(); } catch (e) { }
+                else if (subtab === 'study-center' && typeof initializeStudyCenter === 'function') try { initializeStudyCenter(); } catch (e) { }
+                else if (subtab === 'online-learning-program' && typeof initializeOnlineLearning === 'function') try { initializeOnlineLearning(); } catch (e) { }
+            };
             document.body.appendChild(script);
         }
 
-        // Utility functions for API calls
+        // --- API UTILITIES ---
         async function apiCall(endpoint, options = {}) {
-            const url = `${API_BASE_URL}${endpoint}`;
-            const defaultOptions = {
-                headers: {
-                    'Accept': 'application/json'
-                },
-                timeout: 30000 // 30 second timeout
-            };
-
-            // Don't set Content-Type for FormData to let browser set it automatically
-            if (!(options.body instanceof FormData)) {
-                defaultOptions.headers['Content-Type'] = 'application/json';
+            let url = `${API_BASE_URL}${endpoint}`;
+            if (!options.method || options.method.toUpperCase() === 'GET') {
+                const separator = url.includes('?') ? '&' : '?';
+                url = `${url}${separator}_t=${Date.now()}`;
             }
 
+            const defaultOptions = {
+                headers: { 'Accept': 'application/json' },
+                timeout: 30000
+            };
+
+            if (authToken) defaultOptions.headers['Authorization'] = `Bearer ${authToken}`;
+            if (!(options.body instanceof FormData)) defaultOptions.headers['Content-Type'] = 'application/json';
+
             const finalOptions = { ...defaultOptions, ...options };
+            if (options.headers) finalOptions.headers = { ...defaultOptions.headers, ...options.headers };
 
             try {
-                console.log('Making API call to:', url);
-                console.log('Request options:', finalOptions);
-
-                // Add timeout
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 30000);
                 finalOptions.signal = controller.signal;
@@ -399,46 +550,29 @@
                 const response = await fetch(url, finalOptions);
                 clearTimeout(timeoutId);
 
-                console.log('Response status:', response.status);
-                console.log('Response headers:', response.headers);
+                if (response.status === 401) {
+                    cleanupAuth();
+                    throw new Error('Session expired');
+                }
 
                 const data = await response.json();
-                console.log('Response data:', data);
-
-                if (!response.ok) {
-                    throw new Error(data.message || `HTTP ${response.status}: ${response.statusText}`);
-                }
-
+                if (!response.ok) throw new Error(data.message || `HTTP ${response.status}`);
                 return data;
             } catch (error) {
-                console.error('API Error:', error);
-                console.error('Response details:', error.response);
-
-                if (error.name === 'AbortError') {
-                    throw new Error('Request timed out. Please check your internet connection and try again.');
-                }
-
+                if (error.name === 'AbortError') throw new Error('Request timed out.');
                 throw error;
             }
         }
 
-        // Show notification
         function showNotification(message, type = 'success') {
             const notification = document.createElement('div');
             notification.className = `notification notification-${type}`;
             notification.textContent = message;
-
             document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-
+            setTimeout(() => notification.classList.add('show'), 100);
             setTimeout(() => {
                 notification.classList.remove('show');
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
+                setTimeout(() => notification.remove(), 300);
             }, 3000);
         }
     </script>

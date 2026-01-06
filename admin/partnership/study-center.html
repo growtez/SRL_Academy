@@ -48,103 +48,135 @@
     <div class="modal-overlay"></div>
     <div class="modal-content modal-lg">
         <div class="modal-header">
-            <h2>Application Details</h2>
+            <h2>Study Center Establishment Application Details</h2>
             <button type="button" class="modal-close" data-close-modal="studyCentreViewModal">
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
 
         <div class="modal-body">
-            <div class="details-grid">
-                <div class="details-group">
-                    <h3>Intro</h3>
-                    <div class="details-row">
-                        <span class="details-label">Intro Principal Name</span>
-                        <span id="detailPrincipalIntro" class="details-value"></span>
+            <!-- Centre Image Header -->
+            <div class="school-image-header">
+                <div class="school-image-placeholder"></div>
+                <div class="school-header-info">
+                    <h2 id="detailCentreNameHeader" class="school-name"></h2>
+                    <p id="detailAddressHeader" class="school-address"></p>
+                </div>
+            </div>
+
+            <!-- Application Info Cards -->
+            <div class="info-cards-grid">
+                <!-- Contact Information Card -->
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="material-symbols-outlined">person</span>
+                        <h3>Contact Information</h3>
                     </div>
-                    <div class="details-row">
-                        <span class="details-label">Centre Name</span>
-                        <span id="detailCentreName" class="details-value"></span>
-                    </div>
-                    <div class="details-row">
-                        <span class="details-label">Application Date</span>
-                        <span id="detailApplicationDate" class="details-value"></span>
+                    <div class="info-card-body">
+                        <div class="info-item">
+                            <span class="info-label">Principal Name</span>
+                            <span id="detailPrincipalName" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Contact Number</span>
+                            <span id="detailContactNumber" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <span id="detailEmail" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Affiliated Board</span>
+                            <span id="detailAffiliatedBoard" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Experience (years)</span>
+                            <span id="detailExperience" class="info-value"></span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="details-group">
-                    <h3>Applicant Information</h3>
-                    <div class="details-row">
-                        <span class="details-label">Principal Name</span>
-                        <span id="detailPrincipalName" class="details-value"></span>
+                <!-- Intro Information Card -->
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="material-symbols-outlined">info</span>
+                        <h3>Intro Information</h3>
                     </div>
-                    <div class="details-row">
-                        <span class="details-label">Contact Number</span>
-                        <span id="detailContactNumber" class="details-value"></span>
-                    </div>
-                    <div class="details-row">
-                        <span class="details-label">Email</span>
-                        <span id="detailEmail" class="details-value"></span>
-                    </div>
-                    <div class="details-row">
-                        <span class="details-label">Address</span>
-                        <span id="detailAddress" class="details-value"></span>
-                    </div>
-                    <div class="details-row">
-                        <span class="details-label">Affiliated Board</span>
-                        <span id="detailAffiliatedBoard" class="details-value"></span>
-                    </div>
-                    <div class="details-row">
-                        <span class="details-label">Experience (years)</span>
-                        <span id="detailExperience" class="details-value"></span>
+                    <div class="info-card-body">
+                        <div class="info-item">
+                            <span class="info-label">Principal Name</span>
+                            <span id="detailPrincipalIntro" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Application Date</span>
+                            <span id="detailApplicationDate" class="info-value"></span>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="details-group">
+            <!-- Study Centre Details Card -->
+            <div class="info-card full-width">
+                <div class="info-card-header">
+                    <span class="material-symbols-outlined">business</span>
                     <h3>Study Centre Details</h3>
-                    <div class="details-row">
-                        <span class="details-label">Available Courses</span>
-                        <span id="detailAvailableCourses" class="details-value"></span>
+                </div>
+                <div class="info-card-body">
+                    <div class="info-item">
+                        <span class="info-label">Available Courses</span>
+                        <span id="detailAvailableCourses" class="info-value text-content"></span>
                     </div>
-                    <div class="details-row">
-                        <span class="details-label">Infrastructure</span>
-                        <span id="detailInfrastructure" class="details-value"></span>
+                    <div class="info-item">
+                        <span class="info-label">Infrastructure</span>
+                        <span id="detailInfrastructure" class="info-value text-content"></span>
                     </div>
-                    <div class="details-row">
-                        <span class="details-label">Staff Strength</span>
-                        <span id="detailStaffStrength" class="details-value"></span>
+                    <div class="info-item">
+                        <span class="info-label">Staff Strength</span>
+                        <span id="detailStaffStrength" class="info-value"></span>
                     </div>
-                    <div class="details-row">
-                        <span class="details-label">Student Capacity</span>
-                        <span id="detailStudentCapacity" class="details-value"></span>
+                    <div class="info-item">
+                        <span class="info-label">Student Capacity</span>
+                        <span id="detailStudentCapacity" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Resources Required</span>
+                        <span id="detailResourcesRequired" class="info-value text-content"></span>
                     </div>
                 </div>
+            </div>
 
-                <div class="details-group">
+            <!-- Additional Information Card -->
+            <div class="info-card full-width">
+                <div class="info-card-header">
+                    <span class="material-symbols-outlined">description</span>
                     <h3>Additional Information</h3>
-                    <div class="details-row">
-                        <span class="details-label">Resources Required</span>
-                        <span id="detailResourcesRequired" class="details-value"></span>
+                </div>
+                <div class="info-card-body">
+                    <div class="info-item">
+                        <span class="info-label">Previous Experience</span>
+                        <span id="detailPreviousExperience" class="info-value text-content"></span>
                     </div>
-                    <div class="details-row">
-                        <span class="details-label">Previous Experience</span>
-                        <span id="detailPreviousExperience" class="details-value"></span>
-                    </div>
-                    <div class="details-row">
-                        <span class="details-label">Benefits</span>
-                        <span id="detailBenefits" class="details-value"></span>
+                    <div class="info-item">
+                        <span class="info-label">Benefits</span>
+                        <span id="detailBenefits" class="info-value text-content"></span>
                     </div>
                 </div>
+            </div>
 
-                <div class="details-group">
+            <!-- Declaration Card -->
+            <div class="info-card full-width">
+                <div class="info-card-header">
+                    <span class="material-symbols-outlined">assignment_turned_in</span>
                     <h3>Declaration</h3>
-                    <div class="details-row">
-                        <span class="details-label">Principal</span>
-                        <span id="detailDeclarationPrincipal" class="details-value"></span>
+                </div>
+                <div class="info-card-body">
+                    <div class="info-item">
+                        <span class="info-label">Principal Name</span>
+                        <span id="detailDeclarationPrincipal" class="info-value"></span>
                     </div>
-                    <div class="details-row">
-                        <span class="details-label">Declaration Date</span>
-                        <span id="detailDeclarationDate" class="details-value"></span>
+                    <div class="info-item">
+                        <span class="info-label">Declaration Date</span>
+                        <span id="detailDeclarationDate" class="info-value"></span>
                     </div>
                 </div>
             </div>

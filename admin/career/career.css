@@ -335,9 +335,17 @@ legend .material-symbols-outlined {
     background: var(--gray-50);
     border: 1px solid var(--gray-200);
     border-radius: 4px;
-    min-height: 42px; /* Visual height match for inputs */
+    min-height: 42px;
+    
+    /* --- UPDATED FLEX SETTINGS --- */
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertically center short text */
+    
+    /* --- NEW SAFETY PROPERTIES --- */
+    word-break: break-word;     /* Forces long emails to wrap */
+    overflow-wrap: anywhere;    /* Modern browser support for breaking anywhere */
+    height: auto;               /* Allow box to grow taller */
+    line-height: 1.4;           /* Better readability if text wraps */
 }
 
 .text-area-view {

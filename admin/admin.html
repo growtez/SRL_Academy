@@ -122,305 +122,305 @@
     </div>
 
     <script>
-    // Configuration
-    const API_BASE_URL = 'http://127.0.0.1:8000/api';
-    
-    // REMOVED: const ADMIN_CREDENTIALS ... (We don't hardcode credentials anymore)
+        // Configuration
+        const API_BASE_URL = 'http://127.0.0.1:8000/api';
 
-    // State management
-    let currentTab = 'faculty';
-    let authToken = localStorage.getItem('adminToken'); // Store token, not just boolean
+        // REMOVED: const ADMIN_CREDENTIALS ... (We don't hardcode credentials anymore)
 
-    // DOM Elements
-    const loginScreen = document.getElementById('loginScreen');
-    const adminPanel = document.getElementById('adminPanel');
-    const loginForm = document.getElementById('loginForm');
-    const loginError = document.getElementById('loginError');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const contentArea = document.getElementById('contentArea');
-    const loadingOverlay = document.getElementById('loadingOverlay');
+        // State management
+        let currentTab = 'faculty';
+        let authToken = localStorage.getItem('adminToken'); // Store token, not just boolean
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function () {
-        checkAuthentication();
-        setupEventListeners();
-    });
+        // DOM Elements
+        const loginScreen = document.getElementById('loginScreen');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const contentArea = document.getElementById('contentArea');
+        const loadingOverlay = document.getElementById('loadingOverlay');
 
-    function setupEventListeners() {
-        loginForm.addEventListener('submit', handleLogin);
-        logoutBtn.addEventListener('click', handleLogout);
-
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', handleNavigation);
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAuthentication();
+            setupEventListeners();
         });
 
-        document.querySelectorAll('.sub-nav-link').forEach(link => {
-            link.addEventListener('click', handleSubNavigation);
-        });
-    }
+        function setupEventListeners() {
+            loginForm.addEventListener('submit', handleLogin);
+            logoutBtn.addEventListener('click', handleLogout);
 
-    function checkAuthentication() {
-        // Check if we have a token
-        authToken = localStorage.getItem('adminToken');
-        
-        if (authToken) {
-            showAdminPanel();
-            loadTab('faculty');
-        } else {
-            showLoginScreen();
-        }
-    }
-
-    function showLoginScreen() {
-        loginScreen.classList.remove('hidden');
-        adminPanel.classList.add('hidden');
-    }
-
-    function showAdminPanel() {
-        loginScreen.classList.add('hidden');
-        adminPanel.classList.remove('hidden');
-    }
-
-    async function handleLogin(e) {
-        e.preventDefault();
-        const username = document.getElementById('username').value; // Changed from email to username
-        const password = document.getElementById('password').value;
-        
-        // Show loading state on button if desired
-        loginError.classList.add('hidden');
-
-        try {
-            const response = await fetch(`${API_BASE_URL}/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({ username, password }) // Changed from email to username
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', handleNavigation);
             });
 
-            const data = await response.json();
+            document.querySelectorAll('.sub-nav-link').forEach(link => {
+                link.addEventListener('click', handleSubNavigation);
+            });
+        }
 
-            if (response.ok) {
-                // Success! Store the token
-                authToken = data.token;
-                localStorage.setItem('adminToken', authToken);
-                localStorage.setItem('adminUser', JSON.stringify(data.user));
-                
+        function checkAuthentication() {
+            // Check if we have a token
+            authToken = localStorage.getItem('adminToken');
+
+            if (authToken) {
                 showAdminPanel();
                 loadTab('faculty');
-                loginForm.reset();
             } else {
-                // Show error message from backend
-                loginError.textContent = data.message || 'Invalid credentials';
+                showLoginScreen();
+            }
+        }
+
+        function showLoginScreen() {
+            loginScreen.classList.remove('hidden');
+            adminPanel.classList.add('hidden');
+        }
+
+        function showAdminPanel() {
+            loginScreen.classList.add('hidden');
+            adminPanel.classList.remove('hidden');
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value; // Changed from email to username
+            const password = document.getElementById('password').value;
+
+            // Show loading state on button if desired
+            loginError.classList.add('hidden');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password }) // Changed from email to username
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Success! Store the token
+                    authToken = data.token;
+                    localStorage.setItem('adminToken', authToken);
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+
+                    showAdminPanel();
+                    loadTab('faculty');
+                    loginForm.reset();
+                } else {
+                    // Show error message from backend
+                    loginError.textContent = data.message || 'Invalid credentials';
+                    loginError.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                loginError.textContent = 'Connection error. Please check server.';
                 loginError.classList.remove('hidden');
             }
-        } catch (error) {
-            console.error('Login error:', error);
-            loginError.textContent = 'Connection error. Please check server.';
-            loginError.classList.remove('hidden');
-        }
-    }
-
-    async function handleLogout() {
-        if (!authToken) {
-            cleanupAuth();
-            return;
         }
 
-        try {
-            // Call backend to invalidate token
-            await fetch(`${API_BASE_URL}/logout`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${authToken}`,
-                    'Accept': 'application/json'
-                }
-            });
-        } catch (error) {
-            console.error('Logout error:', error);
-        } finally {
-            cleanupAuth();
-        }
-    }
-
-    function cleanupAuth() {
-        authToken = null;
-        localStorage.removeItem('adminToken');
-        localStorage.removeItem('adminUser');
-        showLoginScreen();
-    }
-
-    // --- Navigation Functions (Unchanged logic) ---
-    function handleNavigation(e) {
-        e.preventDefault();
-        const tab = e.currentTarget.dataset.tab;
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-        loadTab(tab);
-    }
-
-    function handleSubNavigation(e) {
-        e.preventDefault();
-        const subtab = e.currentTarget.dataset.subtab;
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        document.querySelector('[data-tab="partnership"]').classList.add('active');
-        document.querySelectorAll('.sub-nav-link').forEach(link => link.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-        loadSubTab(subtab);
-    }
-
-    function showLoading() { loadingOverlay.classList.remove('hidden'); }
-    function hideLoading() { loadingOverlay.classList.add('hidden'); }
-
-    async function loadTab(tab) {
-        currentTab = tab;
-        showLoading();
-        try {
-            const response = await fetch(`${tab}/${tab}.html`);
-            const html = await response.text();
-            contentArea.innerHTML = html;
-            loadCSS(`${tab}/${tab}.css`);
-            loadTabScript(tab);
-        } catch (error) {
-            console.error('Error loading tab:', error);
-            contentArea.innerHTML = '<div class="error">Error loading content</div>';
-        } finally {
-            hideLoading();
-        }
-    }
-
-    async function loadSubTab(subtab) {
-        showLoading();
-        try {
-            const response = await fetch(`partnership/${subtab}.html`);
-            const html = await response.text();
-            contentArea.innerHTML = html;
-            loadCSS(`partnership/${subtab}.css`);
-            loadSubTabScript(subtab);
-        } catch (error) {
-            console.error('Error loading sub-tab:', error);
-            contentArea.innerHTML = '<div class="error">Error loading content</div>';
-        } finally {
-            hideLoading();
-        }
-    }
-
-    function loadCSS(cssPath) {
-        const existingLink = document.querySelector('link[data-tab-css]');
-        if (existingLink) existingLink.remove();
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssPath;
-        link.setAttribute('data-tab-css', 'true');
-        document.head.appendChild(link);
-    }
-
-    function loadTabScript(tab) {
-        // (Keep your existing loadTabScript logic here, it is fine)
-        const existingScript = document.querySelector(`script[data-tab-script="${tab}"]`);
-        if (existingScript) {
-            if (tab === 'faculty' && typeof initializeFaculty === 'function') {
-                try { initializeFaculty(); } catch (e) { console.error(e); }
-            }
-            return;
-        }
-        const script = document.createElement('script');
-        script.src = `${tab}/${tab}.js`;
-        script.setAttribute('data-tab-script', tab);
-        script.onload = function () {
-            if (tab === 'faculty' && typeof initializeFaculty === 'function') {
-                try { initializeFaculty(); } catch (e) { console.error(e); }
-            }
-        };
-        document.body.appendChild(script);
-    }
-
-    function loadSubTabScript(subtab) {
-        // (Keep your existing loadSubTabScript logic here)
-        const existingScript = document.querySelector('script[data-subtab-script]');
-        if (existingScript) existingScript.remove();
-        const script = document.createElement('script');
-        script.src = `partnership/${subtab}.js`;
-        script.setAttribute('data-subtab-script', 'true');
-        document.body.appendChild(script);
-    }
-
-    // --- CRITICAL UPDATE: API CALL FUNCTION ---
-    // This function now attaches the token to every request automatically
-    async function apiCall(endpoint, options = {}) {
-        const url = `${API_BASE_URL}${endpoint}`;
-        
-        const defaultOptions = {
-            headers: {
-                'Accept': 'application/json'
-            },
-            timeout: 30000
-        };
-
-        // Add Authorization Header if token exists
-        if (authToken) {
-            defaultOptions.headers['Authorization'] = `Bearer ${authToken}`;
-        }
-
-        // Handle Content-Type for JSON (skip for FormData)
-        if (!(options.body instanceof FormData)) {
-            defaultOptions.headers['Content-Type'] = 'application/json';
-        }
-
-        const finalOptions = { ...defaultOptions, ...options };
-        
-        // Merge headers specifically (to avoid overwriting Auth header)
-        if (options.headers) {
-            finalOptions.headers = { ...defaultOptions.headers, ...options.headers };
-        }
-
-        try {
-            console.log('Making API call to:', url);
-            
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 30000);
-            finalOptions.signal = controller.signal;
-
-            const response = await fetch(url, finalOptions);
-            clearTimeout(timeoutId);
-
-            // Handle 401 Unauthorized (Token expired/invalid)
-            if (response.status === 401) {
-                console.warn('Session expired. Redirecting to login.');
+        async function handleLogout() {
+            if (!authToken) {
                 cleanupAuth();
-                throw new Error('Session expired');
+                return;
             }
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || `HTTP ${response.status}`);
+            try {
+                // Call backend to invalidate token
+                await fetch(`${API_BASE_URL}/logout`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Accept': 'application/json'
+                    }
+                });
+            } catch (error) {
+                console.error('Logout error:', error);
+            } finally {
+                cleanupAuth();
             }
-
-            return data;
-        } catch (error) {
-            console.error('API Error:', error);
-            if (error.name === 'AbortError') {
-                throw new Error('Request timed out.');
-            }
-            throw error;
         }
-    }
 
-    // (Keep showNotification logic unchanged)
-    function showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        setTimeout(() => notification.classList.add('show'), 100);
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-</script>
+        function cleanupAuth() {
+            authToken = null;
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminUser');
+            showLoginScreen();
+        }
+
+        // --- Navigation Functions (Unchanged logic) ---
+        function handleNavigation(e) {
+            e.preventDefault();
+            const tab = e.currentTarget.dataset.tab;
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            loadTab(tab);
+        }
+
+        function handleSubNavigation(e) {
+            e.preventDefault();
+            const subtab = e.currentTarget.dataset.subtab;
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelector('[data-tab="partnership"]').classList.add('active');
+            document.querySelectorAll('.sub-nav-link').forEach(link => link.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            loadSubTab(subtab);
+        }
+
+        function showLoading() { loadingOverlay.classList.remove('hidden'); }
+        function hideLoading() { loadingOverlay.classList.add('hidden'); }
+
+        async function loadTab(tab) {
+            currentTab = tab;
+            showLoading();
+            try {
+                const response = await fetch(`${tab}/${tab}.html`);
+                const html = await response.text();
+                contentArea.innerHTML = html;
+                loadCSS(`${tab}/${tab}.css`);
+                loadTabScript(tab);
+            } catch (error) {
+                console.error('Error loading tab:', error);
+                contentArea.innerHTML = '<div class="error">Error loading content</div>';
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function loadSubTab(subtab) {
+            showLoading();
+            try {
+                const response = await fetch(`partnership/${subtab}.html`);
+                const html = await response.text();
+                contentArea.innerHTML = html;
+                loadCSS(`partnership/${subtab}.css`);
+                loadSubTabScript(subtab);
+            } catch (error) {
+                console.error('Error loading sub-tab:', error);
+                contentArea.innerHTML = '<div class="error">Error loading content</div>';
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function loadCSS(cssPath) {
+            const existingLink = document.querySelector('link[data-tab-css]');
+            if (existingLink) existingLink.remove();
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = cssPath;
+            link.setAttribute('data-tab-css', 'true');
+            document.head.appendChild(link);
+        }
+
+        function loadTabScript(tab) {
+            // (Keep your existing loadTabScript logic here, it is fine)
+            const existingScript = document.querySelector(`script[data-tab-script="${tab}"]`);
+            if (existingScript) {
+                if (tab === 'faculty' && typeof initializeFaculty === 'function') {
+                    try { initializeFaculty(); } catch (e) { console.error(e); }
+                }
+                return;
+            }
+            const script = document.createElement('script');
+            script.src = `${tab}/${tab}.js`;
+            script.setAttribute('data-tab-script', tab);
+            script.onload = function () {
+                if (tab === 'faculty' && typeof initializeFaculty === 'function') {
+                    try { initializeFaculty(); } catch (e) { console.error(e); }
+                }
+            };
+            document.body.appendChild(script);
+        }
+
+        function loadSubTabScript(subtab) {
+            // (Keep your existing loadSubTabScript logic here)
+            const existingScript = document.querySelector('script[data-subtab-script]');
+            if (existingScript) existingScript.remove();
+            const script = document.createElement('script');
+            script.src = `partnership/${subtab}.js`;
+            script.setAttribute('data-subtab-script', 'true');
+            document.body.appendChild(script);
+        }
+
+        // --- CRITICAL UPDATE: API CALL FUNCTION ---
+        // This function now attaches the token to every request automatically
+        async function apiCall(endpoint, options = {}) {
+            const url = `${API_BASE_URL}${endpoint}`;
+
+            const defaultOptions = {
+                headers: {
+                    'Accept': 'application/json'
+                },
+                timeout: 30000
+            };
+
+            // Add Authorization Header if token exists
+            if (authToken) {
+                defaultOptions.headers['Authorization'] = `Bearer ${authToken}`;
+            }
+
+            // Handle Content-Type for JSON (skip for FormData)
+            if (!(options.body instanceof FormData)) {
+                defaultOptions.headers['Content-Type'] = 'application/json';
+            }
+
+            const finalOptions = { ...defaultOptions, ...options };
+
+            // Merge headers specifically (to avoid overwriting Auth header)
+            if (options.headers) {
+                finalOptions.headers = { ...defaultOptions.headers, ...options.headers };
+            }
+
+            try {
+                console.log('Making API call to:', url);
+
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+                finalOptions.signal = controller.signal;
+
+                const response = await fetch(url, finalOptions);
+                clearTimeout(timeoutId);
+
+                // Handle 401 Unauthorized (Token expired/invalid)
+                if (response.status === 401) {
+                    console.warn('Session expired. Redirecting to login.');
+                    cleanupAuth();
+                    throw new Error('Session expired');
+                }
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || `HTTP ${response.status}`);
+                }
+
+                return data;
+            } catch (error) {
+                console.error('API Error:', error);
+                if (error.name === 'AbortError') {
+                    throw new Error('Request timed out.');
+                }
+                throw error;
+            }
+        }
+
+        // (Keep showNotification logic unchanged)
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
 
 </body>
 

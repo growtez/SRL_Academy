@@ -1,0 +1,203 @@
+<div class="career-management">
+    <div class="page-header">
+        <div>
+            <h1>Educator Applications</h1>
+            <p>View and manage applications from aspiring educators</p>
+        </div>
+    </div>
+
+    <div class="applications-list-container">
+        <div class="list-header">
+            <h2>Applications</h2>
+            <div class="list-actions">
+                <input type="text" id="searchCareerApplications" class="search-input"
+                    placeholder="Search by name, email or subjects...">
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="applications-table">
+                <thead>
+                    <tr>
+                        <th>Applicant Name</th>
+                        <th>Subjects & Classes</th>
+                        <th>Experience</th>
+                        <th>Applied Date</th>
+                        <th class="actions-column">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="careerTableBody">
+                    </tbody>
+            </table>
+        </div>
+
+        <div id="careerEmptyState" class="empty-state hidden">
+            <span class="material-symbols-outlined">school</span>
+            <h3>No Applications Found</h3>
+            <p>Educator applications will appear here when candidates submit the form.</p>
+        </div>
+    </div>
+</div>
+
+<div id="careerViewModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-lg">
+        <button type="button" class="modal-close-button" data-close-modal="careerViewModal">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+
+        <div class="modal-body form-style-view">
+            <div class="form-header-banner">
+                <div class="applicant-summary">
+                    <div class="career-avatar-placeholder">
+                        <span id="detailPhotoPlaceholder" class="material-symbols-outlined">person</span>
+                        <img id="detailPhoto" src="" alt="Applicant Photo" class="hidden applicant-photo">
+                    </div>
+                    <div>
+                        <h2 id="detailFullNameHeader"></h2>
+                        <p id="detailSubjectsHeader"></p>
+                    </div>
+                </div>
+                <div class="application-meta">
+                    <span>Applied: <strong id="detailAppliedDate"></strong></span>
+                </div>
+            </div>
+
+            <div class="form-content-wrapper">
+                <fieldset>
+                    <legend><span class="material-symbols-outlined">person</span> Personal Information</legend>
+                    <div class="two-column">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <div id="detailFullName" class="readonly-value"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <div id="detailEmail" class="readonly-value"></div>
+                        </div>
+                    </div>
+                    <div class="two-column">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <div id="detailPhone" class="readonly-value"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <div id="detailDob" class="readonly-value"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <div id="detailGender" class="readonly-value"></div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend><span class="material-symbols-outlined">work</span> Job Information</legend>
+                    <div class="two-column">
+                        <div class="form-group">
+                            <label>Total Experience</label>
+                            <div id="detailExperience" class="readonly-value"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Current Salary (INR)</label>
+                            <div id="detailSalary" class="readonly-value"></div>
+                        </div>
+                    </div>
+                    <div class="two-column">
+                        <div class="form-group">
+                            <label>Notice Period</label>
+                            <div id="detailNoticePeriod" class="readonly-value"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Source</label>
+                            <div id="detailSource" class="readonly-value"></div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend><span class="material-symbols-outlined">location_on</span> Location Information</legend>
+                    <div class="two-column">
+                        <div class="form-group">
+                            <label>Home State</label>
+                            <div id="detailHomeState" class="readonly-value"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Home District</label>
+                            <div id="detailHomeDistrict" class="readonly-value"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Current Location</label>
+                        <div id="detailCurrentLocation" class="readonly-value"></div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend><span class="material-symbols-outlined">school</span> Education Details</legend>
+                    <div id="detailEducationList" class="dynamic-list-container"></div>
+                </fieldset>
+
+                <fieldset>
+                    <legend><span class="material-symbols-outlined">apartment</span> Work Experience</legend>
+                    <div id="detailWorkList" class="dynamic-list-container"></div>
+                </fieldset>
+
+                <fieldset>
+                    <legend><span class="material-symbols-outlined">info</span> Additional Information</legend>
+                    <div class="form-group">
+                        <label>Subjects You Can Teach</label>
+                        <div id="detailSubjects" class="readonly-value highlight-text"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Classes You Can Handle</label>
+                        <div id="detailClasses" class="readonly-value highlight-text"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Brief About Yourself</label>
+                        <div id="detailAbout" class="readonly-value text-area-view"></div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+    <button type="button" class="btn btn-outline" data-close-modal="careerViewModal">
+        Close
+    </button>
+
+    <button type="button" class="btn btn-secondary" id="downloadApplicationButton">
+        <span class="material-symbols-outlined">description</span>
+        Download Application
+    </button>
+
+    <button type="button" class="btn btn-primary" id="downloadResumeButton">
+        <span class="material-symbols-outlined">download</span>
+        Download Resume
+    </button>
+</div>
+    </div>
+</div>
+
+<div id="careerDeleteModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-sm">
+        <div class="modal-header">
+            <h2>Delete Application</h2>
+            <button type="button" class="modal-close" data-close-modal="careerDeleteModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to delete this application? This action cannot be undone.</p>
+            <div id="deleteCareerInfo" class="delete-info"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" data-close-modal="careerDeleteModal">Cancel</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteCareerButton">
+                <span class="material-symbols-outlined">delete</span> Delete
+            </button>
+        </div>
+    </div>
+</div>

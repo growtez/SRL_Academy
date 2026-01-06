@@ -899,21 +899,46 @@
             document.querySelectorAll('.experience-entry:not(:first-child)').forEach(entry => entry.remove());
         }
 
-        form.addEventListener('submit', function (e) {
+        // USE THIS INSTEAD
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             hideAlerts();
             setLoading(true);
 
-            // Simulate a network delay for a better user experience
-            setTimeout(() => {
-                setLoading(false);
-                showSuccess();
-                resetForm();
+            const formData = new FormData(form);
 
-                // Log to console for debugging if needed
-                console.log('Application submitted locally (backend disconnected).');
-            }, 1000);
+            try {
+                // Make the actual request to your Laravel backend
+                const response = await fetch('http://127.0.0.1:8000/api/career', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                        // Do NOT set Content-Type header here; FormData sets it automatically
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showSuccess();
+                    resetForm();
+                } else {
+                    // Handle validation errors (e.g. email already taken, file too big)
+                    if (response.status === 422) {
+                        showValidationErrors(result.errors);
+                    } else {
+                        showError(result.message || 'Submission failed');
+                        console.error('Server Error:', result);
+                    }
+                }
+            } catch (error) {
+                console.error('Network Error:', error);
+                showError('Network error. Is the backend server running?');
+            } finally {
+                setLoading(false);
+            }
         });
 
         const yearSpan = document.getElementById('current-year');

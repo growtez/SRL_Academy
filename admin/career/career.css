@@ -1,0 +1,463 @@
+/* ===== CAREER / EDUCATOR STYLES ===== */
+
+.career-management {
+    padding: var(--space-6);
+}
+
+/* --- Standard Admin Page Styles --- */
+.page-header {
+    background: var(--white);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    margin-bottom: var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.page-header h1 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    color: var(--gray-900);
+    margin-bottom: var(--space-2);
+}
+
+.page-header p {
+    color: var(--gray-500);
+    margin-bottom: 0;
+}
+
+.projects-list-container {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.list-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.list-header h2 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--gray-900);
+    margin: 0;
+}
+
+.list-actions {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+}
+
+.search-input {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    min-width: 250px;
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.applications-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.applications-table thead {
+    background: var(--gray-50);
+}
+
+.applications-table th,
+.applications-table td {
+    padding: 0.9rem 1.25rem;
+    text-align: left;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.applications-table th {
+    font-weight: 600;
+    color: var(--gray-700);
+    white-space: nowrap;
+}
+
+.applications-table tbody tr:hover {
+    background: var(--gray-50);
+}
+
+.actions-column {
+    width: 200px;
+}
+
+.career-actions {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: flex-end;
+}
+
+.career-actions .btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--space-12) var(--space-6);
+    color: var(--gray-500);
+}
+
+.empty-state .material-symbols-outlined {
+    font-size: 4rem;
+    margin-bottom: var(--space-4);
+    color: var(--gray-300);
+}
+
+/* ===== MODAL & FORM UI STYLES ===== */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-4);
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.modal-lg {
+    max-width: 900px;
+}
+
+.modal-sm {
+    max-width: 400px;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--gray-700);
+}
+
+.modal-close-button:hover {
+    background: var(--white);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: scale(1.05);
+}
+
+/* Form Style View Container */
+.form-style-view {
+    padding: 0;
+}
+
+/* Header inside Modal */
+.form-header-banner {
+    background: linear-gradient(135deg, var(--primary) 0%, #a00000 100%);
+    padding: 2rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.applicant-summary {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.career-avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+}
+
+.applicant-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.career-avatar-placeholder .material-symbols-outlined {
+    font-size: 3rem;
+    color: white;
+}
+
+.applicant-summary h2 {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: white;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.applicant-summary p {
+    margin: 0.2rem 0 0 0;
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.application-meta {
+    background: rgba(0,0,0,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+}
+
+/* Form Content Wrapper */
+.form-content-wrapper {
+    padding: 2rem;
+}
+
+/* FIELDSETS & LEGENDS (Matching Educator Form) */
+fieldset {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    background: #fff;
+}
+
+fieldset:last-child {
+    margin-bottom: 0;
+}
+
+legend {
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0 10px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+legend .material-symbols-outlined {
+    font-size: 1.2rem;
+}
+
+/* Grid Layouts */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Labels & Readonly Values */
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.readonly-value {
+    font-size: 1rem;
+    color: var(--gray-900);
+    font-weight: 500;
+    padding: 0.6rem 0.8rem;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 4px;
+    min-height: 42px; /* Visual height match for inputs */
+    display: flex;
+    align-items: center;
+}
+
+.text-area-view {
+    min-height: 100px;
+    align-items: flex-start;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.highlight-text {
+    font-weight: 600;
+    color: var(--primary-dark);
+    background: #fff5f5; /* Light red tint */
+    border-color: #fecaca;
+}
+
+/* Lists (Education/Experience) */
+.dynamic-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.list-entry-block {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 6px;
+    padding: 1rem;
+    position: relative;
+}
+
+.list-entry-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--gray-900);
+    margin-bottom: 0.25rem;
+}
+
+.list-entry-subtitle {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.list-entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+}
+
+.list-entry-grid span {
+    display: block;
+}
+
+/* Full Width Buttons in Modal */
+.full-width-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem;
+}
+
+/* Footer */
+.modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: flex-end;
+    background: var(--gray-50);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+/* Delete Modal */
+.modal-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--gray-900);
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--gray-500);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.delete-info {
+    background: var(--gray-50);
+    padding: var(--space-4);
+    border-radius: var(--radius);
+    margin-top: var(--space-4);
+    border-left: 4px solid var(--primary);
+}
+
+@media (max-width: 768px) {
+    .two-column {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .form-header-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .modal-content {
+        max-height: 100vh;
+        border-radius: 0;
+    }
+    .form-content-wrapper {
+        padding: 1rem;
+    }
+}

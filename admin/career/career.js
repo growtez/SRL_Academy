@@ -8,10 +8,14 @@ function initializeCareer() {
     const searchInput = document.getElementById('searchCareerApplications');
     const tableBody = document.getElementById('careerTableBody');
     const deleteButton = document.getElementById('confirmDeleteCareerButton');
-    
+
     // Get the new buttons
     const downloadAppBtn = document.getElementById('downloadApplicationButton');
     const downloadResumeBtn = document.getElementById('downloadResumeButton');
+
+    // Configuration - Update these URLs for your Laravel setup
+    const API_BASE_URL = 'http://127.0.0.1:8000/api'; // Laravel's default dev server
+
 
     if (!tableBody) return;
 
@@ -66,22 +70,54 @@ function initializeCareer() {
 }
 
 // --- KEEP THIS ONE (It handles BOTH Resume and PDF) ---
-function handleDownloadFile(id, type) {
-    if (!id) {
-        console.error("No career ID selected for download");
-        return;
-    }
+async function handleDownloadFile(id, type) {
+    if (!id) return;
     
-    // Ensure API_BASE_URL is defined (usually in your main layout or config)
-    if (typeof API_BASE_URL === 'undefined') {
-        console.error("API_BASE_URL is not defined");
-        alert("System error: API URL missing.");
+    // 1. Get the Token
+    const token = localStorage.getItem('adminToken');
+    console.log('Using token:', token);
+    if (!token) {
+        showNotification('You are not logged in', 'error');
         return;
     }
 
-    // Opens: /api/career/123/resume  OR  /api/career/123/pdf
     const url = `${API_BASE_URL}/career/${id}/${type}`;
-    window.open(url, '_blank');
+    showNotification('Starting download...', 'success');
+
+    try {
+        // 2. Fetch the file manually so we can attach the Header
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`, // PASS THE TOKEN HERE
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) throw new Error('Download failed');
+
+        // 3. Convert the response to a "Blob" (Binary Large Object)
+        const blob = await response.blob();
+        
+        // 4. Create an invisible link to download the Blob
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        
+        // Try to guess filename (Optional improvement)
+        a.download = type === 'resume' ? 'resume.pdf' : 'application.pdf';
+        
+        document.body.appendChild(a);
+        a.click();
+        
+        // 5. Cleanup
+        a.remove();
+        window.URL.revokeObjectURL(downloadUrl);
+
+    } catch (error) {
+        console.error('Download error:', error);
+        showNotification('Download failed: ' + error.message, 'error');
+    }
 }
 
 async function loadCareerApplications() {
@@ -93,7 +129,7 @@ async function loadCareerApplications() {
     try {
         if (typeof showLoading === 'function') showLoading();
         const response = await apiCall('/career'); // Assuming this is your API route
-        
+
         if (Array.isArray(response)) {
             careerData = response;
         } else if (response && Array.isArray(response.data)) {
@@ -161,7 +197,7 @@ function filterCareerApplications() {
     const input = document.getElementById('searchCareerApplications');
     if (!input) return;
     const term = input.value.trim().toLowerCase();
-    
+
     if (!term) {
         renderCareerList();
         return;
@@ -260,7 +296,7 @@ function openCareerDeleteModal(id) {
     const item = getCareerById(id);
     if (!item) return;
     careerIdToDelete = id;
-    
+
     const info = document.getElementById('deleteCareerInfo');
     if (info) {
         info.innerHTML = `<h4>${escapeHtml(item.full_name)}</h4><p>Applied: ${formatDate(item.created_at)}</p>`;
@@ -275,9 +311,9 @@ async function deleteCareerApplication() {
     try {
         if (typeof showLoading === 'function') showLoading();
         await apiCall('/career/' + careerIdToDelete, { method: 'DELETE' });
-        
+
         if (typeof showNotification === 'function') showNotification('Deleted successfully', 'success');
-        
+
         closeModal('careerDeleteModal');
         careerIdToDelete = null;
         setTimeout(loadCareerApplications, 300);

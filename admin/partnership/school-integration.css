@@ -211,7 +211,7 @@
 .modal-lg { max-width: 1000px; }
 .modal-sm { max-width: 400px; }
 
-/* Close button */
+/* Close button (Standard) */
 .modal-close-button, .modal-close {
     position: absolute;
     top: 1rem;
@@ -236,14 +236,14 @@
     transform: scale(1.05);
 }
 
-/* Modal Header & Footer */
+/* Modal Header (General) */
 .modal-header {
-    padding: var(--space-6);
-    border-bottom: 1px solid var(--gray-200);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white; /* Ensure header stays white */
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--gray-200);
+    background: white;
 }
 
 .modal-header h2 {
@@ -251,6 +251,29 @@
     font-size: 1.5rem;
     color: var(--gray-900);
     margin: 0;
+}
+
+/* Header Actions (Right aligned buttons) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto; /* Pushes buttons to the right */
+}
+
+/* Specific styling for Close Button inside Header Actions */
+.header-actions .modal-close {
+    position: static; /* Overrides absolute positioning */
+    margin: 0;
+    transform: none;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    width: 32px;
+    height: 32px;
+}
+
+.header-actions .modal-close:hover {
+    background: #f3f4f6;
 }
 
 .modal-footer {
@@ -283,11 +306,10 @@
 }
 
 /* ==========================================================================
-   3. PDF PREVIEW DOCUMENT STYLES (NEW)
+   3. PDF PREVIEW DOCUMENT STYLES
    ========================================================================== */
 
-/* Dark grey background for the modal body to mimic Acrobat Reader */
-/* REPLACED: Removes dark grey background and extra padding */
+/* Integrated Look: White background, no padding */
 .pdf-preview-modal .modal-body {
     background-color: var(--white);
     padding: 0;
@@ -295,14 +317,13 @@
     overflow-y: auto;
 }
 
-/* The "Paper" Sheet */
-/* REPLACED: Removes the shadow and max-width limits */
+/* The Document Container */
 .pdf-wrapper {
     background: transparent;
     width: 100%;
     max-width: 100%;        /* Fills the modal width */
-    padding: 30px;          /* Standard padding for the content */
-    box-shadow: none;       /* Removes the 3D "paper" effect */
+    padding: 30px;          /* Standard padding for text */
+    box-shadow: none;       /* Flat look */
     font-family: 'DejaVu Sans', sans-serif;
     font-size: 12px;
     color: #000;
@@ -467,7 +488,7 @@
     /* Adjust PDF Preview on Mobile */
     .pdf-wrapper {
         padding: 15px;
-        font-size: 10px; /* Scale down slightly */
+        font-size: 10px;
     }
     
     .pdf-cell, 
@@ -480,66 +501,4 @@
         margin: 10px;
         max-height: calc(100vh - 20px);
     }
-}
-/* Update .modal-header to be sticky */
-.sticky-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: white; /* Ensures text doesn't scroll visibly behind it */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Adds a shadow line */
-}
-
-/* Container for the buttons on the right */
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Reset the absolute positioning of the close button so it sits next to Download */
-.header-actions .modal-close {
-    position: static; /* Overrides the previous 'absolute' */
-    margin: 0;
-    transform: none;
-    box-shadow: none;
-    border: 1px solid #ddd;
-}
-
-.header-actions .modal-close:hover {
-    background: #f3f4f6;
-    transform: scale(1.05);
-}
-
-/* Container for the buttons on the right */
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-left: auto; /* Pushes buttons to the right */
-}
-
-/* Ensure the modal header layout handles the right alignment */
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--space-6);
-    border-bottom: 1px solid var(--gray-200);
-    background: white;
-}
-
-/* Reset the absolute positioning of the close button so it sits next to Download */
-.header-actions .modal-close {
-    position: static; /* Overrides previous absolute positioning */
-    margin: 0;
-    transform: none;
-    box-shadow: none;
-    border: 1px solid #ddd;
-    width: 32px;
-    height: 32px;
-}
-
-.header-actions .modal-close:hover {
-    background: #f3f4f6;
 }

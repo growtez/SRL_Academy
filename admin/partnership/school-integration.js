@@ -27,10 +27,9 @@ function initializeSchoolIntegration() {
         if (!id) return;
 
         const action = actionButton.getAttribute('data-action');
-        if (action === 'view') {
-            openSchoolProjectView(id);
-        } else if (action === 'pdf') {
-            handleDownloadPdf(id);
+        
+        if (action === 'pdf') {
+            handleDownloadPdf(id); // This already uses window.open('_blank')
         } else if (action === 'delete') {
             openSchoolProjectDeleteModal(id);
         }
@@ -123,21 +122,18 @@ function renderSchoolProjectsList(filteredData) {
 
             return (
                 '<tr data-id="' + id + '">' +
-                // FIX: Swapped these two lines to match HTML Header (School first)
                 '<td>' + schoolName + '</td>' +    
                 '<td>' + principalName + '</td>' + 
-                
                 '<td>' + date + '</td>' +
                 '<td>' +
                     '<div class="projects-actions">' +
-                        '<button type="button" class="btn btn-outline btn-sm" data-action="view" data-id="' + id + '">' +
-                            '<span class="material-symbols-outlined">visibility</span>' +
-                            'View' +
-                        '</button>' +
+                        // ACTION 1: View PDF (Primary Button)
                         '<button type="button" class="btn btn-primary btn-sm" data-action="pdf" data-id="' + id + '">' +
                             '<span class="material-symbols-outlined">picture_as_pdf</span>' +
-                            'PDF' +
+                            'View PDF' +
                         '</button>' +
+                        
+                        // ACTION 2: Delete (Danger Button)
                         '<button type="button" class="btn btn-danger btn-sm" data-action="delete" data-id="' + id + '">' +
                             '<span class="material-symbols-outlined">delete</span>' +
                             'Delete' +

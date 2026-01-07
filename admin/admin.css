@@ -466,6 +466,21 @@ body {
     border-radius: var(--radius-lg);
 }
 
+/* In-Content Loader Styles */
+.data-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    width: 100%;
+    grid-column: 1 / -1; /* Ensures it spans full width in grids */
+    color: var(--gray-500);
+}
+
+.data-loading .loader {
+    margin-bottom: 1rem; /* Space between spinner and text */
+}
 .loader {
     width: 40px;
     height: 40px;

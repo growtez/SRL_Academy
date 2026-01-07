@@ -80,8 +80,24 @@ function setupEventListeners() {
 async function loadFaculty() {
     if (isLoading) return;
 
+    const facultyList = document.getElementById('facultyList');
+    const emptyState = document.getElementById('emptyState');
+
     isLoading = true;
-    showLoading();
+    
+    // 1. Show local loader inside the grid
+    if (facultyList) {
+        facultyList.innerHTML = `
+            <div class="data-loading">
+                <div class="loader"></div>
+                <p>Loading faculty...</p>
+            </div>
+        `;
+        // Hide empty state while loading
+        if (emptyState) emptyState.classList.add('hidden');
+    }
+
+    // Note: Removed showLoading() (global overlay)
 
     try {
         const response = await apiCall('/admin/faculty');
@@ -100,7 +116,7 @@ async function loadFaculty() {
         renderFacultyList();
     } finally {
         isLoading = false;
-        hideLoading();
+        // Note: Removed hideLoading()
     }
 }
 

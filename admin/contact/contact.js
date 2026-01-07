@@ -58,15 +58,22 @@ async function loadContacts() {
     const tableBody = document.getElementById('contactsTableBody');
     const emptyState = document.getElementById('contactsEmptyState');
 
-    if (!tableBody || !emptyState) {
-        return;
-    }
-
     isContactsLoading = true;
 
-    try {
-        if (typeof showLoading === 'function') showLoading();
+    // 1. Inject loader into table row
+    if (tableBody) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="4" style="text-align: center; padding: 3rem;">
+                    <div class="loader" style="margin: 0 auto 1rem;"></div>
+                    <p style="color: #6b7280;">Loading submissions...</p>
+                </td>
+            </tr>
+        `;
+        if (emptyState) emptyState.classList.add('hidden');
+    }
 
+    try {
         const response = await apiCall('/contacts');
 
         if (Array.isArray(response)) {
@@ -87,10 +94,8 @@ async function loadContacts() {
         }
     } finally {
         isContactsLoading = false;
-        if (typeof hideLoading === 'function') hideLoading();
     }
 }
-
 function renderContactsList(filteredData) {
     const tableBody = document.getElementById('contactsTableBody');
     const emptyState = document.getElementById('contactsEmptyState');

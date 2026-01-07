@@ -63,26 +63,28 @@ function initializeOnlineLearning() {
 }
 
 async function loadOnlineLearning() {
-    console.log('Loading Online Learning data...');
-
     if (isOnlineLearningLoading) return;
 
     const tableBody = document.getElementById('onlineLearningTableBody');
     const emptyState = document.getElementById('onlineLearningEmptyState');
 
-    if (!tableBody || !emptyState) {
-        console.warn('Online learning elements not found');
-        return;
-    }
-
     isOnlineLearningLoading = true;
 
-    try {
-        console.log('Calling API: /distance-learning');
-        if (typeof showLoading === 'function') showLoading();
+    // 1. Inject loader
+    if (tableBody) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align: center; padding: 3rem;">
+                    <div class="loader" style="margin: 0 auto 1rem;"></div>
+                    <p style="color: #6b7280;">Loading applications...</p>
+                </td>
+            </tr>
+        `;
+        if (emptyState) emptyState.classList.add('hidden');
+    }
 
+    try {
         const response = await apiCall('/distance-learning');
-        console.log('API response:', response);
 
         if (Array.isArray(response)) {
             onlineLearningData = response;
@@ -92,7 +94,6 @@ async function loadOnlineLearning() {
             onlineLearningData = [];
         }
 
-        console.log('Processed data:', onlineLearningData);
         renderOnlineLearningList();
     } catch (error) {
         console.error('Error loading online learning applications:', error);
@@ -103,7 +104,6 @@ async function loadOnlineLearning() {
         }
     } finally {
         isOnlineLearningLoading = false;
-        if (typeof hideLoading === 'function') hideLoading();
     }
 }
 

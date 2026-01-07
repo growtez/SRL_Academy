@@ -1,10 +1,12 @@
-/* ===== SCHOOL INTEGRATION PROJECTS STYLES ===== */
+/* ==========================================================================
+   1. SCHOOL INTEGRATION MANAGEMENT STYLES
+   ========================================================================== */
 
 .school-projects-management {
     padding: var(--space-6);
 }
 
-/* Page Header (reuse look from faculty) */
+/* Page Header */
 .page-header {
     background: var(--white);
     padding: var(--space-6);
@@ -77,7 +79,7 @@
     box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
 }
 
-/* Table */
+/* Table Styles */
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -87,6 +89,7 @@
     width: 100%;
     border-collapse: collapse;
     min-width: 600px;
+    table-layout: fixed; /* Fixed layout for better text control */
 }
 
 .projects-table thead {
@@ -99,6 +102,10 @@
     text-align: left;
     font-size: 0.9rem;
     border-bottom: 1px solid var(--gray-200);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
 }
 
 .projects-table th {
@@ -111,9 +118,20 @@
     background: var(--gray-50);
 }
 
-.actions-column {
-    width: 230px;
-}
+/* Specific Column Widths */
+.projects-table th:nth-child(1),
+.projects-table td:nth-child(1) { width: 25%; } /* School Name */
+
+.projects-table th:nth-child(2),
+.projects-table td:nth-child(2) { width: 20%; } /* Principal Name */
+
+.projects-table th:nth-child(3),
+.projects-table td:nth-child(3) { width: 15%; } /* Date */
+
+.projects-table th:nth-child(4),
+.projects-table td:nth-child(4) { width: 25%; overflow: visible; } /* Actions */
+
+.actions-column { width: 230px; }
 
 /* Actions cell */
 .projects-actions {
@@ -151,7 +169,10 @@
     margin-bottom: var(--space-6);
 }
 
-/* ===== MODAL STYLES ===== */
+/* ==========================================================================
+   2. MODAL BASE STYLES
+   ========================================================================== */
+
 .modal {
     position: fixed;
     top: 0;
@@ -187,16 +208,11 @@
     z-index: 1;
 }
 
-.modal-lg {
-    max-width: 1000px;
-}
+.modal-lg { max-width: 1000px; }
+.modal-sm { max-width: 400px; }
 
-.modal-sm {
-    max-width: 400px;
-}
-
-/* Close button for view modal */
-.modal-close-button {
+/* Close button (Standard) */
+.modal-close-button, .modal-close {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -214,226 +230,20 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.modal-close-button:hover {
+.modal-close-button:hover, .modal-close:hover {
     background: var(--white);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
 }
 
-.modal-close-button .material-symbols-outlined {
-    color: var(--gray-700);
-    font-size: 1.5rem;
-}
-
-/* School Image Header */
-.school-image-header {
-    background: linear-gradient(135deg, var(--primary) 0%, #a00000 100%);
-    padding: 2.5rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-}
-
-.school-image-placeholder {
-    width: 100px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.15) url('../../images/logo2.png') center/contain no-repeat;
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    flex-shrink: 0;
-}
-
-.school-logo {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border-radius: var(--radius);
-}
-
-.school-image-placeholder .material-symbols-outlined {
-    font-size: 3rem;
-    color: var(--white);
-}
-
-.school-header-info {
-    flex: 1;
-    color: var(--white);
-}
-
-.school-name {
-    font-family: var(--font-primary);
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-    color: var(--white);
-}
-
-.school-address {
-    font-size: 0.95rem;
-    opacity: 0.9;
-    margin: 0;
-    line-height: 1.5;
-}
-
-/* Modal Body */
-.modal-body {
-    padding: 0;
-}
-
-/* Info Cards Grid */
-.info-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    padding: 2rem;
-}
-
-.info-card {
-    background: var(--white);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: var(--transition);
-}
-
-.info-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-color: var(--gray-300);
-}
-
-.info-card.full-width {
-    grid-column: 1 / -1;
-    margin: 0 2rem 1.5rem 2rem;
-}
-
-.info-card-header {
-    background: var(--gray-50);
-    padding: 1rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    border-bottom: 1px solid var(--gray-200);
-}
-
-.info-card-header .material-symbols-outlined {
-    font-size: 1.5rem;
-    color: var(--primary);
-}
-
-.info-card-header h3 {
-    font-family: var(--font-primary);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--gray-900);
-    margin: 0;
-}
-
-.info-card-body {
-    padding: 1.25rem;
-}
-
-/* Info Items */
-.info-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.info-item:last-child {
-    margin-bottom: 0;
-}
-
-.info-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--gray-500);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.info-value {
-    font-size: 0.95rem;
-    color: var(--gray-900);
-    line-height: 1.5;
-}
-
-.info-value.text-content {
-    line-height: 1.6;
-    white-space: pre-wrap;
-}
-
-/* Project Type List */
-.project-type-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.project-type-item {
+/* Modal Header (General) */
+.modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem;
-    background: var(--gray-50);
-    border-radius: var(--radius);
-    border: 1px solid var(--gray-200);
-    transition: var(--transition);
-}
-
-.project-type-item:hover {
-    background: var(--gray-100);
-}
-
-.project-type-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--gray-700);
-}
-
-.project-type-value {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--gray-900);
-    padding: 0.25rem 0.75rem;
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 1px solid var(--gray-300);
-}
-
-/* Declaration Card */
-.declaration-card {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border: 2px solid var(--primary);
-}
-
-.declaration-card .info-card-header {
-    background: rgba(128, 0, 0, 0.05);
-    border-bottom-color: rgba(128, 0, 0, 0.2);
-}
-
-/* Modal Footer */
-.modal-footer {
-    padding: 1.5rem 2rem;
-    border-top: 1px solid var(--gray-200);
-    display: flex;
-    gap: var(--space-3);
-    justify-content: flex-end;
-    background: var(--gray-50);
-}
-
-/* Delete Modal Styles */
-.modal-header {
     padding: var(--space-6);
     border-bottom: 1px solid var(--gray-200);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: white;
 }
 
 .modal-header h2 {
@@ -443,22 +253,39 @@
     margin: 0;
 }
 
-.modal-close {
-    background: none;
-    border: none;
-    color: var(--gray-500);
-    cursor: pointer;
-    padding: var(--space-2);
-    border-radius: var(--radius);
-    transition: var(--transition);
+/* Header Actions (Right aligned buttons) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto; /* Pushes buttons to the right */
 }
 
-.modal-close:hover {
-    background: var(--gray-100);
-    color: var(--gray-700);
+/* Specific styling for Close Button inside Header Actions */
+.header-actions .modal-close {
+    position: static; /* Overrides absolute positioning */
+    margin: 0;
+    transform: none;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    width: 32px;
+    height: 32px;
 }
 
-/* Delete info box */
+.header-actions .modal-close:hover {
+    background: #f3f4f6;
+}
+
+.modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    gap: var(--space-3);
+    justify-content: flex-end;
+    background: var(--gray-50);
+}
+
+/* Delete Info Box */
 .delete-info {
     background: var(--gray-50);
     padding: var(--space-4);
@@ -478,112 +305,200 @@
     margin-bottom: var(--space-2);
 }
 
-/* Responsive */
+/* ==========================================================================
+   3. PDF PREVIEW DOCUMENT STYLES
+   ========================================================================== */
+
+/* Integrated Look: White background, no padding */
+.pdf-preview-modal .modal-body {
+    background-color: var(--white);
+    padding: 0;
+    display: block;
+    overflow-y: auto;
+}
+
+/* The Document Container */
+.pdf-wrapper {
+    background: transparent;
+    width: 100%;
+    max-width: 100%;        /* Fills the modal width */
+    padding: 30px;          /* Standard padding for text */
+    box-shadow: none;       /* Flat look */
+    font-family: 'DejaVu Sans', sans-serif;
+    font-size: 12px;
+    color: #000;
+    line-height: 1.4;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* PDF Header */
+.pdf-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000;
+}
+
+.pdf-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000;
+}
+
+.pdf-subtitle {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+/* PDF Info Bar */
+.pdf-info-bar {
+    background: #f5f5f5;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    font-size: 11px;
+}
+
+.pdf-info-row {
+    display: inline-block;
+    margin-right: 25px;
+}
+
+.pdf-label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* PDF Sections & Tables */
+.pdf-section {
+    margin-bottom: 15px;
+}
+
+.pdf-section-header {
+    background: #fff;
+    color: black;
+    padding: 5px 0px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+}
+
+.pdf-table {
+    display: table;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.pdf-row {
+    display: table-row;
+}
+
+.pdf-cell {
+    display: table-cell;
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    font-size: 11px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Style for Labels in Table */
+.pdf-cell.pdf-label {
+    background: #f5f5f5;
+    width: 18%; /* Default width for standard label columns */
+    font-weight: 600;
+}
+
+/* PDF Inline Checkboxes (Project Type) */
+.pdf-inline-item {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 11px;
+    vertical-align: middle;
+}
+
+.pdf-check-icon {
+    display: inline-block;
+    font-size: 16px;
+    width: 18px;
+    text-align: center;
+    margin-right: 2px;
+    vertical-align: middle;
+    line-height: 1;
+    position: relative;
+    top: -1px;
+}
+
+/* PDF Declaration Box */
+.pdf-declaration-box {
+    background: #f9f9f9;
+    border: 1px solid #000;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 11px;
+}
+
+.pdf-declaration-text {
+    font-style: italic;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+/* PDF Footer */
+.pdf-footer {
+    margin-top: 20px;
+    padding-top: 8px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    color: #666;
+    font-size: 10px;
+}
+
+/* ==========================================================================
+   4. RESPONSIVE UTILS
+   ========================================================================== */
+
 @media (max-width: 768px) {
-    .page-header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .list-header {
-        flex-direction: column;
-        align-items: stretch;
-        gap: var(--space-3);
-    }
-
+    .page-header, 
+    .list-header, 
     .list-actions {
         flex-direction: column;
-        width: 100%;
-    }
-
-    .search-input {
-        width: 100%;
-    }
-
-    .info-cards-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 1.5rem;
-    }
-
-    .info-card.full-width {
-        margin: 0 0 1rem 0;
-    }
-
-    .school-image-header {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem 1.5rem;
-    }
-
-    .school-image-placeholder {
-        width: 80px;
-        height: 80px;
-    }
-
-    .school-image-placeholder .material-symbols-outlined {
-        font-size: 2.5rem;
-    }
-
-    .school-name {
-        font-size: 1.5rem;
-    }
-
-    .modal-content {
-        margin: var(--space-4);
-        max-height: calc(100vh - 2rem);
-    }
-
-    .modal-header,
-    .modal-body,
-    .modal-footer {
-        padding: var(--space-4);
-    }
-
-    .modal-footer {
-        padding: 1rem 1.5rem;
-    }
-
-    .projects-actions {
-        flex-direction: column;
         align-items: stretch;
     }
-
+    
+    .search-input, 
     .projects-actions .btn {
         width: 100%;
     }
 
-    .modal-close-button {
-        width: 36px;
-        height: 36px;
-        top: 0.75rem;
-        right: 0.75rem;
+    /* Adjust PDF Preview on Mobile */
+    .pdf-wrapper {
+        padding: 15px;
+        font-size: 10px;
     }
-}
-
-@media (max-width: 480px) {
-    .page-header h1 {
-        font-size: 1.5rem;
-    }
-
-    .modal-footer {
-        flex-direction: column;
+    
+    .pdf-cell, 
+    .pdf-label {
+        padding: 4px;
+        font-size: 10px;
     }
 
-    .modal-footer .btn {
-        width: 100%;
-    }
-
-    .info-card-body {
-        padding: 1rem;
-    }
-
-    .project-type-badges {
-        gap: 0.5rem;
-    }
-
-    .project-badge {
-        padding: 0.4rem 0.75rem;
-        font-size: 0.8rem;
+    .modal-content {
+        margin: 10px;
+        max-height: calc(100vh - 20px);
     }
 }

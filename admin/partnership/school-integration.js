@@ -27,10 +27,9 @@ function initializeSchoolIntegration() {
         if (!id) return;
 
         const action = actionButton.getAttribute('data-action');
-        if (action === 'view') {
-            openSchoolProjectView(id);
-        } else if (action === 'pdf') {
-            handleDownloadPdf(id);
+        
+        if (action === 'pdf') {
+            handleDownloadPdf(id); // This already uses window.open('_blank')
         } else if (action === 'delete') {
             openSchoolProjectDeleteModal(id);
         }
@@ -123,19 +122,18 @@ function renderSchoolProjectsList(filteredData) {
 
             return (
                 '<tr data-id="' + id + '">' +
-                '<td>' + principalName + '</td>' +
-                '<td>' + schoolName + '</td>' +
+                '<td>' + schoolName + '</td>' +    
+                '<td>' + principalName + '</td>' + 
                 '<td>' + date + '</td>' +
                 '<td>' +
                     '<div class="projects-actions">' +
-                        '<button type="button" class="btn btn-outline btn-sm" data-action="view" data-id="' + id + '">' +
-                            '<span class="material-symbols-outlined">visibility</span>' +
-                            'View' +
-                        '</button>' +
+                        // ACTION 1: View PDF (Primary Button)
                         '<button type="button" class="btn btn-primary btn-sm" data-action="pdf" data-id="' + id + '">' +
                             '<span class="material-symbols-outlined">picture_as_pdf</span>' +
-                            'PDF' +
+                            'View PDF' +
                         '</button>' +
+                        
+                        // ACTION 2: Delete (Danger Button)
                         '<button type="button" class="btn btn-danger btn-sm" data-action="delete" data-id="' + id + '">' +
                             '<span class="material-symbols-outlined">delete</span>' +
                             'Delete' +
@@ -177,41 +175,93 @@ function filterSchoolProjects() {
     renderSchoolProjectsList(filtered);
 }
 
+// ... existing initialization code ...
+
 function openSchoolProjectView(id) {
     const project = getProjectById(id);
     if (!project) return;
 
     currentSchoolProjectId = id;
 
-    setTextContent('detailApplicationDate', formatDate(project.application_date));
-    setTextContent('detailSchoolName', project.school_name);
-    setTextContent('detailAddress', project.address);
-    setTextContent('detailPrincipalName', project.principal_name);
-    setTextContent('detailContactNumber', project.contact_number);
-    setTextContent('detailEmail', project.email);
-    setTextContent('detailAffiliatedBoard', project.affiliated_board);
+    // Header Info
+    setTextContent('pdfAppId', project.id);
+    setTextContent('pdfAppDate', formatDate(project.application_date));
 
-    setTextContent('detailProjectIITJEE', formatBoolean(project['project_iit-jee']));
-    setTextContent('detailProjectNEET', formatBoolean(project['project_neet']));
-    setTextContent('detailProjectOlympiad', formatBoolean(project['project_olympiad']));
-    setTextContent('detailProjectBoard', formatBoolean(project['project_board']));
-    setTextContent('detailProjectOther', project.project_other);
+    // School Info
+    setTextContent('pdfSchoolName', project.school_name);
+    setTextContent('pdfAddress', project.address);
+    setTextContent('pdfPrincipalName', project.principal_name);
+    setTextContent('pdfContact', project.contact_number);
+    setTextContent('pdfEmail', project.email);
+    setTextContent('pdfBoard', project.affiliated_board);
 
-    setTextContent('detailObjective', project.objective);
-    setTextContent('detailTargetAudience', project.target_audience);
-    setTextContent('detailDuration', project.duration);
-    setTextContent('detailStudentsInvolved', project.students_involved);
-    setTextContent('detailResourcesRequired', project.resources_required);
+    // Project Type Checkboxes
+    setPdfCheck('pdfCheckIIT', project['project_iit-jee']);
+    setPdfCheck('pdfCheckNEET', project['project_neet']);
+    setPdfCheck('pdfCheckOlympiad', project['project_olympiad']);
+    setPdfCheck('pdfCheckBoard', project['project_board']);
 
-    setTextContent('detailPreviousProjects', project.previous_projects);
-    setTextContent('detailBenefits', project.benefits);
+    // Other Project Type
+    const otherContainer = document.getElementById('pdfOtherContainer');
+    if (project.project_other) {
+        otherContainer.style.display = 'inline-block';
+        setTextContent('pdfOtherText', project.project_other);
+    } else {
+        otherContainer.style.display = 'none';
+    }
 
-    setTextContent('detailDeclarationPrincipal', project.declaration_principal);
-    setTextContent('detailDeclarationDate', formatDate(project.declaration_date));
+    // Project Details
+    setTextContent('pdfObjective', project.objective);
+    setTextContent('pdfTargetAudience', project.target_audience);
+    setTextContent('pdfDuration', project.duration);
+    setTextContent('pdfStudents', project.students_involved);
+    setTextContent('pdfResources', project.resources_required);
+
+    // Additional Info
+    setTextContent('pdfPrevious', project.previous_projects);
+    setTextContent('pdfBenefits', project.benefits);
+
+    // Declaration
+    setTextContent('pdfDecNameBold', project.declaration_principal);
+    setTextContent('pdfDecName', project.declaration_principal);
+    setTextContent('pdfDecDate', formatDate(project.declaration_date));
+
+    // Footer Timestamp
+    const today = new Date().toLocaleString('en-IN', {
+        day: 'numeric', month: 'short', year: 'numeric',
+        hour: 'numeric', minute: 'numeric', hour12: true
+    });
+    setTextContent('pdfGeneratedDate', today);
 
     const modal = document.getElementById('schoolProjectViewModal');
     if (modal) modal.classList.remove('hidden');
 }
+
+// Helper for PDF-style Checkboxes
+function setPdfCheck(elementId, value) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    
+    // Check if truthy (1, '1', true)
+    const isChecked = value == 1 || value === true || value === '1';
+    
+    el.textContent = isChecked ? '☑' : '☐';
+    el.style.color = isChecked ? 'green' : '#999';
+}
+
+// Helper to color code Yes/No
+function formatBooleanBadge(elementId, value) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    
+    const isYes = value == 1 || value === true || value === '1';
+    el.textContent = isYes ? 'Yes' : 'No';
+    el.style.color = isYes ? '#15803d' : '#9ca3af'; // Green or Gray
+    el.style.backgroundColor = isYes ? '#dcfce7' : '#f3f4f6';
+    el.style.border = isYes ? '1px solid #86efac' : '1px solid #e5e7eb';
+}
+
+// ... rest of the file (loadSchoolProjects, delete, etc.) ...
 
 function openSchoolProjectDeleteModal(id) {
     const project = getProjectById(id);

@@ -27,10 +27,10 @@ function initializeStudyCentre() {
         if (!id) return;
 
         const action = actionButton.getAttribute('data-action');
-        if (action === 'view') {
-            openStudyCentreView(id);
-        } else if (action === 'pdf') {
-            handleDownloadStudyCentrePdf(id);
+        
+        // Simplified Actions
+        if (action === 'pdf') {
+            handleDownloadStudyCentrePdf(id); // Opens in new tab
         } else if (action === 'delete') {
             openStudyCentreDeleteModal(id);
         }
@@ -127,14 +127,13 @@ function renderStudyCentreList(filteredData) {
                 '<td>' + date + '</td>' +
                 '<td>' +
                     '<div class="projects-actions">' +
-                        '<button type="button" class="btn btn-outline btn-sm" data-action="view" data-id="' + id + '">' +
-                            '<span class="material-symbols-outlined">visibility</span>' +
-                            'View' +
-                        '</button>' +
+                        // ACTION 1: View PDF (Primary Button)
                         '<button type="button" class="btn btn-primary btn-sm" data-action="pdf" data-id="' + id + '">' +
                             '<span class="material-symbols-outlined">picture_as_pdf</span>' +
-                            'PDF' +
+                            'View PDF' +
                         '</button>' +
+                        
+                        // ACTION 2: Delete (Danger Button)
                         '<button type="button" class="btn btn-danger btn-sm" data-action="delete" data-id="' + id + '">' +
                             '<span class="material-symbols-outlined">delete</span>' +
                             'Delete' +

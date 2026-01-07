@@ -36,10 +36,10 @@ function initializeOnlineLearning() {
         if (!id) return;
 
         const action = actionButton.getAttribute('data-action');
-        if (action === 'view') {
-            openOnlineLearningView(id);
-        } else if (action === 'pdf') {
-            handleDownloadOnlineLearningPdf(id);
+        
+        // Simplified Actions
+        if (action === 'pdf') {
+            handleDownloadOnlineLearningPdf(id); // Opens in new tab
         } else if (action === 'delete') {
             openOnlineLearningDeleteModal(id);
         }
@@ -137,20 +137,19 @@ function renderOnlineLearningList(filteredData) {
                 '<td>' + (application.number_of_schools || '') + '</td>' +
                 '<td>' + date + '</td>' +
                 '<td>' +
-                '<div class="projects-actions">' +
-                '<button type="button" class="btn btn-outline btn-sm" data-action="view" data-id="' + id + '">' +
-                '<span class="material-symbols-outlined">visibility</span>' +
-                'View' +
-                '</button>' +
-                '<button type="button" class="btn btn-primary btn-sm" data-action="pdf" data-id="' + id + '">' +
-                '<span class="material-symbols-outlined">picture_as_pdf</span>' +
-                'PDF' +
-                '</button>' +
-                '<button type="button" class="btn btn-danger btn-sm" data-action="delete" data-id="' + id + '">' +
-                '<span class="material-symbols-outlined">delete</span>' +
-                'Delete' +
-                '</button>' +
-                '</div>' +
+                    '<div class="projects-actions">' +
+                        // ACTION 1: View PDF (Primary Button)
+                        '<button type="button" class="btn btn-primary btn-sm" data-action="pdf" data-id="' + id + '">' +
+                            '<span class="material-symbols-outlined">picture_as_pdf</span>' +
+                            'View PDF' +
+                        '</button>' +
+                        
+                        // ACTION 2: Delete (Danger Button)
+                        '<button type="button" class="btn btn-danger btn-sm" data-action="delete" data-id="' + id + '">' +
+                            '<span class="material-symbols-outlined">delete</span>' +
+                            'Delete' +
+                        '</button>' +
+                    '</div>' +
                 '</td>' +
                 '</tr>'
             );

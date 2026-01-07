@@ -123,8 +123,10 @@ function renderSchoolProjectsList(filteredData) {
 
             return (
                 '<tr data-id="' + id + '">' +
-                '<td>' + principalName + '</td>' +
-                '<td>' + schoolName + '</td>' +
+                // FIX: Swapped these two lines to match HTML Header (School first)
+                '<td>' + schoolName + '</td>' +    
+                '<td>' + principalName + '</td>' + 
+                
                 '<td>' + date + '</td>' +
                 '<td>' +
                     '<div class="projects-actions">' +
@@ -177,41 +179,62 @@ function filterSchoolProjects() {
     renderSchoolProjectsList(filtered);
 }
 
+// ... existing initialization code ...
+
 function openSchoolProjectView(id) {
     const project = getProjectById(id);
     if (!project) return;
 
     currentSchoolProjectId = id;
 
+    // SECTION 1: School Info
     setTextContent('detailApplicationDate', formatDate(project.application_date));
+    setTextContent('detailAffiliatedBoard', project.affiliated_board);
     setTextContent('detailSchoolName', project.school_name);
-    setTextContent('detailAddress', project.address);
+    setTextContent('detailAddress', project.address); // Now visible!
     setTextContent('detailPrincipalName', project.principal_name);
     setTextContent('detailContactNumber', project.contact_number);
     setTextContent('detailEmail', project.email);
-    setTextContent('detailAffiliatedBoard', project.affiliated_board);
 
-    setTextContent('detailProjectIITJEE', formatBoolean(project['project_iit-jee']));
-    setTextContent('detailProjectNEET', formatBoolean(project['project_neet']));
-    setTextContent('detailProjectOlympiad', formatBoolean(project['project_olympiad']));
-    setTextContent('detailProjectBoard', formatBoolean(project['project_board']));
-    setTextContent('detailProjectOther', project.project_other);
+    // SECTION 2: Project Type (Yes/No styling)
+    formatBooleanBadge('detailProjectIITJEE', project['project_iit-jee']);
+    formatBooleanBadge('detailProjectNEET', project['project_neet']);
+    formatBooleanBadge('detailProjectOlympiad', project['project_olympiad']);
+    formatBooleanBadge('detailProjectBoard', project['project_board']);
+    setTextContent('detailProjectOther', project.project_other || 'None');
 
+    // SECTION 3: Project Details
     setTextContent('detailObjective', project.objective);
     setTextContent('detailTargetAudience', project.target_audience);
     setTextContent('detailDuration', project.duration);
     setTextContent('detailStudentsInvolved', project.students_involved);
     setTextContent('detailResourcesRequired', project.resources_required);
 
+    // SECTION 4: Additional Info
     setTextContent('detailPreviousProjects', project.previous_projects);
     setTextContent('detailBenefits', project.benefits);
 
+    // SECTION 5: Declaration
     setTextContent('detailDeclarationPrincipal', project.declaration_principal);
     setTextContent('detailDeclarationDate', formatDate(project.declaration_date));
 
     const modal = document.getElementById('schoolProjectViewModal');
     if (modal) modal.classList.remove('hidden');
 }
+
+// Helper to color code Yes/No
+function formatBooleanBadge(elementId, value) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    
+    const isYes = value == 1 || value === true || value === '1';
+    el.textContent = isYes ? 'Yes' : 'No';
+    el.style.color = isYes ? '#15803d' : '#9ca3af'; // Green or Gray
+    el.style.backgroundColor = isYes ? '#dcfce7' : '#f3f4f6';
+    el.style.border = isYes ? '1px solid #86efac' : '1px solid #e5e7eb';
+}
+
+// ... rest of the file (loadSchoolProjects, delete, etc.) ...
 
 function openSchoolProjectDeleteModal(id) {
     const project = getProjectById(id);

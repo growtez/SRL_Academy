@@ -587,3 +587,132 @@
         font-size: 0.8rem;
     }
 }
+
+
+/* ===== LONG TEXT & LAYOUT OPTIMIZATION ===== */
+
+/* 1. Table Layout */
+.projects-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.projects-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+/* Specific Column Widths */
+.projects-table th:nth-child(1), /* School Name */
+.projects-table td:nth-child(1) {
+    width: 25%;
+}
+
+.projects-table th:nth-child(2), /* Principal Name */
+.projects-table td:nth-child(2) {
+    width: 20%;
+}
+
+.projects-table th:nth-child(3), /* Date */
+.projects-table td:nth-child(3) {
+    width: 15%;
+}
+
+.projects-table th:nth-child(4), /* Actions */
+.projects-table td:nth-child(4) {
+    width: 25%;
+    overflow: visible;
+}
+
+/* 2. Modal Layouts */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.project-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.project-type-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.project-type-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-600);
+}
+
+.project-type-value {
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+/* 3. Long Text Optimization (The Gray Box) */
+.info-item:has(.text-content) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: transparent;
+    margin-bottom: 1.25rem;
+}
+
+.info-item:has(.text-content) .info-label {
+    width: 100%;
+    color: var(--primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-item:has(.text-content) .info-value {
+    text-align: left;
+    width: 100%;
+    background: #f8fafc;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    line-height: 1.6;
+    color: var(--gray-800);
+    min-height: 60px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* ===== FIX LONG TEXT WRAPPING ===== */
+.info-value, 
+.text-content, 
+.declaration-card p {
+    white-space: pre-wrap;       /* Respects new lines but wraps text */
+    word-break: break-word;      /* Forces long words to break if needed */
+    overflow-wrap: break-word;   /* Modern standard for wrapping */
+    max-width: 100%;             /* Ensures it stays within the card */
+}
+
+/* Ensure the declaration box specifically wraps nicely */
+.declaration-card div[style*="background: #fff5f5"] {
+    height: auto;
+    overflow: hidden;
+}

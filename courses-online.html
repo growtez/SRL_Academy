@@ -32,6 +32,14 @@
             --gold: #d4a017;
         }
 
+        /* Override: Keep header always visible on this page */
+        .header {
+            position: fixed !important;
+            top: 0 !important;
+            transform: translateY(0) !important;
+            opacity: 1 !important;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -869,51 +877,6 @@
         </div>
     </section>
 
-    <!-- FEATURES SECTION -->
-    <section class="features-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Why Online?</span>
-                <h2 class="section-title">Benefits of Online Learning</h2>
-                <p class="section-subtitle">Experience the perfect blend of flexibility and quality education with our
-                    comprehensive online programs.</p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-video"></i></div>
-                    <h4>Live Interactive Classes</h4>
-                    <p>Real-time sessions with expert faculty. Ask questions and get instant doubt resolution.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
-                    <h4>Flexible Schedule</h4>
-                    <p>Learn at your own pace with recorded lectures available 24/7.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
-                    <h4>Premium Study Material</h4>
-                    <p>DPPs, test papers, PYQs & expert-curated notes for conceptual clarity.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h4>Performance Analytics</h4>
-                    <p>Regular assessments and detailed reports to track your progress.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
-                    <h4>Dedicated Mentorship</h4>
-                    <p>One-on-one guidance from experienced mentors throughout your journey.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
-                    <h4>Peer Community</h4>
-                    <p>Connect with fellow aspirants and participate in group discussions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- COURSES CATALOG SECTION -->
     <section class="courses-catalog-section">
         <div class="container">
@@ -922,7 +885,8 @@
                     background: #fdfdfd;
                     padding: 5rem 0;
                     position: relative;
-                    overflow: hidden;
+                    overflow-x: clip;
+                    overflow-y: visible;
                 }
 
                 /* Premium background blobs */
@@ -959,9 +923,27 @@
                     display: flex;
                     justify-content: center;
                     width: 100%;
-                    margin-bottom: 4rem;
-                    padding: 0 15px;
-                    /* Prevent clipping on very small screens */
+                    margin-bottom: 2rem;
+                    padding: 1rem 15px;
+                    position: sticky;
+                    top: 80px;
+                    /* Desktop: more down */
+                    z-index: 99;
+                    background: #fdfdfd;
+                }
+
+                /* iPad/Tablet: 768px - 992px */
+                @media (max-width: 992px) and (min-width: 768px) {
+                    .category-tabs-container {
+                        top: 87px;
+                    }
+                }
+
+                /* Mobile: below 768px */
+                @media (max-width: 767px) {
+                    .category-tabs-container {
+                        top: 60px;
+                    }
                 }
 
                 .category-tabs {
@@ -1429,7 +1411,31 @@
 
                 @media (max-width: 992px) {
                     .courses-grid {
-                        grid-template-columns: repeat(2, 1fr);
+                        display: flex;
+                        flex-wrap: nowrap;
+                        overflow-x: auto;
+                        -webkit-overflow-scrolling: touch;
+                        scroll-snap-type: x mandatory;
+                        gap: 1rem;
+                        padding-bottom: 1rem;
+                        scrollbar-width: none;
+                        -ms-overflow-style: none;
+                    }
+
+                    .courses-grid::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    .courses-grid .course-card {
+                        flex: 0 0 320px;
+                        /* Slightly wider for iPad */
+                        scroll-snap-align: start;
+                    }
+
+                    /* Disable hover zoom effect on tablet */
+                    .course-card:hover {
+                        transform: none;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
                     }
                 }
 
@@ -1463,6 +1469,37 @@
 
                     .category-tabs {
                         justify-content: center;
+                    }
+
+                    /* Keep price and discount on one line */
+                    .course-card-pricing {
+                        flex-wrap: nowrap !important;
+                        gap: 0.3rem !important;
+                    }
+
+                    .price-current {
+                        font-size: 1.1rem !important;
+                    }
+
+                    .price-original {
+                        font-size: 0.75rem !important;
+                    }
+
+                    .price-discount {
+                        font-size: 0.55rem !important;
+                        padding: 3px 8px 3px 12px !important;
+                        white-space: nowrap;
+                    }
+
+                    /* Keep dates on one line */
+                    .course-card-dates {
+                        font-size: 0.65rem !important;
+                        white-space: nowrap;
+                    }
+
+                    /* Match description text size with dates */
+                    .course-card-desc {
+                        font-size: 0.65rem !important;
                     }
                 }
             </style>
@@ -1506,6 +1543,9 @@
                             <h5 class="course-card-title">Class 11 NEET Crash Course 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
+                                    class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1534,6 +1574,9 @@
                             <h5 class="course-card-title">Class 11 NEET Year Long 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
+                                    class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1599,6 +1642,9 @@
                             <h5 class="course-card-title">Class 12 NEET Crash Course 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
+                                    class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1627,6 +1673,9 @@
                             <h5 class="course-card-title">Class 12 NEET Year Long 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
+                                    class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1692,6 +1741,9 @@
                             <h5 class="course-card-title">Dropper NEET Crash Course 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Droppers</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
+                                    class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1720,6 +1772,9 @@
                             <h5 class="course-card-title">Dropper NEET Year Long 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Droppers</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
+                                    class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1784,6 +1839,9 @@
                             <h5 class="course-card-title">Class 11 JEE Crash Course 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
+                                    class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1812,6 +1870,9 @@
                             <h5 class="course-card-title">Class 11 JEE Year Long 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Aspirants</p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
+                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
+                                    class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -2336,6 +2397,51 @@
                     </div>
                 </div> <!-- End Grid -->
             </div> <!-- End Section -->
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Why Online?</span>
+                <h2 class="section-title">Benefits of Online Learning</h2>
+                <p class="section-subtitle">Experience the perfect blend of flexibility and quality education with our
+                    comprehensive online programs.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-video"></i></div>
+                    <h4>Live Interactive Classes</h4>
+                    <p>Real-time sessions with expert faculty. Ask questions and get instant doubt resolution.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h4>Flexible Schedule</h4>
+                    <p>Learn at your own pace with recorded lectures available 24/7.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <h4>Premium Study Material</h4>
+                    <p>DPPs, test papers, PYQs & expert-curated notes for conceptual clarity.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h4>Performance Analytics</h4>
+                    <p>Regular assessments and detailed reports to track your progress.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h4>Dedicated Mentorship</h4>
+                    <p>One-on-one guidance from experienced mentors throughout your journey.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+                    <h4>Peer Community</h4>
+                    <p>Connect with fellow aspirants and participate in group discussions.</p>
+                </div>
+            </div>
         </div>
     </section>
 

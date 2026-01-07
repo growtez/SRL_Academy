@@ -126,10 +126,10 @@
 .projects-table td:nth-child(2) { width: 20%; } /* Principal Name */
 
 .projects-table th:nth-child(3),
-.projects-table td:nth-child(3) { width: 15%; } /* Date */
+.projects-table td:nth-child(3) { width: 10%; } /* Date */
 
 .projects-table th:nth-child(4),
-.projects-table td:nth-child(4) { width: 25%; overflow: visible; } /* Actions */
+.projects-table td:nth-child(4) { width: 15%; overflow: visible; } /* Actions */
 
 .actions-column { width: 230px; }
 
@@ -285,24 +285,33 @@
     background: var(--gray-50);
 }
 
-/* Delete Info Box */
+/* Delete Info Box (Optimized - Red Theme) */
 .delete-info {
-    background: var(--gray-50);
-    padding: var(--space-4);
-    border-radius: var(--radius);
-    margin-top: var(--space-4);
+    background: #fef2f2; /* Light red background */
+    border: 1px solid #fee2e2;
     border-left: 4px solid var(--danger);
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-top: 1rem;
 }
 
 .delete-info h4 {
     font-family: var(--font-primary);
-    color: var(--gray-900);
-    margin-bottom: var(--space-2);
+    color: #991b1b; /* Darker red */
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .delete-info p {
-    color: var(--gray-600);
-    margin-bottom: var(--space-2);
+    color: #b91c1c; /* Medium red */
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.delete-info p strong {
+    color: #7f1d1d;
+    font-weight: 600;
 }
 
 /* ==========================================================================
@@ -501,4 +510,126 @@
         margin: 10px;
         max-height: calc(100vh - 20px);
     }
+
+    /* Optimize Delete Modal for Mobile */
+    .modal-sm {
+        width: 90%; 
+        max-width: 90%;
+    }
+
+    .modal-footer {
+        flex-direction: column-reverse; /* Stack buttons, Cancel on bottom */
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .modal-footer button {
+        width: 100%; /* Full width buttons for easy tapping */
+        margin: 0;
+        height: 44px; /* Better touch target height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+/* ===============================
+   RESPONSIVE APPLICATION TABLE
+================================ */
+
+.responsive-applications {
+    width: 100%;
+}
+
+/* DESKTOP TABLE */
+.desktop-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* CARD CONTAINER */
+.applications-cards {
+    display: none;
+    gap: 1rem;
+}
+
+/* CARD */
+.application-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+}
+
+.application-card .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.application-card .label {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.application-card .value {
+    font-weight: 500;
+    color: #111827;
+    text-align: right;
+}
+
+/* ACTIONS */
+.application-card .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.application-card button {
+    flex: 1;
+}
+
+/* ===============================
+   TABLET & MOBILE BREAKPOINT
+================================ */
+
+@media (max-width: 1024px) {
+    .desktop-table {
+        display: none;
+    }
+
+    .applications-cards {
+        display: flex;
+        flex-direction: column;
+    }
+}
+/* ===============================
+   LONG TEXT OVERFLOW FIX (GLOBAL)
+================================ */
+
+/* TABLE CELLS */
+.projects-table td,
+.projects-table th {
+    max-width: 250px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+/* ===============================
+   CARD TEXT FIX (MOBILE/TABLET)
+================================ */
+
+.application-card .value {
+    max-width: 65%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    line-height: 1.4;
+}
+
+/* Prevent buttons from breaking layout */
+.application-card button {
+    white-space: nowrap;
 }

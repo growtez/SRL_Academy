@@ -59,16 +59,22 @@ async function loadStudyCentres() {
     const tableBody = document.getElementById('studyCentresTableBody');
     const emptyState = document.getElementById('studyCentresEmptyState');
 
-    if (!tableBody || !emptyState) {
-        console.warn('Study centre elements not found');
-        return;
-    }
-
     isStudyCentreLoading = true;
 
-    try {
-        if (typeof showLoading === 'function') showLoading();
+    // 1. Inject loader
+    if (tableBody) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="4" style="text-align: center; padding: 3rem;">
+                    <div class="loader" style="margin: 0 auto 1rem;"></div>
+                    <p style="color: #6b7280;">Loading applications...</p>
+                </td>
+            </tr>
+        `;
+        if (emptyState) emptyState.classList.add('hidden');
+    }
 
+    try {
         const response = await apiCall('/study-centre-applications');
 
         if (Array.isArray(response)) {
@@ -89,10 +95,8 @@ async function loadStudyCentres() {
         }
     } finally {
         isStudyCentreLoading = false;
-        if (typeof hideLoading === 'function') hideLoading();
     }
 }
-
 function renderStudyCentreList(filteredData) {
     const tableBody = document.getElementById('studyCentresTableBody');
     const emptyState = document.getElementById('studyCentresEmptyState');
@@ -338,4 +342,4 @@ function escapeHtml(text) {
     });
 }
 
-initializeStudyCentre();
+// initializeStudyCentre();

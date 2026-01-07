@@ -79,13 +79,27 @@ function handleDownloadFile(id, type) {
 
 async function loadCareerApplications() {
     if (isCareerLoading) return;
+    
     const tableBody = document.getElementById('careerTableBody');
     const emptyState = document.getElementById('careerEmptyState');
+    
     isCareerLoading = true;
 
+    // 1. Inject loader into table row
+    if (tableBody) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align: center; padding: 3rem;">
+                    <div class="loader" style="margin: 0 auto 1rem;"></div>
+                    <p style="color: #6b7280;">Loading applications...</p>
+                </td>
+            </tr>
+        `;
+        if (emptyState) emptyState.classList.add('hidden');
+    }
+
     try {
-        if (typeof showLoading === 'function') showLoading();
-        const response = await apiCall('/career'); // Assuming this is your API route
+        const response = await apiCall('/career');
 
         if (Array.isArray(response)) {
             careerData = response;
@@ -102,7 +116,6 @@ async function loadCareerApplications() {
         if (typeof showNotification === 'function') showNotification('Failed to load data', 'error');
     } finally {
         isCareerLoading = false;
-        if (typeof hideLoading === 'function') hideLoading();
     }
 }
 

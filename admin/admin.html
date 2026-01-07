@@ -167,14 +167,15 @@
             <main class="admin-content">
                 <div id="contentArea">
                 </div>
+                <div id="loadingOverlay" class="loading-overlay hidden">
+                    <div class="loader"></div>
+                    <p>Loading...</p>
+                </div>
             </main>
         </div>
     </div>
 
-    <div id="loadingOverlay" class="loading-overlay hidden">
-        <div class="loader"></div>
-        <p>Loading...</p>
-    </div>
+
 
     <script>
         // Configuration
@@ -251,11 +252,23 @@
         }
 
         // --- AUTH & LOGIN FUNCTIONS ---
+        // --- AUTH & LOGIN FUNCTIONS ---
         function checkAuthentication() {
             authToken = localStorage.getItem('adminToken');
             if (authToken) {
                 showAdminPanel();
-                loadTab('faculty');
+
+                // Restore state from localStorage
+                const savedTab = localStorage.getItem('activeTab') || 'faculty';
+                const savedSubTab = localStorage.getItem('activeSubTab');
+
+                updateActiveState(savedTab, savedSubTab);
+
+                if (savedTab === 'partnership' && savedSubTab) {
+                    loadSubTab(savedSubTab);
+                } else {
+                    loadTab(savedTab);
+                }
             } else {
                 showLoginScreen();
             }
@@ -289,8 +302,15 @@
                     authToken = data.token;
                     localStorage.setItem('adminToken', authToken);
                     localStorage.setItem('adminUser', JSON.stringify(data.user));
+
                     showAdminPanel();
+
+                    // Reset to default on fresh login
+                    localStorage.removeItem('activeTab');
+                    localStorage.removeItem('activeSubTab');
+                    updateActiveState('faculty', null);
                     loadTab('faculty');
+
                     loginForm.reset();
                 } else {
                     loginError.textContent = data.message || 'Invalid credentials';
@@ -304,6 +324,10 @@
         }
 
         async function handleLogout() {
+            // Clear tab state on logout
+            localStorage.removeItem('activeTab');
+            localStorage.removeItem('activeSubTab');
+
             if (!authToken) { cleanupAuth(); return; }
             try {
                 await fetch(`${API_BASE_URL}/logout`, {
@@ -350,12 +374,22 @@
             }
 
             link.classList.add('active');
+
+            // Persist State
+            localStorage.setItem('activeTab', tab);
+            localStorage.removeItem('activeSubTab');
+
             loadTab(tab);
         }
 
         function handleSubNavigation(e) {
             e.preventDefault();
             const subtab = e.currentTarget.dataset.subtab;
+
+            // Persist State
+            localStorage.setItem('activeTab', 'partnership');
+            localStorage.setItem('activeSubTab', subtab);
+
             updateActiveState('partnership', subtab);
             loadSubTab(subtab);
         }
@@ -397,6 +431,11 @@
             }
 
             closeMobileMenu();
+
+            // Persist State
+            localStorage.setItem('activeTab', tab);
+            localStorage.removeItem('activeSubTab');
+
             updateActiveState(tab, null);
             loadTab(tab);
         }
@@ -405,6 +444,11 @@
             e.preventDefault();
             const subtab = e.currentTarget.dataset.subtab;
             closeMobileMenu();
+
+            // Persist State
+            localStorage.setItem('activeTab', 'partnership');
+            localStorage.setItem('activeSubTab', subtab);
+
             updateActiveState('partnership', subtab);
             loadSubTab(subtab);
         }
@@ -508,7 +552,8 @@
             const existingScript = document.querySelector(`script[data-subtab-script="${subtab}"]`);
             if (existingScript) {
                 if (subtab === 'school-integration' && typeof initializeSchoolIntegration === 'function') try { initializeSchoolIntegration(); } catch (e) { }
-                else if (subtab === 'study-center' && typeof initializeStudyCenter === 'function') try { initializeStudyCenter(); } catch (e) { }
+                // FIX: Changed 'initializeStudyCenter' to 'initializeStudyCentre'
+                else if (subtab === 'study-center' && typeof initializeStudyCentre === 'function') try { initializeStudyCentre(); } catch (e) { }
                 else if (subtab === 'online-learning-program' && typeof initializeOnlineLearning === 'function') try { initializeOnlineLearning(); } catch (e) { }
                 return;
             }
@@ -517,7 +562,8 @@
             script.setAttribute('data-subtab-script', subtab);
             script.onload = function () {
                 if (subtab === 'school-integration' && typeof initializeSchoolIntegration === 'function') try { initializeSchoolIntegration(); } catch (e) { }
-                else if (subtab === 'study-center' && typeof initializeStudyCenter === 'function') try { initializeStudyCenter(); } catch (e) { }
+                // FIX: Changed 'initializeStudyCenter' to 'initializeStudyCentre'
+                else if (subtab === 'study-center' && typeof initializeStudyCentre === 'function') try { initializeStudyCentre(); } catch (e) { }
                 else if (subtab === 'online-learning-program' && typeof initializeOnlineLearning === 'function') try { initializeOnlineLearning(); } catch (e) { }
             };
             document.body.appendChild(script);

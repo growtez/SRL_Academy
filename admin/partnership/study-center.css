@@ -495,3 +495,75 @@
         width: 100%;
     }
 }
+
+
+/* ===== LONG TEXT OPTIMIZATION ===== */
+
+/* 1. Table Layout Optimization */
+.projects-table {
+    table-layout: fixed; /* Enforce strict column widths */
+    width: 100%;
+}
+
+.projects-table td {
+    white-space: nowrap;       /* Keep text on one line */
+    overflow: hidden;          /* Hide overflow */
+    text-overflow: ellipsis;   /* Add "..." at the end */
+    vertical-align: middle;
+}
+
+/* Specific Column Widths */
+.projects-table th:nth-child(1), /* Centre Name */
+.projects-table td:nth-child(1) {
+    width: 30%;
+}
+
+.projects-table th:nth-child(2), /* Principal Name */
+.projects-table td:nth-child(2) {
+    width: 25%;
+}
+
+.projects-table th:nth-child(3), /* Date */
+.projects-table td:nth-child(3) {
+    width: 15%;
+}
+
+/* Actions Column - Ensure buttons are visible */
+.projects-table th:nth-child(4),
+.projects-table td:nth-child(4) {
+    width: 30%;
+    overflow: visible; /* Allow tooltips/shadows to show */
+    white-space: nowrap;
+}
+
+/* 2. Modal Layout Optimization for Long Descriptions */
+
+/* Stack the label and value vertically for better readability of long text */
+.info-item:has(.text-content) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: transparent;
+    margin-bottom: 1.25rem;
+}
+
+/* Style the label for the stacked layout */
+.info-item:has(.text-content) .info-label {
+    width: 100%;
+    color: var(--primary); /* Highlight label */
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Style the long text value block */
+.info-item:has(.text-content) .info-value {
+    text-align: left; /* Reset from right-align */
+    width: 100%;
+    background: #f8fafc;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    line-height: 1.6;
+    color: var(--gray-800);
+}

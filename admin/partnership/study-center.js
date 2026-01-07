@@ -338,4 +338,4 @@ function escapeHtml(text) {
     });
 }
 
-initializeStudyCentre();
+// initializeStudyCentre();

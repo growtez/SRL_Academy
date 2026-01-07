@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Classroom Courses | SRL Academy</title>
+    <title>Online Courses | SRL Academy</title>
     <meta name="description"
-        content="Join SRL Academy's Classroom Programs for JEE, NEET & Foundation courses. Expert faculty, interactive learning, and proven results in Bangalore." />
+        content="Access quality education from anywhere with SRL Academy's Online Learning Programs. Expert faculty, comprehensive study materials, and flexible learning for JEE, NEET & Foundation courses." />
 
     <!-- Fonts -->
     <link
@@ -30,14 +30,6 @@
             --light-maroon: #fff5f5;
             --radius: 18px;
             --gold: #d4a017;
-        }
-
-        /* Override: Keep header always visible on this page */
-        .header {
-            position: fixed !important;
-            top: 0 !important;
-            transform: translateY(0) !important;
-            opacity: 1 !important;
         }
 
         * {
@@ -869,15 +861,15 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <span class="hero-badge"><i class="fa-solid fa-chalkboard-teacher"></i> In-Person Learning</span>
-                <h1>Classroom Programs</h1>
-                <p>Experience interactive face-to-face learning with our expert faculty at state-of-the-art centers
-                    across Bangalore.</p>
+                <span class="hero-badge"><i class="fa-solid fa-globe"></i> Learn From Anywhere</span>
+                <h1>Online Learning Programs</h1>
+                <p>Access world-class education from the comfort of your home with expert faculty, comprehensive study
+                    materials, and personalized mentorship.</p>
             </div>
         </div>
     </section>
 
-    <!-- COURSES CATALOG SECTION -->
+<!-- COURSES CATALOG SECTION -->
     <section class="courses-catalog-section">
         <div class="container">
             <style>
@@ -885,8 +877,7 @@
                     background: #fdfdfd;
                     padding: 5rem 0;
                     position: relative;
-                    overflow-x: clip;
-                    overflow-y: visible;
+                    overflow: hidden;
                 }
 
                 /* Premium background blobs */
@@ -923,27 +914,9 @@
                     display: flex;
                     justify-content: center;
                     width: 100%;
-                    margin-bottom: 2rem;
-                    padding: 1rem 15px;
-                    position: sticky;
-                    top: 80px;
-                    /* Desktop: more down */
-                    z-index: 99;
-                    background: #fdfdfd;
-                }
-
-                /* iPad/Tablet: 768px - 992px */
-                @media (max-width: 992px) and (min-width: 768px) {
-                    .category-tabs-container {
-                        top: 87px;
-                    }
-                }
-
-                /* Mobile: below 768px */
-                @media (max-width: 767px) {
-                    .category-tabs-container {
-                        top: 60px;
-                    }
+                    margin-bottom: 4rem;
+                    padding: 0 15px;
+                    /* Prevent clipping on very small screens */
                 }
 
                 .category-tabs {
@@ -1172,7 +1145,7 @@
                     object-fit: cover;
                 }
 
-                .course-card-image .OFFLINE-badge {
+                .course-card-image .online-badge {
                     position: absolute;
                     top: 10px;
                     left: -12px;
@@ -1187,7 +1160,7 @@
                     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
                 }
 
-                .course-card-image .OFFLINE-badge::before {
+                .course-card-image .online-badge::before {
                     content: '';
                     position: absolute;
                     top: 100%;
@@ -1411,31 +1384,7 @@
 
                 @media (max-width: 992px) {
                     .courses-grid {
-                        display: flex;
-                        flex-wrap: nowrap;
-                        overflow-x: auto;
-                        -webkit-overflow-scrolling: touch;
-                        scroll-snap-type: x mandatory;
-                        gap: 1rem;
-                        padding-bottom: 1rem;
-                        scrollbar-width: none;
-                        -ms-overflow-style: none;
-                    }
-
-                    .courses-grid::-webkit-scrollbar {
-                        display: none;
-                    }
-
-                    .courses-grid .course-card {
-                        flex: 0 0 320px;
-                        /* Slightly wider for iPad */
-                        scroll-snap-align: start;
-                    }
-
-                    /* Disable hover zoom effect on tablet */
-                    .course-card:hover {
-                        transform: none;
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+                        grid-template-columns: repeat(2, 1fr);
                     }
                 }
 
@@ -1470,43 +1419,12 @@
                     .category-tabs {
                         justify-content: center;
                     }
-
-                    /* Keep price and discount on one line */
-                    .course-card-pricing {
-                        flex-wrap: nowrap !important;
-                        gap: 0.3rem !important;
-                    }
-
-                    .price-current {
-                        font-size: 1.1rem !important;
-                    }
-
-                    .price-original {
-                        font-size: 0.75rem !important;
-                    }
-
-                    .price-discount {
-                        font-size: 0.55rem !important;
-                        padding: 3px 8px 3px 12px !important;
-                        white-space: nowrap;
-                    }
-
-                    /* Keep dates on one line */
-                    .course-card-dates {
-                        font-size: 0.65rem !important;
-                        white-space: nowrap;
-                    }
-
-                    /* Match description text size with dates */
-                    .course-card-desc {
-                        font-size: 0.65rem !important;
-                    }
                 }
             </style>
 
             <div class="section-header">
                 <span class="section-label">Our Programs</span>
-                <h2 class="section-title">Available Offline Courses</h2>
+                <h2 class="section-title">Available Online Courses</h2>
                 <p class="section-subtitle">Choose the program that best suits your academic goals and start your
                     journey towards success.</p>
             </div>
@@ -1537,15 +1455,13 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result1.jpeg" alt="Class 11 NEET Crash Course">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 11 NEET Crash Course 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
-                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
-                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
-                                    class="date-highlight">30 Jun, 2027</span></p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1568,15 +1484,13 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result2.jpg" alt="Class 11 NEET Year Long">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 11 NEET Year Long 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
-                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
-                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
-                                    class="date-highlight">30 Jun, 2027</span></p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1599,7 +1513,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/posters/poster1.png" alt="Class 11 NEET SRL Batch">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 11 NEET SRL Batch 2026</h5>
@@ -1636,15 +1550,13 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result1.jpeg" alt="Class 12 NEET Crash Course">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 12 NEET Crash Course 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
-                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
-                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
-                                    class="date-highlight">30 Jun, 2027</span></p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1667,15 +1579,13 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result2.jpg" alt="Class 12 NEET Year Long">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 12 NEET Year Long 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Aspirants</p>
-                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
-                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
-                                    class="date-highlight">30 Jun, 2027</span></p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1698,7 +1608,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/posters/poster1.png" alt="Class 12 NEET SRL Batch">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 12 NEET SRL Batch 2026</h5>
@@ -1735,15 +1645,13 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result1.jpeg" alt="Dropper NEET Crash Course">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Dropper NEET Crash Course 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Droppers</p>
-                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
-                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
-                                    class="date-highlight">30 Jun, 2027</span></p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1766,15 +1674,13 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result2.jpg" alt="Dropper NEET Year Long">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Dropper NEET Year Long 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-stethoscope"></i> For NEET Droppers</p>
-                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
-                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
-                                    class="date-highlight">30 Jun, 2027</span></p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1797,7 +1703,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/posters/poster1.png" alt="Dropper NEET SRL Batch">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Dropper NEET SRL Batch 2026</h5>
@@ -1833,15 +1739,13 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result1.jpeg" alt="Class 11 JEE Crash Course">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 11 JEE Crash Course 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Aspirants</p>
-                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
-                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
-                                    class="date-highlight">30 Jun, 2027</span></p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1864,15 +1768,13 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result2.jpg" alt="Class 11 JEE Year Long">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 11 JEE Year Long 2026</h5>
 
                             <p class="course-card-desc"><i class="fas fa-atom"></i> For JEE Aspirants</p>
-                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span
-                                    class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span
-                                    class="date-highlight">30 Jun, 2027</span></p>
+                            <p class="course-card-dates"><i class="fas fa-calendar"></i> Starts on <span class="date-highlight">14 Apr, 2025</span> &nbsp; Ends on <span class="date-highlight">30 Jun, 2027</span></p>
                             <div class="course-card-pricing">
                                 <div class="price-left">
                                     <div class="price-main">
@@ -1895,7 +1797,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/posters/poster1.png" alt="Class 11 JEE SRL Batch">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 11 JEE SRL Batch 2026</h5>
@@ -1932,7 +1834,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result1.jpeg" alt="Class 12 JEE Crash Course">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 12 JEE Crash Course 2026</h5>
@@ -1961,7 +1863,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result2.jpg" alt="Class 12 JEE Year Long">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 12 JEE Year Long 2026</h5>
@@ -1990,7 +1892,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/posters/poster1.png" alt="Class 12 JEE SRL Batch">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 12 JEE SRL Batch 2026</h5>
@@ -2027,7 +1929,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result1.jpeg" alt="Dropper JEE Crash Course">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Dropper JEE Crash Course 2026</h5>
@@ -2056,7 +1958,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result2.jpg" alt="Dropper JEE Year Long">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Dropper JEE Year Long 2026</h5>
@@ -2085,7 +1987,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/posters/poster1.png" alt="Dropper JEE SRL Batch">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Dropper JEE SRL Batch 2026</h5>
@@ -2121,7 +2023,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result1.jpeg" alt="Class 10 Olympiad Crash Course">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 10 Olympiad Crash Course</h5>
@@ -2150,7 +2052,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result2.jpg" alt="Class 10 Olympiad Year Long">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 10 Olympiad Year Long</h5>
@@ -2179,7 +2081,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/posters/poster1.png" alt="Class 10 Olympiad SRL Batch">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 10 Olympiad SRL Batch</h5>
@@ -2215,7 +2117,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result1.jpeg" alt="Class 9 Olympiad Crash Course">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 9 Olympiad Crash Course</h5>
@@ -2244,7 +2146,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result2.jpg" alt="Class 9 Olympiad Year Long">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 9 Olympiad Year Long</h5>
@@ -2273,7 +2175,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/posters/poster1.png" alt="Class 9 Olympiad SRL Batch">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 9 Olympiad SRL Batch</h5>
@@ -2309,7 +2211,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result1.jpeg" alt="Class 8 Olympiad Crash Course">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 8 Olympiad Crash Course
@@ -2339,7 +2241,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/results/result2.jpg" alt="Class 8 Olympiad Year Long">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 8 Olympiad Year Long
@@ -2369,7 +2271,7 @@
                     <div class="course-card">
                         <div class="course-card-image">
                             <img src="images/posters/poster1.png" alt="Class 8 Olympiad SRL Batch">
-                            <span class="OFFLINE-badge">OFFLINE</span>
+                            <span class="online-badge">ONLINE</span>
                         </div>
                         <div class="course-card-body">
                             <h5 class="course-card-title">Class 8 Olympiad SRL Batch
@@ -2397,51 +2299,6 @@
                     </div>
                 </div> <!-- End Grid -->
             </div> <!-- End Section -->
-        </div>
-    </section>
-
-    <!-- FEATURES SECTION -->
-    <section class="features-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Why Classroom?</span>
-                <h2 class="section-title">Benefits of Classroom Learning</h2>
-                <p class="section-subtitle">Experience the advantages of in-person education with direct interaction and
-                    personalized attention.</p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-video"></i></div>
-                    <h4>Live Interactive Classes</h4>
-                    <p>Real-time sessions with expert faculty. Ask questions and get instant doubt resolution.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
-                    <h4>Flexible Schedule</h4>
-                    <p>Learn at your own pace with recorded lectures available 24/7.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
-                    <h4>Premium Study Material</h4>
-                    <p>DPPs, test papers, PYQs & expert-curated notes for conceptual clarity.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h4>Performance Analytics</h4>
-                    <p>Regular assessments and detailed reports to track your progress.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
-                    <h4>Dedicated Mentorship</h4>
-                    <p>One-on-one guidance from experienced mentors throughout your journey.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
-                    <h4>Peer Community</h4>
-                    <p>Connect with fellow aspirants and participate in group discussions.</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -2548,7 +2405,7 @@
                 <h2 style="font-family: Oswald, sans-serif; font-size: 1.8rem; margin-bottom: 0.75rem; color: #333;">
                     Ready to Start Your Journey?</h2>
                 <p style="color: #666; margin-bottom: 1.5rem;">Get in touch with our counselors to learn more about our
-                    OFFLINE programs and find the perfect course for you.</p>
+                    online programs and find the perfect course for you.</p>
 
                 <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 1.5rem;">
                     <a href="tel:+919296351242" class="btn"
@@ -2640,3 +2497,4 @@
 </body>
 
 </html>
+

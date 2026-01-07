@@ -15,20 +15,24 @@
             </div>
         </div>
 
-        <div class="table-wrapper">
-            <table class="projects-table">
-                <thead>
-                    <tr>
-                        <th>School Name</th>
-                        <th>Principal Name</th>
-                        <th>Date</th>
-                        <th class="actions-column">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="schoolProjectsTableBody">
-                </tbody>
-            </table>
-        </div>
+        <div class="table-wrapper responsive-applications">
+    <!-- DESKTOP / LARGE TABLE -->
+    <table class="projects-table desktop-table">
+        <thead>
+            <tr>
+                <th>School Name</th>
+                <th>Principal Name</th>
+                <th>Date</th>
+                <th class="actions-column">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="schoolProjectsTableBody"></tbody>
+    </table>
+
+    <!-- MOBILE / TABLET CARDS -->
+    <div id="schoolProjectsCardContainer" class="applications-cards"></div>
+</div>
+
 
         <div id="schoolProjectsEmptyState" class="empty-state hidden">
             <span class="material-symbols-outlined">school</span>

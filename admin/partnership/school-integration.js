@@ -7,6 +7,7 @@ let schoolProjectIdToDelete = null;
 function initializeSchoolIntegration() {
     const searchInput = document.getElementById('searchSchoolProjects');
     const tableBody = document.getElementById('schoolProjectsTableBody');
+    const cardContainer = document.getElementById('schoolProjectsCardContainer'); // 1. Select the mobile container
     const deleteButton = document.getElementById('confirmDeleteSchoolProjectButton');
     const viewPdfButton = document.getElementById('viewPdfButton');
 
@@ -19,7 +20,8 @@ function initializeSchoolIntegration() {
         searchInput.addEventListener('input', filterSchoolProjects);
     }
 
-    tableBody.addEventListener('click', function (event) {
+    // 2. Define a shared handler function for both Desktop and Mobile
+    const handleProjectAction = function (event) {
         const actionButton = event.target.closest('[data-action]');
         if (!actionButton) return;
 
@@ -29,11 +31,22 @@ function initializeSchoolIntegration() {
         const action = actionButton.getAttribute('data-action');
         
         if (action === 'pdf') {
-            handleDownloadPdf(id); // This already uses window.open('_blank')
+            // Note: Currently downloads directly. Change this to 
+            // openSchoolProjectView(id); 
+            // if you want to see the Preview Modal first.
+            handleDownloadPdf(id); 
         } else if (action === 'delete') {
             openSchoolProjectDeleteModal(id);
         }
-    });
+    };
+
+    // 3. Attach the listener to the Desktop Table
+    tableBody.addEventListener('click', handleProjectAction);
+
+    // 4. Attach the listener to the Mobile Card Container
+    if (cardContainer) {
+        cardContainer.addEventListener('click', handleProjectAction);
+    }
 
     attachModalCloseHandlers();
 
@@ -99,54 +112,83 @@ async function loadSchoolProjects() {
 
 function renderSchoolProjectsList(filteredData) {
     const tableBody = document.getElementById('schoolProjectsTableBody');
+    const cardContainer = document.getElementById('schoolProjectsCardContainer');
     const emptyState = document.getElementById('schoolProjectsEmptyState');
-
-    if (!tableBody || !emptyState) return;
 
     const data = filteredData || schoolProjectsData;
 
     if (!data || data.length === 0) {
         tableBody.innerHTML = '';
+        cardContainer.innerHTML = '';
         emptyState.classList.remove('hidden');
         return;
     }
 
     emptyState.classList.add('hidden');
 
-    const rowsHtml = data
-        .map(function (project) {
-            const id = project.id;
-            const principalName = escapeHtml(project.principal_name || '');
-            const schoolName = escapeHtml(project.school_name || '');
-            const date = formatDate(project.declaration_date);
-
-            return (
-                '<tr data-id="' + id + '">' +
-                '<td>' + schoolName + '</td>' +    
-                '<td>' + principalName + '</td>' + 
-                '<td>' + date + '</td>' +
-                '<td>' +
-                    '<div class="projects-actions">' +
-                        // ACTION 1: View PDF (Primary Button)
-                        '<button type="button" class="btn btn-primary btn-sm" data-action="pdf" data-id="' + id + '">' +
-                            '<span class="material-symbols-outlined">picture_as_pdf</span>' +
-                            'View PDF' +
-                        '</button>' +
+    /* =====================
+       DESKTOP TABLE ROWS
+    ====================== */
+    tableBody.innerHTML = data.map(project => `
+        <tr>
+            <td>${escapeHtml(project.school_name || '-')}</td>
+            <td>${escapeHtml(project.principal_name || '-')}</td>
+            <td>${formatDate(project.declaration_date)}</td>
+            <td>
+                <div class="projects-actions">
+                    <button class="btn btn-primary btn-sm"
+                        data-action="pdf"
+                        data-id="${project.id}">
                         
-                        // ACTION 2: Delete (Danger Button)
-                        '<button type="button" class="btn btn-danger btn-sm" data-action="delete" data-id="' + id + '">' +
-                            '<span class="material-symbols-outlined">delete</span>' +
-                            'Delete' +
-                        '</button>' +
-                    '</div>' +
-                '</td>' +
-                '</tr>'
-            );
-        })
-        .join('');
+                        PDF
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                        data-action="delete"
+                        data-id="${project.id}">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
 
-    tableBody.innerHTML = rowsHtml;
+    /* =====================
+       MOBILE / TABLET CARDS
+    ====================== */
+    cardContainer.innerHTML = data.map(project => `
+        <div class="application-card">
+            <div class="row">
+                <span class="label">School</span>
+                <span class="value">${escapeHtml(project.school_name || '-')}</span>
+            </div>
+            <div class="row">
+                <span class="label">Principal</span>
+                <span class="value">${escapeHtml(project.principal_name || '-')}</span>
+            </div>
+            <div class="row">
+                <span class="label">Date</span>
+                <span class="value">${formatDate(project.declaration_date)}</span>
+            </div>
+
+            <div class="card-actions">
+                <button class="btn btn-primary btn-sm"
+                    data-action="pdf"
+                    data-id="${project.id}">
+                    <span class="material-symbols-outlined">picture_as_pdf</span>
+                    PDF
+                </button>
+
+                <button class="btn btn-danger btn-sm"
+                    data-action="delete"
+                    data-id="${project.id}">
+                    <span class="material-symbols-outlined">delete</span>
+                    Delete
+                </button>
+            </div>
+        </div>
+    `).join('');
 }
+
 
 function filterSchoolProjects() {
     const input = document.getElementById('searchSchoolProjects');

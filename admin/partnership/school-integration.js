@@ -187,39 +187,70 @@ function openSchoolProjectView(id) {
 
     currentSchoolProjectId = id;
 
-    // SECTION 1: School Info
-    setTextContent('detailApplicationDate', formatDate(project.application_date));
-    setTextContent('detailAffiliatedBoard', project.affiliated_board);
-    setTextContent('detailSchoolName', project.school_name);
-    setTextContent('detailAddress', project.address); // Now visible!
-    setTextContent('detailPrincipalName', project.principal_name);
-    setTextContent('detailContactNumber', project.contact_number);
-    setTextContent('detailEmail', project.email);
+    // Header Info
+    setTextContent('pdfAppId', project.id);
+    setTextContent('pdfAppDate', formatDate(project.application_date));
 
-    // SECTION 2: Project Type (Yes/No styling)
-    formatBooleanBadge('detailProjectIITJEE', project['project_iit-jee']);
-    formatBooleanBadge('detailProjectNEET', project['project_neet']);
-    formatBooleanBadge('detailProjectOlympiad', project['project_olympiad']);
-    formatBooleanBadge('detailProjectBoard', project['project_board']);
-    setTextContent('detailProjectOther', project.project_other || 'None');
+    // School Info
+    setTextContent('pdfSchoolName', project.school_name);
+    setTextContent('pdfAddress', project.address);
+    setTextContent('pdfPrincipalName', project.principal_name);
+    setTextContent('pdfContact', project.contact_number);
+    setTextContent('pdfEmail', project.email);
+    setTextContent('pdfBoard', project.affiliated_board);
 
-    // SECTION 3: Project Details
-    setTextContent('detailObjective', project.objective);
-    setTextContent('detailTargetAudience', project.target_audience);
-    setTextContent('detailDuration', project.duration);
-    setTextContent('detailStudentsInvolved', project.students_involved);
-    setTextContent('detailResourcesRequired', project.resources_required);
+    // Project Type Checkboxes
+    setPdfCheck('pdfCheckIIT', project['project_iit-jee']);
+    setPdfCheck('pdfCheckNEET', project['project_neet']);
+    setPdfCheck('pdfCheckOlympiad', project['project_olympiad']);
+    setPdfCheck('pdfCheckBoard', project['project_board']);
 
-    // SECTION 4: Additional Info
-    setTextContent('detailPreviousProjects', project.previous_projects);
-    setTextContent('detailBenefits', project.benefits);
+    // Other Project Type
+    const otherContainer = document.getElementById('pdfOtherContainer');
+    if (project.project_other) {
+        otherContainer.style.display = 'inline-block';
+        setTextContent('pdfOtherText', project.project_other);
+    } else {
+        otherContainer.style.display = 'none';
+    }
 
-    // SECTION 5: Declaration
-    setTextContent('detailDeclarationPrincipal', project.declaration_principal);
-    setTextContent('detailDeclarationDate', formatDate(project.declaration_date));
+    // Project Details
+    setTextContent('pdfObjective', project.objective);
+    setTextContent('pdfTargetAudience', project.target_audience);
+    setTextContent('pdfDuration', project.duration);
+    setTextContent('pdfStudents', project.students_involved);
+    setTextContent('pdfResources', project.resources_required);
+
+    // Additional Info
+    setTextContent('pdfPrevious', project.previous_projects);
+    setTextContent('pdfBenefits', project.benefits);
+
+    // Declaration
+    setTextContent('pdfDecNameBold', project.declaration_principal);
+    setTextContent('pdfDecName', project.declaration_principal);
+    setTextContent('pdfDecDate', formatDate(project.declaration_date));
+
+    // Footer Timestamp
+    const today = new Date().toLocaleString('en-IN', {
+        day: 'numeric', month: 'short', year: 'numeric',
+        hour: 'numeric', minute: 'numeric', hour12: true
+    });
+    setTextContent('pdfGeneratedDate', today);
 
     const modal = document.getElementById('schoolProjectViewModal');
     if (modal) modal.classList.remove('hidden');
+}
+
+// Helper for PDF-style Checkboxes
+function setPdfCheck(elementId, value) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    
+    // Check if truthy (1, '1', true)
+    const isChecked = value == 1 || value === true || value === '1';
+    
+    el.textContent = isChecked ? '☑' : '☐';
+    el.style.color = isChecked ? 'green' : '#999';
 }
 
 // Helper to color code Yes/No

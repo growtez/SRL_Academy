@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody id="schoolProjectsTableBody">
-                    </tbody>
+                </tbody>
             </table>
         </div>
 
@@ -40,170 +40,164 @@
 
 <div id="schoolProjectViewModal" class="modal hidden">
     <div class="modal-overlay"></div>
-    <div class="modal-content modal-lg">
+    <div class="modal-content modal-lg pdf-preview-modal">
+
         <div class="modal-header">
-            <h2>School Integration Application Details</h2>
-            <button type="button" class="modal-close" data-close-modal="schoolProjectViewModal">
-                <span class="material-symbols-outlined">close</span>
-            </button>
+            <h2>Application Preview</h2>
+            <div class="header-actions">
+                <button type="button" class="btn btn-primary btn-sm" id="viewPdfButton">
+                    <span class="material-symbols-outlined"
+                        style="font-size: 18px; margin-right: 4px;">picture_as_pdf</span>
+                    Download PDF
+                </button>
+                <button type="button" class="modal-close" data-close-modal="schoolProjectViewModal">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
         </div>
 
-        <div class="modal-body">
-            
-            <div class="info-card full-width">
-                <div class="info-card-header">
-                    <span class="material-symbols-outlined">school</span>
-                    <h3>School Information</h3>
-                </div>
-                <div class="info-card-body">
-                    <div class="details-grid">
-                        <div class="info-item">
-                            <span class="info-label">Application Date</span>
-                            <span id="detailApplicationDate" class="info-value"></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Affiliated Board</span>
-                            <span id="detailAffiliatedBoard" class="info-value"></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">School Name</span>
-                            <span id="detailSchoolName" class="info-value" style="font-weight: bold;"></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Principal Name</span>
-                            <span id="detailPrincipalName" class="info-value"></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Contact Number</span>
-                            <span id="detailContactNumber" class="info-value"></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Email Address</span>
-                            <span id="detailEmail" class="info-value"></span>
-                        </div>
-                    </div>
-                    <div class="info-item" style="margin-top: 1rem;">
-                        <span class="info-label">School Address</span>
-                        <span id="detailAddress" class="info-value text-content"></span>
-                    </div>
-                </div>
-            </div>
+        <div class="modal-body pdf-document-body">
+            <div class="pdf-wrapper">
 
-            <div class="info-card full-width">
-                <div class="info-card-header">
-                    <span class="material-symbols-outlined">checklist</span>
-                    <h3>Type of Integrated Project Requested</h3>
+                <div class="pdf-header">
+                    <h1 class="pdf-title">School Integration Project Application</h1>
+                    <p class="pdf-subtitle">SRL Academy</p>
                 </div>
-                <div class="info-card-body">
-                    <div class="project-type-grid">
-                        <div class="project-type-item">
-                            <span class="project-type-label">IIT-JEE</span>
-                            <span id="detailProjectIITJEE" class="project-type-value"></span>
-                        </div>
-                        <div class="project-type-item">
-                            <span class="project-type-label">NEET</span>
-                            <span id="detailProjectNEET" class="project-type-value"></span>
-                        </div>
-                        <div class="project-type-item">
-                            <span class="project-type-label">Olympiad</span>
-                            <span id="detailProjectOlympiad" class="project-type-value"></span>
-                        </div>
-                        <div class="project-type-item">
-                            <span class="project-type-label">Board</span>
-                            <span id="detailProjectBoard" class="project-type-value"></span>
-                        </div>
-                        <div class="project-type-item">
-                            <span class="project-type-label">Other</span>
-                            <span id="detailProjectOther" class="project-type-value"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="info-card full-width">
-                <div class="info-card-header">
-                    <span class="material-symbols-outlined">description</span>
-                    <h3>Project Details</h3>
+                <div class="pdf-info-bar">
+                    <div class="pdf-info-row">
+                        <span class="pdf-label">Application ID:</span>
+                        <span id="pdfAppId"></span>
+                    </div>
+                    <div class="pdf-info-row">
+                        <span class="pdf-label">Submitted On:</span>
+                        <span id="pdfAppDate"></span>
+                    </div>
                 </div>
-                <div class="info-card-body">
-                    <div class="info-item">
-                        <span class="info-label">Objective of the Project</span>
-                        <span id="detailObjective" class="info-value text-content"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Target Audience</span>
-                        <span id="detailTargetAudience" class="info-value text-content"></span>
-                    </div>
-                    
-                    <div class="details-grid" style="margin-top: 1rem; margin-bottom: 1rem;">
-                        <div class="info-item">
-                            <span class="info-label">Expected Duration</span>
-                            <span id="detailDuration" class="info-value"></span>
+
+                <div class="pdf-section">
+                    <div class="pdf-section-header">School Information</div>
+                    <div class="pdf-table">
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">School Name</div>
+                            <div class="pdf-cell pdf-value" id="pdfSchoolName"></div>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Students Involved</span>
-                            <span id="detailStudentsInvolved" class="info-value"></span>
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Address</div>
+                            <div class="pdf-cell pdf-value" id="pdfAddress"></div>
+                        </div>
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Principal Name</div>
+                            <div class="pdf-cell pdf-value" id="pdfPrincipalName"></div>
                         </div>
                     </div>
 
-                    <div class="info-item">
-                        <span class="info-label">Resources Required from SRL Academy</span>
-                        <span id="detailResourcesRequired" class="info-value text-content"></span>
+                    <div class="pdf-table" style="margin-top: -1px;">
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label" style="width: 15%;">Contact No.</div>
+                            <div class="pdf-cell pdf-value" style="width: 25%;" id="pdfContact"></div>
+                            <div class="pdf-cell pdf-label" style="width: 15%;">Email</div>
+                            <div class="pdf-cell pdf-value" style="width: 45%;" id="pdfEmail"></div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="info-card full-width">
-                <div class="info-card-header">
-                    <span class="material-symbols-outlined">info</span>
-                    <h3>Additional Information</h3>
-                </div>
-                <div class="info-card-body">
-                    <div class="info-item">
-                        <span class="info-label">Previous Projects Implemented</span>
-                        <span id="detailPreviousProjects" class="info-value text-content"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Benefits for Students</span>
-                        <span id="detailBenefits" class="info-value text-content"></span>
+                    <div class="pdf-table" style="margin-top: -1px;">
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Affiliated Board</div>
+                            <div class="pdf-cell pdf-value" id="pdfBoard"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="info-card full-width declaration-card">
-                <div class="info-card-header">
-                    <span class="material-symbols-outlined">verified_user</span>
-                    <h3>Declaration & Signature</h3>
+                <div class="pdf-section">
+                    <div class="pdf-section-header">Project Type</div>
+                    <div class="pdf-table">
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-value"
+                                style="width: 100%; padding: 8px 10px; vertical-align: middle;">
+                                <span class="pdf-inline-item">
+                                    <span class="pdf-check-icon" id="pdfCheckIIT">☐</span> IIT-JEE Prep
+                                </span>
+                                <span class="pdf-inline-item">
+                                    <span class="pdf-check-icon" id="pdfCheckNEET">☐</span> NEET Prep
+                                </span>
+                                <span class="pdf-inline-item">
+                                    <span class="pdf-check-icon" id="pdfCheckOlympiad">☐</span> Olympiad
+                                </span>
+                                <span class="pdf-inline-item">
+                                    <span class="pdf-check-icon" id="pdfCheckBoard">☐</span> Board Exam
+                                </span>
+                                <span class="pdf-inline-item" id="pdfOtherContainer" style="display:none;">
+                                    <span class="pdf-check-icon" style="color:green;">☑</span> Other: <span
+                                        id="pdfOtherText"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="info-card-body">
-                    <div style="margin-bottom: 1.5rem; padding: 1rem; background: #fff5f5; border-left: 4px solid #800000; border-radius: 4px; color: #374151;">
-                        <p style="margin: 0; line-height: 1.6; font-style: italic;">
-                            "I, the undersigned, hereby declare that the information provided above is true and accurate to the best of my knowledge. I understand that submitting this application does not guarantee approval and that further discussions may be required."
+
+                <div class="pdf-section">
+                    <div class="pdf-section-header">Project Details</div>
+                    <div class="pdf-table">
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Objective</div>
+                            <div class="pdf-cell pdf-value" id="pdfObjective"></div>
+                        </div>
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Target Audience</div>
+                            <div class="pdf-cell pdf-value" id="pdfTargetAudience"></div>
+                        </div>
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Duration</div>
+                            <div class="pdf-cell pdf-value" id="pdfDuration"></div>
+                        </div>
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Students Involved</div>
+                            <div class="pdf-cell pdf-value" id="pdfStudents"></div>
+                        </div>
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Resources Required</div>
+                            <div class="pdf-cell pdf-value" id="pdfResources"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pdf-section">
+                    <div class="pdf-section-header">Additional Information</div>
+                    <div class="pdf-table">
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Previous Projects</div>
+                            <div class="pdf-cell pdf-value" id="pdfPrevious"></div>
+                        </div>
+                        <div class="pdf-row">
+                            <div class="pdf-cell pdf-label">Expected Benefits</div>
+                            <div class="pdf-cell pdf-value" id="pdfBenefits"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pdf-section">
+                    <div class="pdf-section-header">Declaration</div>
+                    <div class="pdf-declaration-box">
+                        <p class="pdf-declaration-text">
+                            I, <strong id="pdfDecNameBold"></strong>, hereby declare that all the information provided
+                            in this application is true and accurate to the best of my knowledge.
                         </p>
-                    </div>
-
-                    <div class="details-grid">
-                        <div class="info-item">
-                            <span class="info-label">Principal Name (Signed)</span>
-                            <span id="detailDeclarationPrincipal" class="info-value"></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Signature Date</span>
-                            <span id="detailDeclarationDate" class="info-value"></span>
+                        <div class="pdf-table">
+                            <div class="pdf-row">
+                                <div class="pdf-cell pdf-label" style="width: 15%;">Principal Name</div>
+                                <div class="pdf-cell pdf-value" style="width: 45%;" id="pdfDecName"></div>
+                                <div class="pdf-cell pdf-label" style="width: 15%;">Date</div>
+                                <div class="pdf-cell pdf-value" style="width: 25%;" id="pdfDecDate"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline" data-close-modal="schoolProjectViewModal">
-                Close
-            </button>
-            <button type="button" class="btn btn-primary" id="viewPdfButton">
-                <span class="material-symbols-outlined">picture_as_pdf</span>
-                Download PDF
-            </button>
+                <div class="pdf-footer">
+                    <p>This is a digital preview | Generated on <span id="pdfGeneratedDate"></span></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

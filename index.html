@@ -2947,7 +2947,7 @@
                         <div class="swiper-slide" id="faculty-loading">
                             <div class="faculty-card"
                                 style="display: flex; align-items: center; justify-content: center; min-height: 200px;">
-                                <p style="color: #666;">Loading faculty...</p>
+                                <p style="color: #666;">Loading faculty from backend...</p>
                             </div>
                         </div>
                     </div>
@@ -3654,14 +3654,14 @@
             });
 
             // ========== FACULTY API CONFIGURATION ==========
-            // Change this URL to your backend API endpoint when ready
-            const FACULTY_API_URL = 'api/faculty.json';
+            // Pointing to your Laravel API
+            const FACULTY_API_URL = 'http://127.0.0.1:8000/api/faculty';
 
-            // Faculty swiper instance (will be initialized after data loads)
+            // Faculty swiper instance
             let facultySwiper = null;
 
             // Function to render faculty cards
-            function renderFacultyCards(facultyData) {
+            function renderFacultyCards(facultyList) {
                 const wrapper = document.getElementById('faculty-wrapper');
                 if (!wrapper) return;
 
@@ -3669,19 +3669,24 @@
                 wrapper.innerHTML = '';
 
                 // Create slides for each faculty member
-                facultyData.forEach(faculty => {
-                    const qualifications = faculty.qualifications.join(' · ');
+                facultyList.forEach(faculty => {
+                    // Mapping backend fields to frontend variables
+                    const name = faculty.name;
+                    const role = faculty.department;       // Backend uses 'department'
+                    const meta = faculty.description;      // Backend uses 'description' (string)
+                    const photo = faculty.photo_url;       // Backend uses 'photo_url'
+
                     const slide = document.createElement('div');
                     slide.className = 'swiper-slide';
                     slide.innerHTML = `
                         <div class="faculty-card">
                             <div class="faculty-content">
-                                <div class="faculty-name">${faculty.name}</div>
-                                <div class="faculty-role">${faculty.role}</div>
-                                <div class="faculty-meta">${qualifications}</div>
+                                <div class="faculty-name">${name}</div>
+                                <div class="faculty-role">${role}</div>
+                                <div class="faculty-meta">${meta}</div>
                             </div>
                             <div class="faculty-photo">
-                                <img src="${faculty.photo}" alt="Photo of ${faculty.name}"
+                                <img src="${photo}" alt="Photo of ${name}"
                                     onerror="this.onerror=null;this.src='images/logo.png';">
                             </div>
                         </div>
@@ -3692,14 +3697,14 @@
 
             // Function to initialize/reinitialize faculty swiper
             function initFacultySwiper() {
-                // Destroy existing instance if any
+                // Destroy existing instance if any to prevent duplicates/bugs
                 if (facultySwiper) {
                     facultySwiper.destroy(true, true);
                 }
 
                 facultySwiper = new Swiper('.faculty-swiper', {
                     loop: true,
-                    slidesPerView: 2,
+                    slidesPerView: 1, // Default mobile
                     spaceBetween: 16,
                     autoplay: {
                         delay: 3000,
@@ -3710,7 +3715,14 @@
                         clickable: true,
                         dynamicBullets: true,
                     },
+                    navigation: {
+                        nextEl: '.faculty-swiper .swiper-button-next',
+                        prevEl: '.faculty-swiper .swiper-button-prev',
+                    },
                     breakpoints: {
+                        640: {
+                            slidesPerView: 1,
+                        },
                         768: {
                             slidesPerView: 2,
                             spaceBetween: 24,
@@ -3723,25 +3735,29 @@
                 });
             }
 
-            // Fetch faculty data from API
+            // Fetch faculty data from Laravel API
             fetch(FACULTY_API_URL)
                 .then(response => {
                     if (!response.ok) throw new Error('Failed to fetch faculty data');
                     return response.json();
                 })
-                .then(data => {
-                    renderFacultyCards(data.faculty);
-                    initFacultySwiper();
+                .then(jsonData => {
+                    // Check for success flag from Laravel response
+                    if (jsonData.success && Array.isArray(jsonData.data)) {
+                        renderFacultyCards(jsonData.data);
+                        initFacultySwiper();
+                    } else {
+                        console.error('Invalid data format received:', jsonData);
+                    }
                 })
                 .catch(error => {
                     console.error('Error loading faculty:', error);
-                    // Show error message
                     const wrapper = document.getElementById('faculty-wrapper');
                     if (wrapper) {
                         wrapper.innerHTML = `
                             <div class="swiper-slide">
                                 <div class="faculty-card" style="display: flex; align-items: center; justify-content: center; min-height: 200px;">
-                                    <p style="color: #800000;">Unable to load faculty. Please refresh.</p>
+                                    <p style="color: #800000;">Unable to load faculty at this time.</p>
                                 </div>
                             </div>
                         `;

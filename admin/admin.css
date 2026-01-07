@@ -365,6 +365,7 @@ body {
     flex: 1;
     overflow-y: auto;
     background: var(--gray-50);
+    position:  relative;
 }
 
 /* ===== BUTTONS ===== */
@@ -450,7 +451,7 @@ body {
 
 /* ===== LOADING OVERLAY ===== */
 .loading-overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -460,10 +461,26 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 9998;
+    z-index: 50;
     backdrop-filter: blur(2px);
+    border-radius: var(--radius-lg);
 }
 
+/* In-Content Loader Styles */
+.data-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    width: 100%;
+    grid-column: 1 / -1; /* Ensures it spans full width in grids */
+    color: var(--gray-500);
+}
+
+.data-loading .loader {
+    margin-bottom: 1rem; /* Space between spinner and text */
+}
 .loader {
     width: 40px;
     height: 40px;

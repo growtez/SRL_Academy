@@ -59,16 +59,22 @@ async function loadSchoolProjects() {
     const tableBody = document.getElementById('schoolProjectsTableBody');
     const emptyState = document.getElementById('schoolProjectsEmptyState');
 
-    if (!tableBody || !emptyState) {
-        console.warn('School projects elements not found');
-        return;
-    }
-
     isSchoolProjectsLoading = true;
 
-    try {
-        if (typeof showLoading === 'function') showLoading();
+    // 1. Inject loader
+    if (tableBody) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="4" style="text-align: center; padding: 3rem;">
+                    <div class="loader" style="margin: 0 auto 1rem;"></div>
+                    <p style="color: #6b7280;">Loading projects...</p>
+                </td>
+            </tr>
+        `;
+        if (emptyState) emptyState.classList.add('hidden');
+    }
 
+    try {
         const response = await apiCall('/school-projects');
 
         if (Array.isArray(response)) {
@@ -89,7 +95,6 @@ async function loadSchoolProjects() {
         }
     } finally {
         isSchoolProjectsLoading = false;
-        if (typeof hideLoading === 'function') hideLoading();
     }
 }
 

@@ -20,20 +20,34 @@ function initializeStudyCentre() {
         searchInput.addEventListener('input', filterStudyCentres);
     }
 
-    // Shared handler function for both Desktop and Mobile
+    // UPDATED: Shared handler function for both Desktop and Mobile
     const handleApplicationAction = function (event) {
+        // 1. Check if an ACTION BUTTON (PDF/Delete) was clicked first
         const actionButton = event.target.closest('[data-action]');
-        if (!actionButton) return;
-
-        const id = parseInt(actionButton.getAttribute('data-id'), 10);
-        if (!id) return;
-
-        const action = actionButton.getAttribute('data-action');
         
-        if (action === 'pdf') {
-            handleDownloadStudyCentrePdf(id);
-        } else if (action === 'delete') {
-            openStudyCentreDeleteModal(id);
+        if (actionButton) {
+            const id = parseInt(actionButton.getAttribute('data-id'), 10);
+            const action = actionButton.getAttribute('data-action');
+            
+            // Stop the click from bubbling up to the row
+            event.stopPropagation();
+
+            if (action === 'pdf') {
+                handleDownloadStudyCentrePdf(id);
+            } else if (action === 'delete') {
+                openStudyCentreDeleteModal(id);
+            }
+            return;
+        }
+
+        // 2. If NOT a button, check if the ROW or CARD was clicked
+        const rowOrCard = event.target.closest('tr, .application-card');
+        if (rowOrCard) {
+            const id = parseInt(rowOrCard.getAttribute('data-id'), 10);
+            if (id) {
+                // Open the View Details Modal
+                openStudyCentreView(id);
+            }
         }
     };
 
@@ -61,7 +75,6 @@ function initializeStudyCentre() {
 
     loadStudyCentres();
 }
-
 async function loadStudyCentres() {
     if (isStudyCentreLoading) return;
 
@@ -113,14 +126,13 @@ function renderStudyCentreList(filteredData) {
     const tableBody = document.getElementById('studyCentresTableBody');
     const cardContainer = document.getElementById('studyCentresCardContainer');
     const emptyState = document.getElementById('studyCentresEmptyState');
-    const countBadge = document.getElementById('totalApplicationsCount'); // Select the new badge
+    const countBadge = document.getElementById('totalApplicationsCount');
 
     const data = filteredData || studyCentreData;
 
     // UPDATE THE TOTAL COUNT
     if (countBadge) {
         countBadge.textContent = data.length;
-        // Optional: Hide badge if 0
         countBadge.style.display = data.length > 0 ? 'inline-flex' : 'none';
     }
 
@@ -136,22 +148,24 @@ function renderStudyCentreList(filteredData) {
     /* =====================
        DESKTOP TABLE ROWS
     ====================== */
-    // Note: Added 'index' parameter to map function
     tableBody.innerHTML = data.map((application, index) => `
-        <tr>
-            <td>${index + 1}</td> <td>${escapeHtml(application.centre_name || '-')}</td>
+        <tr data-id="${application.id}" style="cursor: pointer;">
+            <td>${index + 1}</td>
+            <td>${escapeHtml(application.centre_name || '-')}</td>
             <td>${escapeHtml(application.principal_name || '-')}</td>
             <td>${formatDate(application.declaration_date)}</td>
             <td>
                 <div class="projects-actions">
                     <button class="btn btn-primary btn-sm"
                         data-action="pdf"
-                        data-id="${application.id}">
-                        PDF
+                        data-id="${application.id}"
+                        title="Download PDF">
+                        <span class="material-symbols-outlined">picture_as_pdf</span>
                     </button>
                     <button class="btn btn-danger btn-sm"
                         data-action="delete"
-                        data-id="${application.id}">
+                        data-id="${application.id}"
+                        title="Delete">
                         <span class="material-symbols-outlined">delete</span>
                     </button>
                 </div>
@@ -163,7 +177,7 @@ function renderStudyCentreList(filteredData) {
        MOBILE / TABLET CARDS
     ====================== */
     cardContainer.innerHTML = data.map((application, index) => `
-        <div class="application-card">
+        <div class="application-card" data-id="${application.id}" style="cursor: pointer;">
             <div class="row">
                 <span class="label">Sl. No.</span>
                 <span class="value">#${index + 1}</span>
@@ -199,7 +213,6 @@ function renderStudyCentreList(filteredData) {
         </div>
     `).join('');
 }
-
 function filterStudyCentres() {
     const input = document.getElementById('searchStudyCentres');
     if (!input) return;

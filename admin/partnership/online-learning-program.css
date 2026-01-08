@@ -116,24 +116,43 @@
 .desktop-table tbody tr:hover {
     background: var(--gray-50);
 }
+.header-title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.count-badge {
+    background-color: var(--primary, #4338ca);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 9999px;
+    min-width: 24px;
+    text-align: center;
+}
 
 /* Specific Column Widths for 5 columns */
 .desktop-table th:nth-child(1),
-.desktop-table td:nth-child(1) { width: 25%; } /* Applicant Name */
+.desktop-table td:nth-child(1) { width: 7%; }
 
 .desktop-table th:nth-child(2),
-.desktop-table td:nth-child(2) { width: 20%; } /* Center Area */
+.desktop-table td:nth-child(2) { width: 25%; } /* Applicant Name */
 
 .desktop-table th:nth-child(3),
-.desktop-table td:nth-child(3) { width: 10%; } /* Number of Schools */
+.desktop-table td:nth-child(3) { width: 20%; } /* Center Area */
 
 .desktop-table th:nth-child(4),
-.desktop-table td:nth-child(4) { width: 13%; } /* Date */
+.desktop-table td:nth-child(4) { width: 10%; } /* Number of Schools */
 
 .desktop-table th:nth-child(5),
-.desktop-table td:nth-child(5) { width: 17%; overflow: visible; } /* Actions */
+.desktop-table td:nth-child(5) { width: 13%; } /* Date */
 
-.actions-column { width: 230px; }
+.desktop-table th:nth-child(6),
+.desktop-table td:nth-child(6) { width: 17%; overflow: visible; } /* Actions */
+
+.actions-column { width: 230px; align-items: center;}
 
 /* Actions cell */
 .projects-actions {

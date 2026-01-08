@@ -39,7 +39,7 @@ function initializeOnlineLearning() {
         if (!id) return;
 
         const action = actionButton.getAttribute('data-action');
-        
+
         if (action === 'pdf') {
             handleDownloadOnlineLearningPdf(id);
         } else if (action === 'delete') {
@@ -123,8 +123,15 @@ function renderOnlineLearningList(filteredData) {
     const tableBody = document.getElementById('onlineLearningTableBody');
     const cardContainer = document.getElementById('onlineLearningCardContainer');
     const emptyState = document.getElementById('onlineLearningEmptyState');
+    const countBadge = document.getElementById('totalApplicationsCount');
 
     const data = filteredData || onlineLearningData;
+
+    // Update total count badge
+    if (countBadge) {
+        countBadge.textContent = data.length;
+        countBadge.style.display = data.length > 0 ? 'inline-flex' : 'none';
+    }
 
     if (!data || data.length === 0) {
         tableBody.innerHTML = '';
@@ -138,8 +145,9 @@ function renderOnlineLearningList(filteredData) {
     /* =====================
        DESKTOP TABLE ROWS
     ====================== */
-    tableBody.innerHTML = data.map(application => `
+    tableBody.innerHTML = data.map((application, index) => `
         <tr>
+            <td>${index + 1}</td>
             <td>${escapeHtml(application.applicant_name || '-')}</td>
             <td>${escapeHtml(application.center_area || '-')}</td>
             <td>${application.number_of_schools || '-'}</td>
@@ -165,8 +173,12 @@ function renderOnlineLearningList(filteredData) {
     /* =====================
        MOBILE / TABLET CARDS
     ====================== */
-    cardContainer.innerHTML = data.map(application => `
+    cardContainer.innerHTML = data.map((application, index) => `
         <div class="application-card">
+        <div class="row">
+                <span class="label">#</span>
+                <span class="value">#${index + 1}</span>
+            </div>
             <div class="row">
                 <span class="label">Applicant</span>
                 <span class="value">${escapeHtml(application.applicant_name || '-')}</span>

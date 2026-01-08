@@ -8,7 +8,11 @@
 
     <div class="projects-list-container">
         <div class="list-header">
-            <h2>Applications</h2>
+            <div class="header-title-group">
+                <h2>Applications</h2>
+                <span id="totalApplicationsCount" class="count-badge">0</span>
+            </div>
+            
             <div class="list-actions">
                 <input type="text" id="searchOnlineLearning" class="search-input"
                     placeholder="Search by applicant or center...">
@@ -20,6 +24,7 @@
             <table class="projects-table desktop-table">
                 <thead>
                     <tr>
+                        <th class="sl-no-column">#</th>
                         <th>Applicant Name</th>
                         <th>Center Area</th>
                         <th>Schools</th>

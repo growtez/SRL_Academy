@@ -113,8 +113,16 @@ function renderStudyCentreList(filteredData) {
     const tableBody = document.getElementById('studyCentresTableBody');
     const cardContainer = document.getElementById('studyCentresCardContainer');
     const emptyState = document.getElementById('studyCentresEmptyState');
+    const countBadge = document.getElementById('totalApplicationsCount'); // Select the new badge
 
     const data = filteredData || studyCentreData;
+
+    // UPDATE THE TOTAL COUNT
+    if (countBadge) {
+        countBadge.textContent = data.length;
+        // Optional: Hide badge if 0
+        countBadge.style.display = data.length > 0 ? 'inline-flex' : 'none';
+    }
 
     if (!data || data.length === 0) {
         tableBody.innerHTML = '';
@@ -128,9 +136,10 @@ function renderStudyCentreList(filteredData) {
     /* =====================
        DESKTOP TABLE ROWS
     ====================== */
-    tableBody.innerHTML = data.map(application => `
+    // Note: Added 'index' parameter to map function
+    tableBody.innerHTML = data.map((application, index) => `
         <tr>
-            <td>${escapeHtml(application.centre_name || '-')}</td>
+            <td>${index + 1}</td> <td>${escapeHtml(application.centre_name || '-')}</td>
             <td>${escapeHtml(application.principal_name || '-')}</td>
             <td>${formatDate(application.declaration_date)}</td>
             <td>
@@ -138,7 +147,6 @@ function renderStudyCentreList(filteredData) {
                     <button class="btn btn-primary btn-sm"
                         data-action="pdf"
                         data-id="${application.id}">
-                        <span class="material-symbols-outlined">picture_as_pdf</span>
                         PDF
                     </button>
                     <button class="btn btn-danger btn-sm"
@@ -154,8 +162,12 @@ function renderStudyCentreList(filteredData) {
     /* =====================
        MOBILE / TABLET CARDS
     ====================== */
-    cardContainer.innerHTML = data.map(application => `
+    cardContainer.innerHTML = data.map((application, index) => `
         <div class="application-card">
+            <div class="row">
+                <span class="label">Sl. No.</span>
+                <span class="value">#${index + 1}</span>
+            </div>
             <div class="row">
                 <span class="label">Centre</span>
                 <span class="value">${escapeHtml(application.centre_name || '-')}</span>

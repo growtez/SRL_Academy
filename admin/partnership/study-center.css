@@ -128,7 +128,7 @@
 .desktop-table td:nth-child(3) { width: 15%; } /* Date */
 
 .desktop-table th:nth-child(4),
-.desktop-table td:nth-child(4) { width: 30%; overflow: visible; } /* Actions */
+.desktop-table td:nth-child(4) { width: 17%; overflow: visible; } /* Actions */
 
 .actions-column { width: 230px; }
 
@@ -631,3 +631,44 @@
         max-width: 90%;
     }
 }
+/* Header Title Group (aligns h2 and badge) */
+.header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Total Count Badge Style */
+.count-badge {
+    background-color: var(--primary, #4338ca); /* Use your primary color var */
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 9999px; /* Pill shape */
+    min-width: 24px;
+    text-align: center;
+}
+
+/* UPDATED TABLE COLUMN WIDTHS */
+/* Adjust the existing th/td widths to fit the new column */
+
+/* 1. Sl No Column */
+.desktop-table th:nth-child(1),
+.desktop-table td:nth-child(1) { width: 8%; text-align: center; color: var(--gray-500); }
+
+/* 2. Centre Name */
+.desktop-table th:nth-child(2),
+.desktop-table td:nth-child(2) { width: 28%; }
+
+/* 3. Principal Name */
+.desktop-table th:nth-child(3),
+.desktop-table td:nth-child(3) { width: 22%; }
+
+/* 4. Date */
+.desktop-table th:nth-child(4),
+.desktop-table td:nth-child(4) { width: 15%; }
+
+/* 5. Actions */
+.desktop-table th:nth-child(5),
+.desktop-table td:nth-child(5) { width: 15%; overflow: visible; }

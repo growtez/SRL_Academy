@@ -23,20 +23,31 @@ function initializeSchoolIntegration() {
     // 2. Define a shared handler function for both Desktop and Mobile
     const handleProjectAction = function (event) {
         const actionButton = event.target.closest('[data-action]');
-        if (!actionButton) return;
 
-        const id = parseInt(actionButton.getAttribute('data-id'), 10);
-        if (!id) return;
+        if (actionButton) {
+            const id = parseInt(actionButton.getAttribute('data-id'), 10);
+            const action = actionButton.getAttribute('data-action');
+            
+            // Stop the click from bubbling up to the row
+            event.stopPropagation();
 
-        const action = actionButton.getAttribute('data-action');
-        
-        if (action === 'pdf') {
-            // Note: Currently downloads directly. Change this to 
-            // openSchoolProjectView(id); 
-            // if you want to see the Preview Modal first.
-            handleDownloadPdf(id); 
-        } else if (action === 'delete') {
-            openSchoolProjectDeleteModal(id);
+            if (action === 'pdf') {
+                handleDownloadStudyCentrePdf(id);
+            } else if (action === 'delete') {
+                openStudyCentreDeleteModal(id);
+            }
+            return;
+        }
+
+        // 2. If NOT a button, check if the ROW or CARD was clicked
+        const rowOrCard = event.target.closest('tr, .application-card');
+        if (rowOrCard) {
+            const id = parseInt(rowOrCard.getAttribute('data-id'), 10);
+            if (id) {
+                // Open the View Details Modal
+                // openStudyCentreView(id);
+                handleDownloadPdf(id);
+            }
         }
     };
 
@@ -137,8 +148,8 @@ function renderSchoolProjectsList(filteredData) {
        DESKTOP TABLE ROWS
     ====================== */
     tableBody.innerHTML = data.map((project, index) => `
-        <tr>
-            <td>${index+1}</td>
+        <tr data-id="${project.id}" style="cursor: pointer;">
+            <td>${index + 1}</td>
             <td>${escapeHtml(project.school_name || '-')}</td>
             <td>${escapeHtml(project.principal_name || '-')}</td>
             <td>${formatDate(project.declaration_date)}</td>
@@ -164,7 +175,7 @@ function renderSchoolProjectsList(filteredData) {
        MOBILE / TABLET CARDS
     ====================== */
     cardContainer.innerHTML = data.map((project, index) => `
-        <div class="application-card">
+        <div class="application-card" data-id="${project.id}" style="cursor: pointer;">
             <div class="row">
                 <span class="label">#</span>
                 <span class="value">#${index + 1}</span>
@@ -295,10 +306,10 @@ function openSchoolProjectView(id) {
 function setPdfCheck(elementId, value) {
     const el = document.getElementById(elementId);
     if (!el) return;
-    
+
     // Check if truthy (1, '1', true)
     const isChecked = value == 1 || value === true || value === '1';
-    
+
     el.textContent = isChecked ? '☑' : '☐';
     el.style.color = isChecked ? 'green' : '#999';
 }
@@ -307,7 +318,7 @@ function setPdfCheck(elementId, value) {
 function formatBooleanBadge(elementId, value) {
     const el = document.getElementById(elementId);
     if (!el) return;
-    
+
     const isYes = value == 1 || value === true || value === '1';
     el.textContent = isYes ? 'Yes' : 'No';
     el.style.color = isYes ? '#15803d' : '#9ca3af'; // Green or Gray

@@ -33,18 +33,32 @@ function initializeOnlineLearning() {
     // Shared handler function for both Desktop and Mobile
     const handleApplicationAction = function (event) {
         const actionButton = event.target.closest('[data-action]');
-        if (!actionButton) return;
 
-        const id = parseInt(actionButton.getAttribute('data-id'), 10);
-        if (!id) return;
+        if (actionButton) {
+            const id = parseInt(actionButton.getAttribute('data-id'), 10);
+            const action = actionButton.getAttribute('data-action');
 
-        const action = actionButton.getAttribute('data-action');
+            event.stopPropagation();
 
-        if (action === 'pdf') {
-            handleDownloadOnlineLearningPdf(id);
-        } else if (action === 'delete') {
-            openOnlineLearningDeleteModal(id);
+
+            if (action === 'pdf') {
+                handleDownloadOnlineLearningPdf(id);
+            } else if (action === 'delete') {
+                openOnlineLearningDeleteModal(id);
+            }
+            return;
         }
+
+        const rowOrCard = event.target.closest('tr, .application-card');
+
+        if (rowOrCard) {
+            const id = parseInt(rowOrCard.getAttribute('data-id'), 10);
+            if(id) {
+                // openOnlineLearningView(id);
+                handleDownloadOnlineLearningPdf(id);
+            }
+        }
+
     };
 
     // Attach listener to Desktop Table
@@ -146,7 +160,7 @@ function renderOnlineLearningList(filteredData) {
        DESKTOP TABLE ROWS
     ====================== */
     tableBody.innerHTML = data.map((application, index) => `
-        <tr>
+        <tr data-id="${application.id}" style="cursor: pointer;">
             <td>${index + 1}</td>
             <td>${escapeHtml(application.applicant_name || '-')}</td>
             <td>${escapeHtml(application.center_area || '-')}</td>
@@ -157,8 +171,8 @@ function renderOnlineLearningList(filteredData) {
                     <button class="btn btn-primary btn-sm"
                         data-action="pdf"
                         data-id="${application.id}">
+                        <span class="material-symbols-outlined">picture_as_pdf</span>
                         
-                        PDF
                     </button>
                     <button class="btn btn-danger btn-sm"
                         data-action="delete"
@@ -174,7 +188,7 @@ function renderOnlineLearningList(filteredData) {
        MOBILE / TABLET CARDS
     ====================== */
     cardContainer.innerHTML = data.map((application, index) => `
-        <div class="application-card">
+        <div class="application-card" data-id="${application.id}" style="cursor: pointer;">
         <div class="row">
                 <span class="label">#</span>
                 <span class="value">#${index + 1}</span>

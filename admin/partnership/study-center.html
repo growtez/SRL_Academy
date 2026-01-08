@@ -19,21 +19,23 @@
             </div>
         </div>
 
-        <div class="table-wrapper">
-            <table class="projects-table">
-                <thead>
-                    <tr>
-                        <th>Centre Name</th>
-                        <th>Principal Name</th>
-                        <th>Date</th>
-                        <th class="actions-column">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="studyCentresTableBody">
-                    <!-- Rows will be injected via JavaScript -->
-                </tbody>
-            </table>
-        </div>
+        <div class="table-wrapper responsive-applications">
+    <!-- DESKTOP / LARGE TABLE -->
+    <table class="projects-table desktop-table">
+        <thead>
+            <tr>
+                <th>Centre Name</th>
+                <th>Principal Name</th>
+                <th>Date</th>
+                <th class="actions-column">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="studyCentresTableBody"></tbody>
+    </table>
+
+    <!-- MOBILE / TABLET CARDS -->
+    <div id="studyCentresCardContainer" class="applications-cards"></div>
+</div>
 
         <div id="studyCentresEmptyState" class="empty-state hidden">
             <span class="material-symbols-outlined">school</span>

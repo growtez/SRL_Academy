@@ -6,29 +6,38 @@
         </div>
     </div>
 
-    <div class="applications-list-container">
+    <div class="projects-list-container">
         <div class="list-header">
-            <h2>Applications</h2>
+            <div class="header-title-group">
+                <h2>Applications</h2>
+                <span id="totalCareerCount" class="count-badge">0</span>
+            </div>
             <div class="list-actions">
                 <input type="text" id="searchCareerApplications" class="search-input"
                     placeholder="Search by name, email or subjects...">
             </div>
         </div>
 
-        <div class="table-wrapper">
-            <table class="applications-table">
-                <thead>
-                    <tr>
-                        <th>Applicant Name</th>
-                        <th>Subjects & Classes</th>
-                        <th>Experience</th>
-                        <th>Applied Date</th>
-                        <th class="actions-column">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="careerTableBody">
-                    </tbody>
-            </table>
+        <div class="responsive-applications">
+            <!-- DESKTOP / LARGE TABLE -->
+            <div class="table-wrapper">
+                <table class="applications-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Applicant Name</th>
+                            <th>Subjects & Classes</th>
+                            <th>Experience</th>
+                            <th>Applied Date</th>
+                            <th class="actions-column">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="careerTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- MOBILE / TABLET CARDS -->
+            <div id="careerCardContainer" class="applications-cards"></div>
         </div>
 
         <div id="careerEmptyState" class="empty-state hidden">
@@ -39,147 +48,177 @@
     </div>
 </div>
 
+<!-- View Application Modal -->
 <div id="careerViewModal" class="modal hidden">
     <div class="modal-overlay"></div>
     <div class="modal-content modal-lg">
-        <button type="button" class="modal-close-button" data-close-modal="careerViewModal">
-            <span class="material-symbols-outlined">close</span>
-        </button>
+        <div class="modal-header">
+            <h2>Educator Application Details</h2>
+            <button type="button" class="modal-close" data-close-modal="careerViewModal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
 
-        <div class="modal-body form-style-view">
-            <div class="form-header-banner">
-                <div class="applicant-summary">
-                    <div class="career-avatar-placeholder">
-                        <span id="detailPhotoPlaceholder" class="material-symbols-outlined">person</span>
-                        <img id="detailPhoto" src="" alt="Applicant Photo" class="hidden applicant-photo">
-                    </div>
-                    <div>
-                        <h2 id="detailFullNameHeader"></h2>
-                        <p id="detailSubjectsHeader"></p>
-                    </div>
+        <div class="modal-body">
+            <!-- Applicant Header -->
+            <div class="school-image-header">
+                <div class="career-avatar-placeholder">
+                    <span id="detailPhotoPlaceholder" class="material-symbols-outlined">person</span>
+                    <img id="detailPhoto" src="" alt="Applicant Photo" class="hidden applicant-photo">
                 </div>
-                <div class="application-meta">
-                    <span>Applied: <strong id="detailAppliedDate"></strong></span>
+                <div class="school-header-info">
+                    <h2 id="detailFullNameHeader" class="school-name"></h2>
+                    <p id="detailSubjectsHeader" class="school-address"></p>
                 </div>
             </div>
 
-            <div class="form-content-wrapper">
-                <fieldset>
-                    <legend><span class="material-symbols-outlined">person</span> Personal Information</legend>
-                    <div class="two-column">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <div id="detailFullName" class="readonly-value"></div>
+            <!-- Application Info Cards -->
+            <div class="info-cards-grid">
+                <!-- Personal Information Card -->
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="material-symbols-outlined">person</span>
+                        <h3>Personal Information</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="info-item">
+                            <span class="info-label">Full Name</span>
+                            <span id="detailFullName" class="info-value"></span>
                         </div>
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <div id="detailEmail" class="readonly-value"></div>
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <span id="detailEmail" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Phone</span>
+                            <span id="detailPhone" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Date of Birth</span>
+                            <span id="detailDob" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Gender</span>
+                            <span id="detailGender" class="info-value"></span>
                         </div>
                     </div>
-                    <div class="two-column">
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <div id="detailPhone" class="readonly-value"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <div id="detailDob" class="readonly-value"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Gender</label>
-                        <div id="detailGender" class="readonly-value"></div>
-                    </div>
-                </fieldset>
+                </div>
 
-                <fieldset>
-                    <legend><span class="material-symbols-outlined">work</span> Job Information</legend>
-                    <div class="two-column">
-                        <div class="form-group">
-                            <label>Total Experience</label>
-                            <div id="detailExperience" class="readonly-value"></div>
+                <!-- Job Information Card -->
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="material-symbols-outlined">work</span>
+                        <h3>Job Information</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="info-item">
+                            <span class="info-label">Experience</span>
+                            <span id="detailExperience" class="info-value"></span>
                         </div>
-                        <div class="form-group">
-                            <label>Current Salary (INR)</label>
-                            <div id="detailSalary" class="readonly-value"></div>
+                        <div class="info-item">
+                            <span class="info-label">Current Salary</span>
+                            <span id="detailSalary" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Notice Period</span>
+                            <span id="detailNoticePeriod" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Source</span>
+                            <span id="detailSource" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Applied Date</span>
+                            <span id="detailAppliedDate" class="info-value"></span>
                         </div>
                     </div>
-                    <div class="two-column">
-                        <div class="form-group">
-                            <label>Notice Period</label>
-                            <div id="detailNoticePeriod" class="readonly-value"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Source</label>
-                            <div id="detailSource" class="readonly-value"></div>
-                        </div>
-                    </div>
-                </fieldset>
+                </div>
+            </div>
 
-                <fieldset>
-                    <legend><span class="material-symbols-outlined">location_on</span> Location Information</legend>
-                    <div class="two-column">
-                        <div class="form-group">
-                            <label>Home State</label>
-                            <div id="detailHomeState" class="readonly-value"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Home District</label>
-                            <div id="detailHomeDistrict" class="readonly-value"></div>
-                        </div>
+            <!-- Location Information Card -->
+            <div class="info-card full-width">
+                <div class="info-card-header">
+                    <span class="material-symbols-outlined">location_on</span>
+                    <h3>Location Information</h3>
+                </div>
+                <div class="info-card-body">
+                    <div class="info-item">
+                        <span class="info-label">Home State</span>
+                        <span id="detailHomeState" class="info-value"></span>
                     </div>
-                    <div class="form-group">
-                        <label>Current Location</label>
-                        <div id="detailCurrentLocation" class="readonly-value"></div>
+                    <div class="info-item">
+                        <span class="info-label">Home District</span>
+                        <span id="detailHomeDistrict" class="info-value"></span>
                     </div>
-                </fieldset>
+                    <div class="info-item">
+                        <span class="info-label">Current Location</span>
+                        <span id="detailCurrentLocation" class="info-value"></span>
+                    </div>
+                </div>
+            </div>
 
-                <fieldset>
-                    <legend><span class="material-symbols-outlined">school</span> Education Details</legend>
+            <!-- Teaching Details Card -->
+            <div class="info-card full-width">
+                <div class="info-card-header">
+                    <span class="material-symbols-outlined">school</span>
+                    <h3>Teaching Details</h3>
+                </div>
+                <div class="info-card-body">
+                    <div class="info-item">
+                        <span class="info-label">Subjects</span>
+                        <span id="detailSubjects" class="info-value text-content"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Classes</span>
+                        <span id="detailClasses" class="info-value text-content"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">About Yourself</span>
+                        <span id="detailAbout" class="info-value text-content"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Details Card -->
+            <div class="info-card full-width">
+                <div class="info-card-header">
+                    <span class="material-symbols-outlined">school</span>
+                    <h3>Education Details</h3>
+                </div>
+                <div class="info-card-body">
                     <div id="detailEducationList" class="dynamic-list-container"></div>
-                </fieldset>
+                </div>
+            </div>
 
-                <fieldset>
-                    <legend><span class="material-symbols-outlined">apartment</span> Work Experience</legend>
+            <!-- Work Experience Card -->
+            <div class="info-card full-width">
+                <div class="info-card-header">
+                    <span class="material-symbols-outlined">apartment</span>
+                    <h3>Work Experience</h3>
+                </div>
+                <div class="info-card-body">
                     <div id="detailWorkList" class="dynamic-list-container"></div>
-                </fieldset>
-
-                <fieldset>
-                    <legend><span class="material-symbols-outlined">info</span> Additional Information</legend>
-                    <div class="form-group">
-                        <label>Subjects You Can Teach</label>
-                        <div id="detailSubjects" class="readonly-value highlight-text"></div>
-                    </div>
-                    <div class="form-group">
-                        <label>Classes You Can Handle</label>
-                        <div id="detailClasses" class="readonly-value highlight-text"></div>
-                    </div>
-                    <div class="form-group">
-                        <label>Brief About Yourself</label>
-                        <div id="detailAbout" class="readonly-value text-area-view"></div>
-                    </div>
-                </fieldset>
+                </div>
             </div>
         </div>
 
         <div class="modal-footer">
-    <button type="button" class="btn btn-outline" data-close-modal="careerViewModal">
-        Close
-    </button>
-
-    <button type="button" class="btn btn-secondary" id="downloadApplicationButton">
-        <span class="material-symbols-outlined">description</span>
-        Download Application
-    </button>
-
-    <button type="button" class="btn btn-primary" id="downloadResumeButton">
-        <span class="material-symbols-outlined">download</span>
-        Download Resume
-    </button>
-</div>
+            <button type="button" class="btn btn-outline" data-close-modal="careerViewModal">
+                Close
+            </button>
+            <button type="button" class="btn btn-secondary" id="downloadApplicationButton">
+                <span class="material-symbols-outlined">description</span>
+                Download Application
+            </button>
+            <button type="button" class="btn btn-primary" id="downloadResumeButton">
+                <span class="material-symbols-outlined">download</span>
+                Download Resume
+            </button>
+        </div>
     </div>
 </div>
 
+<!-- Delete Confirmation Modal -->
 <div id="careerDeleteModal" class="modal hidden">
     <div class="modal-overlay"></div>
     <div class="modal-content modal-sm">

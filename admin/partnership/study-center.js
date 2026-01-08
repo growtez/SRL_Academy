@@ -7,6 +7,7 @@ let studyCentreIdToDelete = null;
 function initializeStudyCentre() {
     const searchInput = document.getElementById('searchStudyCentres');
     const tableBody = document.getElementById('studyCentresTableBody');
+    const cardContainer = document.getElementById('studyCentresCardContainer');
     const deleteButton = document.getElementById('confirmDeleteStudyCentreButton');
     const viewPdfButton = document.getElementById('viewStudyCentrePdfButton');
 
@@ -19,7 +20,8 @@ function initializeStudyCentre() {
         searchInput.addEventListener('input', filterStudyCentres);
     }
 
-    tableBody.addEventListener('click', function (event) {
+    // Shared handler function for both Desktop and Mobile
+    const handleApplicationAction = function (event) {
         const actionButton = event.target.closest('[data-action]');
         if (!actionButton) return;
 
@@ -28,13 +30,20 @@ function initializeStudyCentre() {
 
         const action = actionButton.getAttribute('data-action');
         
-        // Simplified Actions
         if (action === 'pdf') {
-            handleDownloadStudyCentrePdf(id); // Opens in new tab
+            handleDownloadStudyCentrePdf(id);
         } else if (action === 'delete') {
             openStudyCentreDeleteModal(id);
         }
-    });
+    };
+
+    // Attach listener to Desktop Table
+    tableBody.addEventListener('click', handleApplicationAction);
+
+    // Attach listener to Mobile Card Container
+    if (cardContainer) {
+        cardContainer.addEventListener('click', handleApplicationAction);
+    }
 
     attachStudyCentreModalCloseHandlers();
 
@@ -57,11 +66,12 @@ async function loadStudyCentres() {
     if (isStudyCentreLoading) return;
 
     const tableBody = document.getElementById('studyCentresTableBody');
+    const cardContainer = document.getElementById('studyCentresCardContainer');
     const emptyState = document.getElementById('studyCentresEmptyState');
 
     isStudyCentreLoading = true;
 
-    // 1. Inject loader
+    // Inject loader
     if (tableBody) {
         tableBody.innerHTML = `
             <tr>
@@ -71,6 +81,7 @@ async function loadStudyCentres() {
                 </td>
             </tr>
         `;
+        if (cardContainer) cardContainer.innerHTML = '';
         if (emptyState) emptyState.classList.add('hidden');
     }
 
@@ -97,55 +108,96 @@ async function loadStudyCentres() {
         isStudyCentreLoading = false;
     }
 }
+
 function renderStudyCentreList(filteredData) {
     const tableBody = document.getElementById('studyCentresTableBody');
+    const cardContainer = document.getElementById('studyCentresCardContainer');
     const emptyState = document.getElementById('studyCentresEmptyState');
-
-    if (!tableBody || !emptyState) return;
+    const countBadge = document.getElementById('totalApplicationsCount'); // Select the new badge
 
     const data = filteredData || studyCentreData;
 
+    // UPDATE THE TOTAL COUNT
+    if (countBadge) {
+        countBadge.textContent = data.length;
+        // Optional: Hide badge if 0
+        countBadge.style.display = data.length > 0 ? 'inline-flex' : 'none';
+    }
+
     if (!data || data.length === 0) {
         tableBody.innerHTML = '';
+        cardContainer.innerHTML = '';
         emptyState.classList.remove('hidden');
         return;
     }
 
     emptyState.classList.add('hidden');
 
-    const rowsHtml = data
-        .map(function (application) {
-            const id = application.id;
-            const centreName = escapeHtml(application.centre_name || '');
-            const principalName = escapeHtml(application.principal_name || '');
-            const date = formatDate(application.declaration_date);
+    /* =====================
+       DESKTOP TABLE ROWS
+    ====================== */
+    // Note: Added 'index' parameter to map function
+    tableBody.innerHTML = data.map((application, index) => `
+        <tr>
+            <td>${index + 1}</td> <td>${escapeHtml(application.centre_name || '-')}</td>
+            <td>${escapeHtml(application.principal_name || '-')}</td>
+            <td>${formatDate(application.declaration_date)}</td>
+            <td>
+                <div class="projects-actions">
+                    <button class="btn btn-primary btn-sm"
+                        data-action="pdf"
+                        data-id="${application.id}">
+                        PDF
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                        data-action="delete"
+                        data-id="${application.id}">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
 
-            return (
-                '<tr data-id="' + id + '">' +
-                '<td>' + centreName + '</td>' +
-                '<td>' + principalName + '</td>' +
-                '<td>' + date + '</td>' +
-                '<td>' +
-                    '<div class="projects-actions">' +
-                        // ACTION 1: View PDF (Primary Button)
-                        '<button type="button" class="btn btn-primary btn-sm" data-action="pdf" data-id="' + id + '">' +
-                            '<span class="material-symbols-outlined">picture_as_pdf</span>' +
-                            'View PDF' +
-                        '</button>' +
-                        
-                        // ACTION 2: Delete (Danger Button)
-                        '<button type="button" class="btn btn-danger btn-sm" data-action="delete" data-id="' + id + '">' +
-                            '<span class="material-symbols-outlined">delete</span>' +
-                            'Delete' +
-                        '</button>' +
-                    '</div>' +
-                '</td>' +
-                '</tr>'
-            );
-        })
-        .join('');
+    /* =====================
+       MOBILE / TABLET CARDS
+    ====================== */
+    cardContainer.innerHTML = data.map((application, index) => `
+        <div class="application-card">
+            <div class="row">
+                <span class="label">Sl. No.</span>
+                <span class="value">#${index + 1}</span>
+            </div>
+            <div class="row">
+                <span class="label">Centre</span>
+                <span class="value">${escapeHtml(application.centre_name || '-')}</span>
+            </div>
+            <div class="row">
+                <span class="label">Principal</span>
+                <span class="value">${escapeHtml(application.principal_name || '-')}</span>
+            </div>
+            <div class="row">
+                <span class="label">Date</span>
+                <span class="value">${formatDate(application.declaration_date)}</span>
+            </div>
 
-    tableBody.innerHTML = rowsHtml;
+            <div class="card-actions">
+                <button class="btn btn-primary btn-sm"
+                    data-action="pdf"
+                    data-id="${application.id}">
+                    <span class="material-symbols-outlined">picture_as_pdf</span>
+                    PDF
+                </button>
+
+                <button class="btn btn-danger btn-sm"
+                    data-action="delete"
+                    data-id="${application.id}">
+                    <span class="material-symbols-outlined">delete</span>
+                    Delete
+                </button>
+            </div>
+        </div>
+    `).join('');
 }
 
 function filterStudyCentres() {

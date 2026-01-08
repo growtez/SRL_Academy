@@ -9,12 +9,14 @@ function initializeOnlineLearning() {
 
     const searchInput = document.getElementById('searchOnlineLearning');
     const tableBody = document.getElementById('onlineLearningTableBody');
+    const cardContainer = document.getElementById('onlineLearningCardContainer');
     const deleteButton = document.getElementById('confirmDeleteOnlineLearningButton');
     const viewPdfButton = document.getElementById('viewOnlineLearningPdfButton');
 
     console.log('Online Learning elements found:', {
         searchInput: !!searchInput,
         tableBody: !!tableBody,
+        cardContainer: !!cardContainer,
         deleteButton: !!deleteButton,
         viewPdfButton: !!viewPdfButton
     });
@@ -28,7 +30,8 @@ function initializeOnlineLearning() {
         searchInput.addEventListener('input', filterOnlineLearning);
     }
 
-    tableBody.addEventListener('click', function (event) {
+    // Shared handler function for both Desktop and Mobile
+    const handleApplicationAction = function (event) {
         const actionButton = event.target.closest('[data-action]');
         if (!actionButton) return;
 
@@ -36,14 +39,21 @@ function initializeOnlineLearning() {
         if (!id) return;
 
         const action = actionButton.getAttribute('data-action');
-        
-        // Simplified Actions
+
         if (action === 'pdf') {
-            handleDownloadOnlineLearningPdf(id); // Opens in new tab
+            handleDownloadOnlineLearningPdf(id);
         } else if (action === 'delete') {
             openOnlineLearningDeleteModal(id);
         }
-    });
+    };
+
+    // Attach listener to Desktop Table
+    tableBody.addEventListener('click', handleApplicationAction);
+
+    // Attach listener to Mobile Card Container
+    if (cardContainer) {
+        cardContainer.addEventListener('click', handleApplicationAction);
+    }
 
     attachOnlineLearningModalCloseHandlers();
 
@@ -66,11 +76,12 @@ async function loadOnlineLearning() {
     if (isOnlineLearningLoading) return;
 
     const tableBody = document.getElementById('onlineLearningTableBody');
+    const cardContainer = document.getElementById('onlineLearningCardContainer');
     const emptyState = document.getElementById('onlineLearningEmptyState');
 
     isOnlineLearningLoading = true;
 
-    // 1. Inject loader
+    // Inject loader
     if (tableBody) {
         tableBody.innerHTML = `
             <tr>
@@ -80,6 +91,7 @@ async function loadOnlineLearning() {
                 </td>
             </tr>
         `;
+        if (cardContainer) cardContainer.innerHTML = '';
         if (emptyState) emptyState.classList.add('hidden');
     }
 
@@ -109,54 +121,98 @@ async function loadOnlineLearning() {
 
 function renderOnlineLearningList(filteredData) {
     const tableBody = document.getElementById('onlineLearningTableBody');
+    const cardContainer = document.getElementById('onlineLearningCardContainer');
     const emptyState = document.getElementById('onlineLearningEmptyState');
-
-    if (!tableBody || !emptyState) return;
+    const countBadge = document.getElementById('totalApplicationsCount');
 
     const data = filteredData || onlineLearningData;
 
+    // Update total count badge
+    if (countBadge) {
+        countBadge.textContent = data.length;
+        countBadge.style.display = data.length > 0 ? 'inline-flex' : 'none';
+    }
+
     if (!data || data.length === 0) {
         tableBody.innerHTML = '';
+        cardContainer.innerHTML = '';
         emptyState.classList.remove('hidden');
         return;
     }
 
     emptyState.classList.add('hidden');
 
-    const rowsHtml = data
-        .map(function (application) {
-            const id = application.id;
-            const applicantName = escapeHtml(application.applicant_name || '');
-            const centerArea = escapeHtml(application.center_area || '');
-            const date = formatDate(application.agreement_date);
-
-            return (
-                '<tr data-id="' + id + '">' +
-                '<td>' + applicantName + '</td>' +
-                '<td>' + centerArea + '</td>' +
-                '<td>' + (application.number_of_schools || '') + '</td>' +
-                '<td>' + date + '</td>' +
-                '<td>' +
-                    '<div class="projects-actions">' +
-                        // ACTION 1: View PDF (Primary Button)
-                        '<button type="button" class="btn btn-primary btn-sm" data-action="pdf" data-id="' + id + '">' +
-                            '<span class="material-symbols-outlined">picture_as_pdf</span>' +
-                            'View PDF' +
-                        '</button>' +
+    /* =====================
+       DESKTOP TABLE ROWS
+    ====================== */
+    tableBody.innerHTML = data.map((application, index) => `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${escapeHtml(application.applicant_name || '-')}</td>
+            <td>${escapeHtml(application.center_area || '-')}</td>
+            <td>${application.number_of_schools || '-'}</td>
+            <td>${formatDate(application.agreement_date)}</td>
+            <td>
+                <div class="projects-actions">
+                    <button class="btn btn-primary btn-sm"
+                        data-action="pdf"
+                        data-id="${application.id}">
                         
-                        // ACTION 2: Delete (Danger Button)
-                        '<button type="button" class="btn btn-danger btn-sm" data-action="delete" data-id="' + id + '">' +
-                            '<span class="material-symbols-outlined">delete</span>' +
-                            'Delete' +
-                        '</button>' +
-                    '</div>' +
-                '</td>' +
-                '</tr>'
-            );
-        })
-        .join('');
+                        PDF
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                        data-action="delete"
+                        data-id="${application.id}">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
 
-    tableBody.innerHTML = rowsHtml;
+    /* =====================
+       MOBILE / TABLET CARDS
+    ====================== */
+    cardContainer.innerHTML = data.map((application, index) => `
+        <div class="application-card">
+        <div class="row">
+                <span class="label">#</span>
+                <span class="value">#${index + 1}</span>
+            </div>
+            <div class="row">
+                <span class="label">Applicant</span>
+                <span class="value">${escapeHtml(application.applicant_name || '-')}</span>
+            </div>
+            <div class="row">
+                <span class="label">Center Area</span>
+                <span class="value">${escapeHtml(application.center_area || '-')}</span>
+            </div>
+            <div class="row">
+                <span class="label">Schools</span>
+                <span class="value">${application.number_of_schools || '-'}</span>
+            </div>
+            <div class="row">
+                <span class="label">Date</span>
+                <span class="value">${formatDate(application.agreement_date)}</span>
+            </div>
+
+            <div class="card-actions">
+                <button class="btn btn-primary btn-sm"
+                    data-action="pdf"
+                    data-id="${application.id}">
+                    <span class="material-symbols-outlined">picture_as_pdf</span>
+                    PDF
+                </button>
+
+                <button class="btn btn-danger btn-sm"
+                    data-action="delete"
+                    data-id="${application.id}">
+                    <span class="material-symbols-outlined">delete</span>
+                    Delete
+                </button>
+            </div>
+        </div>
+    `).join('');
 }
 
 function filterOnlineLearning() {

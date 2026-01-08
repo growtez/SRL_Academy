@@ -77,43 +77,82 @@
     box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
 }
 
-/* Table */
-.table-wrapper {
+/* ===============================
+   RESPONSIVE APPLICATION TABLE
+================================ */
+
+.responsive-applications {
     width: 100%;
-    overflow-x: auto;
 }
 
-.projects-table {
+/* DESKTOP TABLE */
+.desktop-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    table-layout: fixed;
 }
 
-.projects-table thead {
+.desktop-table thead {
     background: var(--gray-50);
 }
 
-.projects-table th,
-.projects-table td {
+.desktop-table th,
+.desktop-table td {
     padding: 0.9rem 1.25rem;
     text-align: left;
     font-size: 0.9rem;
     border-bottom: 1px solid var(--gray-200);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
 }
 
-.projects-table th {
+.desktop-table th {
     font-weight: 600;
     color: var(--gray-700);
-    white-space: nowrap;
 }
 
-.projects-table tbody tr:hover {
+.desktop-table tbody tr:hover {
     background: var(--gray-50);
 }
-
-.actions-column {
-    width: 230px;
+.header-title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
 }
+
+.count-badge {
+    background-color: var(--primary, #4338ca);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 9999px;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Specific Column Widths for 5 columns */
+.desktop-table th:nth-child(1),
+.desktop-table td:nth-child(1) { width: 7%; }
+
+.desktop-table th:nth-child(2),
+.desktop-table td:nth-child(2) { width: 25%; } /* Applicant Name */
+
+.desktop-table th:nth-child(3),
+.desktop-table td:nth-child(3) { width: 20%; } /* Center Area */
+
+.desktop-table th:nth-child(4),
+.desktop-table td:nth-child(4) { width: 10%; } /* Number of Schools */
+
+.desktop-table th:nth-child(5),
+.desktop-table td:nth-child(5) { width: 13%; } /* Date */
+
+.desktop-table th:nth-child(6),
+.desktop-table td:nth-child(6) { width: 17%; overflow: visible; } /* Actions */
+
+.actions-column { width: 230px; align-items: center;}
 
 /* Actions cell */
 .projects-actions {
@@ -125,6 +164,57 @@
 .projects-actions .btn {
     padding: 0.4rem 0.75rem;
     font-size: 0.8rem;
+}
+
+/* CARD CONTAINER (Mobile/Tablet) */
+.applications-cards {
+    display: none;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* CARD */
+.application-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+}
+
+.application-card .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.application-card .label {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.application-card .value {
+    font-weight: 500;
+    color: #111827;
+    text-align: right;
+    max-width: 65%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    line-height: 1.4;
+}
+
+/* ACTIONS */
+.application-card .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.application-card button {
+    flex: 1;
+    white-space: nowrap;
 }
 
 /* Empty State */
@@ -385,25 +475,81 @@
 
 /* Delete info box */
 .delete-info {
-    background: var(--gray-50);
-    padding: var(--space-4);
-    border-radius: var(--radius);
-    margin-top: var(--space-4);
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
     border-left: 4px solid var(--danger);
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-top: 1rem;
 }
 
 .delete-info h4 {
     font-family: var(--font-primary);
-    color: var(--gray-900);
-    margin-bottom: var(--space-2);
+    color: #991b1b;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .delete-info p {
-    color: var(--gray-600);
-    margin-bottom: var(--space-2);
+    color: #b91c1c;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
 }
 
-/* Responsive */
+.delete-info p strong {
+    color: #7f1d1d;
+    font-weight: 600;
+}
+
+/* ===============================
+   LONG TEXT OPTIMIZATION
+================================ */
+
+/* Stack layout for long text fields */
+.info-item:has(.text-content) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: transparent;
+    margin-bottom: 1.25rem;
+}
+
+.info-item:has(.text-content) .info-label {
+    width: 100%;
+    color: var(--primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-item:has(.text-content) .info-value {
+    text-align: left;
+    width: 100%;
+    background: #f8fafc;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    line-height: 1.6;
+    color: var(--gray-800);
+}
+
+/* ===============================
+   TABLET & MOBILE BREAKPOINT
+================================ */
+
+@media (max-width: 1024px) {
+    .desktop-table {
+        display: none;
+    }
+
+    .applications-cards {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .page-header {
         flex-direction: column;
@@ -475,6 +621,21 @@
     .projects-actions .btn {
         width: 100%;
     }
+
+    .modal-footer {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .modal-footer button {
+        width: 100%;
+        margin: 0;
+        height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -482,11 +643,8 @@
         font-size: 1.5rem;
     }
 
-    .modal-footer {
-        flex-direction: column;
-    }
-
-    .modal-footer .btn {
-        width: 100%;
+    .modal-sm {
+        width: 90%;
+        max-width: 90%;
     }
 }

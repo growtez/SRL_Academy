@@ -84,7 +84,7 @@
 
             <!-- Application Info Cards -->
             <div class="info-cards-grid">
-                <!-- Personal Information Card -->
+
                 <div class="info-card">
                     <div class="info-card-header">
                         <span class="material-symbols-outlined">person</span>
@@ -114,100 +114,105 @@
                     </div>
                 </div>
 
-                <!-- Job Information Card -->
-                <div class="info-card">
-                    <div class="info-card-header">
-                        <span class="material-symbols-outlined">work</span>
-                        <h3>Job Information</h3>
-                    </div>
-                    <div class="info-card-body">
-                        <div class="info-item">
-                            <span class="info-label">Experience</span>
-                            <span id="detailExperience" class="info-value"></span>
+                <div class="right-column-stack" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <span class="material-symbols-outlined">location_on</span>
+                            <h3>Location Information</h3>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">Current Salary</span>
-                            <span id="detailSalary" class="info-value"></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Notice Period</span>
-                            <span id="detailNoticePeriod" class="info-value"></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Source</span>
-                            <span id="detailSource" class="info-value"></span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Applied Date</span>
-                            <span id="detailAppliedDate" class="info-value"></span>
+                        <div class="info-card-body">
+                            <div class="info-item">
+                                <span class="info-label">Home State</span>
+                                <span id="detailHomeState" class="info-value"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Home District</span>
+                                <span id="detailHomeDistrict" class="info-value"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Current Location</span>
+                                <span id="detailCurrentLocation" class="info-value"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <span class="material-symbols-outlined">work</span>
+                            <h3>Job Information</h3>
+                        </div>
+                        <div class="info-card-body">
+                            <div class="info-item">
+                                <span class="info-label">Experience</span>
+                                <span id="detailExperience" class="info-value"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Current Salary</span>
+                                <span id="detailSalary" class="info-value"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Notice Period</span>
+                                <span id="detailNoticePeriod" class="info-value"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Source</span>
+                                <span id="detailSource" class="info-value"></span>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- Location Information Card -->
-            <div class="info-card full-width">
-                <div class="info-card-header">
-                    <span class="material-symbols-outlined">location_on</span>
-                    <h3>Location Information</h3>
-                </div>
-                <div class="info-card-body">
-                    <div class="info-item">
-                        <span class="info-label">Home State</span>
-                        <span id="detailHomeState" class="info-value"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Home District</span>
-                        <span id="detailHomeDistrict" class="info-value"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Current Location</span>
-                        <span id="detailCurrentLocation" class="info-value"></span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Teaching Details Card -->
-            <div class="info-card full-width">
-                <div class="info-card-header">
-                    <span class="material-symbols-outlined">school</span>
-                    <h3>Teaching Details</h3>
-                </div>
-                <div class="info-card-body">
-                    <div class="info-item">
-                        <span class="info-label">Subjects</span>
-                        <span id="detailSubjects" class="info-value text-content"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Classes</span>
-                        <span id="detailClasses" class="info-value text-content"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">About Yourself</span>
-                        <span id="detailAbout" class="info-value text-content"></span>
-                    </div>
+
                 </div>
             </div>
 
             <!-- Education Details Card -->
+            <div class="info-cards-grid">
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="material-symbols-outlined">school</span>
+                        <h3>Education Details</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div id="detailEducationList" class="dynamic-list-container"></div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="material-symbols-outlined">apartment</span>
+                        <h3>Work Experience</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div id="detailWorkList" class="dynamic-list-container"></div>
+                    </div>
+                </div>
+
+            </div>
+            
             <div class="info-card full-width">
                 <div class="info-card-header">
                     <span class="material-symbols-outlined">school</span>
-                    <h3>Education Details</h3>
+                    <h3>Additional Information</h3>
                 </div>
                 <div class="info-card-body">
-                    <div id="detailEducationList" class="dynamic-list-container"></div>
-                </div>
-            </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="info-item">
+                            <span class="info-label">Subjects</span>
+                            <span id="detailSubjects" class="info-value text-content"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Classes</span>
+                            <span id="detailClasses" class="info-value text-content"></span>
+                        </div>
+                    </div>
 
-            <!-- Work Experience Card -->
-            <div class="info-card full-width">
-                <div class="info-card-header">
-                    <span class="material-symbols-outlined">apartment</span>
-                    <h3>Work Experience</h3>
-                </div>
-                <div class="info-card-body">
-                    <div id="detailWorkList" class="dynamic-list-container"></div>
+                    <div class="info-item" style="margin-top: 1rem;">
+                        <span class="info-label">About Yourself</span>
+                        <span id="detailAbout" class="info-value text-content"></span>
+                    </div>
+
                 </div>
             </div>
         </div>

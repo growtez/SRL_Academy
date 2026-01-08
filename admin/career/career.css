@@ -54,6 +54,25 @@
     margin: 0;
 }
 
+/* Header Title Group (aligns h2 and badge) */
+.header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Total Count Badge Style */
+.count-badge {
+    background-color: var(--primary, #4338ca);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 9999px;
+    min-width: 24px;
+    text-align: center;
+}
+
 .list-actions {
     display: flex;
     gap: var(--space-3);
@@ -75,6 +94,15 @@
     box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
 }
 
+/* ===============================
+   RESPONSIVE APPLICATION TABLE
+================================ */
+
+.responsive-applications {
+    width: 100%;
+}
+
+/* DESKTOP TABLE */
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -84,6 +112,7 @@
     width: 100%;
     border-collapse: collapse;
     min-width: 700px;
+    table-layout: fixed;
 }
 
 .applications-table thead {
@@ -96,17 +125,43 @@
     text-align: left;
     font-size: 0.9rem;
     border-bottom: 1px solid var(--gray-200);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
 }
 
 .applications-table th {
     font-weight: 600;
     color: var(--gray-700);
-    white-space: nowrap;
+}
+
+.applications-table tbody tr {
+    cursor: pointer;
 }
 
 .applications-table tbody tr:hover {
     background: var(--gray-50);
 }
+
+/* Column Widths */
+.applications-table th:nth-child(1),
+.applications-table td:nth-child(1) { width: 8%; text-align: center; color: var(--gray-500); }
+
+.applications-table th:nth-child(2),
+.applications-table td:nth-child(2) { width: 25%; }
+
+.applications-table th:nth-child(3),
+.applications-table td:nth-child(3) { width: 25%; }
+
+.applications-table th:nth-child(4),
+.applications-table td:nth-child(4) { width: 15%; }
+
+.applications-table th:nth-child(5),
+.applications-table td:nth-child(5) { width: 15%; }
+
+.applications-table th:nth-child(6),
+.applications-table td:nth-child(6) { width: 12%; overflow: visible; }
 
 .actions-column {
     width: 200px;
@@ -123,6 +178,58 @@
     font-size: 0.8rem;
 }
 
+/* CARD CONTAINER (Mobile/Tablet) */
+.applications-cards {
+    display: none;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* CARD */
+.application-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+.application-card .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.application-card .label {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.application-card .value {
+    font-weight: 500;
+    color: #111827;
+    text-align: right;
+    max-width: 65%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    line-height: 1.4;
+}
+
+/* ACTIONS */
+.application-card .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.application-card button {
+    flex: 1;
+    white-space: nowrap;
+}
+
 .empty-state {
     text-align: center;
     padding: var(--space-12) var(--space-6);
@@ -133,6 +240,21 @@
     font-size: 4rem;
     margin-bottom: var(--space-4);
     color: var(--gray-300);
+}
+
+/* ===============================
+   LOADING SPINNER ANIMATION
+================================ */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    font-size: 1.2rem;
 }
 
 /* ===== MODAL & FORM UI STYLES ===== */
@@ -179,64 +301,76 @@
     max-width: 400px;
 }
 
-.modal-close-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: var(--transition);
-    color: var(--gray-700);
-}
-
-.modal-close-button:hover {
-    background: var(--white);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: scale(1.05);
-}
-
-/* Form Style View Container */
-.form-style-view {
-    padding: 0;
-}
-
-/* Header inside Modal */
-.form-header-banner {
-    background: linear-gradient(135deg, var(--primary) 0%, #a00000 100%);
-    padding: 2rem;
-    color: white;
+.modal-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--gray-200);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--space-3);
     flex-wrap: wrap;
-    gap: 1rem;
 }
 
-.applicant-summary {
+.modal-header h2 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--gray-900);
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+}
+
+.modal-header-actions {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.modal-header-actions .btn {
+    white-space: nowrap;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--gray-500);
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    background: var(--gray-100);
+    color: var(--gray-700);
+}
+
+.modal-body {
+    padding: var(--space-6);
+}
+
+/* Application Info Cards */
+.school-image-header {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--gray-200);
 }
 
 .career-avatar-placeholder {
     width: 80px;
     height: 80px;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--gray-200);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(10px);
-    border: 3px solid rgba(255, 255, 255, 0.4);
+    color: var(--gray-400);
+    font-size: 2rem;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .applicant-photo {
@@ -245,121 +379,123 @@
     object-fit: cover;
 }
 
-.career-avatar-placeholder .material-symbols-outlined {
-    font-size: 3rem;
-    color: white;
+.school-header-info {
+    flex: 1;
 }
 
-.applicant-summary h2 {
+.school-name {
     font-family: var(--font-primary);
-    font-size: 1.8rem;
-    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--space-1);
+}
+
+.school-address {
+    color: var(--gray-600);
     margin: 0;
-    line-height: 1.2;
 }
 
-.applicant-summary p {
-    margin: 0.2rem 0 0 0;
-    opacity: 0.9;
+.info-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.info-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.info-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.info-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.info-card-header .material-symbols-outlined {
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.info-card-header h3 {
+    font-family: var(--font-primary);
     font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin: 0;
 }
 
-.application-meta {
-    background: rgba(0,0,0,0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
+.info-card-body {
+    padding: var(--space-4);
 }
 
-/* Form Content Wrapper */
-.form-content-wrapper {
-    padding: 2rem;
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-3);
 }
 
-/* FIELDSETS & LEGENDS (Matching Educator Form) */
-fieldset {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    background: #fff;
-}
-
-fieldset:last-child {
+.info-item:last-child {
     margin-bottom: 0;
 }
 
-legend {
-    font-family: var(--font-primary);
-    font-size: 1.1rem;
+.info-label {
     font-weight: 600;
-    padding: 0 10px;
-    color: var(--primary);
-    display: flex;
-    align-items: center;
+    color: var(--gray-700);
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+.info-value {
+    color: var(--gray-800);
+    text-align: right;
+    flex: 1;
+    word-break: break-word;
+}
+
+.info-value.text-content {
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+/* Stack layout for long text fields */
+.info-item:has(.text-content) {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 0.5rem;
+    background: transparent;
+    margin-bottom: 1.25rem;
 }
 
-legend .material-symbols-outlined {
-    font-size: 1.2rem;
-}
-
-/* Grid Layouts */
-.two-column {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-/* Labels & Readonly Values */
-.form-group label {
-    display: block;
+.info-item:has(.text-content) .info-label {
+    width: 100%;
+    color: var(--primary);
     font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--gray-500);
-    margin-bottom: 0.3rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-.readonly-value {
-    font-size: 1rem;
-    color: var(--gray-900);
-    font-weight: 500;
-    padding: 0.6rem 0.8rem;
-    background: var(--gray-50);
+.info-item:has(.text-content) .info-value {
+    text-align: left;
+    width: 100%;
+    background: #f8fafc;
     border: 1px solid var(--gray-200);
-    border-radius: 4px;
-    min-height: 42px;
-    
-    /* --- UPDATED FLEX SETTINGS --- */
-    display: flex;
-    align-items: center; /* Vertically center short text */
-    
-    /* --- NEW SAFETY PROPERTIES --- */
-    word-break: break-word;     /* Forces long emails to wrap */
-    overflow-wrap: anywhere;    /* Modern browser support for breaking anywhere */
-    height: auto;               /* Allow box to grow taller */
-    line-height: 1.4;           /* Better readability if text wraps */
-}
-
-.text-area-view {
-    min-height: 100px;
-    align-items: flex-start;
+    border-radius: var(--radius);
+    padding: 0.75rem;
     line-height: 1.6;
-    white-space: pre-wrap;
-}
-
-.highlight-text {
-    font-weight: 600;
-    color: var(--primary-dark);
-    background: #fff5f5; /* Light red tint */
-    border-color: #fecaca;
+    color: var(--gray-800);
 }
 
 /* Lists (Education/Experience) */
@@ -370,7 +506,7 @@ legend .material-symbols-outlined {
 }
 
 .list-entry-block {
-    background: var(--gray-50);
+    background: #f8fafc;
     border: 1px solid var(--gray-200);
     border-radius: 6px;
     padding: 1rem;
@@ -403,69 +539,181 @@ legend .material-symbols-outlined {
     display: block;
 }
 
-/* Full Width Buttons in Modal */
-.full-width-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 0.8rem;
-}
-
-/* Footer */
 .modal-footer {
-    padding: 1.5rem 2rem;
+    padding: var(--space-6);
     border-top: 1px solid var(--gray-200);
     display: flex;
+    gap: var(--space-3);
     justify-content: flex-end;
-    background: var(--gray-50);
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
 }
 
 /* Delete Modal */
-.modal-header {
-    padding: var(--space-6);
-    border-bottom: 1px solid var(--gray-200);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-header h2 {
-    font-family: var(--font-primary);
-    font-size: 1.5rem;
-    color: var(--gray-900);
-    margin: 0;
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    color: var(--gray-500);
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
 .delete-info {
-    background: var(--gray-50);
-    padding: var(--space-4);
+    background: #fef2f2;
+    border: 1px solid #fee2e2;
+    border-left: 4px solid var(--danger);
+    padding: 1rem;
     border-radius: var(--radius);
-    margin-top: var(--space-4);
-    border-left: 4px solid var(--primary);
+    margin-top: 1rem;
+    word-break: break-word;
+}
+
+.delete-info h4 {
+    font-family: var(--font-primary);
+    color: #991b1b;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.delete-info p {
+    color: #b91c1c;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.delete-info p strong {
+    color: #7f1d1d;
+    font-weight: 600;
+}
+
+/* ===============================
+   TABLET & MOBILE BREAKPOINT
+================================ */
+
+@media (max-width: 1024px) {
+    .applications-table {
+        display: none;
+    }
+
+    .applications-cards {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 768px) {
-    .two-column {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
     }
-    .form-header-banner {
+
+    .list-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-3);
+    }
+
+    .list-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .modal-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: var(--space-3);
     }
+
+    .modal-header h2 {
+        width: 100%;
+        order: 1;
+    }
+
+    .modal-header-actions {
+        width: 100%;
+        order: 2;
+    }
+
+    .modal-header-actions .btn {
+        flex: 1;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-4);
+    }
+
+    .info-cards-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+
+    .school-image-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-3);
+    }
+
+    .career-avatar-placeholder {
+        width: 60px;
+        height: 60px;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    .info-label {
+        min-width: auto;
+        margin-bottom: var(--space-1);
+    }
+
+    .info-value {
+        text-align: left;
+    }
+
     .modal-content {
-        max-height: 100vh;
-        border-radius: 0;
+        margin: var(--space-4);
+        max-height: calc(100vh - 2rem);
     }
-    .form-content-wrapper {
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: var(--space-4);
+    }
+
+    .career-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .career-actions .btn {
+        width: 100%;
+    }
+
+    .modal-footer {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
         padding: 1rem;
+    }
+
+    .modal-footer button {
+        width: 100%;
+        margin: 0;
+        height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .modal-sm {
+        width: 90%;
+        max-width: 90%;
     }
 }

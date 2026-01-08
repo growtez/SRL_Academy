@@ -190,6 +190,9 @@
 /* ==========================================================================
    2. MODAL BASE STYLES
    ========================================================================== */
+/* ==========================================================================
+   2. MODAL BASE STYLES
+   ========================================================================== */
 
 .modal {
     position: fixed;
@@ -229,7 +232,39 @@
 .modal-lg { max-width: 1000px; }
 .modal-sm { max-width: 400px; }
 
-/* Close button (Standard) */
+/* Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--gray-200);
+    background: white;
+}
+
+.modal-header h2 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--gray-900);
+    margin: 0;
+}
+
+/* Main Content Body */
+.modal-body {
+    padding: var(--space-6); /* Added padding so text doesn't touch edges */
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    gap: var(--space-3);
+    justify-content: flex-end;
+    background: var(--gray-50);
+}
+
+/* Close Buttons */
 .modal-close-button, .modal-close {
     position: absolute;
     top: 1rem;
@@ -248,40 +283,15 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.modal-close-button:hover, .modal-close:hover {
-    background: var(--white);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
-}
-
-/* Modal Header (General) */
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--space-6);
-    border-bottom: 1px solid var(--gray-200);
-    background: white;
-}
-
-.modal-header h2 {
-    font-family: var(--font-primary);
-    font-size: 1.5rem;
-    color: var(--gray-900);
-    margin: 0;
-}
-
-/* Header Actions (Right aligned buttons) */
 .header-actions {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: auto; /* Pushes buttons to the right */
+    margin-left: auto;
 }
 
-/* Specific styling for Close Button inside Header Actions */
 .header-actions .modal-close {
-    position: static; /* Overrides absolute positioning */
+    position: static;
     margin: 0;
     transform: none;
     box-shadow: none;
@@ -290,39 +300,27 @@
     height: 32px;
 }
 
-.header-actions .modal-close:hover {
-    background: #f3f4f6;
-}
-
-.modal-footer {
-    padding: 1.5rem 2rem;
-    border-top: 1px solid var(--gray-200);
-    display: flex;
-    gap: var(--space-3);
-    justify-content: flex-end;
-    background: var(--gray-50);
-}
-
-/* Delete Info Box (Optimized - Red Theme) */
+/* Delete Info Box - Optimized Padding */
 .delete-info {
-    background: #fef2f2; /* Light red background */
+    background: #fef2f2;
     border: 1px solid #fee2e2;
     border-left: 4px solid var(--danger);
-    padding: 1rem;
+    padding: 1rem; /* Fixed: Reduced padding */
     border-radius: var(--radius);
     margin-top: 1rem;
+    word-break: break-word;
 }
 
 .delete-info h4 {
     font-family: var(--font-primary);
-    color: #991b1b; /* Darker red */
+    color: #991b1b;
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
     font-weight: 600;
 }
 
 .delete-info p {
-    color: #b91c1c; /* Medium red */
+    color: #b91c1c;
     margin-bottom: 0.25rem;
     font-size: 0.95rem;
 }
@@ -330,6 +328,21 @@
 .delete-info p strong {
     color: #7f1d1d;
     font-weight: 600;
+}
+
+
+/*loading for delete*/
+/* Spinner Animation */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    font-size: 1.2rem;
 }
 
 /* ==========================================================================
@@ -344,6 +357,9 @@
     overflow-y: auto;
 }
 
+.modal-body {
+    padding: var(--space-6);
+}
 /* The Document Container */
 .pdf-wrapper {
     background: transparent;

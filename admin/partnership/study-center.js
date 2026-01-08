@@ -151,7 +151,7 @@ function renderStudyCentreList(filteredData) {
     ====================== */
     tableBody.innerHTML = data.map((application, index) => `
         <tr data-id="${application.id}" style="cursor: pointer;">
-            <td>${index + 1}</td>
+            <td>${data.length - index}</td>
             <td>${escapeHtml(application.centre_name || '-')}</td>
             <td>${escapeHtml(application.principal_name || '-')}</td>
             <td>${formatDate(application.declaration_date)}</td>
@@ -181,7 +181,7 @@ function renderStudyCentreList(filteredData) {
         <div class="application-card" data-id="${application.id}" style="cursor: pointer;">
             <div class="row">
                 <span class="label">Sl. No.</span>
-                <span class="value">#${index + 1}</span>
+                <span class="value">#${data.length - index}</span>
             </div>
             <div class="row">
                 <span class="label">Centre</span>
@@ -306,7 +306,19 @@ function openStudyCentreDeleteModal(id) {
 async function deleteStudyCentre() {
     if (!studyCentreIdToDelete || isStudyCentreOperationInProgress) return;
 
+    // 1. Get the button and save original content
+    const deleteBtn = document.getElementById('confirmDeleteStudyCentreButton');
+    const originalContent = deleteBtn ? deleteBtn.innerHTML : 'Delete';
+
     isStudyCentreOperationInProgress = true;
+
+    // 2. Set Loading State on Button
+    if (deleteBtn) {
+        deleteBtn.innerHTML = '<span class="material-symbols-outlined spin">progress_activity</span> Deleting...';
+        deleteBtn.disabled = true;
+        deleteBtn.style.opacity = '0.7';
+        deleteBtn.style.cursor = 'not-allowed';
+    }
 
     try {
         if (typeof showLoading === 'function') showLoading();
@@ -332,6 +344,15 @@ async function deleteStudyCentre() {
         }
     } finally {
         isStudyCentreOperationInProgress = false;
+
+        // 3. Restore Button State
+        if (deleteBtn) {
+            deleteBtn.innerHTML = originalContent;
+            deleteBtn.disabled = false;
+            deleteBtn.style.opacity = '1';
+            deleteBtn.style.cursor = 'pointer';
+        }
+
         if (typeof hideLoading === 'function') hideLoading();
     }
 }

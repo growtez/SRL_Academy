@@ -32,7 +32,7 @@ function initializeSchoolIntegration() {
             event.stopPropagation();
 
             if (action === 'pdf') {
-                handleDownloadStudyCentrePdf(id);
+                handleDownloadPdf(id);
             } else if (action === 'delete') {
                 openStudyCentreDeleteModal(id);
             }
@@ -149,7 +149,7 @@ function renderSchoolProjectsList(filteredData) {
     ====================== */
     tableBody.innerHTML = data.map((project, index) => `
         <tr data-id="${project.id}" style="cursor: pointer;">
-            <td>${index + 1}</td>
+            <td>${data.length - index}</td>
             <td>${escapeHtml(project.school_name || '-')}</td>
             <td>${escapeHtml(project.principal_name || '-')}</td>
             <td>${formatDate(project.declaration_date)}</td>
@@ -178,7 +178,7 @@ function renderSchoolProjectsList(filteredData) {
         <div class="application-card" data-id="${project.id}" style="cursor: pointer;">
             <div class="row">
                 <span class="label">#</span>
-                <span class="value">#${index + 1}</span>
+                <span class="value">#${data.length - index}</span>
             </div>
             <div class="row">
                 <span class="label">School</span>
@@ -212,6 +212,31 @@ function renderSchoolProjectsList(filteredData) {
     `).join('');
 }
 
+function openStudyCentreDeleteModal(id) {
+    // 1. Find the project in the schoolProjectsData array
+    const project = getProjectById(id);
+    if (!project) return;
+
+    // 2. Set the global ID variable (used by deleteSchoolProject)
+    schoolProjectIdToDelete = id;
+
+    // 3. Populate the confirmation info box
+    const info = document.getElementById('deleteSchoolProjectInfo');
+    if (info) {
+        const schoolName = escapeHtml(project.school_name || '');
+        const principal = escapeHtml(project.principal_name || '');
+        const date = formatDate(project.declaration_date);
+
+        info.innerHTML =
+            '<h4>' + schoolName + '</h4>' +
+            '<p><strong>Principal:</strong> ' + principal + '</p>' +
+            '<p><strong>Date:</strong> ' + date + '</p>';
+    }
+
+    // 4. Open the modal (assuming the ID in HTML is schoolProjectDeleteModal)
+    const modal = document.getElementById('schoolProjectDeleteModal');
+    if (modal) modal.classList.remove('hidden');
+}
 
 function filterSchoolProjects() {
     const input = document.getElementById('searchSchoolProjects');
@@ -351,9 +376,24 @@ function openSchoolProjectDeleteModal(id) {
 }
 
 async function deleteSchoolProject() {
+    // 1. Check if there is an ID to delete
     if (!schoolProjectIdToDelete || isSchoolProjectsOperationInProgress) return;
 
+    // 2. DEFINE THE BUTTON VARIABLE HERE
+    const deleteBtn = document.getElementById('confirmDeleteSchoolProjectButton');
+    
+    // 3. Save original content so we can restore it later
+    const originalContent = deleteBtn ? deleteBtn.innerHTML : 'Delete';
+
     isSchoolProjectsOperationInProgress = true;
+
+    // 4. Set Loading State on Button
+    if (deleteBtn) {
+        deleteBtn.innerHTML = '<span class="material-symbols-outlined spin">progress_activity</span> Deleting...';
+        deleteBtn.disabled = true;
+        deleteBtn.style.opacity = '0.7';
+        deleteBtn.style.cursor = 'not-allowed';
+    }
 
     try {
         if (typeof showLoading === 'function') showLoading();
@@ -379,6 +419,15 @@ async function deleteSchoolProject() {
         }
     } finally {
         isSchoolProjectsOperationInProgress = false;
+        
+        // 5. Restore Button State
+        if (deleteBtn) {
+            deleteBtn.innerHTML = originalContent; // Restores the Trash icon and "Delete" text
+            deleteBtn.disabled = false;
+            deleteBtn.style.opacity = '1';
+            deleteBtn.style.cursor = 'pointer';
+        }
+        
         if (typeof hideLoading === 'function') hideLoading();
     }
 }

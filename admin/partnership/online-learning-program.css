@@ -481,6 +481,7 @@
     padding: 1rem;
     border-radius: var(--radius);
     margin-top: 1rem;
+    word-break: break-word;
 }
 
 .delete-info h4 {

@@ -149,7 +149,7 @@ function renderSchoolProjectsList(filteredData) {
     ====================== */
     tableBody.innerHTML = data.map((project, index) => `
         <tr data-id="${project.id}" style="cursor: pointer;">
-            <td>${index + 1}</td>
+            <td>${data.length - index}</td>
             <td>${escapeHtml(project.school_name || '-')}</td>
             <td>${escapeHtml(project.principal_name || '-')}</td>
             <td>${formatDate(project.declaration_date)}</td>
@@ -178,7 +178,7 @@ function renderSchoolProjectsList(filteredData) {
         <div class="application-card" data-id="${project.id}" style="cursor: pointer;">
             <div class="row">
                 <span class="label">#</span>
-                <span class="value">#${index + 1}</span>
+                <span class="value">#${data.length - index}</span>
             </div>
             <div class="row">
                 <span class="label">School</span>

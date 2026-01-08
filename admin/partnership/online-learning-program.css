@@ -504,6 +504,21 @@
 }
 
 /* ===============================
+   LOADING SPINNER ANIMATION
+================================ */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    font-size: 1.2rem;
+}
+
+/* ===============================
    LONG TEXT OPTIMIZATION
 ================================ */
 

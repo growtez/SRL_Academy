@@ -142,7 +142,7 @@
 
 /* 1. Sl No Column */
 .desktop-table th:nth-child(1),
-.desktop-table td:nth-child(1) { width: 3%; text-align: center; color: var(--gray-500); }
+.desktop-table td:nth-child(1) { width: 8%; text-align: center; color: var(--gray-500); }
 
 /* 2. Centre Name */
 .desktop-table th:nth-child(2),

@@ -118,18 +118,36 @@
     background: var(--gray-50);
 }
 
+.header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.count-badge {
+    background-color: var(--primary, #4338ca);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 9999px;
+    min-width: 24px;
+    text-align: center;
+}
 /* Specific Column Widths */
 .projects-table th:nth-child(1),
-.projects-table td:nth-child(1) { width: 25%; } /* School Name */
+.projects-table td:nth-child(1) { width: 8%; } /* School Name */
 
 .projects-table th:nth-child(2),
-.projects-table td:nth-child(2) { width: 20%; } /* Principal Name */
+.projects-table td:nth-child(2) { width: 25%; } /* School Name */
 
 .projects-table th:nth-child(3),
-.projects-table td:nth-child(3) { width: 10%; } /* Date */
+.projects-table td:nth-child(3) { width: 20%; } /* Principal Name */
 
 .projects-table th:nth-child(4),
-.projects-table td:nth-child(4) { width: 15%; overflow: visible; } /* Actions */
+.projects-table td:nth-child(4) { width: 10%; } /* Date */
+
+.projects-table th:nth-child(5),
+.projects-table td:nth-child(5) { width: 15%; overflow: visible; } /* Actions */
 
 .actions-column { width: 230px; }
 

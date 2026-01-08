@@ -114,8 +114,15 @@ function renderSchoolProjectsList(filteredData) {
     const tableBody = document.getElementById('schoolProjectsTableBody');
     const cardContainer = document.getElementById('schoolProjectsCardContainer');
     const emptyState = document.getElementById('schoolProjectsEmptyState');
+    const countBadge = document.getElementById('totalApplicationsCount')
 
     const data = filteredData || schoolProjectsData;
+
+    // Update total count badge
+    if (countBadge) {
+        countBadge.textContent = data.length;
+        countBadge.style.display = data.length > 0 ? 'inline-flex' : 'none';
+    }
 
     if (!data || data.length === 0) {
         tableBody.innerHTML = '';
@@ -129,8 +136,9 @@ function renderSchoolProjectsList(filteredData) {
     /* =====================
        DESKTOP TABLE ROWS
     ====================== */
-    tableBody.innerHTML = data.map(project => `
+    tableBody.innerHTML = data.map((project, index) => `
         <tr>
+            <td>${index+1}</td>
             <td>${escapeHtml(project.school_name || '-')}</td>
             <td>${escapeHtml(project.principal_name || '-')}</td>
             <td>${formatDate(project.declaration_date)}</td>
@@ -155,8 +163,12 @@ function renderSchoolProjectsList(filteredData) {
     /* =====================
        MOBILE / TABLET CARDS
     ====================== */
-    cardContainer.innerHTML = data.map(project => `
+    cardContainer.innerHTML = data.map((project, index) => `
         <div class="application-card">
+            <div class="row">
+                <span class="label">#</span>
+                <span class="value">#${index + 1}</span>
+            </div>
             <div class="row">
                 <span class="label">School</span>
                 <span class="value">${escapeHtml(project.school_name || '-')}</span>

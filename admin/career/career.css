@@ -307,6 +307,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
 }
 
 .modal-header h2 {
@@ -314,6 +316,18 @@
     font-size: 1.5rem;
     color: var(--gray-900);
     margin: 0;
+    flex: 1;
+    min-width: 200px;
+}
+
+.modal-header-actions {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.modal-header-actions .btn {
+    white-space: nowrap;
 }
 
 .modal-close {
@@ -598,6 +612,32 @@
 
     .search-input {
         width: 100%;
+    }
+
+    .modal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-3);
+    }
+
+    .modal-header h2 {
+        width: 100%;
+        order: 1;
+    }
+
+    .modal-header-actions {
+        width: 100%;
+        order: 2;
+    }
+
+    .modal-header-actions .btn {
+        flex: 1;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-4);
     }
 
     .info-cards-grid {

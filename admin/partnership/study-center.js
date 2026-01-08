@@ -46,7 +46,8 @@ function initializeStudyCentre() {
             const id = parseInt(rowOrCard.getAttribute('data-id'), 10);
             if (id) {
                 // Open the View Details Modal
-                openStudyCentreView(id);
+                // openStudyCentreView(id);
+                handleDownloadStudyCentrePdf(id);
             }
         }
     };

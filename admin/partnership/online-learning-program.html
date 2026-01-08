@@ -15,21 +15,23 @@
             </div>
         </div>
 
-        <div class="table-wrapper">
-            <table class="projects-table">
+        <div class="table-wrapper responsive-applications">
+            <!-- DESKTOP / LARGE TABLE -->
+            <table class="projects-table desktop-table">
                 <thead>
                     <tr>
                         <th>Applicant Name</th>
                         <th>Center Area</th>
-                        <th>Number of Schools</th>
+                        <th>Schools</th>
                         <th>Date</th>
                         <th class="actions-column">Actions</th>
                     </tr>
                 </thead>
-                <tbody id="onlineLearningTableBody">
-                    <!-- Rows will be injected via JavaScript -->
-                </tbody>
+                <tbody id="onlineLearningTableBody"></tbody>
             </table>
+
+            <!-- MOBILE / TABLET CARDS -->
+            <div id="onlineLearningCardContainer" class="applications-cards"></div>
         </div>
 
         <div id="onlineLearningEmptyState" class="empty-state hidden">

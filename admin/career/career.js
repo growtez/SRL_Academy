@@ -27,11 +27,11 @@ function initializeCareer() {
     const handleApplicationAction = function (event) {
         // 1. Check if an ACTION BUTTON was clicked first
         const actionButton = event.target.closest('[data-action]');
-        
+
         if (actionButton) {
             const id = parseInt(actionButton.getAttribute('data-id'), 10);
             const action = actionButton.getAttribute('data-action');
-            
+
             // Stop the click from bubbling up to the row
             event.stopPropagation();
 
@@ -68,11 +68,14 @@ function initializeCareer() {
         deleteButton.addEventListener('click', deleteCareerApplication);
     }
 
+    // --- UPDATED LISTENERS TO PASS THE BUTTON ELEMENT ---
+
     // Download Application (Generates PDF of the form)
     if (downloadAppBtn) {
         downloadAppBtn.addEventListener('click', function () {
             if (currentCareerId) {
-                handleDownloadFile(currentCareerId, 'pdf');
+                // Pass 'this' (the button) as the 3rd argument
+                handleDownloadFile(currentCareerId, 'pdf', this);
             }
         });
     }
@@ -81,7 +84,8 @@ function initializeCareer() {
     if (downloadResumeBtn) {
         downloadResumeBtn.addEventListener('click', function () {
             if (currentCareerId) {
-                handleDownloadFile(currentCareerId, 'resume');
+                // Pass 'this' (the button) as the 3rd argument
+                handleDownloadFile(currentCareerId, 'resume', this);
             }
         });
     }
@@ -89,21 +93,133 @@ function initializeCareer() {
     loadCareerApplications();
 }
 
-// Handles BOTH application PDF and resume downloads by opening the API URL
-function handleDownloadFile(id, type) {
+// --- UPDATED DOWNLOAD FUNCTION WITH LOADING STATE ---
+async function handleDownloadFile(id, type, btnElement) {
     if (!id) return;
-    const API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
-    const url = `${API_BASE_URL}/career/${id}/${type}`;
-    window.open(url, '_blank');
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+        alert("You are not logged in.");
+        return;
+    }
+
+    // 1. Save Original Button State
+    const originalContent = btnElement ? btnElement.innerHTML : '';
+    
+    // 2. Set Loading State
+    if (btnElement) {
+        btnElement.disabled = true;
+        btnElement.style.opacity = '0.7';
+        btnElement.style.cursor = 'not-allowed';
+        // Add a spinner icon
+        btnElement.innerHTML = `
+            <span class="material-symbols-outlined spin">progress_activity</span> 
+            Downloading...
+        `;
+    }
+
+    try {
+        const API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
+        const response = await fetch(`${API_BASE_URL}/career/${id}/${type}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/pdf'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Server returned ${response.status}`);
+        }
+
+        // 3. Process the file (Force Download Logic)
+        const blob = await response.blob();
+        const pdfBlob = new Blob([blob], { type: 'application/pdf' });
+        const fileURL = window.URL.createObjectURL(pdfBlob);
+        
+        // Create invisible link to trigger "Save As" behavior
+        const a = document.createElement('a');
+        a.href = fileURL;
+        a.download = `${type}_${id}.pdf`; // Ensure extension is .pdf
+        document.body.appendChild(a);
+        a.click();
+        
+        // Cleanup
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(fileURL);
+
+        if (typeof showNotification === 'function') {
+            showNotification('Download started successfully', 'success');
+        }
+
+    } catch (error) {
+        console.error('Error downloading file:', error);
+        if (typeof showNotification === 'function') {
+            showNotification('Failed to download file', 'error');
+        } else {
+            alert('Failed to download file');
+        }
+    } finally {
+        // 4. Restore Button State
+        if (btnElement) {
+            btnElement.innerHTML = originalContent;
+            btnElement.disabled = false;
+            btnElement.style.opacity = '1';
+            btnElement.style.cursor = 'pointer';
+        }
+    }
 }
 
 async function loadCareerApplications() {
     if (isCareerLoading) return;
-    
+
     const tableBody = document.getElementById('careerTableBody');
     const cardContainer = document.getElementById('careerCardContainer');
     const emptyState = document.getElementById('careerEmptyState');
-    
+
+    isCareerLoading = true;
+
+    // Inject loader into table row
+    if (tableBody) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 3rem;">
+                    <div class="loader" style="margin: 0 auto 1rem;"></div>
+                    <p style="color: #6b7280;">Loading applications...</p>
+                </td>
+            </tr>
+        `;
+        if (cardContainer) cardContainer.innerHTML = '';
+        if (emptyState) emptyState.classList.add('hidden');
+    }
+
+    try {
+        // Ensure apiCall is defined in your main script
+        const response = await apiCall('/career');
+
+        if (Array.isArray(response)) {
+            careerData = response;
+        } else if (response && Array.isArray(response.data)) {
+            careerData = response.data;
+        } else {
+            careerData = [];
+        }
+        renderCareerList();
+    } catch (error) {
+        console.error('Error loading career applications:', error);
+        careerData = [];
+        renderCareerList();
+        if (typeof showNotification === 'function') showNotification('Failed to load data', 'error');
+    } finally {
+        isCareerLoading = false;
+    }
+}
+async function loadCareerApplications() {
+    if (isCareerLoading) return;
+
+    const tableBody = document.getElementById('careerTableBody');
+    const cardContainer = document.getElementById('careerCardContainer');
+    const emptyState = document.getElementById('careerEmptyState');
+
     isCareerLoading = true;
 
     // Inject loader into table row

@@ -34,6 +34,15 @@
     overflow: hidden;
 }
 
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 .list-header {
     padding: var(--space-6);
     border-bottom: 1px solid var(--gray-200);

@@ -30,11 +30,22 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <div class="password-input-container">
+                            <input type="password" id="password" name="password" required>
+                            <button type="button" class="password-toggle" id="passwordToggle" title="Toggle password visibility">
+                                <span class="material-symbols-outlined">visibility_off</span>
+                            </button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                        <span class="material-symbols-outlined">login</span>
-                        Login
+                    <button type="submit" class="btn btn-primary" id="loginBtn">
+                        <span class="btn-content">
+                            <span class="material-symbols-outlined">login</span>
+                            Login
+                        </span>
+                        <span class="btn-loading hidden">
+                            <span class="material-symbols-outlined spinning">refresh</span>
+                            Logging in...
+                        </span>
                     </button>
                 </form>
                 <div id="loginError" class="error-message hidden">Invalid credentials</div>
@@ -193,6 +204,8 @@
         const logoutBtn = document.getElementById('logoutBtn');
         const contentArea = document.getElementById('contentArea');
         const loadingOverlay = document.getElementById('loadingOverlay');
+        const loginBtn = document.getElementById('loginBtn');
+        const passwordToggle = document.getElementById('passwordToggle');
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function () {
@@ -249,6 +262,11 @@
                     }
                 });
             }
+            
+            // Password toggle functionality
+            if (passwordToggle) {
+                passwordToggle.addEventListener('click', togglePasswordVisibility);
+            }
         }
 
         // --- AUTH & LOGIN FUNCTIONS ---
@@ -290,6 +308,11 @@
             const password = document.getElementById('password').value;
             loginError.classList.add('hidden');
 
+            // Show loading state
+            loginBtn.disabled = true;
+            loginBtn.querySelector('.btn-content').classList.add('hidden');
+            loginBtn.querySelector('.btn-loading').classList.remove('hidden');
+
             try {
                 const response = await fetch(`${API_BASE_URL}/login`, {
                     method: 'POST',
@@ -320,6 +343,11 @@
                 console.error('Login error:', error);
                 loginError.textContent = 'Connection error. Please check server.';
                 loginError.classList.remove('hidden');
+            } finally {
+                // Hide loading state
+                loginBtn.disabled = false;
+                loginBtn.querySelector('.btn-content').classList.remove('hidden');
+                loginBtn.querySelector('.btn-loading').classList.add('hidden');
             }
         }
 
@@ -620,6 +648,21 @@
                 notification.classList.remove('show');
                 setTimeout(() => notification.remove(), 300);
             }, 3000);
+        }
+        
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = passwordToggle.querySelector('.material-symbols-outlined');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = 'visibility';
+                passwordToggle.title = 'Hide password';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = 'visibility_off';
+                passwordToggle.title = 'Show password';
+            }
         }
     </script>
 </body>

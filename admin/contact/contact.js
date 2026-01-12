@@ -3,6 +3,7 @@ let isContactsLoading = false;
 let isContactsOperationInProgress = false;
 let currentContactId = null;
 let contactIdToDelete = null;
+let isPdfDownloading = false;
 
 function initializeContactManagement() {
     const searchInput = document.getElementById('searchContacts');
@@ -29,7 +30,7 @@ function initializeContactManagement() {
         if (action === 'view') {
             openContactView(id);
         } else if (action === 'pdf') {
-            handleContactPdf(id);
+            handleContactPdf(id, event.target);
         } else if (action === 'delete') {
             openContactDeleteModal(id);
         }
@@ -44,7 +45,7 @@ function initializeContactManagement() {
     if (pdfButton) {
         pdfButton.addEventListener('click', function () {
             if (currentContactId) {
-                handleContactPdf(currentContactId);
+                handleContactPdf(currentContactId, this);
             }
         });
     }
@@ -241,11 +242,80 @@ async function deleteContact() {
     }
 }
 
-function handleContactPdf(id) {
-    if (!id) return;
-    const url = `${API_BASE_URL}/contacts/${id}/pdf`;
-    window.open(url, '_blank');
+
+async function handleContactPdf(id, clickedElement) {
+    if (!id || isPdfDownloading) return;
+
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+        alert("You are not logged in.");
+        return;
+    }
+
+    // ✅ Resolve actual button (important)
+    const btnElement = clickedElement
+        ? clickedElement.closest('button')
+        : null;
+
+    const originalContent = btnElement ? btnElement.innerHTML : '';
+
+    isPdfDownloading = true;
+
+    if (btnElement) {
+        btnElement.disabled = true;
+        btnElement.style.opacity = '0.7';
+        btnElement.style.cursor = 'not-allowed';
+        btnElement.innerHTML = `
+            <span class="material-symbols-outlined spin">progress_activity</span>
+            Downloading...
+        `;
+    }
+
+    try {
+        const API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:8000/api';
+        const url = `${API_BASE_URL}/contacts/${id}/pdf`;
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/pdf'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Server returned ${response.status}`);
+        }
+
+        const blob = await response.blob();
+        const fileURL = window.URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = fileURL;
+        a.download = `contact-${id}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(fileURL);
+
+    } catch (error) {
+        console.error('Error downloading PDF:', error);
+        if (typeof showNotification === 'function') {
+            showNotification('Failed to download PDF', 'error');
+        }
+    } finally {
+        isPdfDownloading = false;
+
+        if (btnElement) {
+            btnElement.disabled = false;
+            btnElement.style.opacity = '1';
+            btnElement.style.cursor = 'pointer';
+            btnElement.innerHTML = originalContent;
+        }
+    }
 }
+
 
 function attachContactModalCloseHandlers() {
     const closeButtons = document.querySelectorAll('[data-close-modal]');

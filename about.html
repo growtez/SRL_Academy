@@ -16,6 +16,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     <!-- Favicon -->
@@ -190,7 +192,7 @@
 </head>
 
 <body
-    style="margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh; display: flex; flex-direction: column;">
+    style="margin: 0; padding: 0; padding-top: 64px; box-sizing: border-box; font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh; display: flex; flex-direction: column;">
 
     <!-- Preloader -->
     <div class="preloader" id="preloader">
@@ -244,15 +246,32 @@
 
     <main style="flex:1;">
         <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>About SRL Academy</h1>
-                    <p>15+ years of educational excellence, empowering students across India with quality coaching and
-                        proven results.</p>
+        <div class="hero-slider swiper">
+            <div class="swiper-wrapper">
+                <div class="hero-slide swiper-slide" style="background-image:url('images/5.jpg');">
+                    <div class="slide-content">
+                        <h2>About SRL Academy</h2>
+                        <p>15+ years of educational excellence, empowering students across India with quality coaching and proven results.</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide swiper-slide" style="background-image:url('images/classroom/Life\ at\ Dakshana\ Valley\ Pune\ \ \(7\).jpg');">
+                    <div class="slide-content">
+                        <h2>About SRL Academy</h2>
+                        <p>15+ years of educational excellence, empowering students across India with quality coaching and proven results.</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide swiper-slide" style="background-image:url('images/classroom/Life\ at\ Dakshana\ Valley\ Pune\ \ \(5\).jpg');">
+                    <div class="slide-content">
+                        <h2>About SRL Academy</h2>
+                        <p>15+ years of educational excellence, empowering students across India with quality coaching and proven results.</p>
+                    </div>
                 </div>
             </div>
-        </section>
+
+            <div class="swiper-pagination"></div>
+        </div>
 
         <!-- About Content -->
         <section class="about-content-section" style="padding: 100px 0 60px; background: #fafafa;">
@@ -366,8 +385,6 @@
             </div>
         </section>
 
-
-
         <!-- Stats Section -->
         <section style="padding: 90px 20px 160px; background: #fff;">
             <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
@@ -473,12 +490,6 @@
                     // Run after DOM content is ready
                     document.addEventListener("DOMContentLoaded", initCounters);
                 </script>
-
-
-
-
-
-
 
                 <!-- Why Choose Us -->
                 <section class="section" style="padding: 100px 0;">
@@ -840,6 +851,7 @@
     </a>
 
     <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 

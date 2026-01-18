@@ -3168,10 +3168,11 @@
                     <!-- Video 1 -->
                     <div class="video-card"
                         style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000; border: 2px solid #800000;">
-                        <video id="video1" style="width: 100%; height: 220px; object-fit: cover; display: block;"
-                            playsinline preload="metadata">
-                            <source src="images/videos/1.mp4" type="video/mp4">
+                        <video id="video1" playsinline preload="none" poster="images/videos/thum-1.webp"
+                            data-video="images/videos/1.mp4"
+                            style="width: 100%; height: 220px; object-fit: cover; display: block;">
                         </video>
+
                         <div id="play-overlay1" onclick="playVideo(1)"
                             style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s;">
                             <div
@@ -3196,9 +3197,9 @@
                     <!-- Video 2 -->
                     <div class="video-card"
                         style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000; border: 2px solid #800000;">
-                        <video id="video2" style="width: 100%; height: 220px; object-fit: cover; display: block;"
-                            playsinline preload="metadata">
-                            <source src="images/videos/2.mp4" type="video/mp4">
+                        <video id="video2" playsinline preload="none" poster="images/videos/thumb-2.webp"
+                            data-video="images/videos/2.mp4"
+                            style="width: 100%; height: 220px; object-fit: cover; display: block;">
                         </video>
                         <div id="play-overlay2" onclick="playVideo(2)"
                             style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s;">
@@ -3224,9 +3225,9 @@
                     <!-- Video 3 -->
                     <div class="video-card"
                         style="position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background: #000; border: 2px solid #800000;">
-                        <video id="video3" style="width: 100%; height: 220px; object-fit: cover; display: block;"
-                            playsinline preload="metadata">
-                            <source src="images/videos/3.mp4" type="video/mp4">
+                        <video id="video3" playsinline preload="none" poster="images/videos/thumb-3.webp"
+                            data-video="images/videos/3.mp4"
+                            style="width: 100%; height: 220px; object-fit: cover; display: block;">
                         </video>
                         <div id="play-overlay3" onclick="playVideo(3)"
                             style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s;">
@@ -4026,6 +4027,46 @@
                     });
                 }
             });
+            // ================= VIDEO LAZY LOAD ON CLICK =================
+            window.playVideo = function (id) {
+                const video = document.getElementById(`video${id}`);
+                const overlay = document.getElementById(`play-overlay${id}`);
+
+                if (!video) return;
+
+                // Load video only when user clicks
+                if (!video.src) {
+                    video.src = video.dataset.video;
+                    video.load();
+                }
+
+                video.play();
+                overlay.style.display = 'none';
+
+                // Show time display
+                const timeBox = document.getElementById(`time-display${id}`);
+                if (timeBox) timeBox.style.display = 'block';
+
+                // Total duration
+                video.onloadedmetadata = () => {
+                    document.getElementById(`total-time${id}`).textContent =
+                        formatTime(video.duration);
+                };
+
+                // Current time
+                video.ontimeupdate = () => {
+                    document.getElementById(`current-time${id}`).textContent =
+                        formatTime(video.currentTime);
+                };
+            };
+
+            // Helper
+            function formatTime(seconds) {
+                const m = Math.floor(seconds / 60);
+                const s = Math.floor(seconds % 60);
+                return `${m}:${s < 10 ? '0' : ''}${s}`;
+            }
+
         });
     </script>
 </body>

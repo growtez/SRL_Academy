@@ -13,7 +13,16 @@ function setRandomHeroImage() {
     const heroImages = [
         'images/5.jpg',
         'images/6.jpg',
-        'images/9.jpg'
+        'images/9.jpg',
+        'images/classroom/Life at Dakshana Valley Pune  (5).jpg',
+        'images/classroom/Life at Dakshana Valley Pune  (6).jpg',
+        'images/classroom/Life at Dakshana Valley Pune  (7).jpg',
+        'images/classroom/Life at Dakshana Valley Pune  (8).jpg',
+        'images/classroom/Life at Dakshana Valley Pune  (9).jpg',
+        'images/classroom/Life at Dakshana Valley Pune  (10).jpg',
+        'images/classroom/Life at Dakshana Valley Pune  (11).jpg',
+        'images/classroom/Life at Dakshana Valley Pune  (12).jpg',
+
     ];
 
     // Select a random image

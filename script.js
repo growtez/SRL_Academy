@@ -11,17 +11,17 @@ function setRandomHeroImage() {
 
     // Home page gallery images (not using logo.png)
     const heroImages = [
-        'images/5.jpg',
+        'images/5.webp',
         'images/6.jpg',
         'images/9.jpg',
-        'images/classroom/Life at Dakshana Valley Pune  (5).jpg',
-        'images/classroom/Life at Dakshana Valley Pune  (6).jpg',
-        'images/classroom/Life at Dakshana Valley Pune  (7).jpg',
-        'images/classroom/Life at Dakshana Valley Pune  (8).jpg',
-        'images/classroom/Life at Dakshana Valley Pune  (9).jpg',
-        'images/classroom/Life at Dakshana Valley Pune  (10).jpg',
-        'images/classroom/Life at Dakshana Valley Pune  (11).jpg',
-        'images/classroom/Life at Dakshana Valley Pune  (12).jpg',
+        'images/classroom/Life at Dakshana Valley Pune  (5).webp',
+        'images/classroom/Life at Dakshana Valley Pune  (6).webp',
+        'images/classroom/Life at Dakshana Valley Pune  (7).webp',
+        'images/classroom/Life at Dakshana Valley Pune  (8).webp',
+        'images/classroom/Life at Dakshana Valley Pune  (9).webp',
+        'images/classroom/Life at Dakshana Valley Pune  (10).webp',
+        'images/classroom/Life at Dakshana Valley Pune  (11).webp',
+        'images/classroom/Life at Dakshana Valley Pune  (12).webp',
 
     ];
 

@@ -13,7 +13,7 @@ function setRandomHeroImage() {
     const heroImages = [
         'images/5.webp',
         'images/6.jpg',
-        'images/9.jpg',
+        'images/9.webp',
         'images/classroom/Life at Dakshana Valley Pune  (5).webp',
         'images/classroom/Life at Dakshana Valley Pune  (6).webp',
         'images/classroom/Life at Dakshana Valley Pune  (7).webp',

@@ -127,18 +127,24 @@ const initSwiper = () => {
 };
 
 // Preloader
+function hidePreloader() {
+    const preloader = document.querySelector('.preloader');
+    if (!preloader) return;
+
+    preloader.style.opacity = '0';
+    setTimeout(() => {
+        preloader.style.display = 'none';
+    }, 500);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', hidePreloader);
+} else {
+    hidePreloader();
+}
+
 // Initialize everything when the window loads
 window.addEventListener('load', function () {
-    // Hide Preloader First!
-    const preloader = document.querySelector('.preloader');
-    if (preloader) {
-        // Immediate fade out
-        preloader.style.opacity = '0';
-        setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 500);
-    }
-
     // Initialize Swiper safely
     try {
         initSwiper();

@@ -1,206 +1,204 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Centers | SRL Academy</title>
-    <meta
-      name="description"
-      content="Find SRL Academy centers across India. Visit our locations in major cities for quality education and guidance."
-    />
-    <meta
-      name="keywords"
-      content="SRL Academy Centers, Coaching Institute Locations, Bangalore, Mumbai, Delhi, Kolkata, Bangalore"
-    />
 
-    <!-- Favicon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Centers | SRL Academy</title>
+  <meta name="description"
+    content="Find SRL Academy centers across India. Visit our locations in major cities for quality education and guidance." />
+  <meta name="keywords"
+    content="SRL Academy Centers, Coaching Institute Locations, Bangalore, Mumbai, Delhi, Kolkata, Bangalore" />
+  <link rel="canonical" href="https://srlacademyedu.com/centers.html" />
+  <meta name="robots" content="index, follow" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://srlacademyedu.com/centers.html" />
+  <meta property="og:title" content="Our Centers | SRL Academy Locations Across India" />
+  <meta property="og:description"
+    content="Find SRL Academy centers across India. Visit our locations for quality JEE, NEET & competitive exam coaching." />
+  <meta property="og:image" content="https://srlacademyedu.com/images/logo.png" />
+  <meta property="og:site_name" content="SRL Academy" />
 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://srlacademyedu.com/centers.html" />
+  <meta name="twitter:title" content="Our Centers | SRL Academy Locations Across India" />
+  <meta name="twitter:description"
+    content="Find SRL Academy centers across India. Visit our locations for quality JEE, NEET & competitive exam coaching." />
+  <meta name="twitter:image" content="https://srlacademyedu.com/images/logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    as="style" onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      " />
+
+  <noscript>
     <link
-      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-      as="style"
-      onload="
+      rel="stylesheet" />
+  </noscript>
+
+  <!-- Font Awesome -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+    onload="
         this.onload = null;
         this.rel = 'stylesheet';
-      "
-    />
+      " />
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </noscript>
 
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
-
-    <!-- Font Awesome -->
-    <link
-      rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      as="style"
-      onload="
+  <!-- Swiper CSS -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" as="style" onload="
         this.onload = null;
         this.rel = 'stylesheet';
-      "
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      />
-    </noscript>
+      " />
 
-    <!-- Swiper CSS -->
-    <link
-      rel="preload"
-      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-    />
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  </noscript>
 
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-      />
-    </noscript>
+  <!-- Project Styles -->
 
-    <!-- Project Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .centers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
 
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      .centers-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-      }
+    .center-card {
+      background: #fff;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+      overflow: hidden;
+    }
 
-      .center-card {
-        background: #fff;
-        border: 1px solid var(--primary);
-        border-radius: 8px;
-        padding: 25px;
-        text-align: center;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
-        overflow: hidden;
-      }
+    .center-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
 
-      .center-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      }
+    .center-video {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      /* adjust if needed */
+      border-radius: 10px;
+      object-fit: contain;
+      display: block;
+    }
 
-      .center-video {
-        width: 100%;
-        height: auto;
-        max-height: 400px;
-        /* adjust if needed */
-        border-radius: 10px;
-        object-fit: contain;
-        display: block;
-      }
+    .center-icon {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: var(--primary);
+    }
 
-      .center-icon {
-        font-size: clamp(1.5rem, 4vw, 2.5rem);
-        color: var(--primary);
-      }
+    .card-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
 
-      .card-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-      }
+    .center-address::before {
+      font-family: "Font Awesome 6 Free";
+      font-weight: 1000;
+      content: "\f3c5";
+      margin-right: 8px;
+      color: var(--primary);
+    }
 
-      .center-address::before {
-        font-family: "Font Awesome 6 Free";
-        font-weight: 1000;
-        content: "\f3c5";
-        margin-right: 8px;
-        color: var(--primary);
-      }
+    .center-address {
+      font-style: normal;
+      margin: 10px 0;
+      color: #555;
+    }
 
-      .center-address {
-        font-style: normal;
-        margin: 10px 0;
-        color: #555;
-      }
+    .directions-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 15px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
 
-      .directions-btn {
-        display: inline-block;
-        margin-top: 15px;
-        padding: 8px 15px;
-        background: var(--primary);
-        color: #fff;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background 0.3s;
-      }
+    .directions-btn:hover {
+      background: var(--primary);
+    }
 
-      .directions-btn:hover {
-        background: var(--primary);
-      }
+    /* Swiper Styles */
+    .center-slider {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
 
-      /* Swiper Styles */
-      .center-slider {
-        width: 100%;
-        height: 250px;
-        border-radius: 12px;
-        overflow: hidden;
-        margin-top: 20px;
-      }
+    .center-slider img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+    }
 
-      .center-slider img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 10px;
-      }
+    .hero {
+      background:
+        linear-gradient(0deg, rgba(128, 0, 0, 0.7), rgba(128, 0, 0, 0.5)),
+        url("images/centers/hero-back.jpg") center/cover no-repeat;
+      color: var(--white);
+      padding: var(--space-20) 0;
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+    }
 
-      .hero {
-        background:
-          linear-gradient(0deg, rgba(128, 0, 0, 0.7), rgba(128, 0, 0, 0.5)),
-          url("images/centers/hero-back.jpg") center/cover no-repeat;
-        color: var(--white);
-        padding: var(--space-20) 0;
-        position: relative;
-        overflow: hidden;
-        min-height: 420px;
-        display: flex;
-        align-items: center;
-      }
+    .swiper-pagination-bullet {
+      background: var(--primary) !important;
+    }
 
-      .swiper-pagination-bullet {
-        background: var(--primary) !important;
-      }
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: white !important;
+      transition: all 0.3s ease;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-5%) scale(0.7);
+      width: 44px;
+      height: 44px;
+      z-index: 10;
+    }
 
-      .swiper-button-next,
-      .swiper-button-prev {
-        color: white !important;
-        transition: all 0.3s ease;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-5%) scale(0.7);
-        width: 44px;
-        height: 44px;
-        z-index: 10;
-      }
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 28px !important;
+    }
 
-      .swiper-button-next:after,
-      .swiper-button-prev:after {
-        font-size: 28px !important;
-      }
-      /* 
+    /* 
 h4 {
     display: block;
     margin-block-start: 1.33em;
@@ -211,1079 +209,857 @@ h4 {
     unicode-bidi: isolate;
 } */
 
-      /* Landscape mobile optimization */
-      @media (max-width: 768px) and (orientation: landscape) {
-        .hero {
-          min-height: 250px;
-          padding: 80px 0 40px;
-        }
-
-        .center-slider {
-          height: auto;
-        }
+    /* Landscape mobile optimization */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .hero {
+        min-height: 250px;
+        padding: 80px 0 40px;
       }
 
-      @media (max-width: 768px) {
-        .container {
-          padding: 0 15px;
-        }
+      .center-slider {
+        height: auto;
+      }
+    }
 
-        /* Mobile Navigation */
-        .nav-links {
-          position: fixed;
-          top: 70px;
-          left: 0;
-          right: 0;
-          background: #fff;
-          flex-direction: column;
-          padding: 20px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-          transform: translateX(-100%);
-          transition: transform 0.3s ease;
-        }
-
-        .nav-links.active {
-          transform: translateX(0);
-        }
-
-        .mobile-menu-btn {
-          display: block;
-        }
-
-        .brand-text {
-          font-size: 0.9rem;
-        }
-
-        .logo img {
-          height: 35px;
-        }
-
-        /* Hero adjustments */
-        .hero {
-          padding: 100px 0 60px;
-          min-height: 350px;
-        }
-
-        /* Centers grid mobile optimization */
-        .centers-grid {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
-
-        .center-card {
-          padding: 20px;
-          margin: 0 5px;
-        }
-
-        .center-slider {
-          height: auto;
-        }
-
-        .card-header {
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-        }
-
-        .card-header h3 {
-          text-align: center;
-          line-height: 1.3;
-        }
-
-        /* Footer mobile */
-        .footer-grid {
-          grid-template-columns: 1fr;
-          gap: 25px;
-          text-align: center;
-        }
-
-        .section {
-          padding: 60px 0;
-        }
-
-        /* Swiper buttons smaller on mobile */
-        .swiper-button-next,
-        .swiper-button-prev {
-          width: 36px !important;
-          height: 36px !important;
-        }
-
-        .swiper-button-next:after,
-        .swiper-button-prev:after {
-          font-size: 24px !important;
-        }
-
-        .back-to-top {
-          width: 45px;
-          height: 45px;
-          bottom: 20px;
-          right: 20px;
-        }
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
       }
 
-      @media (max-width: 480px) {
-        .center-card {
-          padding: 15px;
-          margin: 0;
-        }
-
-        .centers-grid {
-          gap: 1rem;
-        }
-
-        .center-slider {
-          height: auto;
-        }
-
-        .container {
-          padding: 0 10px;
-        }
+      /* Mobile Navigation */
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
       }
-      /* ================================
+
+      .nav-links.active {
+        transform: translateX(0);
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .brand-text {
+        font-size: 0.9rem;
+      }
+
+      .logo img {
+        height: 35px;
+      }
+
+      /* Hero adjustments */
+      .hero {
+        padding: 100px 0 60px;
+        min-height: 350px;
+      }
+
+      /* Centers grid mobile optimization */
+      .centers-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .center-card {
+        padding: 20px;
+        margin: 0 5px;
+      }
+
+      .center-slider {
+        height: auto;
+      }
+
+      .card-header {
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .card-header h3 {
+        text-align: center;
+        line-height: 1.3;
+      }
+
+      /* Footer mobile */
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        text-align: center;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      /* Swiper buttons smaller on mobile */
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 36px !important;
+        height: 36px !important;
+      }
+
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
+        font-size: 24px !important;
+      }
+
+      .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .center-card {
+        padding: 15px;
+        margin: 0;
+      }
+
+      .centers-grid {
+        gap: 1rem;
+      }
+
+      .center-slider {
+        height: auto;
+      }
+
+      .container {
+        padding: 0 10px;
+      }
+    }
+
+    /* ================================
    DROPDOWN BASE STYLES
 ================================ */
-      .dropdown {
-        position: relative;
-      }
+    .dropdown {
+      position: relative;
+    }
 
-      /* Hidden by default on Desktop */
-      .dropdown .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        min-width: 160px;
-        background: #fff;
-        border-radius: 0.5rem;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        list-style: none;
-        padding: 0.5rem 0;
-        margin: 0;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        pointer-events: none;
-        transition:
-          opacity 0.25s ease,
-          transform 0.25s ease;
-        z-index: 1000;
-      }
+    /* Hidden by default on Desktop */
+    .dropdown .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      min-width: 160px;
+      background: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      list-style: none;
+      padding: 0.5rem 0;
+      margin: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+      z-index: 1000;
+    }
 
-      .dropdown-menu li a {
-        display: block;
-        padding: 0.6rem 1rem;
-        text-decoration: none;
-        color: #374151;
-        font-weight: 500;
-        white-space: nowrap;
-      }
+    .dropdown-menu li a {
+      display: block;
+      padding: 0.6rem 1rem;
+      text-decoration: none;
+      color: #374151;
+      font-weight: 500;
+      white-space: nowrap;
+    }
 
-      .dropdown-menu li a:hover {
-        background: #f3f4f6;
-        color: #800000;
-      }
+    .dropdown-menu li a:hover {
+      background: #f3f4f6;
+      color: #800000;
+    }
 
-      /* Desktop Open State (via JS or Keyboard) */
-      .dropdown.open .dropdown-menu {
+    /* Desktop Open State (via JS or Keyboard) */
+    .dropdown.open .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Arrow Animation */
+    .dropdown-toggle i {
+      font-size: 0.7rem;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown.open .dropdown-toggle i {
+      transform: rotate(180deg);
+    }
+
+    /* ================================
+   DESKTOP HOVER (Mouse only)
+================================ */
+    @media (hover: hover) and (pointer: fine) {
+      .dropdown:hover .dropdown-menu {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
         pointer-events: auto;
       }
 
-      /* Arrow Animation */
-      .dropdown-toggle i {
-        font-size: 0.7rem;
-        transition: transform 0.3s ease;
-      }
-
-      .dropdown.open .dropdown-toggle i {
+      .dropdown:hover .dropdown-toggle i {
         transform: rotate(180deg);
       }
+    }
 
-      /* ================================
-   DESKTOP HOVER (Mouse only)
-================================ */
-      @media (hover: hover) and (pointer: fine) {
-        .dropdown:hover .dropdown-menu {
-          opacity: 1;
-          visibility: visible;
-          transform: translateY(0);
-          pointer-events: auto;
-        }
-
-        .dropdown:hover .dropdown-toggle i {
-          transform: rotate(180deg);
-        }
+    /* ===== RESPONSIVE STYLES ===== */
+    @media (max-width: 992px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary);
+        /* mobile menu on maroon background */
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 999;
       }
-      /* ===== RESPONSIVE STYLES ===== */
-      @media (max-width: 992px) {
-        .nav-links {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: var(--primary);
-          /* mobile menu on maroon background */
-          flex-direction: column;
-          align-items: center;
-          padding: 1rem 0;
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-          z-index: 999;
-        }
 
-        .nav-links.active {
-          display: flex;
-        }
-
-        .nav-links a {
-          padding: 0.8rem 1rem;
-          width: 100%;
-          text-align: center;
-        }
-
-        /* Mobile menu link colors on primary background */
-        .nav-links a {
-          color: var(--white);
-        }
-
-        .nav-links a::before {
-          background: var(--white);
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-          color: var(--white);
-        }
-
-        .mobile-menu-btn {
-          display: block;
-        }
-        .nav-links li.dropdown {
-          text-align: center;
-        }
-
-        /* 2. Fix Space Issue: Use display:none to remove empty space */
-        .dropdown .dropdown-menu {
-          display: none;
-          position: static;
-          background: rgba(0, 0, 0, 0.1);
-          box-shadow: none;
-          border-radius: 0;
-          padding: 0;
-          width: 100%;
-          opacity: 1;
-          visibility: visible;
-          transform: none;
-        }
-
-        /* Show when open */
-        .dropdown.open .dropdown-menu {
-          display: block;
-        }
-
-        .dropdown-menu li a {
-          color: #fff;
-          padding: 0.6rem 1rem;
-        }
-
-        .dropdown-menu li a:hover {
-          background: rgba(255, 255, 255, 0.15);
-          color: #fff;
-        }
-
-        /* 3. Fix: Remove white underline on tap for mobile */
-        .nav-links a:hover::before {
-          display: none;
-        }
+      .nav-links.active {
+        display: flex;
       }
-    </style>
-  </head>
 
-  <body>
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-      <div class="loader"></div>
-    </div>
+      .nav-links a {
+        padding: 0.8rem 1rem;
+        width: 100%;
+        text-align: center;
+      }
 
-    <!-- Header -->
-    <header class="header">
-      <div class="container">
-        <nav class="nav">
-          <a href="index.html" class="brand" aria-label="SRL Academy">
-            <span class="logo">
-              <img
-                src="images/logo-96.webp"
-                srcset="
+      /* Mobile menu link colors on primary background */
+      .nav-links a {
+        color: var(--white);
+      }
+
+      .nav-links a::before {
+        background: var(--white);
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--white);
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .nav-links li.dropdown {
+        text-align: center;
+      }
+
+      /* 2. Fix Space Issue: Use display:none to remove empty space */
+      .dropdown .dropdown-menu {
+        display: none;
+        position: static;
+        background: rgba(0, 0, 0, 0.1);
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+
+      /* Show when open */
+      .dropdown.open .dropdown-menu {
+        display: block;
+      }
+
+      .dropdown-menu li a {
+        color: #fff;
+        padding: 0.6rem 1rem;
+      }
+
+      .dropdown-menu li a:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+      }
+
+      /* 3. Fix: Remove white underline on tap for mobile */
+      .nav-links a:hover::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="brand" aria-label="SRL Academy">
+          <span class="logo">
+            <img src="images/logo-96.webp" srcset="
                   images/logo-64.webp   64w,
                   images/logo-96.webp   96w,
                   images/logo-128.webp 128w
-                "
-                sizes="77px"
-                width="77"
-                height="61"
-                alt="SRL Academy"
-                decoding="async"
-              />
+                " sizes="77px" width="77" height="61" alt="SRL Academy" decoding="async" />
+          </span>
+          <span class="brand-text">
+            <span class="brand-row">
+              <span class="brand-line-1">SRL Academy</span>
             </span>
-            <span class="brand-text">
-              <span class="brand-row">
-                <span class="brand-line-1">SRL Academy</span>
-              </span>
-              <span class="brand-tagline">Direction for Success </span>
-            </span>
-          </a>
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="scholarship.html">Scholarship</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle"
-                >Courses <i class="fas fa-chevron-down"></i
-              ></a>
-              <ul class="dropdown-menu">
-                <li><a href="courses-online.html">Online</a></li>
-                <li><a href="courses-classroom.html">Classroom</a></li>
-              </ul>
-            </li>
-            <li><a href="centers.html" class="active">Centers</a></li>
-            <li><a href="photos.html">Gallery</a></li>
-            <li><a href="partnership.html">Partnership</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle"
-                >More <i class="fas fa-chevron-down"></i
-              ></a>
-              <ul class="dropdown-menu">
-                <li><a href="programs.html">Programs</a></li>
-                <li><a href="educator.html">Careers</a></li>
-                <li><a href="contact.html">Contact</a></li>
-              </ul>
-            </li>
-          </ul>
-          <button
-            class="mobile-menu-btn"
-            aria-label="Toggle navigation"
-            aria-expanded="false"
-          >
-            <i class="fas fa-bars"></i>
-          </button>
-        </nav>
-      </div>
-    </header>
+            <span class="brand-tagline">Direction for Success </span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="scholarship.html">Scholarship</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Courses <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="courses-online.html">Online</a></li>
+              <li><a href="courses-classroom.html">Classroom</a></li>
+            </ul>
+          </li>
+          <li><a href="centers.html" class="active">Centers</a></li>
+          <li><a href="photos.html">Gallery</a></li>
+          <li><a href="partnership.html">Partnership</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle">More <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="programs.html">Programs</a></li>
+              <li><a href="educator.html">Careers</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </li>
+        </ul>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-      <!-- Hero Section -->
-      <section class="hero">
-        <div class="container">
-          <div class="hero-content">
-            <h1>6+ Centers Across India</h1>
-            <p>
-              We have strategically located centers in major places to provide
-              accessible and quality coaching to students across India
-            </p>
-          </div>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>6+ Centers Across India</h1>
+          <p>
+            We have strategically located centers in major places to provide
+            accessible and quality coaching to students across India
+          </p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Centers Section -->
-      <section class="section centers">
-        <div class="container">
-          <div class="centers-grid">
-            <!-- Center Card 1 -->
-            <div class="center-card">
-              <div class="card-header">
-                <div class="center-icon">
-                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                </div>
-                <h4>SRL Academy</h4>
+    <!-- Centers Section -->
+    <section class="section centers">
+      <div class="container">
+        <div class="centers-grid">
+          <!-- Center Card 1 -->
+          <div class="center-card">
+            <div class="card-header">
+              <div class="center-icon">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
               </div>
-              <address class="center-address">
-                Vidyaranyapura Main Road, Bangalore
-              </address>
+              <h4>SRL Academy</h4>
+            </div>
+            <address class="center-address">
+              Vidyaranyapura Main Road, Bangalore
+            </address>
 
-              <!-- Swiper Slider -->
-              <div class="swiper center-slider">
-                <div class="swiper-wrapper">
-                  <!-- Slide 1 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/srl-academy/srl1-768.webp"
-                      srcset="
+            <!-- Swiper Slider -->
+            <div class="swiper center-slider">
+              <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/srl-academy/srl1-768.webp" srcset="
                         images/centers/srl-academy/srl1-480.webp   480w,
                         images/centers/srl-academy/srl1-768.webp   768w,
                         images/centers/srl-academy/srl1-1200.webp 1200w
-                      "
-                      sizes="(max-width: 768px) 90vw, 630px"
-                      alt="SRL Academy - Campus View 1"
-                      class="card-image"
-                      width="630"
-                      height="405"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                      " sizes="(max-width: 768px) 90vw, 630px" alt="SRL Academy - Campus View 1" class="card-image"
+                    width="630" height="405" loading="lazy" decoding="async" />
+                </div>
 
-                  <!-- Slide 2 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/srl-academy/srl2-768.webp"
-                      srcset="
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/srl-academy/srl2-768.webp" srcset="
                         images/centers/srl-academy/srl2-480.webp   480w,
                         images/centers/srl-academy/srl2-768.webp   768w,
                         images/centers/srl-academy/srl2-1200.webp 1200w
-                      "
-                      sizes="(max-width: 768px) 90vw, 630px"
-                      alt="SRL Academy - Campus View 2"
-                      class="card-image"
-                      width="630"
-                      height="359"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                      " sizes="(max-width: 768px) 90vw, 630px" alt="SRL Academy - Campus View 2" class="card-image"
+                    width="630" height="359" loading="lazy" decoding="async" />
+                </div>
 
-                  <!-- Slide 3 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/srl-academy/srl3-768.webp"
-                      srcset="
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/srl-academy/srl3-768.webp" srcset="
                         images/centers/srl-academy/srl3-480.webp   480w,
                         images/centers/srl-academy/srl3-768.webp   768w,
                         images/centers/srl-academy/srl3-1200.webp 1200w
-                      "
-                      sizes="(max-width: 768px) 90vw, 630px"
-                      alt="SRL Academy - Campus View 3"
-                      class="card-image"
-                      width="630"
-                      height="373"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                      " sizes="(max-width: 768px) 90vw, 630px" alt="SRL Academy - Campus View 3" class="card-image"
+                    width="630" height="373" loading="lazy" decoding="async" />
                 </div>
-
-                <!-- Pagination (dots) -->
-                <div class="swiper-pagination"></div>
-
-                <!-- Navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
               </div>
+
+              <!-- Pagination (dots) -->
+              <div class="swiper-pagination"></div>
+
+              <!-- Navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
             </div>
+          </div>
 
-            <!-- Center Card 2 -->
-            <div class="center-card">
-              <div class="card-header">
-                <div class="center-icon">
-                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                </div>
-                <h4>JNV Bangalore Rural</h4>
+          <!-- Center Card 2 -->
+          <div class="center-card">
+            <div class="card-header">
+              <div class="center-icon">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
               </div>
-              <address class="center-address">
-                Doddaballapur, Bangalore Rural
-              </address>
-
-              <!-- Swiper Slider -->
-              <div class="swiper center-slider">
-                <div class="swiper-wrapper">
-                  <!-- Slide 1 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-bangalore-rural/jnvb1.jpg"
-                      alt="SRL Academy - Campus View 1"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-
-                  <!-- Slide 2 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-bangalore-rural/jnvb1.jpg"
-                      alt="SRL Academy - Campus View 2"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-
-                  <!-- Slide 3 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-bangalore-rural/jnvb1.jpg"
-                      alt="SRL Academy - Campus View 2"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                </div>
-
-                <!-- Pagination (dots) -->
-                <div class="swiper-pagination"></div>
-
-                <!-- Navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-              </div>
+              <h4>JNV Bangalore Rural</h4>
             </div>
+            <address class="center-address">
+              Doddaballapur, Bangalore Rural
+            </address>
 
-            <!-- Center Card 3 -->
-            <div class="center-card">
-              <div class="card-header">
-                <div class="center-icon">
-                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+            <!-- Swiper Slider -->
+            <div class="swiper center-slider">
+              <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-bangalore-rural/jnvb1.jpg" alt="SRL Academy - Campus View 1"
+                    class="card-image" loading="lazy" decoding="async" />
                 </div>
-                <h4>JNV Kolhapur</h4>
-              </div>
-              <address class="center-address">
-                Kagal, Kolhapur, Maharashtra
-              </address>
 
-              <!-- Swiper Slider -->
-              <div class="swiper center-slider">
-                <div class="swiper-wrapper">
-                  <!-- Slide 1 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-kohlapur/jnvk1-768.webp"
-                      srcset="
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-bangalore-rural/jnvb1.jpg" alt="SRL Academy - Campus View 2"
+                    class="card-image" loading="lazy" decoding="async" />
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-bangalore-rural/jnvb1.jpg" alt="SRL Academy - Campus View 2"
+                    class="card-image" loading="lazy" decoding="async" />
+                </div>
+              </div>
+
+              <!-- Pagination (dots) -->
+              <div class="swiper-pagination"></div>
+
+              <!-- Navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </div>
+
+          <!-- Center Card 3 -->
+          <div class="center-card">
+            <div class="card-header">
+              <div class="center-icon">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+              </div>
+              <h4>JNV Kolhapur</h4>
+            </div>
+            <address class="center-address">
+              Kagal, Kolhapur, Maharashtra
+            </address>
+
+            <!-- Swiper Slider -->
+            <div class="swiper center-slider">
+              <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-kohlapur/jnvk1-768.webp" srcset="
                         images/centers/jnv-kohlapur/jnvk1-480.webp   480w,
                         images/centers/jnv-kohlapur/jnvk1-768.webp   768w,
                         images/centers/jnv-kohlapur/jnvk1-1200.webp 1200w
-                      "
-                      sizes="(max-width: 768px) 90vw, 630px"
-                      alt="JNV Kolhapur - Campus View 1"
-                      class="card-image"
-                      width="630"
-                      height="473"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                      " sizes="(max-width: 768px) 90vw, 630px" alt="JNV Kolhapur - Campus View 1" class="card-image"
+                    width="630" height="473" loading="lazy" decoding="async" />
+                </div>
 
-                  <!-- Slide 2 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-kohlapur/jnvk2-768.webp"
-                      srcset="
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-kohlapur/jnvk2-768.webp" srcset="
                         images/centers/jnv-kohlapur/jnvk2-480.webp   480w,
                         images/centers/jnv-kohlapur/jnvk2-768.webp   768w,
                         images/centers/jnv-kohlapur/jnvk2-1200.webp 1200w
-                      "
-                      sizes="(max-width: 768px) 90vw, 630px"
-                      alt="JNV Kolhapur - Campus View 2"
-                      class="card-image"
-                      width="630"
-                      height="473"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                      " sizes="(max-width: 768px) 90vw, 630px" alt="JNV Kolhapur - Campus View 2" class="card-image"
+                    width="630" height="473" loading="lazy" decoding="async" />
+                </div>
 
-                  <!-- Slide 3 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-kohlapur/jnvk3-768.webp"
-                      srcset="
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-kohlapur/jnvk3-768.webp" srcset="
                         images/centers/jnv-kohlapur/jnvk3-480.webp   480w,
                         images/centers/jnv-kohlapur/jnvk3-768.webp   768w,
                         images/centers/jnv-kohlapur/jnvk3-1200.webp 1200w
-                      "
-                      sizes="(max-width: 768px) 90vw, 630px"
-                      alt="JNV Kolhapur - Campus View 4"
-                      class="card-image"
-                      width="630"
-                      height="473"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                      " sizes="(max-width: 768px) 90vw, 630px" alt="JNV Kolhapur - Campus View 4" class="card-image"
+                    width="630" height="473" loading="lazy" decoding="async" />
+                </div>
 
-                  <!-- Slide 4 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-kohlapur/jnvk4-768.webp"
-                      srcset="
+                <!-- Slide 4 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-kohlapur/jnvk4-768.webp" srcset="
                         images/centers/jnv-kohlapur/jnvk4-480.webp   480w,
                         images/centers/jnv-kohlapur/jnvk4-768.webp   768w,
                         images/centers/jnv-kohlapur/jnvk4-1200.webp 1200w
-                      "
-                      sizes="(max-width: 768px) 90vw, 630px"
-                      alt="JNV Kolhapur - Campus View 4"
-                      class="card-image"
-                      width="630"
-                      height="473"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                      " sizes="(max-width: 768px) 90vw, 630px" alt="JNV Kolhapur - Campus View 4" class="card-image"
+                    width="630" height="473" loading="lazy" decoding="async" />
                 </div>
-
-                <!-- Pagination (dots) -->
-                <div class="swiper-pagination"></div>
-
-                <!-- Navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
               </div>
+
+              <!-- Pagination (dots) -->
+              <div class="swiper-pagination"></div>
+
+              <!-- Navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
             </div>
+          </div>
 
-            <!-- Center Card 4 -->
-            <div class="center-card">
-              <div class="card-header">
-                <div class="center-icon">
-                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                </div>
-                <h4>JNV Hassan</h4>
+          <!-- Center Card 4 -->
+          <div class="center-card">
+            <div class="card-header">
+              <div class="center-icon">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
               </div>
-              <address class="center-address">
-                Mavinakere, Hassan, Karnataka
-              </address>
-
-              <!-- Swiper Slider -->
-              <div class="swiper center-slider">
-                <div class="swiper-wrapper">
-                  <!-- Slide 1 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-hassan/jnvh1.jpg"
-                      alt="JNV Hassan - Campus View 1"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-
-                  <!-- Slide 2 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-hassan/jnvh1.jpg"
-                      alt="JNV Hassan - Campus View 2"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-
-                  <!-- Slide 3 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-hassan/jnvh1.jpg"
-                      alt="JNV Hassan - Campus View 3"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                </div>
-
-                <!-- Pagination (dots) -->
-                <div class="swiper-pagination"></div>
-
-                <!-- Navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-              </div>
+              <h4>JNV Hassan</h4>
             </div>
+            <address class="center-address">
+              Mavinakere, Hassan, Karnataka
+            </address>
 
-            <!-- Center Card 5 -->
-            <div class="center-card">
-              <div class="card-header">
-                <div class="center-icon">
-                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                </div>
-                <h4>JNV Medak</h4>
-              </div>
-              <address class="center-address">
-                Wargal, Medak[Siddipet], Telangana
-              </address>
-
-              <!-- Swiper Slider -->
-              <div class="swiper center-slider">
-                <div class="swiper-wrapper">
-                  <!-- Slide 1 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-medak/jnvm1.jpg"
-                      alt="JNV Medak - Campus View 1"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-
-                  <!-- Slide 2 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-medak/jnvm1.jpg"
-                      alt="JNV Medak - Campus View 2"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-
-                  <!-- Slide 3 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-medak/jnvm1.jpg"
-                      alt="JNV Medak - Campus View 3"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+            <!-- Swiper Slider -->
+            <div class="swiper center-slider">
+              <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-hassan/jnvh1.jpg" alt="JNV Hassan - Campus View 1" class="card-image"
+                    loading="lazy" decoding="async" />
                 </div>
 
-                <!-- Pagination (dots) -->
-                <div class="swiper-pagination"></div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-hassan/jnvh1.jpg" alt="JNV Hassan - Campus View 2" class="card-image"
+                    loading="lazy" decoding="async" />
+                </div>
 
-                <!-- Navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-hassan/jnvh1.jpg" alt="JNV Hassan - Campus View 3" class="card-image"
+                    loading="lazy" decoding="async" />
+                </div>
               </div>
+
+              <!-- Pagination (dots) -->
+              <div class="swiper-pagination"></div>
+
+              <!-- Navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
             </div>
+          </div>
 
-            <!-- Center Card 6 -->
-            <div class="center-card">
-              <div class="card-header">
-                <div class="center-icon">
-                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                </div>
-                <h4>JNV Thiruvananthapuram</h4>
+          <!-- Center Card 5 -->
+          <div class="center-card">
+            <div class="card-header">
+              <div class="center-icon">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
               </div>
-              <address class="center-address">
-                Chettachal, Thiruvananthapuram, Kerala
-              </address>
-
-              <!-- Swiper Slider -->
-              <div class="swiper center-slider">
-                <div class="swiper-wrapper">
-                  <!-- Slide 1 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-t/jnvt1.jpg"
-                      alt="JNV Thiruvananthapuram - Campus View 1"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-
-                  <!-- Slide 2 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-t/jnvt1.jpg"
-                      alt="JNV Thiruvananthapuram - Campus View 2"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-
-                  <!-- Slide 3 -->
-                  <div class="swiper-slide">
-                    <img
-                      src="images/centers/jnv-t/jnvt1.jpg"
-                      alt="JNV Thiruvananthapuram - Campus View 3"
-                      class="card-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                </div>
-
-                <!-- Pagination (dots) -->
-                <div class="swiper-pagination"></div>
-
-                <!-- Navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-              </div>
+              <h4>JNV Medak</h4>
             </div>
+            <address class="center-address">
+              Wargal, Medak[Siddipet], Telangana
+            </address>
 
-            <!-- More Centers Coming Soon -->
-            <div
-              class="center-card"
-              style="
+            <!-- Swiper Slider -->
+            <div class="swiper center-slider">
+              <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-medak/jnvm1.jpg" alt="JNV Medak - Campus View 1" class="card-image"
+                    loading="lazy" decoding="async" />
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-medak/jnvm1.jpg" alt="JNV Medak - Campus View 2" class="card-image"
+                    loading="lazy" decoding="async" />
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-medak/jnvm1.jpg" alt="JNV Medak - Campus View 3" class="card-image"
+                    loading="lazy" decoding="async" />
+                </div>
+              </div>
+
+              <!-- Pagination (dots) -->
+              <div class="swiper-pagination"></div>
+
+              <!-- Navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </div>
+
+          <!-- Center Card 6 -->
+          <div class="center-card">
+            <div class="card-header">
+              <div class="center-icon">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+              </div>
+              <h4>JNV Thiruvananthapuram</h4>
+            </div>
+            <address class="center-address">
+              Chettachal, Thiruvananthapuram, Kerala
+            </address>
+
+            <!-- Swiper Slider -->
+            <div class="swiper center-slider">
+              <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-t/jnvt1.jpg" alt="JNV Thiruvananthapuram - Campus View 1"
+                    class="card-image" loading="lazy" decoding="async" />
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-t/jnvt1.jpg" alt="JNV Thiruvananthapuram - Campus View 2"
+                    class="card-image" loading="lazy" decoding="async" />
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                  <img src="images/centers/jnv-t/jnvt1.jpg" alt="JNV Thiruvananthapuram - Campus View 3"
+                    class="card-image" loading="lazy" decoding="async" />
+                </div>
+              </div>
+
+              <!-- Pagination (dots) -->
+              <div class="swiper-pagination"></div>
+
+              <!-- Navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </div>
+
+          <!-- More Centers Coming Soon -->
+          <div class="center-card" style="
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-              "
-            >
-              <div class="center-icon">
-                <i class="fas fa-clock" aria-hidden="true"></i>
-              </div>
-              <h4 style="margin-top: 12px">More Centers Coming Soon...</h4>
-              <p>
-                We are expanding our network to bring quality education closer
-                to you. Stay tuned for updates!
-              </p>
+              ">
+            <div class="center-icon">
+              <i class="fas fa-clock" aria-hidden="true"></i>
             </div>
+            <h4 style="margin-top: 12px">More Centers Coming Soon...</h4>
+            <p>
+              We are expanding our network to bring quality education closer
+              to you. Stay tuned for updates!
+            </p>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <footer
-      style="
+  <footer style="
         background: #800000;
         color: #fff;
         padding: 40px 20px 20px;
         margin-top: auto;
         width: 100%;
-      "
-    >
-      <div style="max-width: 1200px; margin: 0 auto">
-        <div
-          style="
+      ">
+    <div style="max-width: 1200px; margin: 0 auto">
+      <div style="
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             gap: 20px;
             margin-bottom: 20px;
-          "
-        >
-          <div style="flex: 1; min-width: 200px">
-            <h3 style="margin-bottom: 15px; color: #fff">SRL Academy</h3>
-            <p>
-              Guiding IIT-JEE & NEET aspirants with quality education and a
-              results-driven approach. SRL Academy has mentored students to
-              achieve outstanding results in JEE, NEET, K-CET, NTSE, Olympiads,
-              IPM, NDA, and CLAT.
-            </p>
-            <li class="footer-admin">
-              <a href="admin/admin.html" aria-label="Admin login"
-                ><span class="material-symbols-outlined" aria-hidden="true"
-                  >lock</span
-                >
-                Admin</a
-              >
-            </li>
-          </div>
-
-          <div style="flex: 1; min-width: 200px">
-            <h3 style="margin-bottom: 15px; color: #fff">Quick Links</h3>
-            <p>
-              <a
-                href="about.html"
-                style="color: #fff; text-decoration: none; transition: all 0.3s"
-                onmouseover="
-                  this.style.color = '#ffff';
-                  this.style.textShadow = '0 0 8px #FFD700';
-                "
-                onmouseout="
-                  this.style.color = '#ffff';
-                  this.style.textShadow = 'none';
-                "
-                >About Us</a
-              >
-            </p>
-            <p>
-              <a
-                href="centers.html"
-                style="color: #fff; text-decoration: none; transition: all 0.3s"
-                onmouseover="
-                  this.style.color = '#ffff';
-                  this.style.textShadow = '0 0 8px #FFD700';
-                "
-                onmouseout="
-                  this.style.color = '#ffff';
-                  this.style.textShadow = 'none';
-                "
-                >Our Centers</a
-              >
-            </p>
-            <p>
-              <a
-                href="educator.html"
-                style="color: #fff; text-decoration: none; transition: all 0.3s"
-                onmouseover="
-                  this.style.color = '#ffff';
-                  this.style.textShadow = '0 0 8px #FFD700';
-                "
-                onmouseout="
-                  this.style.color = '#ffff';
-                  this.style.textShadow = 'none';
-                "
-                >Join as Educator</a
-              >
-            </p>
-            <p>
-              <a
-                href="partnership.html"
-                style="color: #fff; text-decoration: none; transition: all 0.3s"
-                onmouseover="
-                  this.style.color = '#ffff';
-                  this.style.textShadow = '0 0 8px #FFD700';
-                "
-                onmouseout="
-                  this.style.color = '#ffff';
-                  this.style.textShadow = 'none';
-                "
-                >Partnership</a
-              >
-            </p>
-          </div>
-
-          <div style="flex: 1; min-width: 200px">
-            <h3 style="margin-bottom: 15px; color: #ffff">Contact Info</h3>
-            <p>
-              <i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga
-              Parameshwari Temple Arch, HMT Layout, Vidyaranyapura Main Road,
-              Bangalore - 560 097
-            </p>
-            <p>
-              <i class="fas fa-phone"></i>
-              <a
-                href="tel:+918217295404"
-                style="color: #fff; text-decoration: none"
-                onmouseover="this.style.textDecoration = 'underline'"
-                onmouseout="this.style.textDecoration = 'none'"
-                >8217295404</a
-              >,
-              <a
-                href="tel:+919296351242"
-                style="color: #fff; text-decoration: none"
-                onmouseover="this.style.textDecoration = 'underline'"
-                onmouseout="this.style.textDecoration = 'none'"
-                >9296351242</a
-              >
-            </p>
-            <p>
-              <i class="fas fa-envelope"></i>
-              <a
-                href="mailto:srl4education@gmail.com"
-                style="color: #fff; text-decoration: none"
-                onmouseover="this.style.textDecoration = 'underline'"
-                onmouseout="this.style.textDecoration = 'none'"
-                >srl4education@gmail.com</a
-              >
-            </p>
-          </div>
-
-          <!-- Social Media Section -->
-          <div style="flex: 1; min-width: 200px">
-            <h3 style="margin-bottom: 15px; color: #fff">Follow Us</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem">
-              <a
-                href="https://youtube.com/@srlacademy"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  color: #fff;
-                  text-decoration: none;
-                  transition: all 0.3s;
-                "
-                onmouseover="this.style.textShadow = '0 0 8px #FF0000'"
-                onmouseout="this.style.textShadow = 'none'"
-              >
-                <i class="fab fa-youtube"></i> YouTube
-              </a>
-              <a
-                href="https://www.facebook.com/share/1FR3E1mBjE/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  color: #fff;
-                  text-decoration: none;
-                  transition: all 0.3s;
-                "
-                onmouseover="this.style.textShadow = '0 0 8px #1877F2'"
-                onmouseout="this.style.textShadow = 'none'"
-              >
-                <i class="fab fa-facebook-f"></i> Facebook
-              </a>
-              <a
-                href="https://www.instagram.com/srl__academy"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  color: #fff;
-                  text-decoration: none;
-                  transition: all 0.3s;
-                "
-                onmouseover="this.style.textShadow = '0 0 8px #E4405F'"
-                onmouseout="this.style.textShadow = 'none'"
-              >
-                <i class="fab fa-instagram"></i> Instagram
-              </a>
-              <a
-                href="https://www.linkedin.com/in/k-pattabhi-reddy-7307a43a3"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  color: #fff;
-                  text-decoration: none;
-                  transition: all 0.3s;
-                "
-                onmouseover="this.style.textShadow = '0 0 8px #0A66C2'"
-                onmouseout="this.style.textShadow = 'none'"
-              >
-                <i class="fab fa-linkedin-in"></i> LinkedIn
-              </a>
-            </div>
-          </div>
+          ">
+        <div style="flex: 1; min-width: 200px">
+          <h3 style="margin-bottom: 15px; color: #fff">SRL Academy</h3>
+          <p>
+            Guiding IIT-JEE & NEET aspirants with quality education and a
+            results-driven approach. SRL Academy has mentored students to
+            achieve outstanding results in JEE, NEET, K-CET, NTSE, Olympiads,
+            IPM, NDA, and CLAT.
+          </p>
+          <li class="footer-admin">
+            <a href="admin/admin.html" aria-label="Admin login"><span class="material-symbols-outlined"
+                aria-hidden="true">lock</span>
+              Admin</a>
+          </li>
         </div>
 
-        <div
-          style="
+        <div style="flex: 1; min-width: 200px">
+          <h3 style="margin-bottom: 15px; color: #fff">Quick Links</h3>
+          <p>
+            <a href="about.html" style="color: #fff; text-decoration: none; transition: all 0.3s" onmouseover="
+                  this.style.color = '#ffff';
+                  this.style.textShadow = '0 0 8px #FFD700';
+                " onmouseout="
+                  this.style.color = '#ffff';
+                  this.style.textShadow = 'none';
+                ">About Us</a>
+          </p>
+          <p>
+            <a href="centers.html" style="color: #fff; text-decoration: none; transition: all 0.3s" onmouseover="
+                  this.style.color = '#ffff';
+                  this.style.textShadow = '0 0 8px #FFD700';
+                " onmouseout="
+                  this.style.color = '#ffff';
+                  this.style.textShadow = 'none';
+                ">Our Centers</a>
+          </p>
+          <p>
+            <a href="educator.html" style="color: #fff; text-decoration: none; transition: all 0.3s" onmouseover="
+                  this.style.color = '#ffff';
+                  this.style.textShadow = '0 0 8px #FFD700';
+                " onmouseout="
+                  this.style.color = '#ffff';
+                  this.style.textShadow = 'none';
+                ">Join as Educator</a>
+          </p>
+          <p>
+            <a href="partnership.html" style="color: #fff; text-decoration: none; transition: all 0.3s" onmouseover="
+                  this.style.color = '#ffff';
+                  this.style.textShadow = '0 0 8px #FFD700';
+                " onmouseout="
+                  this.style.color = '#ffff';
+                  this.style.textShadow = 'none';
+                ">Partnership</a>
+          </p>
+        </div>
+
+        <div style="flex: 1; min-width: 200px">
+          <h3 style="margin-bottom: 15px; color: #ffff">Contact Info</h3>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> #591, 1st Floor, Opp. Durga
+            Parameshwari Temple Arch, HMT Layout, Vidyaranyapura Main Road,
+            Bangalore - 560 097
+          </p>
+          <p>
+            <i class="fas fa-phone"></i>
+            <a href="tel:+918217295404" style="color: #fff; text-decoration: none"
+              onmouseover="this.style.textDecoration = 'underline'"
+              onmouseout="this.style.textDecoration = 'none'">8217295404</a>,
+            <a href="tel:+919296351242" style="color: #fff; text-decoration: none"
+              onmouseover="this.style.textDecoration = 'underline'"
+              onmouseout="this.style.textDecoration = 'none'">9296351242</a>
+          </p>
+          <p>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:srl4education@gmail.com" style="color: #fff; text-decoration: none"
+              onmouseover="this.style.textDecoration = 'underline'"
+              onmouseout="this.style.textDecoration = 'none'">srl4education@gmail.com</a>
+          </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div style="flex: 1; min-width: 200px">
+          <h3 style="margin-bottom: 15px; color: #fff">Follow Us</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem">
+            <a href="https://youtube.com/@srlacademy" target="_blank" rel="noopener noreferrer" style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  color: #fff;
+                  text-decoration: none;
+                  transition: all 0.3s;
+                " onmouseover="this.style.textShadow = '0 0 8px #FF0000'" onmouseout="this.style.textShadow = 'none'">
+              <i class="fab fa-youtube"></i> YouTube
+            </a>
+            <a href="https://www.facebook.com/share/1FR3E1mBjE/" target="_blank" rel="noopener noreferrer" style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  color: #fff;
+                  text-decoration: none;
+                  transition: all 0.3s;
+                " onmouseover="this.style.textShadow = '0 0 8px #1877F2'" onmouseout="this.style.textShadow = 'none'">
+              <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://www.instagram.com/srl__academy" target="_blank" rel="noopener noreferrer" style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  color: #fff;
+                  text-decoration: none;
+                  transition: all 0.3s;
+                " onmouseover="this.style.textShadow = '0 0 8px #E4405F'" onmouseout="this.style.textShadow = 'none'">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.linkedin.com/in/k-pattabhi-reddy-7307a43a3" target="_blank" rel="noopener noreferrer"
+              style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  color: #fff;
+                  text-decoration: none;
+                  transition: all 0.3s;
+                " onmouseover="this.style.textShadow = '0 0 8px #0A66C2'" onmouseout="this.style.textShadow = 'none'">
+              <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div style="
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 15px;
             font-size: 14px;
             opacity: 0.8;
-          "
-        >
-          <p>
-            &copy; <span id="current-year"></span> SRL Academy. All rights
-            reserved.
-          </p>
-          <br />
-          <p>
-            Developed by
-            <a
-              href="https://growtez.com"
-              target="_blank"
-              style="color: #fff; text-decoration: none; transition: all 0.3s"
-              onmouseover="
+          ">
+        <p>
+          &copy; <span id="current-year"></span> SRL Academy. All rights
+          reserved.
+        </p>
+        <br />
+        <p>
+          Developed by
+          <a href="https://growtez.com" target="_blank" style="color: #fff; text-decoration: none; transition: all 0.3s"
+            onmouseover="
                 this.style.color = '#ffff';
                 this.style.textShadow = '0 0 8px #FFD700';
-              "
-              onmouseout="
+              " onmouseout="
                 this.style.color = '#ffff';
                 this.style.textShadow = 'none';
-              "
-              >growtez</a
-            >
-          </p>
-        </div>
+              ">growtez</a>
+        </p>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <!-- Back to Top Button -->
-    <a
-      href="#"
-      class="back-to-top"
-      id="backToTop"
-      aria-label="Back to top"
-      style="
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top" style="
         position: fixed;
         bottom: 85px;
         right: 20px;
@@ -1301,17 +1077,12 @@ h4 {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         transition: all 0.3s;
         z-index: 1000;
-      "
-    >
-      <i class="fas fa-arrow-up"></i>
-    </a>
+      ">
+    <i class="fas fa-arrow-up"></i>
+  </a>
 
-    <!-- WhatsApp Floating Button -->
-    <a
-      href="https://wa.me/919296351242"
-      target="_blank"
-      class="whatsapp-float"
-      style="
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/919296351242" target="_blank" class="whatsapp-float" style="
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -1329,25 +1100,22 @@ h4 {
         box-shadow: 0 4px 15px rgba(128, 0, 0, 0.4);
         transition: all 0.3s;
         z-index: 1000;
-      "
-      onmouseover="
+      " onmouseover="
         this.style.transform = 'scale(1.1)';
         this.style.boxShadow = '0 6px 20px rgba(128, 0, 0, 0.6)';
-      "
-      onmouseout="
+      " onmouseout="
         this.style.transform = 'scale(1)';
         this.style.boxShadow = '0 4px 15px rgba(128, 0, 0, 0.4)';
-      "
-      aria-label="Chat on WhatsApp"
-    >
-      <i class="fab fa-whatsapp"></i>
-    </a>
+      " aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
-    <!-- Your custom script -->
-    <script src="centerscript.js" defer></script>
-    <script src="script.js" defer></script>
-  </body>
+  <!-- Your custom script -->
+  <script src="centerscript.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+
 </html>

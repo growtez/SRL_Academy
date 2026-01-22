@@ -128,47 +128,23 @@
     </header>
 
     <!-- Hero Section -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <span class="hero-badge"><i class="fas fa-user-graduate"></i> Personalized Learning</span>
                 <h1>One-to-One Live Online Class</h1>
-                <p>Learn directly from India's best subject experts with personalized attention. Our one-to-one online
+                <p>Learn directly from India's best 100+ subject experts with personalized attention for our 500+ happy
+                    students. Our one-to-one online
                     coaching adapts to your learning pace, addresses your specific doubts, and ensures you master every
                     concept.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Category Filter Section -->
-    <section class="category-filter-section">
-        <div class="container">
-            <div class="category-filter-wrapper">
-                <div class="category-filters" id="categoryFilters">
-                    <button class="filter-btn active" data-category="all">
-                        <i class="fas fa-th-large"></i> All Teachers
-                    </button>
-                    <button class="filter-btn" data-category="neet">
-                        <i class="fas fa-heartbeat"></i> NEET
-                    </button>
-                    <button class="filter-btn" data-category="jee">
-                        <i class="fas fa-atom"></i> JEE
-                    </button>
-                    <button class="filter-btn" data-category="kcet">
-                        <i class="fas fa-landmark"></i> K-CET
-                    </button>
-                    <button class="filter-btn" data-category="class-8">
-                        <i class="fas fa-book"></i> Class 8
-                    </button>
-                    <button class="filter-btn" data-category="class-9">
-                        <i class="fas fa-book-open"></i> Class 9
-                    </button>
-                    <button class="filter-btn" data-category="class-10">
-                        <i class="fas fa-graduation-cap"></i> Class 10
-                    </button>
-                    <button class="filter-btn" data-category="dropper">
-                        <i class="fas fa-redo"></i> Dropper
-                    </button>
+                <div class="hero-cta"
+                    style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: nowrap; justify-content: center;">
+                    <a href="explore-one-to-one.html" class="btn btn-hero-explore">
+                        <i class="fas fa-compass"></i> Explore Program
+                    </a>
+                    <a href="contact.html" class="btn btn-hero-trial">
+                        <i class="fas fa-calendar-check"></i> Book Free Trial
+                    </a>
                 </div>
             </div>
         </div>
@@ -178,8 +154,31 @@
     <section class="teachers-section">
         <div class="container">
             <div class="teachers-header">
-                <h2 id="facultyHeading">Our Expert Faculty</h2>
-                <p>Learn from <span class="teachers-count" id="teacherCount">15</span> handpicked subject experts</p>
+                <h2>Our Expert Faculty</h2>
+            </div>
+
+            <div class="category-filter-wrapper" style="margin-bottom: 3rem;">
+                <div class="category-filters" id="categoryFilters">
+                    <button class="filter-btn active" data-category="physics">
+                        <i class="fas fa-atom"></i> Physics
+                    </button>
+                    <button class="filter-btn" data-category="chemistry">
+                        <i class="fas fa-flask"></i> Chemistry
+                    </button>
+                    <button class="filter-btn" data-category="maths">
+                        <i class="fas fa-calculator"></i> Maths
+                    </button>
+                    <button class="filter-btn" data-category="biology">
+                        <i class="fas fa-dna"></i> Biology
+                    </button>
+                </div>
+            </div>
+
+            <div class="teachers-header" style="text-align: left; margin-bottom: 2rem;">
+                <h3 id="facultyHeading" style="font-size: 1.8rem; color: var(--primary);">Our Physics Faculty
+                </h3>
+                <p style="margin-top: 0.5rem;">Learn from <span class="teachers-count" id="teacherCount">0</span>
+                    handpicked subject experts</p>
             </div>
 
             <div class="teachers-grid" id="teachersGrid">
@@ -217,6 +216,7 @@
                     <p>Begin your one-to-one classes with dedicated attention and customized curriculum.</p>
                 </div>
             </div>
+            <!-- Explore button removed as requested -->
         </div>
     </section>
 
@@ -430,12 +430,12 @@
                 </p>
 
                 <div class="cta-final-buttons">
-                    <a href="https://wa.me/919296351242?text=Hi!%20I%20want%20to%20know%20more%20about%20one-to-one%20online%20coaching."
-                        target="_blank" class="cta-final-btn primary">
-                        <i class="fab fa-whatsapp"></i> Book Free Demo
+                    <a href="contact.html" class="cta-final-btn primary">
+                        <i class="fas fa-calendar-check"></i> Book Free Demo
                     </a>
-                    <a href="contact.html" class="cta-final-btn secondary">
-                        <i class="fas fa-phone-alt"></i> Contact Us
+                    <a href="https://wa.me/919296351242?text=Hi!%20I%20want%20to%20know%20more%20about%20one-to-one%20online%20coaching."
+                        target="_blank" class="cta-final-btn secondary">
+                        <i class="fab fa-whatsapp"></i> Contact Us
                     </a>
                 </div>
 
@@ -572,212 +572,97 @@
     </a>
 
     <script>
-        // Teacher Data
+        // Initial Teacher Data with LinkedIn placeholders
         const teachers = [
             {
                 id: 1,
-                name: "Rohit Sharma",
-                subject: "JEE + NEET Chemistry",
-                qualification: "M.Sc (Chemistry) IIT Mandi, B.Sc(Hons) Chemistry Delhi University, teaching NEET + JEE students from past 3 years.",
-                experience: "3+ years",
-                category: ["neet", "jee", "kcet"],
-                image: "https://randomuser.me/api/portraits/men/1.jpg",
+                name: "Prof. Rajesh Khanna",
+                subject: "JEE Faculty",
+                qualification: "B.Tech from IIT Bombay. Ex-Senior Faculty at Resonance Kota. Physics simplified for Advanced aspirants.",
+                experience: "15+ years",
+                category: ["physics"],
+                image: "https://randomuser.me/api/portraits/men/2.jpg",
+                badge: "IIT Bombay Alumni",
                 demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Rohit Sharma for Chemistry."
+                linkedinUrl: "https://linkedin.com",
+                whatsappMessage: "Hi! I want to book a class with Prof. Rajesh for Physics."
             },
             {
                 id: 2,
-                name: "Mithila Sood",
-                subject: "NEET Physics",
-                qualification: "M.Sc Physics with extensive teaching experience for NEET aspirants.",
-                experience: "5+ years",
-                category: ["neet"],
-                image: "https://randomuser.me/api/portraits/women/2.jpg",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Mithila Sood for Physics."
-            },
-            {
-                id: 3,
-                name: "Syed Ilyas",
-                subject: "NEET Physics",
-                qualification: "MSc Physics NIT Srinagar, Member of American Physics Society. 7+ years teaching experience. Taught at VEDANTU, UNACADEMY and PHYSICS WALLAH.",
-                experience: "7+ years",
-                category: ["neet"],
-                image: "https://randomuser.me/api/portraits/men/3.jpg",
-                badge: "Top Rated",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Syed Ilyas for Physics."
-            },
-            {
-                id: 4,
-                name: "Tanmoyendu Chakraborty",
-                subject: "NEET Physics",
-                qualification: "Master's in Physics from IIT Roorkee. JRF at Indian Institute of Science (IISc) Bangalore. JEE/NEET Physics faculty since 2022.",
-                experience: "6+ years",
-                category: ["neet", "jee", "kcet"],
-                image: "https://randomuser.me/api/portraits/men/4.jpg",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Tanmoyendu for Physics."
-            },
-            {
-                id: 5,
                 name: "Ashish Yashwantani",
-                subject: "NEET Physics",
+                subject: "JEE/NEET Faculty",
                 qualification: "Ex Allen Faculty. 13 years experience in Kota Coaching Industry with ALLEN and CAREER Point Kota.",
                 experience: "13+ years",
-                category: ["neet", "jee", "kcet", "dropper"],
+                category: ["physics"],
                 image: "https://randomuser.me/api/portraits/men/5.jpg",
                 badge: "Ex-Allen",
                 demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                linkedinUrl: "https://linkedin.com",
                 whatsappMessage: "Hi! I want to book a class with Ashish for Physics."
             },
             {
-                id: 6,
+                id: 3,
                 name: "Devendra Kumar Yadav",
-                subject: "JEE/NEET Physics",
-                qualification: "M.Tech from IIT BHUBANESWAR. Worked in FIITJEE (2020-2023), VIDYAMANDIR CLASSES. Teaching Physics for JEE ADV, MAIN and NEET.",
+                subject: "JEE Faculty",
+                qualification: "M.Tech from IIT BHUBANESWAR. Worked in FIITJEE (2020-2023), VIDYAMANDIR CLASSES.",
                 experience: "8+ years",
-                category: ["neet", "jee", "kcet", "dropper"],
+                category: ["physics"],
                 image: "https://randomuser.me/api/portraits/men/6.jpg",
                 badge: "IIT Alumni",
                 demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                linkedinUrl: "https://linkedin.com",
                 whatsappMessage: "Hi! I want to book a class with Devendra for Physics."
             },
             {
-                id: 7,
-                name: "Kumar Gaurav",
-                subject: "NEET Physics",
-                qualification: "M.Sc Physics. Currently working at AAKASH INSTITUTE. Ex ALLEN student (Top 50 batch).",
-                experience: "13+ years",
-                category: ["neet", "dropper"],
-                image: "https://randomuser.me/api/portraits/men/7.jpg",
-                badge: "Aakash Faculty",
+                id: 4,
+                name: "Rohit Sharma",
+                subject: "JEE/NEET Faculty",
+                qualification: "M.Sc (Chemistry) IIT Mandi, B.Sc(Hons) Chemistry Delhi University.",
+                experience: "3+ years",
+                category: ["chemistry"],
+                image: "https://randomuser.me/api/portraits/men/1.jpg",
+                badge: "IIT Alumni",
                 demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Kumar Gaurav for Physics."
+                linkedinUrl: "https://linkedin.com",
+                whatsappMessage: "Hi! I want to book a class with Rohit for Chemistry."
             },
             {
-                id: 8,
-                name: "Tarun Nandan",
-                subject: "NEET Chemistry",
-                qualification: "M.Sc. Chemistry. Currently working as Unacademy faculty teaching NEET students.",
-                experience: "5+ years",
-                category: ["neet"],
-                image: "https://randomuser.me/api/portraits/men/8.jpg",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Tarun for Chemistry."
-            },
-            {
-                id: 9,
-                name: "Neetu",
-                subject: "JEE Chemistry",
-                qualification: "Masters from NIT Jaipur. Cleared IIT-JAM, IIT-GATE. Currently working at Sri Chaitanya Educational Institutions Hyderabad.",
-                experience: "6+ years",
-                category: ["jee", "neet", "kcet"],
-                image: "https://randomuser.me/api/portraits/women/9.jpg",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Neetu for Chemistry."
-            },
-            {
-                id: 10,
-                name: "Dipasha Saxena",
-                subject: "JEE/NEET Chemistry",
-                qualification: "Post-graduation from IIT Jodhpur. Worked at FIITJEE Punjabi Bagh. Experience in mentoring JEE/NEET/NSEC/NSEJS students.",
-                experience: "3.5+ years",
-                category: ["jee", "neet", "kcet"],
-                image: "https://randomuser.me/api/portraits/women/10.jpg",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Dipasha for Chemistry."
-            },
-            {
-                id: 11,
+                id: 5,
                 name: "Dr. Ranu Soni",
-                subject: "NEET Chemistry",
-                qualification: "Ph.D. Chemistry, M.Sc. Organic Chemistry. Ex Allen Faculty with 20+ years of teaching experience for NEET and JEE students.",
+                subject: "NEET Faculty",
+                qualification: "Ph.D. Chemistry, M.Sc. Organic Chemistry. Ex Allen Faculty with 20+ years of experience.",
                 experience: "20+ years",
-                category: ["neet", "jee", "kcet", "dropper"],
+                category: ["chemistry"],
                 image: "https://randomuser.me/api/portraits/women/11.jpg",
                 badge: "Ph.D.",
                 demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                linkedinUrl: "https://linkedin.com",
                 whatsappMessage: "Hi! I want to book a class with Dr. Ranu Soni for Chemistry."
             },
             {
-                id: 12,
-                name: "Nitika Gupta",
-                subject: "JEE/NEET Chemistry",
-                qualification: "Master's from IIT Madras. Taught JEE and NEET students at Vidyamandir Classes. Currently at Innovartan as Chemistry faculty.",
-                experience: "5+ years",
-                category: ["jee", "neet", "kcet"],
-                image: "https://randomuser.me/api/portraits/women/12.jpg",
-                badge: "IIT Alumni",
+                id: 6,
+                name: "Suman Lata",
+                subject: "JEE Faculty",
+                qualification: "M.Sc Mathematics (Gold Medalist) from DU. Specialized in Calculus and Algebra.",
+                experience: "10+ years",
+                category: ["maths"],
+                image: "https://randomuser.me/api/portraits/women/3.jpg",
                 demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Nitika for Chemistry."
+                linkedinUrl: "https://linkedin.com",
+                whatsappMessage: "Hi! I want to book a class with Suman for Mathematics."
             },
             {
-                id: 13,
-                name: "Priya Garg",
-                subject: "NEET Biology",
-                qualification: "M.Sc Biotechnology with 5 years of teaching experience for NEET and school biology students.",
-                experience: "5+ years",
-                category: ["neet", "class-10"],
-                image: "https://randomuser.me/api/portraits/women/13.jpg",
+                id: 7,
+                name: "Dr. Sandeep Kumar",
+                subject: "NEET Faculty",
+                qualification: "MBBS from AIIMS Delhi. 12+ years of teaching experience with AIR 1-100 mentorship.",
+                experience: "12+ years",
+                category: ["biology"],
+                image: "https://randomuser.me/api/portraits/men/1.jpg",
+                badge: "AIIMS Alumni",
                 demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Priya for Biology."
-            },
-            {
-                id: 14,
-                name: "Vijay Nagar",
-                subject: "NEET Chemistry",
-                qualification: "M.Sc Chemistry (IIT INDORE). 5 Years of teaching experience. Currently working at a National Level Institute.",
-                experience: "5+ years",
-                category: ["neet"],
-                image: "https://randomuser.me/api/portraits/men/14.jpg",
-                badge: "IIT Alumni",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Vijay for Chemistry."
-            },
-            {
-                id: 15,
-                name: "Vishal Anand",
-                subject: "NEET Physics",
-                qualification: "BTech from NIT. Mentoring students since last 4 years. Comfortable in both Hindi and English.",
-                experience: "4+ years",
-                category: ["neet", "class-10", "class-9", "class-8"],
-                image: "https://randomuser.me/api/portraits/men/15.jpg",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Vishal for Physics."
-            },
-            {
-                id: 16,
-                name: "Anjali Gupta",
-                subject: "Class 8 Mathematics",
-                qualification: "M.Sc Mathematics with a focus on child pedagogy. Specialized in foundation builds.",
-                experience: "6+ years",
-                category: ["class-8", "class-9"],
-                image: "https://randomuser.me/api/portraits/women/16.jpg",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Anjali for Class 8 Maths."
-            },
-            {
-                id: 17,
-                name: "Suresh Pillai",
-                subject: "Class 8 Science",
-                qualification: "B.Ed, M.Sc Biology. Expert in explaining complex concepts to young students.",
-                experience: "8+ years",
-                category: ["class-8"],
-                image: "https://randomuser.me/api/portraits/men/17.jpg",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Suresh for Class 8 Science."
-            },
-            {
-                id: 18,
-                name: "Meenakshi Iyer",
-                subject: "Class 8 English & SST",
-                qualification: "MA English Literature, BA B.Ed. Passinate about language and social sciences.",
-                experience: "5+ years",
-                category: ["class-8"],
-                image: "https://randomuser.me/api/portraits/women/18.jpg",
-                demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                whatsappMessage: "Hi! I want to book a class with Meenakshi for Class 8."
+                linkedinUrl: "https://linkedin.com",
+                whatsappMessage: "Hi! I want to book a class with Dr. Sandeep for Biology."
             }
         ];
 
@@ -790,46 +675,38 @@
         function renderTeacherCard(teacher) {
             return `
                 <div class="teacher-card" data-categories="${teacher.category.join(',')}">
-                    ${teacher.badge ? `<span class="teacher-badge">${teacher.badge}</span>` : ''}
-                    <div class="teacher-image-wrapper">
-                        <img src="${teacher.image}" alt="${teacher.name}" class="teacher-image" loading="lazy">
-                    </div>
-                    <div class="teacher-info">
-                        <h3 class="teacher-name">${teacher.name}</h3>
-                        <span class="teacher-subject">${teacher.subject}</span>
-                        <p class="teacher-qualification">${teacher.qualification}</p>
-                        <div class="teacher-experience">
-                            <i class="fas fa-clock"></i>
-                            <span>${teacher.experience} Experience</span>
+                    <div class="teacher-card-header">
+                        <div class="teacher-social-floating">
+                            <a href="${teacher.linkedinUrl}" target="_blank" class="social-icon-btn linkedin" title="LinkedIn Profile">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="${teacher.demoUrl}" target="_blank" class="social-icon-btn youtube" title="Watch Demo Video">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                        <div class="teacher-image-wrapper">
+                            <img src="${teacher.image}" alt="${teacher.name}" class="teacher-image" loading="lazy">
                         </div>
                     </div>
-                    <div class="teacher-actions">
-                        <a href="${teacher.demoUrl}" target="_blank" class="action-btn demo">
-                            <i class="fab fa-youtube"></i>
-                            Watch Demo
-                        </a>
-                        <a href="explore-one-to-one.html" class="action-btn explore">
-                            <i class="fas fa-book-open"></i>
-                            Explore
-                        </a>
-                        <a href="https://wa.me/919296351242?text=${encodeURIComponent(teacher.whatsappMessage)}" target="_blank" class="action-btn buy">
-                            <i class="fab fa-whatsapp"></i>
-                            Buy Now
-                        </a>
+                    <div class="teacher-card-body">
+                        <h3 class="teacher-name">${teacher.name}</h3>
+                        <span class="teacher-subject">${teacher.subject}</span>
+                        <div class="teacher-experience">
+                            <i class="fas fa-award"></i>
+                            <span>${teacher.experience} Exp.</span>
+                        </div>
+                        <p class="teacher-qualification">${teacher.qualification}</p>
                     </div>
                 </div>
             `;
         }
         // Category order and display names
-        const categoryOrder = ['neet', 'jee', 'kcet', 'class-8', 'class-9', 'class-10', 'dropper'];
+        const categoryOrder = ['physics', 'chemistry', 'maths', 'biology'];
         const categoryDisplayNames = {
-            'neet': 'NEET',
-            'jee': 'JEE',
-            'kcet': 'K-CET',
-            'class-8': 'Class 8',
-            'class-9': 'Class 9',
-            'class-10': 'Class 10',
-            'dropper': 'Dropper'
+            'physics': 'Physics',
+            'chemistry': 'Chemistry',
+            'maths': 'Maths',
+            'biology': 'Biology'
         };
 
         // Render Teachers in a flat grid (for categories)
@@ -862,7 +739,7 @@
                 if (categoryTeachers.length > 0) {
                     html += `
                         <div class="category-section">
-                            <h3 class="category-section-title">Our ${categoryDisplayNames[category]} Expert Faculty</h3>
+                            <h3 class="category-section-title">Our ${categoryDisplayNames[category]} Faculty</h3>
                             <div class="category-teachers-grid">
                                 ${categoryTeachers.map(renderTeacherCard).join('')}
                             </div>
@@ -887,14 +764,10 @@
 
         // Category names mapping for headings
         const categoryNames = {
-            'all': 'Expert Faculty',
-            'neet': 'NEET Expert Faculty',
-            'jee': 'JEE Expert Faculty',
-            'kcet': 'K-CET Expert Faculty',
-            'class-8': 'Class 8 Expert Faculty',
-            'class-9': 'Class 9 Expert Faculty',
-            'class-10': 'Class 10 Expert Faculty',
-            'dropper': 'Dropper Expert Faculty'
+            'physics': 'Physics Faculty',
+            'chemistry': 'Chemistry Faculty',
+            'maths': 'Maths Faculty',
+            'biology': 'Biology Faculty'
         };
 
         // Category Filter Click Handler
@@ -917,8 +790,8 @@
             }
         });
 
-        // Initial render (grouped view for "All Teachers")
-        renderTeachersGrouped();
+        // Initial render (Physics by default)
+        filterTeachers('physics');
 
         // Preloader
         window.addEventListener('load', function () {

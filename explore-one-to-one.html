@@ -424,6 +424,26 @@
             margin-top: 1rem;
         }
 
+        .package-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .package-btn:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(128, 0, 0, 0.2);
+        }
+
         /* FAQ Section */
         .faq-list {
             max-width: 800px;
@@ -777,7 +797,7 @@
         /* Responsive - Mobile / Phone (480px and below) */
         @media (max-width: 480px) {
             .explore-hero {
-                padding: 4rem 0 2.5rem;
+                padding: 3rem 0 2rem;
             }
 
             .explore-hero h1 {
@@ -1109,8 +1129,108 @@
         </div>
     </section>
 
+    <!-- Packages Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Our Course Packages</h2>
+            <p class="section-subtitle">Choose the plan that fits your preparation needs and budget</p>
+
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Hourly Online Class</h3>
+                        <div class="price">From ₹300/hour</div>
+                    </div>
+                    <div class="package-body">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
+                            <li><i class="fas fa-check-circle"></i> Valid for one month</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized attention</li>
+                        </ul>
+                        <a href="contact.html" class="package-btn">Book Free Demo Class</a>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Hourly Doubt Sessions</h3>
+                        <div class="price">From ₹500/hour</div>
+                    </div>
+                    <div class="package-body">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
+                            <li><i class="fas fa-check-circle"></i> Valid for 2 months</li>
+                            <li><i class="fas fa-check-circle"></i> Focused doubt clearing</li>
+                        </ul>
+                        <a href="contact.html" class="package-btn">Book Free Demo Class</a>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Maths Full Syllabus</h3>
+                        <div class="price">From ₹60,000</div>
+                    </div>
+                    <div class="package-body">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
+                            <li><i class="fas fa-check-circle"></i> Valid for one year</li>
+                            <li><i class="fas fa-check-circle"></i> Complete Maths coverage</li>
+                        </ul>
+                        <a href="contact.html" class="package-btn">Book Free Demo Class</a>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Physics Full Syllabus</h3>
+                        <div class="price">From ₹60,000</div>
+                    </div>
+                    <div class="package-body">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
+                            <li><i class="fas fa-check-circle"></i> Valid for one year</li>
+                            <li><i class="fas fa-check-circle"></i> Complete Physics coverage</li>
+                        </ul>
+                        <a href="contact.html" class="package-btn">Book Free Demo Class</a>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Chemistry Full Syllabus</h3>
+                        <div class="price">From ₹60,000</div>
+                    </div>
+                    <div class="package-body">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
+                            <li><i class="fas fa-check-circle"></i> Valid for one year</li>
+                            <li><i class="fas fa-check-circle"></i> Complete Chemistry coverage</li>
+                        </ul>
+                        <a href="contact.html" class="package-btn">Book Free Demo Class</a>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Biology Full Syllabus</h3>
+                        <div class="price">From ₹80,000</div>
+                    </div>
+                    <div class="package-body">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
+                            <li><i class="fas fa-check-circle"></i> Valid for one year</li>
+                            <li><i class="fas fa-check-circle"></i> Complete Biology coverage</li>
+                        </ul>
+                        <a href="contact.html" class="package-btn">Book Free Demo Class</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Models Section -->
-    <section class="content-section" style="background: #fff;">
+    <section class="content-section">
         <div class="container">
             <h2 class="section-title">Transparent & Flexible Pricing</h2>
             <p class="section-subtitle">Finding the right balance between quality and cost is the biggest challenge for
@@ -1173,7 +1293,7 @@
     </section>
 
     <!-- One-on-One Benefits -->
-    <section class="content-section" style="background: #fff;">
+    <section class="content-section">
         <div class="container">
             <h2 class="section-title">The Power of One-on-One Classes</h2>
             <p class="section-subtitle">Unlike crowded batches where your doubts go unheard, our one-on-one sessions
@@ -1214,102 +1334,8 @@
         </div>
     </section>
 
-    <!-- Packages Section -->
-    <section class="content-section">
-        <div class="container">
-            <h2 class="section-title">Our Course Packages</h2>
-            <p class="section-subtitle">Choose the plan that fits your preparation needs and budget</p>
-
-            <div class="packages-grid">
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>10 Hour Online Class</h3>
-                        <div class="price">From ₹300/hour</div>
-                    </div>
-                    <div class="package-body">
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
-                            <li><i class="fas fa-check-circle"></i> Valid for one month</li>
-                            <li><i class="fas fa-check-circle"></i> Personalized attention</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>10 Hour Doubt Sessions</h3>
-                        <div class="price">From ₹500/hour</div>
-                    </div>
-                    <div class="package-body">
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
-                            <li><i class="fas fa-check-circle"></i> Valid for 2 months</li>
-                            <li><i class="fas fa-check-circle"></i> Focused doubt clearing</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>20 Hour Online Class</h3>
-                        <div class="price">From ₹300/hour</div>
-                    </div>
-                    <div class="package-body">
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
-                            <li><i class="fas fa-check-circle"></i> Valid for 2 months</li>
-                            <li><i class="fas fa-check-circle"></i> Extended learning</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>Physics Full Syllabus</h3>
-                        <div class="price">From ₹60,000</div>
-                    </div>
-                    <div class="package-body">
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
-                            <li><i class="fas fa-check-circle"></i> Valid for one year</li>
-                            <li><i class="fas fa-check-circle"></i> Complete Physics coverage</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>Chemistry Full Syllabus</h3>
-                        <div class="price">From ₹60,000</div>
-                    </div>
-                    <div class="package-body">
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
-                            <li><i class="fas fa-check-circle"></i> Valid for one year</li>
-                            <li><i class="fas fa-check-circle"></i> Complete Chemistry coverage</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3>Biology Full Syllabus</h3>
-                        <div class="price">From ₹80,000</div>
-                    </div>
-                    <div class="package-body">
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> One-on-one live online class</li>
-                            <li><i class="fas fa-check-circle"></i> Valid for one year</li>
-                            <li><i class="fas fa-check-circle"></i> Complete Biology coverage</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- FAQ Section -->
-    <section class="content-section" style="background: #fff;">
+    <section class="content-section">
         <div class="container">
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common queries regarding our One-to-One Coaching Fees and services</p>
@@ -1405,13 +1431,13 @@
                 <h2>Start Your Learning Journey Today</h2>
                 <p>Book a free demo class and experience the difference of personalized one-to-one coaching</p>
                 <div class="cta-buttons">
-                    <a href="https://wa.me/919296351242?text=Hi!%20I%20want%20to%20book%20a%20free%20trial%20class%20for%20one-to-one%20coaching."
-                        target="_blank" class="cta-btn">
-                        <i class="fab fa-whatsapp"></i> Book Free Demo
+                    <a href="contact.html" class="cta-btn">
+                        <i class="fas fa-calendar-check"></i> Book Free Demo
                     </a>
-                    <a href="contact.html" class="cta-btn"
+                    <a href="https://wa.me/919296351242?text=Hi!%20I%20want%20to%20know%20more%20about%20one-to-one%20online%20coaching."
+                        target="_blank" class="cta-btn"
                         style="background: transparent; color: #800000; border: 2px solid #800000;">
-                        <i class="fas fa-phone-alt"></i> Contact Us
+                        <i class="fab fa-whatsapp"></i> Contact Us
                     </a>
                 </div>
                 <div class="cta-info">

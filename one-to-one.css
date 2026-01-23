@@ -80,6 +80,7 @@ body {
     margin-bottom: 1.75rem;
     font-size: 0.9rem;
     letter-spacing: 0.5px;
+    animation: fadeInDown 0.8s ease-out;
 }
 
 .hero h1 {
@@ -87,6 +88,7 @@ body {
     font-weight: 700;
     margin-bottom: 1.25rem;
     letter-spacing: -1px;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
 .hero p {
@@ -95,6 +97,11 @@ body {
     opacity: 0.92;
     font-size: 1rem;
     font-weight: 400;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-cta {
+    animation: fadeInUp 0.8s ease-out 0.6s both;
 }
 
 /* Animations */
@@ -309,9 +316,11 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.teacher-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 30px 60px rgba(128, 0, 0, 0.12);
+@media (hover: hover) {
+    .teacher-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 30px 60px rgba(128, 0, 0, 0.12);
+    }
 }
 
 /* Card Header - The Brand Accent */
@@ -356,9 +365,11 @@ body {
     transition: all 0.4s ease;
 }
 
-.teacher-card:hover .teacher-image {
-    transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(128, 0, 0, 0.25);
+@media (hover: hover) {
+    .teacher-card:hover .teacher-image {
+        transform: scale(1.05);
+        box-shadow: 0 15px 35px rgba(128, 0, 0, 0.25);
+    }
 }
 
 /* Info Body */
@@ -460,7 +471,8 @@ body {
     text-decoration: none;
 }
 
-.social-icon-btn:hover {
+.social-icon-btn:hover,
+.social-icon-btn:active {
     background: #fff;
     color: var(--primary) !important;
     transform: translateY(-2px);
@@ -1704,6 +1716,16 @@ body {
         min-height: auto;
     }
 
+    .teacher-card:hover,
+    .teacher-card:active {
+        transform: none !important;
+    }
+
+    .teacher-card:hover .teacher-image,
+    .teacher-card:active .teacher-image {
+        transform: none !important;
+    }
+
     .teacher-image-wrapper {
         padding: 1.25rem 1rem 0.5rem;
     }
@@ -1782,55 +1804,48 @@ body {
         font-size: 0.88rem;
     }
 
-    /* Comparison Section Mobile - Fixed (No Slider) */
+    /* Comparison Section Mobile */
     .comparison-section {
-        padding: 2rem 0;
+        padding: 2.5rem 0;
     }
 
     .comparison-table-wrapper {
-        border-radius: 10px;
-        margin: 0;
-        overflow-x: hidden;
+        border-radius: 12px;
+        margin: 0 -0.5rem;
+        padding: 0 0.5rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .comparison-table {
-        min-width: 100%;
+        min-width: 600px;
+        /* Allow horizontal scroll for better readability */
         width: 100%;
-        table-layout: fixed;
+        table-layout: auto;
     }
 
     .comparison-table th,
     .comparison-table td {
-        padding: 0.75rem 0.5rem;
-        font-size: 0.7rem;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
+        padding: 1rem 0.75rem;
+        font-size: 0.85rem;
     }
 
     .comparison-table thead th {
-        font-size: 0.72rem;
+        font-size: 0.9rem;
     }
 
     .comparison-table thead th:first-child {
-        border-radius: 10px 0 0 0;
-        width: 25%;
+        width: 30%;
     }
 
     .comparison-table thead th:nth-child(2),
     .comparison-table thead th:nth-child(3) {
-        width: 37.5%;
-    }
-
-    .comparison-table thead th:last-child {
-        border-radius: 0 10px 0 0;
+        width: 35%;
     }
 
     .comparison-table .check,
     .comparison-table .cross {
-        font-size: 0.9rem;
-        display: inline-block;
-        margin-right: 0.4rem;
-        vertical-align: middle;
+        font-size: 1rem;
     }
 
     /* Benefits Section Mobile */

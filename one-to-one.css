@@ -215,7 +215,7 @@ body {
 
 /* ===== TEACHERS SECTION ===== */
 .teachers-section {
-    background: linear-gradient(180deg, #ffeaea 0%, #fff5f5 100%);
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f8 50%, #f0f4f8 100%);
     padding: 4rem 0 2rem;
     min-height: 60vh;
 }
@@ -347,8 +347,8 @@ body {
 }
 
 .teacher-image {
-    width: 110px;
-    height: 110px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid #ffffff;
@@ -363,7 +363,7 @@ body {
 
 /* Info Body */
 .teacher-card-body {
-    margin-top: 55px;
+    margin-top: 65px;
     padding: 1.5rem 1.8rem 1rem;
     text-align: center;
     flex: 1;
@@ -445,8 +445,8 @@ body {
 }
 
 .social-icon-btn {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
     color: #fff !important;
@@ -572,7 +572,7 @@ body {
 
 /* ===== HOW IT WORKS SECTION ===== */
 .how-it-works-section {
-    background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f8 50%, #f0f4f8 100%);
+    background: linear-gradient(180deg, #ffeaea 0%, #fff5f5 100%);
     padding: 4rem 0;
     color: var(--text);
     position: relative;
@@ -1147,10 +1147,10 @@ body {
     }
 
     .category-teachers-grid .teacher-card {
-        flex: 0 0 500px;
-        /* Wider cards for tablet landscape */
+        flex: 0 0 calc((100% - 2.5rem) / 2.25);
+        /* 2 full cards + 1/4 of 3rd card on screen */
         scroll-snap-align: center;
-        max-width: 90%;
+        max-width: none;
     }
 
     .category-filters {
@@ -1315,10 +1315,10 @@ body {
     }
 
     .category-teachers-grid .teacher-card {
-        flex: 0 0 400px;
-        /* Optimized size for portrait tablet */
+        flex: 0 0 calc((100% - 2.5rem) / 2.25);
+        /* 2 full cards + 1/4 of 3rd card on screen */
         scroll-snap-align: center;
-        max-width: 85%;
+        max-width: none;
     }
 
     .teacher-card {
@@ -1330,8 +1330,12 @@ body {
     }
 
     .teacher-image {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .teacher-card-body {
+        margin-top: 50px;
     }
 
     .teacher-info {
@@ -1705,12 +1709,12 @@ body {
     }
 
     .teacher-image {
-        width: 75px;
-        height: 75px;
+        width: 95px;
+        height: 95px;
     }
 
     .teacher-card-body {
-        margin-top: 35px;
+        margin-top: 45px;
         padding: 0.75rem 1.25rem 1rem;
     }
 

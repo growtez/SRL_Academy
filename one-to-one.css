@@ -216,19 +216,34 @@ body {
 /* ===== TEACHERS SECTION ===== */
 .teachers-section {
     background: linear-gradient(180deg, #ffeaea 0%, #fff5f5 100%);
-    padding: 5rem 0;
+    padding: 4rem 0 2rem;
     min-height: 60vh;
 }
 
 .teachers-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .teachers-header h2 {
     font-size: 2.5rem;
-    color: var(--text);
-    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px;
+}
+
+.teachers-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #1a1a1a;
+    border-radius: 3px;
 }
 
 .teachers-header p {
@@ -557,8 +572,8 @@ body {
 
 /* ===== HOW IT WORKS SECTION ===== */
 .how-it-works-section {
-    background: linear-gradient(180deg, #ffeaea 0%, #fff5f5 100%);
-    padding: 6rem 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f8 50%, #f0f4f8 100%);
+    padding: 4rem 0;
     color: var(--text);
     position: relative;
     overflow: hidden;
@@ -628,14 +643,15 @@ body {
 /* Explore Redirect Button (in How It Works) */
 /* Hero Section Buttons (Left Aligned) */
 .btn-hero-explore {
-    background: transparent;
-    color: #ffffff;
+    background: #ffffff;
+    color: var(--primary);
     padding: 0.6rem 1rem;
     font-size: 0.85rem;
     font-weight: 700;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    transition: all 0.3s ease;
+    border: 1px solid #ffffff;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -644,10 +660,10 @@ body {
 }
 
 .btn-hero-explore:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #ffffff;
-    transform: translateY(-3px);
+    background: transparent;
     color: #ffffff;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .btn-hero-trial {
@@ -1627,15 +1643,21 @@ body {
 
     /* Teachers Section Mobile */
     .teachers-section {
-        padding: 2.5rem 0;
+        padding: 2rem 0 1.5rem;
     }
 
     .teachers-header {
-        margin-bottom: 2rem;
+        margin-bottom: 0.75rem;
     }
 
     .teachers-header h2 {
-        font-size: 1.65rem;
+        font-size: 1.5rem;
+        padding-bottom: 8px;
+    }
+
+    .teachers-header h2::after {
+        width: 50px;
+        height: 2px;
     }
 
     .teachers-header p {
@@ -1730,7 +1752,7 @@ body {
 
     /* How It Works Section Mobile */
     .how-it-works-section {
-        padding: 3rem 0;
+        padding: 2rem 0;
     }
 
     .steps-grid {
@@ -1758,7 +1780,7 @@ body {
 
     /* Comparison Section Mobile - Fixed (No Slider) */
     .comparison-section {
-        padding: 3rem 0;
+        padding: 2rem 0;
     }
 
     .comparison-table-wrapper {
@@ -1809,7 +1831,7 @@ body {
 
     /* Benefits Section Mobile */
     .benefits-section {
-        padding: 3rem 0;
+        padding: 2rem 0;
     }
 
     .benefits-grid {
@@ -1840,7 +1862,7 @@ body {
 
     /* SEO Content Section Mobile */
     .seo-content-section {
-        padding: 3rem 0;
+        padding: 2rem 0;
     }
 
     .seo-content h2 {
@@ -1874,7 +1896,7 @@ body {
 
     /* Section Header Mobile */
     .section-header {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .section-header h2 {
